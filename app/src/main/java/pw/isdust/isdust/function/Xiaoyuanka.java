@@ -27,7 +27,7 @@ public class Xiaoyuanka {
     private String yingshe[];
     public String xuegonghao;
     private String mkey;
-    private int pages;
+    public int pages;
 
 
 

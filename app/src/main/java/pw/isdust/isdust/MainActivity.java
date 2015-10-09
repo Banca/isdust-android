@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Xiaoyuanka a=new Xiaoyuanka(this);
         String b=a.login("1501060225", "960826");
         a.chaxun();
+
         //校园卡
 
 
