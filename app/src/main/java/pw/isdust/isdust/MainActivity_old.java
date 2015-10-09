@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 import pw.isdust.isdust.function.Xiaoyuanka;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_old extends AppCompatActivity {
     Bitmap myzm_biaozhuan [];
 
     @Override
@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         Xiaoyuanka a=new Xiaoyuanka(this);
         String b=a.login("1501060225", "960826");
         a.chaxun();
-
         //校园卡
 
 
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -55,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

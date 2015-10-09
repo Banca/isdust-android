@@ -121,31 +121,38 @@ public class Http {
         mconditon=0;
         Request request = new Request.Builder().url(url).build();
         Call call = mHTTP.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                mBitmap=null;
-                mconditon=3;
 
+        try {
+            call.enqueue(new Callback() {
 
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                if (response.isSuccessful()){
-
-                    InputStream a = response.body().byteStream();
-                    mBitmap = BitmapFactory.decodeStream(a);
-                    mconditon=1;
-                }else {
+                @Override
+                public void onFailure(Request request, IOException e) {
                     mBitmap=null;
-                    mconditon=2;
+                    mconditon=3;
+
 
                 }
-                System.out.println(0);
 
-            }
-        });
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    if (response.isSuccessful()){
+
+                        InputStream a = response.body().byteStream();
+                        mBitmap = BitmapFactory.decodeStream(a);
+                        mconditon=1;
+                    }else {
+                        mBitmap=null;
+                        mconditon=2;
+
+                    }
+                    System.out.println(0);
+
+                }
+            });
+        }catch (Exception e){
+            System.out.println();
+        }
+
 
         while(mconditon==0){
             try{

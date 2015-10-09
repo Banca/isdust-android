@@ -20,7 +20,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.0'
+//    compile files('G:/Android/download/isdust-master/libs/okhttp-2.5.0.jar')
+//    compile files('G:/Android/download/isdust-master/libs/okio-1.6.0.jar')
     compile 'com.squareup.okhttp:okhttp:2.5.0'
+
 }

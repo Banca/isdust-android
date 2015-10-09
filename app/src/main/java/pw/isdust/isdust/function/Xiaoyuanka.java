@@ -27,12 +27,12 @@ public class Xiaoyuanka {
     private String yingshe[];
     public String xuegonghao;
     private String mkey;
-    public int pages;
+    private int pages;
+    
 
 
 
     public Xiaoyuanka(Context context) {
-
         mContext = context;
         //导入标准对比库
         myzm_biaozhuan = new Bitmap[10];
@@ -85,6 +85,7 @@ public class Xiaoyuanka {
 
             //识别
             width = mbitmap.getWidth();
+
             height = mbitmap.getHeight();
             int cuowu[] = new int[10];
 
@@ -192,7 +193,6 @@ public class Xiaoyuanka {
         Matcher mmatcher = mpattern.matcher(text);
         List<String[]> result_arraylist;
         result_arraylist=new ArrayList<String[]>();
-
 
         while (mmatcher.find()){
             String linshi []=new String[8];

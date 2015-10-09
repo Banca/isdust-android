@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dip"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bitmap_book_read_chapterlist_repeat"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="#2B2F3E"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:text="@string/app_name"
+        android:textColor="#ff959595"
+        android:textSize="15.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+        
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_home"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_home"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_home"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_cmcc"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_cmcc"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_cmcc"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_jiaowu"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_jiaowu"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_jiaowu"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_library"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_library"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_library"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+    
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_card"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_card"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_card"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+    
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_life"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_life"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_life"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+    
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_news"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_news"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_news"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+    
+    <TextView
+        android:onClick="onMenuClick"
+        android:id="@+id/slide_menu_set"
+        android:layout_width="240dip"
+        android:layout_height="50.0dip"
+        android:background="@drawable/selector_category_item"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_menu_set"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="@string/menu_set"
+        android:textColor="#ff959595"
+        android:textSize="16.0sp" />
+
+    <View
+        android:layout_width="240dip"
+        android:layout_height="2.0dip"
+        android:background="@drawable/ic_shelf_category_divider" />
+</LinearLayout>
