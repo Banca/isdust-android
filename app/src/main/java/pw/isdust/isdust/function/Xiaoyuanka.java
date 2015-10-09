@@ -28,7 +28,8 @@ public class Xiaoyuanka {
     public String xuegonghao;
     private String mkey;
     private int pages;
-    
+    public String [] personalinformation;
+
 
 
 
@@ -145,11 +146,35 @@ public class Xiaoyuanka {
         String result= Http.post_string("http://192.168.100.126/loginstudent.action", "name=" + user + "&userType=1&passwd=" + mpassword + "&loginType=2&rand=6520&imageField.x=39&imageField.y=10");
         if (result.contains("持卡人")){
             result=Http.get_string("http://192.168.100.126/accountcardUser.action");
-            Pattern mpattern = Pattern.compile("<td width=\"10%\" class=\"neiwen\">[\\S\\s]*?<div align=\"left\">([\\S\\s]*?)</div>");
+            Pattern mpattern = Pattern.compile("<div align=\"left\">([\\S\\s]*?)</div>");
             Matcher mmatcher = mpattern.matcher(result);
-            mmatcher.find();
-            mmatcher.start();
-            xuegonghao = mmatcher.group(1);
+
+            personalinformation=new String[22];
+            int i=0;
+            while (mmatcher.find()){
+                mmatcher.start();
+                personalinformation[i]= mmatcher.group(1);
+                mmatcher.end();
+                i=i+1;
+
+
+            }
+
+//            mmatcher.find();
+//            mmatcher.start();
+            xuegonghao = personalinformation[1];
+//            personalinformation[0]= mmatcher.group(1);
+//            mmatcher.end();
+//            mmatcher.find();
+//            mmatcher.start();
+//            personalinformation[1]= mmatcher.group(1);
+//            mmatcher.end();
+//            mmatcher.find();
+//            mmatcher.start();
+//            personalinformation[2]= mmatcher.group(1);
+//            mmatcher.end();
+//            mmatcher.find();
+//            mmatcher.start();
             mkey=getkey();
             System.out.println(xuegonghao);
 
