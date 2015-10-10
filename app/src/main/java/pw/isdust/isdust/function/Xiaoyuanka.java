@@ -11,10 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,32 +25,15 @@ public class Xiaoyuanka {
     private Context mContext;
     private Bitmap myzm_biaozhuan[];
     private String yingshe[];
-    private String xuegonghao;
+    public String xuegonghao;
     private String mkey;
-    private int page_total;
-    private int page_current;
-    private String day_current;
-    private Date mDate;
-    private SimpleDateFormat mSimpleDateFormat;
+    private int pages;
     public String [] personalinformation;
 
-    public void day_minus(){
-        Calendar rightNow = Calendar.getInstance();
-        rightNow.setTime(mDate);
-        rightNow.add(Calendar.DAY_OF_YEAR, -1);//减一天
-        mDate=rightNow.getTime();
-    }
-    public String day_get(){
-        String reStr = mSimpleDateFormat.format(mDate);
-        return reStr;
 
-    }
 
 
     public Xiaoyuanka(Context context) {
-        mDate=new Date();//初始化日期
-        mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
-        day_minus();
         mContext = context;
         //导入标准对比库
         myzm_biaozhuan = new Bitmap[10];
@@ -228,7 +208,7 @@ public class Xiaoyuanka {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
+        pages= Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
 
         return result_final;
 
@@ -255,7 +235,7 @@ public class Xiaoyuanka {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
+        pages= Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
 
         return result_final;
 
@@ -282,11 +262,10 @@ public class Xiaoyuanka {
 
         return result;
     }//获取会话key
-    public String[][]chaxun(String inputStartDate,String inputEndDate,int page){
+    public String[][]chaxun(String inputStartDate,String inputEndDate,String page){
         mkey=getkey();
         String text= Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + mkey, "inputStartDate=" + inputStartDate + "&inputEndDate=" + inputEndDate + "&pageNum=" + page);
-        page_current=page;
-        day_current=inputStartDate;
+
         Pattern mpattern = Pattern.compile("<form id=\"\\?__continue=([\\S\\s]*?)\" name=\"form1\" ");
         Matcher mmatcher = mpattern.matcher(text);
         mmatcher.find();
@@ -309,32 +288,6 @@ public class Xiaoyuanka {
         return result;
 
     }
-    public String[][]nextpage(){
-        page_current=page_current+1;
-        if (page_current>page_total){
-
-            page_current=1;
-            day_minus();
-            day_current=day_get();
-
-            return chaxun(day_current,day_current,page_current);
-        }
-        return chaxun(day_current,day_current,page_current);
-
-
-
-    }
-    public String[][]chaxunlishi(){
-        page_current=1;
-        day_current=day_get();
-        return chaxun(day_current,day_current,page_current);
-
-
-
-    }
-
-
-
     private boolean storeImage(Bitmap imageData, String filename) {
         //get path to external storage (SD card)
         String iconsStoragePath = Environment.getExternalStorageDirectory() + "/myAppDir/myImages/";

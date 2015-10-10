@@ -43,10 +43,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 		String result;
 		result = usercard.login(username,password);
 		Toast.makeText(this, result, 1000).show();
-		userdata = usercard.chaxunlishi();
-		userdata = usercard.nextpage();
-		userdata = usercard.nextpage();
-		userdata = usercard.nextpage();
+		userdata = usercard.chaxun();
 		Toast.makeText(this, userdata[0][1], 1000).show();
 		//String b=a.login("1501060225", "960826");
 		//a.chaxun();
