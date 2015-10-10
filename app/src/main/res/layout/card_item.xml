@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#d6fed6">
-    
-    <ImageView 
-        android:layout_marginTop="10dp"
-        android:id="@+id/iv_gridview_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/ic_launcher"
-        />
-    <TextView 
-        android:id="@+id/tv_gridview_item"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="静怡祥和"
-        android:textSize="12sp"
-        android:textColor="#000"
-        />
-    
-    <TextView 
+    android:background="#dddddd">
+
+    <TextView
         android:id="@+id/tv_gridview_item_name"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="石门峰名人文化公园"
+        android:text="消费"
         android:textSize="15sp"
         android:textColor="#000"
-        />
-    
+        android:layout_alignTop="@+id/iv_gridview_item"
+        android:layout_toRightOf="@+id/iv_gridview_item"
+        android:layout_toEndOf="@+id/iv_gridview_item" />
 
-</LinearLayout>
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/iv_gridview_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        />
+    <TextView 
+        android:id="@+id/tv_gridview_item_addr"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="消费地点"
+        android:textSize="12sp"
+        android:textColor="#000"
+        android:layout_alignBottom="@+id/iv_gridview_item"
+        android:layout_toRightOf="@+id/iv_gridview_item"
+        android:layout_toEndOf="@+id/iv_gridview_item" />
+
+    <TextView
+        android:id="@+id/tv_gridview_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0000-00-00 00:00:00"
+        android:layout_alignBottom="@+id/tv_gridview_item_name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tv_gridview_item_bala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="余额 ￥00"
+        android:layout_alignBottom="@+id/tv_gridview_item_addr"
+        android:layout_alignRight="@+id/tv_gridview_item_time"
+        android:layout_alignEnd="@+id/tv_gridview_item_time" />
+
+
+</RelativeLayout>

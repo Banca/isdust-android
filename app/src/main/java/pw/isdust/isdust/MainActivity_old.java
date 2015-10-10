@@ -17,9 +17,9 @@ public class MainActivity_old extends AppCompatActivity {
 
 
         //校园卡
-        Xiaoyuanka a=new Xiaoyuanka(this);
-        String b=a.login("1501060225", "960826");
-        a.chaxun();
+        //Xiaoyuanka a=new Xiaoyuanka(this);
+//        String b=a.login("1501060225", "960826");
+//        a.chaxun();
         //校园卡
 
 
@@ -31,7 +31,7 @@ public class MainActivity_old extends AppCompatActivity {
 //        a.login_cmcc("18866396947", "891031");
 //        a.xiaxian_cmcc();
 
-        System.out.println(b);
+        //System.out.println(b);
 
 
 
@@ -39,14 +39,14 @@ public class MainActivity_old extends AppCompatActivity {
 
     }
 
-    @Override
+    //@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
+    //@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -58,6 +58,7 @@ public class MainActivity_old extends AppCompatActivity {
 //            return true;
 //        }
 
-        return super.onOptionsItemSelected(item);
+        //return super.onOptionsItemSelected(item);
+        return true;
     }
 }

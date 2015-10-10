@@ -39,12 +39,12 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 		username = data.getString("un");
 		password = data.getString("up");
 		//校园卡
-		usercard = new Xiaoyuanka(this);
+		/*usercard = new Xiaoyuanka(this);
 		String result;
 		result = usercard.login(username,password);
 		Toast.makeText(this, result, 1000).show();
 		userdata = usercard.chaxun();
-		Toast.makeText(this, userdata[0][1], 1000).show();
+		Toast.makeText(this, userdata[0][1], 1000).show();*/
 		//String b=a.login("1501060225", "960826");
 		//a.chaxun();
 	}
