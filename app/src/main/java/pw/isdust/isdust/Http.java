@@ -27,6 +27,7 @@ public class Http {
     private static CookieManager cookieManager = new CookieManager();
     public static Bitmap mBitmap;
     static{
+
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
         mHTTP.setCookieHandler(cookieManager);
     }

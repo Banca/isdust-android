@@ -1,8 +1,5 @@
 package com.formal.sdusthelper;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +11,11 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import pw.isdust.isdust.function.Xiaoyuanka;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import pw.isdust.isdust.function.Zhengfang;
 
 public class MainActivity extends Activity implements OnClickListener{
 	private SlideMenu slideMenu;
@@ -52,6 +51,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel,2000,2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
+		Zhengfang a=new Zhengfang();
+		a.losin("201501060225","960826wang");
 
 
 	}
