@@ -25,6 +25,7 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/9/18.
  */
 public class Xiaoyuanka {
+    private Http mHttp;
     private Context mContext;
     private Bitmap myzm_biaozhuan[];
     private String yingshe[];
@@ -52,6 +53,7 @@ public class Xiaoyuanka {
 
 
     public Xiaoyuanka(Context context) {
+        mHttp=new Http();
         mDate=new Date();//初始化日期
         mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
         day_minus();
@@ -160,13 +162,14 @@ public class Xiaoyuanka {
 
     }//密码转化
     public String login(String user,String password){
+        mHttp.newcookie();
 
-        importimage(Http.get_image("http://192.168.100.126/getpasswdPhoto.action"));
-        Http.get_image("http://192.168.100.126/getCheckpic.action?rand=6520.280869641985");
+        importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
+        mHttp.get_image("http://192.168.100.126/getCheckpic.action?rand=6520.280869641985");
         String mpassword=zhuanhuan(password);
-        String result= Http.post_string("http://192.168.100.126/loginstudent.action", "name=" + user + "&userType=1&passwd=" + mpassword + "&loginType=2&rand=6520&imageField.x=39&imageField.y=10");
+        String result= mHttp.post_string("http://192.168.100.126/loginstudent.action", "name=" + user + "&userType=1&passwd=" + mpassword + "&loginType=2&rand=6520&imageField.x=39&imageField.y=10");
         if (result.contains("持卡人")){
-            result=Http.get_string("http://192.168.100.126/accountcardUser.action");
+            result= mHttp.get_string("http://192.168.100.126/accountcardUser.action");
             Pattern mpattern = Pattern.compile("<div align=\"left\">([\\S\\s]*?)</div>");
             Matcher mmatcher = mpattern.matcher(result);
 
@@ -260,7 +263,7 @@ public class Xiaoyuanka {
     }//处理查询的文本
     public String getkey(){
         //get_key_init
-        String text=Http.get_string("http://192.168.100.126/accounthisTrjn.action");
+        String text= mHttp.get_string("http://192.168.100.126/accounthisTrjn.action");
         Pattern mpattern = Pattern.compile("\"/accounthisTrjn.action\\?__continue=([\\s\\S]*?)\"");
         Matcher mmatcher = mpattern.matcher(text);
         mmatcher.find();
@@ -269,7 +272,7 @@ public class Xiaoyuanka {
         //get_key_init
 
 
-        text=Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue="+key_init, "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
+        text= mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + key_init, "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+");
         mmatcher = mpattern.matcher(text);
         mmatcher.find();
         mmatcher.start();
@@ -282,7 +285,7 @@ public class Xiaoyuanka {
     }//获取会话key
     public String[][]chaxun(String inputStartDate,String inputEndDate,int page){
         mkey=getkey();
-        String text= Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + mkey, "inputStartDate=" + inputStartDate + "&inputEndDate=" + inputEndDate + "&pageNum=" + page);
+        String text= mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + mkey, "inputStartDate=" + inputStartDate + "&inputEndDate=" + inputEndDate + "&pageNum=" + page);
         page_current=page;
         day_current=inputStartDate;
         Pattern mpattern = Pattern.compile("<form id=\"\\?__continue=([\\S\\s]*?)\" name=\"form1\" ");
@@ -290,20 +293,20 @@ public class Xiaoyuanka {
         mmatcher.find();
         mmatcher.start();
         String msearchkey=mmatcher.group(1);
-        String result[][]= fenxi(Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + msearchkey, ""));
+        String result[][]= fenxi(mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + msearchkey, ""));
         return result;
 
     }
     public String[][]chaxun(){
 //        mkey=getkey();
-//        String text= Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
+//        String text= mHttp.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
 //
 //        Pattern mpattern = Pattern.compile("<form id=\"\\?__continue=([\\S\\s]*?)\" name=\"form1\" ");
 //        Matcher mmatcher = mpattern.matcher(text);
 //        mmatcher.find();
 //        mmatcher.start();
 //        String msearchkey=mmatcher.group(1);
-        String result[][]= fenxi_today(Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action", "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+"));
+        String result[][]= fenxi_today(mHttp.post_string("http://192.168.100.126/accounttodatTrjnObject.action", "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+"));
         return result;
 
     }

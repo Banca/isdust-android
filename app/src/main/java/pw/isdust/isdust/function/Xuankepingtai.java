@@ -12,10 +12,13 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/10/10.
  */
 public class Xuankepingtai {
-    public Xuankepingtai(){}
+    private Http mHttp;
+    public Xuankepingtai(){
+        mHttp=new Http();
+    }
     public String losin(String user,String pwd){
         String text_web;
-        text_web= Http.get_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F");
+        text_web= mHttp.get_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F");
         String __RequestVerificationToken=Shangwangdenglu.zhongjian(text_web, "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0);
         try {
             __RequestVerificationToken= URLEncoder.encode(__RequestVerificationToken, "utf-8");
@@ -24,7 +27,7 @@ public class Xuankepingtai {
             System.out.println(e);
         }
         String post_submit="UserName="+user+"&Password="+pwd+"&RememberMe=false&__RequestVerificationToken="+__RequestVerificationToken;
-        text_web=Http.post_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F", post_submit);
+        text_web= mHttp.post_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F", post_submit);
         if(text_web.contains("你好")){
             return "登录成功";
         }
@@ -33,7 +36,7 @@ public class Xuankepingtai {
     }
     public String[][] chaxun(String zhou,String xn,String xq){
         String text_web;
-        text_web= Http.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
+        text_web= mHttp.get_string("http://192.168.109.142/?zhou=" + zhou + "&xn=" + xn + "&xq=" + xq);
         text_web=text_web.replace(" rowspan=\"2\" ","");
         Pattern mpattern = Pattern.compile("<td  class=\"leftheader\">第[1,3,5,7,9]节</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>");
         Matcher mmatcher = mpattern.matcher(text_web);
