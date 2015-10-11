@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pw.isdust.isdust.function.Xiaoli;
 import pw.isdust.isdust.function.Xuankepingtai;
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -51,9 +52,12 @@ public class MainActivity extends Activity implements OnClickListener{
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel,2000,2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
+
+		Xiaoli b=new Xiaoli();
+
 		Xuankepingtai a=new Xuankepingtai();
 		a.losin("201501060225","960826wang");
-		a.chaxun("7","2015-2016","1");
+		a.chaxun(Xiaoli.get_xiaoli()+"","2015-2016","1");
 
 
 	}

@@ -75,7 +75,7 @@ public class Xuankepingtai {
         }
 
 
-        return result;
+        return result;//星期，节次，课程
     }
     public class Kebiao{
         public String xingqi;
