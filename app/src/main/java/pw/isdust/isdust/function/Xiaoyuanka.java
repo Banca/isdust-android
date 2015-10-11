@@ -35,7 +35,7 @@ public class Xiaoyuanka {
     private String day_current;
     private Date mDate;
     private SimpleDateFormat mSimpleDateFormat;
-    public String [] personalinformation;
+    private String [] personalinformation;
 
     public void day_minus(){
         Calendar rightNow = Calendar.getInstance();
@@ -329,8 +329,6 @@ public class Xiaoyuanka {
         day_current=day_get();
         return chaxun(day_current,day_current,page_current);
 
-
-
     }
 
 
@@ -366,4 +364,10 @@ public class Xiaoyuanka {
         return true;
     }
 
+    //获取学生姓名
+    public String getStuName() {  return personalinformation[0]; }
+    //获取学号
+    public String getStuNumber() {return personalinformation[3]; }
+    //获取学生专业班级
+    public String getStuClass() {return personalinformation[13]; }
 }
