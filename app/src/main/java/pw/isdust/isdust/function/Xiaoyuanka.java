@@ -36,6 +36,7 @@ public class Xiaoyuanka {
     private Date mDate;
     private SimpleDateFormat mSimpleDateFormat;
     private String [] personalinformation;
+    public String [] yue;
 
     public void day_minus(){
         Calendar rightNow = Calendar.getInstance();
@@ -176,25 +177,22 @@ public class Xiaoyuanka {
                 personalinformation[i]= mmatcher.group(1);
                 mmatcher.end();
                 i=i+1;
-
-
             }
 
-//            mmatcher.find();
-//            mmatcher.start();
+
+
+
+
+            mpattern = Pattern.compile("<td class=\"neiwen\">([0-9]*.[0-9]*元)\\（卡余额\\）([0-9]*.[0-9]*元)\\(当前过渡余额\\)([0-9]*.[0-9]*元)\\(上次过渡余额\\)</td>");
+            mmatcher = mpattern.matcher(result);
+            yue=new String[3];
+            mmatcher.find();
+            mmatcher.start();
+            yue[0]= mmatcher.group(1);
+            yue[1]= mmatcher.group(2);
+            yue[2]= mmatcher.group(3);
             xuegonghao = personalinformation[1];
-//            personalinformation[0]= mmatcher.group(1);
-//            mmatcher.end();
-//            mmatcher.find();
-//            mmatcher.start();
-//            personalinformation[1]= mmatcher.group(1);
-//            mmatcher.end();
-//            mmatcher.find();
-//            mmatcher.start();
-//            personalinformation[2]= mmatcher.group(1);
-//            mmatcher.end();
-//            mmatcher.find();
-//            mmatcher.start();
+
             mkey=getkey();
             System.out.println(xuegonghao);
 
