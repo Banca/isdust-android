@@ -55,7 +55,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 		textnum.setText(usercard.getStuNumber());
 		textclass.setText(usercard.getStuClass());
 		userdata = usercard.chaxun();
-		textbala.setText("￥" + userdata[0][5]); //显示余额
+		textbala.setText("￥" + usercard.yue[0]); //显示余额
 
 //		userdata = usercard.chaxunlishi();
 //		userdata = usercard.nextpage();
