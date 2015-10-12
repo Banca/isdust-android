@@ -1,6 +1,7 @@
 package com.formal.sdusthelper;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,13 +25,15 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	private String username,password;	//存储校园卡 用户名、密码
 	private Xiaoyuanka usercard;
 	private String[][] userdata;
+    private Context mcontext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.card_listview);
+        mcontext=this;
 
 		mPullToRefreshView = (PullToRefreshView)findViewById(R.id.main_pull_refresh_view);
-		setListAdapter(new DataAdapter(this));
+
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         mPullToRefreshView.setOnFooterRefreshListener(this);
 
@@ -57,6 +60,11 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 		userdata = usercard.chaxun();
 		textbala.setText("￥" + usercard.yue[0]); //显示余额
 
+        String [] []data_xiaofeijilu=usercard.chaxun();
+        DataAdapter a=new DataAdapter(mcontext, data_xiaofeijilu);
+
+        setListAdapter(new DataAdapter(mcontext, data_xiaofeijilu));
+
 //		userdata = usercard.chaxunlishi();
 //		userdata = usercard.nextpage();
 //		userdata = usercard.nextpage();
@@ -77,6 +85,10 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 			
 			@Override
 			public void run() {
+				String [] []data_xiaofeijilu=usercard.chaxunlishi();
+                setListAdapter(new DataAdapter(mcontext,data_xiaofeijilu));
+
+
 				mPullToRefreshView.onFooterRefreshComplete();
 			}
 		}, 1000);
