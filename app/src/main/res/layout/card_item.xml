@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#dddddd">
+    android:background="@color/color_list_white">
 
     <TextView
         android:id="@+id/tv_gridview_item_name"
@@ -11,15 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="消费"
-        android:textSize="23dp"
+        android:textSize="18dp"
         android:textColor="#000"
         android:layout_alignTop="@+id/iv_gridview_item"
         android:layout_toRightOf="@+id/iv_gridview_item"
         android:layout_toEndOf="@+id/iv_gridview_item" />
 
     <ImageView
-        android:layout_marginTop="10dp"
         android:id="@+id/iv_gridview_item"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_card_mark"
@@ -43,11 +43,9 @@
         android:text="0000-00-00 00:00:00"
         android:textSize="13dp"
         android:textColor="#555555"
-        android:layout_marginRight="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_alignTop="@+id/tv_gridview_item_name"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/tv_gridview_item_addr"
+        android:layout_alignRight="@+id/tv_gridview_item_bala"
+        android:layout_alignEnd="@+id/tv_gridview_item_bala" />
 
     <TextView
         android:id="@+id/tv_gridview_item_bala"
@@ -55,9 +53,10 @@
         android:layout_height="wrap_content"
         android:text="余额 ￥00"
         android:textSize="15dp"
-        android:layout_alignTop="@+id/tv_gridview_item_addr"
-        android:layout_alignRight="@+id/tv_gridview_item_time"
-        android:layout_alignEnd="@+id/tv_gridview_item_time" />
-
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_alignBottom="@+id/tv_gridview_item_name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

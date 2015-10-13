@@ -20,26 +20,18 @@ import java.net.CookiePolicy;
  * Created by wzq on 15/9/5.
  */
 public class Http {
-    private OkHttpClient mHTTP;
-    private int mconditon;//0为未成功，1为请求成功，2为请求失败，3为未知错误
-    private  String mresult_string;
+    private static OkHttpClient mHTTP=new OkHttpClient();
+    private static int mconditon;//0为未成功，1为请求成功，2为请求失败，3为未知错误
+    private static String mresult_string="";
 
-    private CookieManager cookieManager;
-    private Bitmap mBitmap;
+    private static CookieManager cookieManager = new CookieManager();
+    public static Bitmap mBitmap;
+    static{
 
-    public Http(){
-        mresult_string="";
-        mHTTP=new OkHttpClient();
-        newcookie();
-
-    }
-    public void newcookie(){
-        cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
         mHTTP.setCookieHandler(cookieManager);
-
     }
-    public String get_string(String url){
+    public static String get_string(String url){
         mconditon=0;
         mresult_string="";
         Request request = new Request.Builder().url(url).build();
@@ -81,7 +73,7 @@ public class Http {
 
         return mresult_string;
     }
-    public  String get_string(String url,final String bianma){
+    public static String get_string(String url,final String bianma){
         mconditon=0;
         mresult_string="";
         Request request = new Request.Builder().url(url).build();
@@ -126,7 +118,7 @@ public class Http {
 
         return mresult_string;
     }
-    public  Bitmap get_image(String url){
+    public static Bitmap get_image(String url){
         mconditon=0;
         Request request = new Request.Builder().url(url).build();
         Call call = mHTTP.newCall(request);
@@ -173,7 +165,7 @@ public class Http {
 
         return mBitmap;
     }
-    public  String post_string(String url,String postbody){
+    public static String post_string(String url,String postbody){
         mconditon=0;
         //构造POST包
         String mstring_fenge1 [] =postbody.split("&");
@@ -231,7 +223,7 @@ public class Http {
 
 
     }
-    public String post_string(String url,String postbody, final String bianma){
+    public static String post_string(String url,String postbody, final String bianma){
         mconditon=0;
         //构造POST包
         String mstring_fenge1 [] =postbody.split("&");

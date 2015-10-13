@@ -12,6 +12,6 @@
     <color name="color_btn_blue">#32A8EB</color>
     <color name="color_form_black">#333333</color>
     <color name="color_form_white">#ffffff</color>
-    <color name="color_list_white">#eeeeee</color>
-
+    <color name="color_list_white">#ffffff</color>
+    <color name="color_list_cutline">#dddddd</color>
 </resources>

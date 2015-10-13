@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
+import com.formal.sdusthelper.datatype.PurchaseHistory;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,7 +27,6 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/9/18.
  */
 public class Xiaoyuanka {
-    private Http mHttp;
     private Context mContext;
     private Bitmap myzm_biaozhuan[];
     private String yingshe[];
@@ -37,7 +38,8 @@ public class Xiaoyuanka {
     private Date mDate;
     private SimpleDateFormat mSimpleDateFormat;
     private String [] personalinformation;
-    public String [] yue;
+    private String [] yue;
+    private int conid = 0;	//调消费记录的操作次数
 
     public void day_minus(){
         Calendar rightNow = Calendar.getInstance();
@@ -53,7 +55,6 @@ public class Xiaoyuanka {
 
 
     public Xiaoyuanka(Context context) {
-        mHttp=new Http();
         mDate=new Date();//初始化日期
         mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
         day_minus();
@@ -162,14 +163,13 @@ public class Xiaoyuanka {
 
     }//密码转化
     public String login(String user,String password){
-        mHttp.newcookie();
 
-        importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
-        mHttp.get_image("http://192.168.100.126/getCheckpic.action?rand=6520.280869641985");
+        importimage(Http.get_image("http://192.168.100.126/getpasswdPhoto.action"));
+        Http.get_image("http://192.168.100.126/getCheckpic.action?rand=6520.280869641985");
         String mpassword=zhuanhuan(password);
-        String result= mHttp.post_string("http://192.168.100.126/loginstudent.action", "name=" + user + "&userType=1&passwd=" + mpassword + "&loginType=2&rand=6520&imageField.x=39&imageField.y=10");
+        String result= Http.post_string("http://192.168.100.126/loginstudent.action", "name=" + user + "&userType=1&passwd=" + mpassword + "&loginType=2&rand=6520&imageField.x=39&imageField.y=10");
         if (result.contains("持卡人")){
-            result= mHttp.get_string("http://192.168.100.126/accountcardUser.action");
+            result=Http.get_string("http://192.168.100.126/accountcardUser.action");
             Pattern mpattern = Pattern.compile("<div align=\"left\">([\\S\\s]*?)</div>");
             Matcher mmatcher = mpattern.matcher(result);
 
@@ -186,7 +186,7 @@ public class Xiaoyuanka {
 
 
 
-            mpattern = Pattern.compile("<td class=\"neiwen\">([0-9]*.[0-9]*元)\\（卡余额\\）([0-9]*.[0-9]*元)\\(当前过渡余额\\)([0-9]*.[0-9]*元)\\(上次过渡余额\\)</td>");
+            mpattern = Pattern.compile("<td class=\"neiwen\">([0-9]*.[0-9]*)元\\（卡余额\\）([0-9]*.[0-9]*)元\\(当前过渡余额\\)([0-9]*.[0-9]*)元\\(上次过渡余额\\)</td>");
             mmatcher = mpattern.matcher(result);
             yue=new String[3];
             mmatcher.find();
@@ -263,7 +263,7 @@ public class Xiaoyuanka {
     }//处理查询的文本
     public String getkey(){
         //get_key_init
-        String text= mHttp.get_string("http://192.168.100.126/accounthisTrjn.action");
+        String text=Http.get_string("http://192.168.100.126/accounthisTrjn.action");
         Pattern mpattern = Pattern.compile("\"/accounthisTrjn.action\\?__continue=([\\s\\S]*?)\"");
         Matcher mmatcher = mpattern.matcher(text);
         mmatcher.find();
@@ -272,7 +272,7 @@ public class Xiaoyuanka {
         //get_key_init
 
 
-        text= mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + key_init, "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+");
+        text=Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue="+key_init, "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
         mmatcher = mpattern.matcher(text);
         mmatcher.find();
         mmatcher.start();
@@ -285,7 +285,7 @@ public class Xiaoyuanka {
     }//获取会话key
     public String[][]chaxun(String inputStartDate,String inputEndDate,int page){
         mkey=getkey();
-        String text= mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + mkey, "inputStartDate=" + inputStartDate + "&inputEndDate=" + inputEndDate + "&pageNum=" + page);
+        String text= Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + mkey, "inputStartDate=" + inputStartDate + "&inputEndDate=" + inputEndDate + "&pageNum=" + page);
         page_current=page;
         day_current=inputStartDate;
         Pattern mpattern = Pattern.compile("<form id=\"\\?__continue=([\\S\\s]*?)\" name=\"form1\" ");
@@ -293,20 +293,20 @@ public class Xiaoyuanka {
         mmatcher.find();
         mmatcher.start();
         String msearchkey=mmatcher.group(1);
-        String result[][]= fenxi(mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + msearchkey, ""));
+        String result[][]= fenxi(Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + msearchkey, ""));
         return result;
 
     }
     public String[][]chaxun(){
 //        mkey=getkey();
-//        String text= mHttp.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
+//        String text= Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
 //
 //        Pattern mpattern = Pattern.compile("<form id=\"\\?__continue=([\\S\\s]*?)\" name=\"form1\" ");
 //        Matcher mmatcher = mpattern.matcher(text);
 //        mmatcher.find();
 //        mmatcher.start();
 //        String msearchkey=mmatcher.group(1);
-        String result[][]= fenxi_today(mHttp.post_string("http://192.168.100.126/accounttodatTrjnObject.action", "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+"));
+        String result[][]= fenxi_today(Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action", "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+"));
         return result;
 
     }
@@ -365,10 +365,59 @@ public class Xiaoyuanka {
         return true;
     }
 
+    public PurchaseHistory[] getPurData() {
+        PurchaseHistory[] ph;
+        if (conid == 0) {	//第一次获取时，获取当天和昨天几条记录
+            String[][] str1,str2;
+            str1 = chaxun();
+            str2 = chaxunlishi();
+            int slen1 = str1.length;
+            int slen2 = str2.length;
+            int slen = slen1 + slen2;
+            ph = new PurchaseHistory[slen];
+            for (int i=0;i<slen1;i++) {
+                ph[i] = new PurchaseHistory();
+                ph[i] = Structured(str1[i]);
+            }
+            for (int i=slen1;i<slen;i++) {
+                ph[i] = new PurchaseHistory();
+                ph[i] = Structured(str2[i-slen1]);
+            }
+            ++conid;
+        }
+        else {	//不是初次调用，就直接nextpage
+            String[][] str = nextpage();
+            int slen = str.length;
+            ph = new PurchaseHistory[slen];
+            for (int i=0;i<slen;i++) {
+                ph[i] = new PurchaseHistory();
+                ph[i] = Structured(str[i]);
+            }
+        }
+        return ph;
+    }	//获取消费记录
+
+    private PurchaseHistory Structured(String str[]) {
+        PurchaseHistory ph = new PurchaseHistory();
+        ph.setBehavior(str[1]);
+        ph.setAddr(str[2]);
+        ph.setTime(str[0]);
+        ph.setBala(str[5]);
+        ph.setMoney(str[4]);
+        return ph;
+    }	//结构化消费记录
+
     //获取学生姓名
     public String getStuName() {  return personalinformation[0]; }
     //获取学号
     public String getStuNumber() {return personalinformation[3]; }
     //获取学生专业班级
     public String getStuClass() {return personalinformation[13]; }
+    //获取余额
+    public String getBalance() {
+        float sum = Float.parseFloat(yue[0])
+                + Float.parseFloat(yue[1])
+                + Float.parseFloat(yue[2]);
+        return String.valueOf(sum);
+    }
 }
