@@ -22,8 +22,8 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-        compile files('G:/Android/download/isdust-master/libs/okhttp-2.5.0.jar')
-        compile files('G:/Android/download/isdust-master/libs/okio-1.6.0.jar')
-    //compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
-    //compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
+//        compile files('G:/Android/download/isdust-master/libs/okhttp-2.5.0.jar')
+//        compile files('G:/Android/download/isdust-master/libs/okio-1.6.0.jar')
+    compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
+    compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
 }

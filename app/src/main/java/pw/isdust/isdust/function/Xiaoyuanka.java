@@ -30,7 +30,7 @@ public class Xiaoyuanka {
     private Context mContext;
     private Bitmap myzm_biaozhuan[];
     private String yingshe[];
-    private String xuegonghao;
+    private String zhanghao;
     private String mkey;
     private int page_total;
     private int page_current;
@@ -194,10 +194,10 @@ public class Xiaoyuanka {
             yue[0]= mmatcher.group(1);
             yue[1]= mmatcher.group(2);
             yue[2]= mmatcher.group(3);
-            xuegonghao = personalinformation[1];
+            zhanghao = personalinformation[1];
 
             mkey=getkey();
-            System.out.println(xuegonghao);
+            System.out.println(zhanghao);
 
             return "登录成功";
         }else if(result.contains("登陆失败，无此用户名称")){
@@ -272,7 +272,7 @@ public class Xiaoyuanka {
         //get_key_init
 
 
-        text=Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue="+key_init, "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
+        text=Http.post_string("http://192.168.100.126/accounthisTrjn.action?__continue="+key_init, "account="+ zhanghao +"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
         mmatcher = mpattern.matcher(text);
         mmatcher.find();
         mmatcher.start();
@@ -299,14 +299,14 @@ public class Xiaoyuanka {
     }
     public String[][]chaxun(){
 //        mkey=getkey();
-//        String text= Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+xuegonghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
+//        String text= Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+zhanghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
 //
 //        Pattern mpattern = Pattern.compile("<form id=\"\\?__continue=([\\S\\s]*?)\" name=\"form1\" ");
 //        Matcher mmatcher = mpattern.matcher(text);
 //        mmatcher.find();
 //        mmatcher.start();
 //        String msearchkey=mmatcher.group(1);
-        String result[][]= fenxi_today(Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action", "account=" + xuegonghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+"));
+        String result[][]= fenxi_today(Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action", "account=" + zhanghao + "&inputObject=all&Submit=+%C8%B7+%B6%A8+"));
         return result;
 
     }
@@ -413,11 +413,58 @@ public class Xiaoyuanka {
     public String getStuNumber() {return personalinformation[3]; }
     //获取学生专业班级
     public String getStuClass() {return personalinformation[13]; }
+    public String changepassword(String oldpassword,String newpassword,String shengfenzheng){
+        if (!shengfenzheng.equals(getShengfenzheng())){
+            return "身份证号码错误";
+        }
+        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(oldpassword)){
+            return "默认密码无法使用此功能";
+        }
+
+        importimage(Http.get_image("http://192.168.100.126/getpasswdPhoto.action"));
+        String moldpassword=zhuanhuan(oldpassword);
+        String mnewpassword=zhuanhuan(newpassword);
+        //account=84734&passwd=218371&newpasswd=218371&newpasswd2=218371
+        String submit="account="+ zhanghao +"&passwd="+moldpassword+"&newpasswd="+mnewpassword+"&newpasswd2="+mnewpassword;
+        String result=Http.post_string("http://192.168.100.126/accountDocpwd.action",submit);
+        if (result.contains("操作成功")){
+            return "修改密码成功";
+        }else if(result.contains("密码错误")){
+            return "原始密码错误";
+        }
+        return "未知错误";
+
+    }
     //获取余额
     public String getBalance() {
+//        float sum = Float.parseFloat(yue[0])
+//                + Float.parseFloat(yue[1])
+//                + Float.parseFloat(yue[2]);
         float sum = Float.parseFloat(yue[0])
-                + Float.parseFloat(yue[1])
-                + Float.parseFloat(yue[2]);
+                + Float.parseFloat(yue[1]);//此前过渡余额不能计入
         return String.valueOf(sum);
+    }
+    private String getShengfenzheng(){
+        return personalinformation[9];
+    }
+    private String getXuegonghao(){
+        return personalinformation[3];
+    }
+    public String guashi(String password,String shengfenzheng){
+        if (!shengfenzheng.equals(getShengfenzheng())){
+            return "身份证号码错误";
+        }
+        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(password)){
+            return "默认密码无法使用此功能";
+        }
+        importimage(Http.get_image("http://192.168.100.126/getpasswdPhoto.action"));
+        String moldpassword=zhuanhuan(password);
+        String submit="account="+ zhanghao +"&passwd="+moldpassword;
+        String result=Http.post_string("http://192.168.100.126/accountDoLoss.action",submit);
+        if (result.contains("持卡人已挂失")){return "持卡人已挂失，无需再次挂失";}
+        else if(result.contains("密码错误")){return "密码错误";}
+        else if(result.contains("操作成功")){return "挂失成功";}
+        return "未知错误";
+
     }
 }
