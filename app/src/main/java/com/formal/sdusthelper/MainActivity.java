@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pw.isdust.isdust.function.Networkjudge;
+
 public class MainActivity extends Activity implements OnClickListener{
 	private SlideMenu slideMenu;
 	private View form_welcome = null,
@@ -52,7 +54,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		timer_wel.schedule(task_wel,2000,2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
 
-
+		Networkjudge a=new Networkjudge(this);
+		a.judgetype();
 //		Xiaoyuanka b=new Xiaoyuanka(this);
 //		String c= b.login("1501060225", "960826");
 		//c=b.changepassword("061406","061406","370112199606264517");
