@@ -55,8 +55,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
 
 		Networkjudge a=new Networkjudge(this);
-		int c=a.judgetype();
-		c=a.cmcc_judge();
+		//int c=a.judgetype();
+		//c=a.cmcc_judge();
 //		Xiaoyuanka b=new Xiaoyuanka(this);
 //		String c= b.login("1501060225", "960826");
 		//c=b.changepassword("061406","061406","370112199606264517");
