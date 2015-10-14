@@ -11,6 +11,7 @@ import pw.isdust.isdust.Http;
 public class Shangwangdenglu {
     public Shangwangdenglu(){
         mHttp=new Http();
+
     }
     String xiaxian;
     Http mHttp;

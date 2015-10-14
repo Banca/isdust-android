@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 /**
  * Created by wzq on 15/9/5.
@@ -32,6 +34,9 @@ public class Http {
         mresult_string="";
         mHTTP=new OkHttpClient();
         newcookie();
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("121.201.13.50", 1999));
+
+        mHTTP.setProxy(proxy);
 
     }
     public void newcookie(){
