@@ -34,10 +34,15 @@ public class Http {
         mresult_string="";
         mHTTP=new OkHttpClient();
         newcookie();
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("121.201.13.50", 1999));
 
+
+        //mHTTP.setProxy(proxy);
+
+    }
+    public void setProxy(String ip,int port){
+        //Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("121.201.13.50", 1999));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
         mHTTP.setProxy(proxy);
-
     }
     public void newcookie(){
         cookieManager = new CookieManager();

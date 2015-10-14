@@ -38,7 +38,7 @@ public class Networkjudge {
         return 0;//0.无网络1.CMCC2.CHINAUNICOME3.纯数据
     }
    public int cmcc_judge(){
-      String text= mHttp.get_string("http://172.16.0.86","gb2312");
+      String text= mHttp.get_string("http://172.16.0.86/","gb2312");
        if (text.contains("注销")){
            text= mHttp.get_string("http://www.baidu.com");
            if (text.contains("百度")){
