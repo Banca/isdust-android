@@ -9,6 +9,7 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -83,15 +84,22 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.FormCard_button_login:
 				EditText textuser = (EditText) findViewById(R.id.FormCard_editText_user);
 				EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
+				CheckBox checkkeeppwd = (CheckBox) findViewById(R.id.FormCard_checkBox_savepwd);
 
-				//记住密码
 				//实例化SharedPreferences对象
 				SharedPreferences mySharedPreferences= getSharedPreferences("CardData",	Activity.MODE_PRIVATE);
 				//实例化SharedPreferences.Editor对象
 				SharedPreferences.Editor editor = mySharedPreferences.edit();
 				//用putString的方法保存数据
-				editor.putString("name", "Karl");
-				editor.putString("habit", "sleep");
+				editor.putString("username", textuser.getText().toString());
+				if (checkkeeppwd.isChecked()) {	//记住密码
+					editor.putBoolean("keeppwd", true);
+					editor.putString("password", textpwd.getText().toString());
+				}
+				else {	//不记住密码
+					editor.putBoolean("keeppwd", false);
+					editor.putString("password", "");
+				}
 				//提交当前数据
 				editor.commit();
 
@@ -126,6 +134,18 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.slide_menu_card:
 			reDimUI(form_card,R.string.menu_card);
+			EditText textuser = (EditText) findViewById(R.id.FormCard_editText_user);
+			EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
+			CheckBox checkkeeppwd = (CheckBox) findViewById(R.id.FormCard_checkBox_savepwd);
+			//在读取SharedPreferences数据前要实例化出一个SharedPreferences对象
+			SharedPreferences sharedPreferences= getSharedPreferences("CardData", Activity.MODE_PRIVATE);
+			// 使用getString方法获得value，注意第2个参数是value的默认值
+			String name =sharedPreferences.getString("username", "");
+			String pwd =sharedPreferences.getString("password", "");
+			Boolean keeppwd = sharedPreferences.getBoolean("keeppwd", true);
+			textuser.setText(name);
+			textpwd.setText(pwd);
+			checkkeeppwd.setChecked(keeppwd);
 			break;
 		case R.id.slide_menu_life:
 			reDimUI(form_life,R.string.menu_life);
