@@ -9,7 +9,11 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/9/22.
  */
 public class Shangwangdenglu {
+    public Shangwangdenglu(){
+        mHttp=new Http();
+    }
     String xiaxian;
+    Http mHttp;
     public String encodepassword(String rawpassword){
         String pid="1";
         String calg="12345678";
@@ -20,7 +24,7 @@ public class Shangwangdenglu {
     }
     public String login(String user,String password){
         String submit="DDDDD="+user+"&upass="+encodepassword(password)+"&R1=0&R2=1&para=00&0MKKey=123456";
-        String html= Http.post_string("http://172.16.0.86/",submit,"gb2312");
+        String html= mHttp.post_string("http://172.16.0.86/",submit,"gb2312");
         if(html.contains("登录成功窗")){
             return "登录成功";
         }
@@ -31,14 +35,14 @@ public class Shangwangdenglu {
     }
     public String login_cmcc(String user,String password){
 
-        String html= Http.get_string("http://www.baidu.com/");
+        String html= mHttp.get_string("http://www.baidu.com/");
         String wlanuserip=zhongjian(html, "<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=\"", "\"/>", 0);
 
         String wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
         String CSRFToken_HW=zhongjian(html,"<input type='hidden' name='CSRFToken_HW' value='","' /></form>",0);
         String submit="username="+user+"&password="+password+"&cmccdynapw=&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
 
-        String html1= Http.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
+        String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
         if (html1.contains("用户名或密码输入有误，请重新输入！")){
             return "用户名或密码错误";
         }
@@ -51,10 +55,10 @@ public class Shangwangdenglu {
             return "未知错误";
     }
     public void xiaxian_cmcc(){
-        Http.get_string(xiaxian);
+        mHttp.get_string(xiaxian);
     }
     public boolean is_login_cmcc(){
-        String html= Http.get_string("http://www.baidu.com/");
+        String html= mHttp.get_string("http://www.baidu.com/");
         if (html.contains("百度一下")){
             return true;
         }

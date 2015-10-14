@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		Xiaoyuanka b=new Xiaoyuanka(this);
 		String c= b.login("1501060225", "960826");
 		//c=b.changepassword("061406","061406","370112199606264517");
-		b.guashi("960826");
+		//b.guashi("960826");
 //		Xiaoli b=new Xiaoli();
 //
 //		Xuankepingtai a=new Xuankepingtai();
