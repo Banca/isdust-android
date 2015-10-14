@@ -3,7 +3,7 @@
 项目成员：  
             王梓樯   Coder/Developer  
             冷汉超   UI/UE Designer  
-            秦文凯   UI Designer  
+            亓文凯   UI Designer  
 已实现功能:   
               1.校园卡  
                     校园卡余额，消费纪录查询，校园卡修改密码以及挂失  
