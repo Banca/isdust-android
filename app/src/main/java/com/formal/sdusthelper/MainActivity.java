@@ -2,6 +2,7 @@ package com.formal.sdusthelper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -82,6 +83,18 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.FormCard_button_login:
 				EditText textuser = (EditText) findViewById(R.id.FormCard_editText_user);
 				EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
+
+				//记住密码
+				//实例化SharedPreferences对象
+				SharedPreferences mySharedPreferences= getSharedPreferences("CardData",	Activity.MODE_PRIVATE);
+				//实例化SharedPreferences.Editor对象
+				SharedPreferences.Editor editor = mySharedPreferences.edit();
+				//用putString的方法保存数据
+				editor.putString("name", "Karl");
+				editor.putString("habit", "sleep");
+				//提交当前数据
+				editor.commit();
+
 				//设置传递方向
 				Intent intent = new Intent();
 				intent.setClass(this,CardListView.class);

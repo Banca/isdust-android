@@ -85,7 +85,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 			map.put("bala","￥" + ph[i].getBala());
 			listdata.add(map);
 		}
-	}
+	}	//将数据推入列表数据源
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
