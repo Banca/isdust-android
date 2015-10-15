@@ -86,6 +86,58 @@
                     android:layout_alignTop="@+id/FormCard_button_login" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_alignRight="@+id/relativeLayout"
+                android:layout_alignEnd="@+id/relativeLayout"
+                android:layout_alignLeft="@+id/relativeLayout"
+                android:layout_alignStart="@+id/relativeLayout"
+                android:layout_below="@+id/relativeLayout"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/FormCard_button_query"
+                    android:clickable="false"
+                    android:layout_width="155dp"
+                    android:layout_height="160dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/btn_purchhistory"
+                     />
+
+                <ImageButton
+                    android:id="@+id/FormCard_button_changepwd"
+                    android:layout_width="155dp"
+                    android:layout_height="160dp"
+                    android:background="@drawable/btn_changepwd"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:id="@+id/FormCard_button_loss"
+                    android:layout_width="155dp"
+                    android:layout_height="160dp"
+                    android:background="@drawable/btn_loss"
+                    android:layout_below="@+id/FormCard_button_query"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <ImageButton
+                    android:id="@+id/FormCard_button_logout"
+                    android:layout_width="155dp"
+                    android:layout_height="160dp"
+                    android:background="@drawable/btn_logout"
+                    android:layout_below="@+id/FormCard_button_changepwd"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignLeft="@+id/FormCard_button_changepwd"
+                    android:layout_alignStart="@+id/FormCard_button_changepwd" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </com.formal.sdusthelper.SlideMenu>
