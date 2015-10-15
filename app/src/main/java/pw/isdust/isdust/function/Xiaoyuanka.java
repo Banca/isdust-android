@@ -59,7 +59,7 @@ public class Xiaoyuanka {
     public Xiaoyuanka(Context context) {
         mHttp=new Http();
         mHttp.newcookie();
-        mHttp.setProxy("121.201.13.50", 1999);
+        mHttp.setProxy("219.146.243.3", 3188);
         mDate=new Date();//初始化日期
         mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
         day_minus();

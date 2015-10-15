@@ -90,6 +90,8 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 								R.id.tv_gridview_item_addr,	R.id.tv_gridview_item_time,R.id.tv_gridview_item_bala});
 				setListAdapter(adapter);	//捆绑适配器}
 				}
+				adapter.notifyDataSetChanged();	//列表刷新
+				mPullToRefreshView.onFooterRefreshComplete();
 			}
 		}
 	};
@@ -176,8 +178,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 			@Override
 			public void run() {
 				executorService.execute(mRunnable_xiancheng_getdata);;	//加数据
-				adapter.notifyDataSetChanged();	//列表刷新
-				mPullToRefreshView.onFooterRefreshComplete();
+
 			}
 		}, 1000);
 	}
