@@ -91,6 +91,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 				setListAdapter(adapter);	//捆绑适配器}
 				}
 				adapter.notifyDataSetChanged();	//列表刷新
+
 				mPullToRefreshView.onFooterRefreshComplete();
 			}
 		}
@@ -102,6 +103,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 		public void run() {
 			xiancheng_login_status = usercard.login(xiancheng_username,xiancheng_password);
 			if (xiancheng_login_status.equals("登录成功")){
+				xiancheng_bollean=false;
 				Message message = new Message();
 				message.what = 0;
 				handler.sendMessage(message);;
@@ -117,7 +119,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	};
 	Runnable mRunnable_xiancheng_getdata = new Runnable() {
 		public void run() {
-			xiancheng_bollean=false;
+
 			xiancheng_ph = usercard.getPurData();
 			Message message = new Message();
 			message.what = 2;
