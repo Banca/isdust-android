@@ -36,7 +36,12 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.formal.sdusthelper.SchoolMapActivity"
+        android:name="com.formal.sdusthelper.SchoolMapActivity"
+        android:label="@string/app_name" >
+    </activity>
+
+        <activity
+            android:name="com.formal.sdusthelper.UI_kongzixishi"
             android:label="@string/app_name" >
         </activity>
     </application>

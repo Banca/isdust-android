@@ -423,9 +423,9 @@ public class Xiaoyuanka {
         if (!shengfenzheng.equals(getShengfenzheng())){
             return "身份证号码错误";
         }
-        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(oldpassword)){
-            return "默认密码无法使用此功能";
-        }
+//        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(oldpassword)){
+//            return "默认密码无法使用此功能";
+//        }
 
         importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
         String moldpassword=zhuanhuan(oldpassword);
@@ -460,9 +460,9 @@ public class Xiaoyuanka {
         if (!shengfenzheng.equals(getShengfenzheng())){
             return "身份证号码错误";
         }
-        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(password)){
-            return "默认密码无法使用此功能";
-        }
+//        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(password)){
+//            return "默认密码无法使用此功能";
+//        }
         importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
         String moldpassword=zhuanhuan(password);
         String submit="account="+ zhanghao +"&passwd="+moldpassword;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_marginTop="40dp"
+    android:orientation="horizontal"
+
+    >
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="J1-101室"
+        android:id="@+id/textView_kongzixishi_location"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="第1周"
+        android:id="@+id/textView_kongzixishi_zhoushu"
+        android:textSize="18sp" />
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="星期一"
+        android:id="@+id/textView_kongzixishi_xingqi"
+        android:textSize="18sp" />
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#FFB3B3B3" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="第一、二节"
+        android:id="@+id/textView_kongzixishi_jieci"
+        android:textSize="18sp" />
+</LinearLayout>
