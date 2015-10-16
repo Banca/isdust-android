@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pw.isdust.isdust.function.Networkjudge;
+import pw.isdust.isdust.function.Kongzixishi;
 
 public class MainActivity extends Activity implements OnClickListener{
 	private SlideMenu slideMenu;
@@ -53,17 +53,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel,500,2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
+		Kongzixishi a=new Kongzixishi();
+		a.huoquzixishi("J7-310室",5);
 
-<<<<<<< HEAD
-		//Networkjudge a=new Networkjudge(this);
-		//int c=a.judgetype();
-		//c=a.cmcc_judge();
-=======
-//		Networkjudge a=new Networkjudge(this);
-//		int c=a.judgetype();
-//		c=a.cmcc_judge();
-
->>>>>>> origin/master
 //		Xiaoyuanka b=new Xiaoyuanka(this);
 //		String c= b.login("1501060225", "960826");
 		//c=b.changepassword("061406","061406","370112199606264517");
