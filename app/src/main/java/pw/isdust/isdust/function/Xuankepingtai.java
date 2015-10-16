@@ -16,6 +16,7 @@ public class Xuankepingtai {
     public Xuankepingtai(){
         mHttp=new Http();
         mHttp.newcookie();
+        mHttp.setProxy("219.146.243.3", 3188);
     }
     public String losin(String user,String pwd){
         String text_web;

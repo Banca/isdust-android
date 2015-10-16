@@ -21,9 +21,12 @@ import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+<<<<<<< HEAD
 import pw.isdust.isdust.function.Networkjudge;
 import pw.isdust.isdust.function.Xiaoyuanka;
 
+=======
+>>>>>>> origin/master
 public class MainActivity extends Activity implements OnClickListener{
 	private MyApplication isdustapp;	//通过app调全局变量
 	private SlideMenu slideMenu;
@@ -58,12 +61,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		//next add some load event
 		timer_wel = new Timer();
-		timer_wel.schedule(task_wel,500,2);		// start a 5s's timer after 2s
+		timer_wel.schedule(task_wel, 500, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
 
-//		Networkjudge a=new Networkjudge(this);
-//		int c=a.judgetype();
-//		c=a.cmcc_judge();
+
+
+
+
+
+//		Kongzixishi a=new Kongzixishi();
+//		a.huoquzixishi("J7-310室",5);
 
 //		Xiaoyuanka b=new Xiaoyuanka(this);
 //		String c= b.login("1501060225", "960826");
@@ -164,7 +171,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.FormLife_btn_map:
 				//设置传递方向
 				Intent intent = new Intent();
-				intent.setClass(this,SchoolMapActivity.class);
+				intent.setClass(this,UI_kongzixishi.class);
+				//intent.setClass(this,SchoolMapActivity.class);
+
 				//启动activity
 				this.startActivity(intent);
 				break;
@@ -195,7 +204,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			reDimUI(form_cmcc,R.string.menu_cmcc);
 			break;
 		case R.id.slide_menu_jiaowu:
-			reDimUI(form_jiaowu,R.string.menu_jiaowu);
+			reDimUI(form_jiaowu, R.string.menu_jiaowu);
 			break;
 		case R.id.slide_menu_library:
 			reDimUI(form_library,R.string.menu_library);

@@ -42,6 +42,7 @@ public class Http {
     public void setProxy(String ip,int port){
         //Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("121.201.13.50", 1999));
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
+
         mHTTP.setProxy(proxy);
     }
     public void newcookie(){
