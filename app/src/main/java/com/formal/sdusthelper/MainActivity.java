@@ -1,6 +1,8 @@
 package com.formal.sdusthelper;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,11 +15,26 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import pw.isdust.isdust.function.Xiaoyuanka;
 
 public class MainActivity extends Activity implements OnClickListener{
+
+	private String xiancheng_username,xiancheng_password,xiancheng_login_status;
+	private ExecutorService executorService = Executors.newCachedThreadPool();
+	private ProgressDialog dialog;
+
+	Context mContext;
+
+	private MyApplication isdustapp;
+	private Xiaoyuanka usercard;
 	private SlideMenu slideMenu;
 	private View form_welcome = null,
 	 			 form_main = null,
@@ -30,12 +47,51 @@ public class MainActivity extends Activity implements OnClickListener{
 			     form_set = null;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
+	final android.os.Handler handler = new android.os.Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if (msg.what == 0){//登录成功
+				Intent intent = new Intent();
+				intent.setClass(mContext,CardListView.class);
+				mContext.startActivity(intent);
+			}
+			if (msg.what == 1){
+				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
+			}
+
+		}
+	};
+
+	Runnable mRunnable_xiancheng_login = new Runnable() {
+		@Override
+		public void run() {
+			xiancheng_login_status = usercard.login(xiancheng_username,xiancheng_password);
+			dialog.dismiss();
+			if (xiancheng_login_status.equals("登录成功")){
+
+				Message message = new Message();
+				message.what = 0;
+				handler.sendMessage(message);;
+
+
+			}else {
+				Message message = new Message();
+				message.what = 1;
+				handler.sendMessage(message);;
+
+			}
+		}
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		isdustapp = (MyApplication)this.getApplication();
+		mContext=this;
+		usercard=isdustapp.getUsercard();
 		LayoutInflater inflate = LayoutInflater.from(this);
-		
+
 		form_welcome = inflate.inflate(R.layout.welcome,null);
 		setContentView(form_welcome);		//Show welcome page
 		form_main = inflate.inflate(R.layout.activity_main,null);
@@ -111,16 +167,22 @@ public class MainActivity extends Activity implements OnClickListener{
 				editor.commit();
 
 				//设置传递方向
-				Intent intent = new Intent();
-				intent.setClass(this,CardListView.class);
-				//绑定数据
-				Bundle data = new Bundle();
-
-				data.putString("un", textuser.getText().toString());
-				data.putString("up", textpwd.getText().toString());
-				intent.putExtras(data);
-				//启动activity
-				this.startActivity(intent);
+//				Intent intent = new Intent();
+//				intent.setClass(this,CardListView.class);
+//				//绑定数据
+//				Bundle data = new Bundle();
+//
+//				data.putString("un", textuser.getText().toString());
+//				data.putString("up", textpwd.getText().toString());
+//				intent.putExtras(data);
+//				//启动activity
+//				this.startActivity(intent);
+				dialog = ProgressDialog.show(
+						mContext, "提示",
+						"正在登录中", true, true);
+				xiancheng_username=textuser.getText().toString();
+				xiancheng_password=textpwd.getText().toString();
+				executorService.execute(mRunnable_xiancheng_login);
 				break;
 		}
 	}

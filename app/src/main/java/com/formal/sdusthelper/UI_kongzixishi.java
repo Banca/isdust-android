@@ -1,6 +1,7 @@
 package com.formal.sdusthelper;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
@@ -31,6 +32,7 @@ public class UI_kongzixishi extends ListActivity {
     private Kongzixishi mKongzixishi;
 
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();	//列表框的数据
+    private ProgressDialog dialog;
 
     SimpleAdapter adapter;	//列表的适配器
     Context mContext;
@@ -39,6 +41,7 @@ public class UI_kongzixishi extends ListActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if(msg.what==0){
+                listdata.clear();
                 for (int i=0;i< xiancheng_Kebiaoxinxi.length;i++){
                     Map<String, Object> map;
 
@@ -53,7 +56,8 @@ public class UI_kongzixishi extends ListActivity {
                         R.layout.kongzixishi_item, new String[] { "location", "zhoushu", "xingqi", "jieci"},
                         new int[] { R.id.textView_kongzixishi_location, R.id.textView_kongzixishi_zhoushu,
                                 R.id.textView_kongzixishi_xingqi,	R.id.textView_kongzixishi_jieci});
-                setListAdapter(adapter);	//捆绑适配器}
+                setListAdapter(adapter);	//捆绑适配器
+                dialog.dismiss();// }
             }
 
 
@@ -82,19 +86,26 @@ public class UI_kongzixishi extends ListActivity {
         xiancheng_first=false;
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("空自习室查询");
-        xiancheng_location="J7-105室";
-        xiancheng_zhoushu=5;
+        cha("J7-105室",5);
+
+
+
+
+
+
+
+
+
+
+    }
+
+    private void cha(String location,int zhoushu){
+        xiancheng_location=location;
+        xiancheng_zhoushu=zhoushu;
+        dialog = ProgressDialog.show(
+                mContext, "提示",
+                "正在获取空自习室……", true, true);// }
         executorService.execute(mRunnable_jiazaizixishi);
-
-
-
-
-
-
-
-
-
-
     }
     private String xingqizhuanhuan(int raw){
         switch (raw){

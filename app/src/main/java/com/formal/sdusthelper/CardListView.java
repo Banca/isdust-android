@@ -1,8 +1,8 @@
 package com.formal.sdusthelper;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 import pw.isdust.isdust.function.Xiaoyuanka;
 
@@ -35,9 +33,10 @@ import pw.isdust.isdust.function.Xiaoyuanka;
 public class CardListView extends ListActivity implements OnHeaderRefreshListener,OnFooterRefreshListener{
 	//线程池
 	private ExecutorService executorService = Executors.newCachedThreadPool();
-	private String xiancheng_username,xiancheng_password,xiancheng_login_status;
 	private PurchaseHistory[] xiancheng_ph;
 	private boolean xiancheng_bollean;
+	private MyApplication isdustapp;
+	private ProgressDialog dialog;
 
 
 	private Context mContext;
@@ -61,12 +60,12 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 				textnum.setText(usercard.getStuNumber());
 				textclass.setText(usercard.getStuClass());
 				textbala.setText("￥" + usercard.getBalance()); //显示余额
-				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
+//				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
 				executorService.execute(mRunnable_xiancheng_getdata);
 			}
-			if (msg.what == 1){
-				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
-			}
+//			if (msg.what == 1){
+//				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
+//			}
 			if (msg.what == 2){
 
 
@@ -82,7 +81,17 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 					map.put("bala","￥" + xiancheng_ph[i].getBala().replace("-",""));
 					listdata.add(map);}
 				if(xiancheng_bollean==false){
+
+					TextView textname = (TextView) findViewById(R.id.textView_card_name);
+					TextView textnum = (TextView) findViewById(R.id.textView_card_number);
+					TextView textclass = (TextView) findViewById(R.id.textView_card_class);
+					TextView textbala = (TextView) findViewById(R.id.textView_card_balance);
+					textname.setText(usercard.getStuName());
+					textnum.setText(usercard.getStuNumber());
+					textclass.setText(usercard.getStuClass());
+					textbala.setText("￥" + usercard.getBalance()); //显示余额
 					xiancheng_bollean=true;
+					dialog.dismiss();
 
 				adapter = new SimpleAdapter(mContext, listdata,
 						R.layout.card_item, new String[] { "name", "ima", "addr", "time", "bala"},
@@ -98,25 +107,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	};
 
 
-	Runnable mRunnable_xiancheng_login = new Runnable() {
-		@Override
-		public void run() {
-			xiancheng_login_status = usercard.login(xiancheng_username,xiancheng_password);
-			if (xiancheng_login_status.equals("登录成功")){
-				xiancheng_bollean=false;
-				Message message = new Message();
-				message.what = 0;
-				handler.sendMessage(message);;
 
-
-			}else {
-				Message message = new Message();
-				message.what = 1;
-				handler.sendMessage(message);;
-
-			}
-		}
-	};
 	Runnable mRunnable_xiancheng_getdata = new Runnable() {
 		public void run() {
 
@@ -134,6 +125,11 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		mContext=this;
+		isdustapp=(MyApplication)getApplication();
+		usercard = isdustapp.getUsercard();
+		xiancheng_bollean=false;
+
+
 
 
 
@@ -151,16 +147,18 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 
 
-		Intent intent = getIntent();
-		//获取数据
-		Bundle data = intent.getExtras();
-		xiancheng_username = data.getString("un");
-		xiancheng_password = data.getString("up");
-		//校园卡
-		usercard = new Xiaoyuanka(this);
+//		Intent intent = getIntent();
+//		//获取数据
+//		Bundle data = intent.getExtras();
+//		xiancheng_username = data.getString("un");
+//		xiancheng_password = data.getString("up");
+//		//校园卡
 
 
-		executorService.execute(mRunnable_xiancheng_login);
+		dialog = ProgressDialog.show(
+				mContext, "提示",
+				"正在拉取您的消费纪录", true, true);
+		executorService.execute(mRunnable_xiancheng_getdata);
 
 
 
