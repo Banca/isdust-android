@@ -27,9 +27,9 @@ import pw.isdust.isdust.function.Xiaoyuanka;
  *
  */
 public class CardListView extends ListActivity implements OnHeaderRefreshListener,OnFooterRefreshListener{
+	private MyApplication isdustapp;	//通过app调全局变量
 	PullToRefreshView mPullToRefreshView;
 	private String username,password;	//存储校园卡 用户名、密码
-	private Xiaoyuanka usercard;
 	private String[][] userdata;
 	private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();	//列表框的数据
 	SimpleAdapter adapter;	//列表的适配器
@@ -37,34 +37,24 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.card_listview);
+		isdustapp = (MyApplication) getApplication(); //获得我们的应用程序MyApplication
+
 		mPullToRefreshView = (PullToRefreshView)findViewById(R.id.main_pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(this);
         mPullToRefreshView.setOnFooterRefreshListener(this);
-
-		Intent intent = getIntent();
-		//获取数据
-		Bundle data = intent.getExtras();
-		username = data.getString("un");
-		password = data.getString("up");
-		//校园卡
-		usercard = new Xiaoyuanka(this);
-		String result;
-		result = usercard.login(username,password);
-
-		Toast.makeText(this, result, 1000).show();
 
 		TextView textname = (TextView) findViewById(R.id.textView_card_name);
 		TextView textnum = (TextView) findViewById(R.id.textView_card_number);
 		TextView textclass = (TextView) findViewById(R.id.textView_card_class);
 		TextView textbala = (TextView) findViewById(R.id.textView_card_balance);
-		if (result == "登录成功") {
-			textname.setText(usercard.getStuName());
-			textnum.setText(usercard.getStuNumber());
-			textclass.setText(usercard.getStuClass());
-			textbala.setText("￥" + usercard.getBalance()); //显示余额
 
-			getData();	//加数据
-		}
+		textname.setText(isdustapp.getUsercard().getStuName());
+		textnum.setText(isdustapp.getUsercard().getStuNumber());
+		textclass.setText(isdustapp.getUsercard().getStuClass());
+		textbala.setText("￥" + isdustapp.getUsercard().getBalance()); //显示余额
+
+		getData();	//加数据
+
 		adapter = new SimpleAdapter(this, listdata,
 				R.layout.card_item, new String[] { "name", "ima", "addr", "time", "bala"},
 				new int[] { R.id.tv_gridview_item_name, R.id.iv_gridview_item,
@@ -75,7 +65,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	private void getData() {
 		Map<String, Object> map;
 		PurchaseHistory[] ph;
-		ph = usercard.getPurData();
+		ph = isdustapp.getUsercard().getPurData();
 		for (int i=0;i<ph.length;i++) {
 			map = new HashMap<String, Object>();
 			map.put("name",ph[i].getBehavior() + ph[i].getMoney() + "元");

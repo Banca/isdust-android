@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/color_page_white"
+            android:orientation="vertical" >
+
+            <include layout="@layout/subpage_title_bar" />
+
+        </RelativeLayout>
+
+</RelativeLayout>
