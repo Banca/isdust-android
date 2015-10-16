@@ -370,7 +370,9 @@ public class Xiaoyuanka {
 
         return true;
     }
-
+    public  void chongzhijilu(){
+        conid=0;
+    }
     public PurchaseHistory[] getPurData() {
         PurchaseHistory[] ph;
         if (conid == 0) {	//第一次获取时，获取当天和昨天几条记录

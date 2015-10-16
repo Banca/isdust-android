@@ -31,10 +31,6 @@ public class UI_kongzixishi extends ListActivity {
     private Kebiaoxinxi xiancheng_Kebiaoxinxi[];
     private Kongzixishi mKongzixishi;
 
-
-
-    private ProgressDialog dialog;
-
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();	//列表框的数据
     private ProgressDialog dialog;
 
@@ -45,11 +41,7 @@ public class UI_kongzixishi extends ListActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if(msg.what==0){
-<<<<<<< HEAD
-                listdata.clear();
-=======
                 listdata.clear();//清空列表
->>>>>>> master
                 for (int i=0;i< xiancheng_Kebiaoxinxi.length;i++){
                     Map<String, Object> map;
 
@@ -65,13 +57,8 @@ public class UI_kongzixishi extends ListActivity {
                         new int[] { R.id.textView_kongzixishi_location, R.id.textView_kongzixishi_zhoushu,
                                 R.id.textView_kongzixishi_xingqi,	R.id.textView_kongzixishi_jieci});
                 setListAdapter(adapter);	//捆绑适配器
-<<<<<<< HEAD
                 dialog.dismiss();// }
-=======
-                dialog.dismiss();
 
-
->>>>>>> master
             }
 
 
@@ -96,18 +83,13 @@ public class UI_kongzixishi extends ListActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.kongzixishi_listview);
+        setContentView(R.layout.activity_emptyroom_listview);
         mContext=this;
         xiancheng_first=false;
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("空自习室查询");
-<<<<<<< HEAD
-        cha("J7-105室",5);
 
-=======
->>>>>>> master
-
-        cha("J7-105室",5);
+        cha("J7-105室", 5);
 
 
 
@@ -118,14 +100,7 @@ public class UI_kongzixishi extends ListActivity {
 
     }
 
-    private void cha(String location,int zhoushu){
-        xiancheng_location=location;
-        xiancheng_zhoushu=zhoushu;
-        dialog = ProgressDialog.show(
-                mContext, "提示",
-                "正在获取空自习室……", true, true);// }
-        executorService.execute(mRunnable_jiazaizixishi);
-    }
+
     private void cha(String location,int zhoushu){
         xiancheng_location=location;
         xiancheng_zhoushu=zhoushu;

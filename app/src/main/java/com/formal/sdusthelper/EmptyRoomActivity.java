@@ -9,6 +9,6 @@ import android.os.Bundle;
 public class EmptyRoomActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emptyroom);
+        setContentView(R.layout.activity_emptyroom_listview);
     }
 }

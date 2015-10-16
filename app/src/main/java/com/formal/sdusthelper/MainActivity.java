@@ -18,10 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 
 import java.io.Serializable;
 import java.util.Timer;
@@ -31,14 +28,8 @@ import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.Xiaoyuanka;
 
-<<<<<<< HEAD
-import pw.isdust.isdust.function.Networkjudge;
-import pw.isdust.isdust.function.Xiaoyuanka;
 
-=======
->>>>>>> origin/master
 public class MainActivity extends Activity implements OnClickListener{
-<<<<<<< HEAD
 
 	private String xiancheng_username,xiancheng_password,xiancheng_login_status;
 	private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -46,11 +37,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	Context mContext;
 
-	private MyApplication isdustapp;
-	private Xiaoyuanka usercard;
-=======
 	private MyApplication isdustapp;	//通过app调全局变量
->>>>>>> master
 	private SlideMenu slideMenu;
 	private View form_welcome = null,
 	 			 form_main = null,
@@ -68,9 +55,25 @@ public class MainActivity extends Activity implements OnClickListener{
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if (msg.what == 0){//登录成功
-				Intent intent = new Intent();
-				intent.setClass(mContext,CardListView.class);
-				mContext.startActivity(intent);
+				Button btnlogin = (Button) findViewById(R.id.FormCard_button_login);
+				ImageButton btnquery = (ImageButton) findViewById(R.id.FormCard_button_query);
+				ImageButton btnchangepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
+				ImageButton btnloss = (ImageButton) findViewById(R.id.FormCard_button_loss);
+				ImageButton btnlogout = (ImageButton) findViewById(R.id.FormCard_button_logout);
+
+				btnlogin.setClickable(false);
+				btnquery.setClickable(true);
+				btnchangepwd.setClickable(true);
+				btnloss.setClickable(true);
+				btnlogout.setClickable(true);
+				btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_gray));
+				btnquery.setBackgroundResource(R.drawable.btn_purchhistory);
+				btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd);
+				btnloss.setBackgroundResource(R.drawable.btn_loss);
+				btnlogout.setBackgroundResource(R.drawable.btn_logout);
+//				Intent intent = new Intent();
+//				intent.setClass(mContext,CardListView.class);
+//				mContext.startActivity(intent);
 			}
 			if (msg.what == 1){
 				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
@@ -82,9 +85,11 @@ public class MainActivity extends Activity implements OnClickListener{
 	Runnable mRunnable_xiancheng_login = new Runnable() {
 		@Override
 		public void run() {
-			xiancheng_login_status = usercard.login(xiancheng_username,xiancheng_password);
+			xiancheng_login_status = isdustapp.getUsercard().login(xiancheng_username,xiancheng_password);
 			dialog.dismiss();
 			if (xiancheng_login_status.equals("登录成功")){
+
+
 
 				Message message = new Message();
 				message.what = 0;
@@ -103,14 +108,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-<<<<<<< HEAD
 		isdustapp = (MyApplication)this.getApplication();
 		mContext=this;
-		usercard=isdustapp.getUsercard();
-=======
-		isdustapp = (MyApplication) getApplication(); //获得我们的应用程序MyApplication
 
->>>>>>> master
 		LayoutInflater inflate = LayoutInflater.from(this);
 
 		form_welcome = inflate.inflate(R.layout.welcome,null);
@@ -192,47 +192,20 @@ public class MainActivity extends Activity implements OnClickListener{
 				//提交当前数据
 				editor.commit();
 
-				String result;
-				result = isdustapp.getUsercard().login(textuser.getText().toString(),textpwd.getText().toString());
-				Toast.makeText(this, result, 1000).show();
-				if (result == "登录成功") {	//登陆后开启各种功能
-					btnlogin.setClickable(false);
-					btnquery.setClickable(true);
-					btnchangepwd.setClickable(true);
-					btnloss.setClickable(true);
-					btnlogout.setClickable(true);
-					btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_gray));
-					btnquery.setBackgroundResource(R.drawable.btn_purchhistory);
-					btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd);
-					btnloss.setBackgroundResource(R.drawable.btn_loss);
-					btnlogout.setBackgroundResource(R.drawable.btn_logout);
-				}
-				break;
-			case R.id.FormCard_button_query:	//查询按钮
-				//设置传递方向
-<<<<<<< HEAD
-//				Intent intent = new Intent();
-//				intent.setClass(this,CardListView.class);
-//				//绑定数据
-//				Bundle data = new Bundle();
-//
-//				data.putString("un", textuser.getText().toString());
-//				data.putString("up", textpwd.getText().toString());
-//				intent.putExtras(data);
-//				//启动activity
-//				this.startActivity(intent);
 				dialog = ProgressDialog.show(
 						mContext, "提示",
 						"正在登录中", true, true);
 				xiancheng_username=textuser.getText().toString();
 				xiancheng_password=textpwd.getText().toString();
 				executorService.execute(mRunnable_xiancheng_login);
-=======
+
+				break;
+			case R.id.FormCard_button_query:	//查询按钮
+
 				Intent intent = new Intent();
 				intent.setClass(this,CardListView.class);
 				//启动activity
 				this.startActivity(intent);
->>>>>>> master
 				break;
 			case R.id.FormCard_button_logout:	//注销按钮
 				btnlogin.setClickable(true);

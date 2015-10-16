@@ -41,9 +41,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 	private Context mContext;
 	PullToRefreshView mPullToRefreshView;
-	private String username,password;	//存储校园卡 用户名、密码
-	private Xiaoyuanka usercard;
-	private String[][] userdata;
+
 	private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();	//列表框的数据
 	SimpleAdapter adapter;	//列表的适配器
 
@@ -56,10 +54,10 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 				TextView textnum = (TextView) findViewById(R.id.textView_card_number);
 				TextView textclass = (TextView) findViewById(R.id.textView_card_class);
 				TextView textbala = (TextView) findViewById(R.id.textView_card_balance);
-				textname.setText(usercard.getStuName());
-				textnum.setText(usercard.getStuNumber());
-				textclass.setText(usercard.getStuClass());
-				textbala.setText("￥" + usercard.getBalance()); //显示余额
+				textname.setText( isdustapp.getUsercard().getStuName());
+				textnum.setText( isdustapp.getUsercard().getStuNumber());
+				textclass.setText( isdustapp.getUsercard().getStuClass());
+				textbala.setText("￥" +  isdustapp.getUsercard().getBalance()); //显示余额
 //				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
 				executorService.execute(mRunnable_xiancheng_getdata);
 			}
@@ -86,10 +84,10 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 					TextView textnum = (TextView) findViewById(R.id.textView_card_number);
 					TextView textclass = (TextView) findViewById(R.id.textView_card_class);
 					TextView textbala = (TextView) findViewById(R.id.textView_card_balance);
-					textname.setText(usercard.getStuName());
-					textnum.setText(usercard.getStuNumber());
-					textclass.setText(usercard.getStuClass());
-					textbala.setText("￥" + usercard.getBalance()); //显示余额
+					textname.setText( isdustapp.getUsercard().getStuName());
+					textnum.setText( isdustapp.getUsercard().getStuNumber());
+					textclass.setText( isdustapp.getUsercard().getStuClass());
+					textbala.setText("￥" +  isdustapp.getUsercard().getBalance()); //显示余额
 					xiancheng_bollean=true;
 					dialog.dismiss();
 
@@ -111,7 +109,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	Runnable mRunnable_xiancheng_getdata = new Runnable() {
 		public void run() {
 
-			xiancheng_ph = usercard.getPurData();
+			xiancheng_ph =  isdustapp.getUsercard().getPurData();
 			Message message = new Message();
 			message.what = 2;
 			handler.sendMessage(message);;
@@ -126,7 +124,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	protected void onCreate(Bundle savedInstanceState) {
 		mContext=this;
 		isdustapp=(MyApplication)getApplication();
-		usercard = isdustapp.getUsercard();
+		isdustapp.getUsercard().chongzhijilu();
 		xiancheng_bollean=false;
 
 
