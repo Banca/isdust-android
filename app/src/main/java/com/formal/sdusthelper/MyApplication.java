@@ -16,4 +16,8 @@ public class MyApplication extends Application {
     }
 
     public Xiaoyuanka getUsercard() {return usercard;}  //使usercard这种非序列化对象 全局可调
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

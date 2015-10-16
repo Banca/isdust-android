@@ -66,7 +66,7 @@
                     android:textSize="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="39dp"
-                    android:text="查询"
+                    android:text="登录"
                     android:layout_marginTop="14dp"
                     android:layout_below="@+id/FormCard_editText_pwd"
                     android:layout_alignRight="@+id/FormCard_editText_pwd"
@@ -99,29 +99,34 @@
 
                 <ImageButton
                     android:id="@+id/FormCard_button_query"
+                    android:onClick="onFormCardClick"
                     android:clickable="false"
                     android:layout_width="155dp"
                     android:layout_height="160dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:background="@drawable/btn_purchhistory"
+                    android:background="@drawable/btn_purchhistory_gray"
                      />
 
                 <ImageButton
                     android:id="@+id/FormCard_button_changepwd"
+                    android:onClick="onFormCardClick"
+                    android:clickable="false"
                     android:layout_width="155dp"
                     android:layout_height="160dp"
-                    android:background="@drawable/btn_changepwd"
+                    android:background="@drawable/btn_changepwd_gray"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
                 <ImageButton
                     android:id="@+id/FormCard_button_loss"
+                    android:onClick="onFormCardClick"
+                    android:clickable="false"
                     android:layout_width="155dp"
                     android:layout_height="160dp"
-                    android:background="@drawable/btn_loss"
+                    android:background="@drawable/btn_loss_gray"
                     android:layout_below="@+id/FormCard_button_query"
                     android:layout_marginTop="20dp"
                     android:layout_alignParentLeft="true"
@@ -129,9 +134,11 @@
 
                 <ImageButton
                     android:id="@+id/FormCard_button_logout"
+                    android:onClick="onFormCardClick"
+                    android:clickable="false"
                     android:layout_width="155dp"
                     android:layout_height="160dp"
-                    android:background="@drawable/btn_logout"
+                    android:background="@drawable/btn_logout_gray"
                     android:layout_below="@+id/FormCard_button_changepwd"
                     android:layout_marginTop="20dp"
                     android:layout_alignLeft="@+id/FormCard_button_changepwd"

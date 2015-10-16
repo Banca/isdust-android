@@ -11,13 +11,19 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
@@ -25,7 +31,14 @@ import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.Xiaoyuanka;
 
+<<<<<<< HEAD
+import pw.isdust.isdust.function.Networkjudge;
+import pw.isdust.isdust.function.Xiaoyuanka;
+
+=======
+>>>>>>> origin/master
 public class MainActivity extends Activity implements OnClickListener{
+<<<<<<< HEAD
 
 	private String xiancheng_username,xiancheng_password,xiancheng_login_status;
 	private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -35,6 +48,9 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private MyApplication isdustapp;
 	private Xiaoyuanka usercard;
+=======
+	private MyApplication isdustapp;	//通过app调全局变量
+>>>>>>> master
 	private SlideMenu slideMenu;
 	private View form_welcome = null,
 	 			 form_main = null,
@@ -87,9 +103,14 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+<<<<<<< HEAD
 		isdustapp = (MyApplication)this.getApplication();
 		mContext=this;
 		usercard=isdustapp.getUsercard();
+=======
+		isdustapp = (MyApplication) getApplication(); //获得我们的应用程序MyApplication
+
+>>>>>>> master
 		LayoutInflater inflate = LayoutInflater.from(this);
 
 		form_welcome = inflate.inflate(R.layout.welcome,null);
@@ -143,12 +164,17 @@ public class MainActivity extends Activity implements OnClickListener{
 	}
 
 	public void onFormCardClick(View v) {
-		switch (v.getId()) {
-			case R.id.FormCard_button_login:
-				EditText textuser = (EditText) findViewById(R.id.FormCard_editText_user);
-				EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
-				CheckBox checkkeeppwd = (CheckBox) findViewById(R.id.FormCard_checkBox_savepwd);
+		EditText textuser = (EditText) findViewById(R.id.FormCard_editText_user);
+		EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
+		CheckBox checkkeeppwd = (CheckBox) findViewById(R.id.FormCard_checkBox_savepwd);
+		Button btnlogin = (Button) findViewById(R.id.FormCard_button_login);
+		ImageButton btnquery = (ImageButton) findViewById(R.id.FormCard_button_query);
+		ImageButton btnchangepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
+		ImageButton btnloss = (ImageButton) findViewById(R.id.FormCard_button_loss);
+		ImageButton btnlogout = (ImageButton) findViewById(R.id.FormCard_button_logout);
 
+		switch (v.getId()) {
+			case R.id.FormCard_button_login:	//登陆按钮
 				//实例化SharedPreferences对象
 				SharedPreferences mySharedPreferences= getSharedPreferences("CardData",	Activity.MODE_PRIVATE);
 				//实例化SharedPreferences.Editor对象
@@ -166,7 +192,25 @@ public class MainActivity extends Activity implements OnClickListener{
 				//提交当前数据
 				editor.commit();
 
+				String result;
+				result = isdustapp.getUsercard().login(textuser.getText().toString(),textpwd.getText().toString());
+				Toast.makeText(this, result, 1000).show();
+				if (result == "登录成功") {	//登陆后开启各种功能
+					btnlogin.setClickable(false);
+					btnquery.setClickable(true);
+					btnchangepwd.setClickable(true);
+					btnloss.setClickable(true);
+					btnlogout.setClickable(true);
+					btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_gray));
+					btnquery.setBackgroundResource(R.drawable.btn_purchhistory);
+					btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd);
+					btnloss.setBackgroundResource(R.drawable.btn_loss);
+					btnlogout.setBackgroundResource(R.drawable.btn_logout);
+				}
+				break;
+			case R.id.FormCard_button_query:	//查询按钮
 				//设置传递方向
+<<<<<<< HEAD
 //				Intent intent = new Intent();
 //				intent.setClass(this,CardListView.class);
 //				//绑定数据
@@ -183,8 +227,27 @@ public class MainActivity extends Activity implements OnClickListener{
 				xiancheng_username=textuser.getText().toString();
 				xiancheng_password=textpwd.getText().toString();
 				executorService.execute(mRunnable_xiancheng_login);
+=======
+				Intent intent = new Intent();
+				intent.setClass(this,CardListView.class);
+				//启动activity
+				this.startActivity(intent);
+>>>>>>> master
+				break;
+			case R.id.FormCard_button_logout:	//注销按钮
+				btnlogin.setClickable(true);
+				btnquery.setClickable(false);
+				btnchangepwd.setClickable(false);
+				btnloss.setClickable(false);
+				btnlogout.setClickable(false);
+				btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_blue));
+				btnquery.setBackgroundResource(R.drawable.btn_purchhistory_gray);
+				btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd_gray);
+				btnloss.setBackgroundResource(R.drawable.btn_loss_gray);
+				btnlogout.setBackgroundResource(R.drawable.btn_logout_gray);
 				break;
 		}
+
 	}
 
 	public void onFormLifeClick(View v) {
@@ -200,7 +263,22 @@ public class MainActivity extends Activity implements OnClickListener{
 				break;
 		}
 	}
-
+	public void onFormJiaowuClick(View v) {
+		//设置传递方向
+		Intent intent = new Intent();
+		switch (v.getId()) {
+			case R.id.FormJiaowu_button_emptyroom:
+				intent.setClass(this,EmptyRoomActivity.class);
+				//启动activity
+				this.startActivity(intent);
+				break;
+			case R.id.FormJiaowu_button_schedule:
+				intent.setClass(this,ScheduleActivity.class);
+				//启动activity
+				this.startActivity(intent);
+				break;
+		}
+	}
 	public void onMenuClick(View v) {
 		switch (v.getId()) {
 		case R.id.slide_menu_home:
