@@ -59,11 +59,21 @@ public class Xiaoyuanka {
     public Xiaoyuanka(Context context) {
         mHttp=new Http();
         mHttp.newcookie();
-        mHttp.setProxy("219.146.243.3", 2000);
+        mContext = context;
+        Networkjudge mNetworkjudge=new Networkjudge(mContext);
+        if(mNetworkjudge.judgetype()==3){
+            mHttp.setProxy("219.146.243.3", 2000);
+        }else if(mNetworkjudge.judgetype()==4){
+            if (mNetworkjudge.neiwaiwang_judge()==1){
+                mHttp.setProxy("219.146.243.3", 2000);
+            }
+        }
+
+
         mDate=new Date();//初始化日期
         mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
         day_minus();
-        mContext = context;
+
         //导入标准对比库
         myzm_biaozhuan = new Bitmap[10];
         for (int i = 0; i < 10; i++) {

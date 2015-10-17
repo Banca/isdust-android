@@ -23,18 +23,20 @@ public class Networkjudge {
         ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo.State mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
         String ssid=getCurrentSsid(mContext);
-        if (ssid.contains("CMCC")){
-            return 1;
-        }
-        if (ssid.contains("Chinaunicom")){
-            return 2;
-        }
-        if (ssid.equals(null)||mobile.equals("DISCONNECTED")){
+
+        if (ssid==null&&mobile.toString().equals("DISCONNECTED")){
             return 0;
         }
-        if(ssid.equals(null)||mobile.equals("CONNECTED")){
+        else if(ssid==null&&mobile.toString().equals("CONNECTED")){
             return 3;
         }
+        else if (ssid.contains("CMCC")){
+            return 1;
+        }
+        else if (ssid.contains("Chinaunicom")){
+            return 2;
+        }
+
         return 4;//0.无网络1.CMCC2.CHINAUNICOME3.纯数据4.其它WIFI
     }
    public int cmcc_judge(){
