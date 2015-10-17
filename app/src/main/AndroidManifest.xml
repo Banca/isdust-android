@@ -45,12 +45,8 @@
          </activity>
 
         <activity
-            android:name="com.formal.sdusthelper.UI_kongzixishi"
+            android:name=".EmptyRoomActivity"
             android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.formal.sdusthelper.EmptyRoomActivity"
-            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.formal.sdusthelper.ScheduleActivity"

@@ -39,8 +39,9 @@ public class Kongzixishi {
 
 
     }
-    public Kebiaoxinxi [] huoquzixishi(String location,int zhoushu){//按教室获取整周课程表
-        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?location="+location+"&zhoushu="+zhoushu);
+    public Kebiaoxinxi [] huoquzixishi(String building,int zhoushu,int xingqi,int jieci){//按教室获取整周课程表
+        //?method=4&building=&zhoushu=&xingqi=&jieci=
+        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+zhoushu+"&xingqi="+xingqi+"&jieci="+jieci);
         Kebiaoxinxi []result=jiexi(text);
 
         return result;

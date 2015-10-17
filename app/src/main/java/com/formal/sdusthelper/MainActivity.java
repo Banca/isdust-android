@@ -20,13 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import pw.isdust.isdust.function.Xiaoyuanka;
 
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -215,7 +212,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				btnlogout.setBackgroundResource(R.drawable.btn_logout_gray);
 				break;
 			case R.id.FormCard_button_loss:	//挂失按钮
-				intent.setClass(this,CardLossActivity.class);
+				intent.setClass(this, CardLossActivity.class);
 				//启动activity
 				this.startActivity(intent);
 				break;
@@ -241,7 +238,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		Intent intent = new Intent();
 		switch (v.getId()) {
 			case R.id.FormJiaowu_button_emptyroom:
-				intent.setClass(this,UI_kongzixishi.class);
+				intent.setClass(this,EmptyRoomActivity.class);
 				//启动activity
 				this.startActivity(intent);
 				break;
