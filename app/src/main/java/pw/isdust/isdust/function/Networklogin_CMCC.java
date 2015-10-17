@@ -8,8 +8,8 @@ import pw.isdust.isdust.Http;
 /**
  * Created by wzq on 15/9/22.
  */
-public class Shangwangdenglu {
-    public Shangwangdenglu(){
+public class Networklogin_CMCC {
+    public Networklogin_CMCC(){
         mHttp=new Http();
 
     }
@@ -68,14 +68,7 @@ public class Shangwangdenglu {
 
     }
     public static String zhongjian(String text, String textl, String textr, int start) {
-        // ==================================================================
-        // 函数名：zhongjian
-        // 作者：ypw
-        // 功能：取中间文本,比如
-        // zhongjian("abc123efg","abc","efg",0)返回123
-        // 输入参数：text,textl(左边的text),textr(右边的text),start(起始寻找位置)
-        // 返回值：String
-        // ==================================================================
+
         int left = text.indexOf(textl, start);
         int right = text.indexOf(textr, left + textl.length());
         String zhongjianString = "";

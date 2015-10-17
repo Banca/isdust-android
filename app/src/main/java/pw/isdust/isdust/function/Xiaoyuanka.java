@@ -235,7 +235,7 @@ public class Xiaoyuanka {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
+        page_total = Integer.parseInt(Networklogin_CMCC.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;", 0));
 
         return result_final;
 
@@ -262,7 +262,7 @@ public class Xiaoyuanka {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
+        page_total = Integer.parseInt(Networklogin_CMCC.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;", 0));
 
         return result_final;
 
