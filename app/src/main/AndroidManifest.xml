@@ -24,7 +24,9 @@
         android:theme="@style/AppTheme"
         android:name=".MyApplication">
 
+
         <activity
+            android:screenOrientation="portrait"
             android:name="com.formal.sdusthelper.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -35,32 +37,32 @@
         </activity>
         <activity
             android:name="com.formal.sdusthelper.CardListView"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
         android:name="com.formal.sdusthelper.SchoolMapActivity"
-        android:label="@string/app_name" >
-    </activity>
+            android:screenOrientation="portrait" >
+         </activity>
 
         <activity
             android:name="com.formal.sdusthelper.UI_kongzixishi"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.formal.sdusthelper.EmptyRoomActivity"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.formal.sdusthelper.ScheduleActivity"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.formal.sdusthelper.CardChangePwdActivity"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.formal.sdusthelper.CardLossActivity"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

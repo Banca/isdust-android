@@ -61,11 +61,11 @@ public class MainActivity extends Activity implements OnClickListener{
 				ImageButton btnloss = (ImageButton) findViewById(R.id.FormCard_button_loss);
 				ImageButton btnlogout = (ImageButton) findViewById(R.id.FormCard_button_logout);
 
-				btnlogin.setClickable(false);
-				btnquery.setClickable(true);
-				btnchangepwd.setClickable(true);
-				btnloss.setClickable(true);
-				btnlogout.setClickable(true);
+				btnlogin.setEnabled(false);
+				btnquery.setEnabled(true);
+				btnchangepwd.setEnabled(true);
+				btnloss.setEnabled(true);
+				btnlogout.setEnabled(true);
 				btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_gray));
 				btnquery.setBackgroundResource(R.drawable.btn_purchhistory);
 				btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd);
@@ -89,12 +89,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			dialog.dismiss();
 			if (xiancheng_login_status.equals("登录成功")){
 
-
-
 				Message message = new Message();
 				message.what = 0;
 				handler.sendMessage(message);;
-
 
 			}else {
 				Message message = new Message();
@@ -128,11 +125,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel, 500, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
-
-
-
-
-
 
 //		Kongzixishi a=new Kongzixishi();
 //		a.huoquzixishi("J7-310室",5);
@@ -172,7 +164,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		ImageButton btnchangepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
 		ImageButton btnloss = (ImageButton) findViewById(R.id.FormCard_button_loss);
 		ImageButton btnlogout = (ImageButton) findViewById(R.id.FormCard_button_logout);
-
+		//设置传递方向
+		Intent intent = new Intent();
 		switch (v.getId()) {
 			case R.id.FormCard_button_login:	//登陆按钮
 				//实例化SharedPreferences对象
@@ -201,23 +194,30 @@ public class MainActivity extends Activity implements OnClickListener{
 
 				break;
 			case R.id.FormCard_button_query:	//查询按钮
-
-				Intent intent = new Intent();
 				intent.setClass(this,CardListView.class);
 				//启动activity
 				this.startActivity(intent);
 				break;
+			case R.id.FormCard_button_changepwd:	//改密按钮
+				intent.setClass(this,CardChangePwdActivity.class);
+				//启动activity
+				this.startActivity(intent);
 			case R.id.FormCard_button_logout:	//注销按钮
-				btnlogin.setClickable(true);
-				btnquery.setClickable(false);
-				btnchangepwd.setClickable(false);
-				btnloss.setClickable(false);
-				btnlogout.setClickable(false);
+				btnlogin.setEnabled(true);
+				btnquery.setEnabled(false);
+				btnchangepwd.setEnabled(false);
+				btnloss.setEnabled(false);
+				btnlogout.setEnabled(false);
 				btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_blue));
 				btnquery.setBackgroundResource(R.drawable.btn_purchhistory_gray);
 				btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd_gray);
 				btnloss.setBackgroundResource(R.drawable.btn_loss_gray);
 				btnlogout.setBackgroundResource(R.drawable.btn_logout_gray);
+				break;
+			case R.id.FormCard_button_loss:	//挂失按钮
+				intent.setClass(this,CardLossActivity.class);
+				//启动activity
+				this.startActivity(intent);
 				break;
 		}
 
@@ -228,8 +228,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.FormLife_btn_map:
 				//设置传递方向
 				Intent intent = new Intent();
-				intent.setClass(this,UI_kongzixishi.class);
-				//intent.setClass(this,SchoolMapActivity.class);
+
+				intent.setClass(this,SchoolMapActivity.class);
 
 				//启动activity
 				this.startActivity(intent);
@@ -241,7 +241,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		Intent intent = new Intent();
 		switch (v.getId()) {
 			case R.id.FormJiaowu_button_emptyroom:
-				intent.setClass(this,EmptyRoomActivity.class);
+				intent.setClass(this,UI_kongzixishi.class);
 				//启动activity
 				this.startActivity(intent);
 				break;
@@ -271,6 +271,10 @@ public class MainActivity extends Activity implements OnClickListener{
 			EditText textuser = (EditText) findViewById(R.id.FormCard_editText_user);
 			EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
 			CheckBox checkkeeppwd = (CheckBox) findViewById(R.id.FormCard_checkBox_savepwd);
+			ImageButton btnquery = (ImageButton) findViewById(R.id.FormCard_button_query);
+			ImageButton btnchangepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
+			ImageButton btnloss = (ImageButton) findViewById(R.id.FormCard_button_loss);
+			ImageButton btnlogout = (ImageButton) findViewById(R.id.FormCard_button_logout);
 			//在读取SharedPreferences数据前要实例化出一个SharedPreferences对象
 			SharedPreferences sharedPreferences= getSharedPreferences("CardData", Activity.MODE_PRIVATE);
 			// 使用getString方法获得value，注意第2个参数是value的默认值
@@ -280,6 +284,11 @@ public class MainActivity extends Activity implements OnClickListener{
 			textuser.setText(name);
 			textpwd.setText(pwd);
 			checkkeeppwd.setChecked(keeppwd);
+
+			btnquery.setEnabled(false);
+			btnchangepwd.setEnabled(false);
+			btnloss.setEnabled(false);
+			btnlogout.setEnabled(false);
 			break;
 		case R.id.slide_menu_life:
 			reDimUI(form_life,R.string.menu_life);

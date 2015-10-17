@@ -4,7 +4,24 @@
     android:layout_height="50.0dip"
     android:background="@drawable/bg_title_bar"
     android:gravity="center_vertical" >
+    <ImageView
+        android:onClick="onClick"
+        android:id="@+id/title_bar_menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="3.0dip"
+        android:layout_marginRight="3.0dip"
+        android:layout_marginTop="3.0dip"
+        android:gravity="center"
+        android:src="@drawable/titleback"
+         />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@id/title_bar_menu_btn"
+        android:background="@drawable/ic_top_divider" />
     <TextView
         android:id="@+id/title_bar_name"
         android:layout_width="wrap_content"
@@ -17,6 +34,6 @@
         android:singleLine="true"
         android:text="Title"
         android:textColor="#ffffff"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

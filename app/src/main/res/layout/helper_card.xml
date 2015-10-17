@@ -41,7 +41,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:singleLine="true"
+                    android:numeric="integer" />
 
                 <EditText
                     android:id="@+id/FormCard_editText_pwd"
@@ -50,13 +52,15 @@
                     android:layout_marginTop="7px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:inputType="numberPassword"
                     android:ems="10"
                     android:layout_below="@+id/FormCard_editText_user"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:singleLine="true"
+                    android:numeric="integer" />
 
                 <Button
                     android:id="@+id/FormCard_button_login"
@@ -85,65 +89,77 @@
                     android:layout_alignBottom="@+id/FormCard_button_login"
                     android:layout_alignTop="@+id/FormCard_button_login" />
             </RelativeLayout>
+            <ScrollView
+                android:id="@+id/widget54"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_below="@+id/relativeLayout">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_below="@+id/relativeLayout"
+                        android:layout_alignRight="@+id/relativeLayout"
+                        android:layout_alignEnd="@+id/relativeLayout"
+                        android:layout_alignTop="@+id/widget54"
+                        >
+                        <ImageButton
+                            android:id="@+id/FormCard_button_query"
+                            android:onClick="onFormCardClick"
+                            android:layout_width="145dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/btn_purchhistory_gray"
+                           />
+                        <ImageButton
+                            android:id="@+id/FormCard_button_changepwd"
+                            android:onClick="onFormCardClick"
+                            android:layout_width="145dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/btn_changepwd_gray"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:layout_alignRight="@+id/relativeLayout"
-                android:layout_alignEnd="@+id/relativeLayout"
-                android:layout_alignLeft="@+id/relativeLayout"
-                android:layout_alignStart="@+id/relativeLayout"
-                android:layout_below="@+id/relativeLayout"
-                android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_gravity="center_horizontal">
+                        <ImageButton
+                            android:id="@+id/FormCard_button_loss"
+                            android:onClick="onFormCardClick"
+                            android:layout_width="145dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/btn_loss_gray"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            />
+                        <ImageButton
+                            android:id="@+id/FormCard_button_logout"
+                            android:onClick="onFormCardClick"
+                            android:layout_width="145dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/btn_logout_gray"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />
 
-                <ImageButton
-                    android:id="@+id/FormCard_button_query"
-                    android:onClick="onFormCardClick"
-                    android:clickable="false"
-                    android:layout_width="155dp"
-                    android:layout_height="160dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@drawable/btn_purchhistory_gray"
-                     />
+                    </RelativeLayout>
 
-                <ImageButton
-                    android:id="@+id/FormCard_button_changepwd"
-                    android:onClick="onFormCardClick"
-                    android:clickable="false"
-                    android:layout_width="155dp"
-                    android:layout_height="160dp"
-                    android:background="@drawable/btn_changepwd_gray"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                </LinearLayout>
+            </ScrollView>
 
-                <ImageButton
-                    android:id="@+id/FormCard_button_loss"
-                    android:onClick="onFormCardClick"
-                    android:clickable="false"
-                    android:layout_width="155dp"
-                    android:layout_height="160dp"
-                    android:background="@drawable/btn_loss_gray"
-                    android:layout_below="@+id/FormCard_button_query"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <ImageButton
-                    android:id="@+id/FormCard_button_logout"
-                    android:onClick="onFormCardClick"
-                    android:clickable="false"
-                    android:layout_width="155dp"
-                    android:layout_height="160dp"
-                    android:background="@drawable/btn_logout_gray"
-                    android:layout_below="@+id/FormCard_button_changepwd"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignLeft="@+id/FormCard_button_changepwd"
-                    android:layout_alignStart="@+id/FormCard_button_changepwd" />
-            </RelativeLayout>
 
         </RelativeLayout>
 

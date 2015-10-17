@@ -3,14 +3,111 @@
     android:layout_height="match_parent" >
 
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/color_page_white"
-            android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/color_page_white"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-            <include layout="@layout/subpage_title_bar" />
+        <include layout="@layout/subpage_title_bar"
+            android:id="@+id/include" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@+id/include"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:id="@+id/FormCard_editText_IDcard"
+                android:background="@color/color_btn_white"
+                android:drawableLeft="@drawable/idcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:hint="身份证号码"/>
+
+            <EditText
+                android:id="@+id/FormCard_editText_oldpwd"
+                android:background="@color/color_btn_white"
+                android:layout_marginTop="7dp"
+                android:drawableLeft="@drawable/pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:ems="10"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:hint="原密码（初始密码为学号后6位）"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/FormCard_editText_IDcard" />
+            <EditText
+                android:id="@+id/FormCard_editText_newpwd"
+                android:background="@color/color_btn_white"
+                android:layout_marginTop="3dp"
+                android:drawableLeft="@drawable/pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:ems="10"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:hint="新密码"
+                android:layout_below="@+id/FormCard_editText_oldpwd"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <EditText
+                android:id="@+id/FormCard_editText_renewpwd"
+                android:background="@color/color_btn_white"
+                android:layout_marginTop="3dp"
+                android:drawableLeft="@drawable/pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:ems="10"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:hint="确认新密码"
+                android:layout_below="@+id/FormCard_editText_newpwd"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <Button
+                android:id="@+id/FormCard_button_changeok"
+                android:onClick="onClick"
+                android:background="@drawable/selector_ok_button"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/color_btn_text"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="确认修改"
+                android:layout_below="@+id/FormCard_editText_renewpwd"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
-
+    </RelativeLayout>
 </RelativeLayout>

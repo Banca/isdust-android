@@ -35,6 +35,6 @@
         android:singleLine="true"
         android:text="Title"
         android:textColor="#ffffff"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>
