@@ -59,11 +59,24 @@ public class Xiaoyuanka {
     public Xiaoyuanka(Context context) {
         mHttp=new Http();
         mHttp.newcookie();
+
         //mHttp.setProxy("219.146.243.3", 2000);
+
+        mContext = context;
+        Networkjudge mNetworkjudge=new Networkjudge(mContext);
+        if(mNetworkjudge.judgetype()==3){
+            mHttp.setProxy("219.146.243.3", 2000);
+        }else if(mNetworkjudge.judgetype()==4){
+            if (mNetworkjudge.neiwaiwang_judge()==1){
+                mHttp.setProxy("219.146.243.3", 2000);
+            }
+        }
+
+
         mDate=new Date();//初始化日期
         mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
         day_minus();
-        mContext = context;
+
         //导入标准对比库
         myzm_biaozhuan = new Bitmap[10];
         for (int i = 0; i < 10; i++) {
@@ -235,7 +248,7 @@ public class Xiaoyuanka {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
+        page_total = Integer.parseInt(Networklogin_CMCC.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;", 0));
 
         return result_final;
 
@@ -262,7 +275,7 @@ public class Xiaoyuanka {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Shangwangdenglu.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;",0));
+        page_total = Integer.parseInt(Networklogin_CMCC.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;", 0));
 
         return result_final;
 

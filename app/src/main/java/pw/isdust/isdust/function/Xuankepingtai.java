@@ -21,7 +21,7 @@ public class Xuankepingtai {
     public String losin(String user,String pwd){
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F");
-        String __RequestVerificationToken=Shangwangdenglu.zhongjian(text_web, "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0);
+        String __RequestVerificationToken= Networklogin_CMCC.zhongjian(text_web, "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0);
         try {
             __RequestVerificationToken= URLEncoder.encode(__RequestVerificationToken, "utf-8");
 

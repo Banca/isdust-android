@@ -23,19 +23,21 @@ public class Networkjudge {
         ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo.State mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
         String ssid=getCurrentSsid(mContext);
-        if (ssid.contains("CMCC")){
-            return 1;
-        }
-        if (ssid.contains("Chinaunicom")){
-            return 2;
-        }
-        if (ssid.equals(null)||mobile.equals("DISCONNECTED")){
+
+        if (ssid==null&&mobile.toString().equals("DISCONNECTED")){
             return 0;
         }
-        if(ssid.equals(null)||mobile.equals("DISCONNECTED")){
+        else if(ssid==null&&mobile.toString().equals("CONNECTED")){
             return 3;
         }
-        return 0;//0.无网络1.CMCC2.CHINAUNICOME3.纯数据
+        else if (ssid.contains("CMCC")){
+            return 1;
+        }
+        else if (ssid.contains("Chinaunicom")){
+            return 2;
+        }
+
+        return 4;//0.无网络1.CMCC2.CHINAUNICOME3.纯数据4.其它WIFI
     }
    public int cmcc_judge(){
       String text= mHttp.get_string("http://172.16.0.86/","gb2312");
@@ -47,8 +49,22 @@ public class Networkjudge {
            return 1;
        }
        return 0;//0.没有登录1.登录一层2.登录二层
-
    }
+    public int chinaunicom_judge(){
+        String text= mHttp.get_string("http://10.249.255.253/","gb2312");
+        if (text.contains("注销")){
+            return 1;
+        }
+        return 0;//0.没有登录1.登录一层
+    }
+    public int neiwaiwang_judge(){//对于连接的不是cmcc的wifi判定
+        String html=mHttp.get_string("http://192.168.109.62/");
+        if (html.contains("RadioButtonList1_0")){
+            return 0;//内网
+        }
+            return 1;//外网
+
+    }
     public static String getCurrentSsid(Context context) {
         String ssid = null;
         ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
