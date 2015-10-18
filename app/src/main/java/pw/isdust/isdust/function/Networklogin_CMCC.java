@@ -9,6 +9,10 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/9/22.
  */
 public class Networklogin_CMCC {
+    String wlanuserip;
+
+    String wlanacname;
+    String CSRFToken_HW;
     public Networklogin_CMCC(){
         mHttp=new Http();
 
@@ -34,15 +38,24 @@ public class Networklogin_CMCC {
         }
         return "";
     }
-    public String login_cmcc(String user,String password){
-
+    public void cmcc_init(){
         String html= mHttp.get_string("http://www.baidu.com/");
-        String wlanuserip=zhongjian(html, "<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=\"", "\"/>", 0);
+        wlanuserip=zhongjian(html, "<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=\"", "\"/>", 0);
+        wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
+        CSRFToken_HW=zhongjian(html,"<input type='hidden' name='CSRFToken_HW' value='","' /></form>",0);
+    }
+    public String cmcc_geyanzheng(String user){
+        String submit="username="+user+"&password=&cmccdynapw=cmccdynapw&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
+        String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
+        if (html1.contains("动态密码已经发往手机号码")){
+            return "动态密码已经发往手机号码";
+        }
 
-        String wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
-        String CSRFToken_HW=zhongjian(html,"<input type='hidden' name='CSRFToken_HW' value='","' /></form>",0);
+        return "cmcc_geyanzheng:未知错误";
+    }
+    public String cmcc_login(String user, String password){
+
         String submit="username="+user+"&password="+password+"&cmccdynapw=&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
-
         String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
         if (html1.contains("用户名或密码输入有误，请重新输入！")){
             return "用户名或密码错误";
@@ -53,7 +66,7 @@ public class Networklogin_CMCC {
             xiaxian="http://cmcc.sd.chinamobile.com:8001"+xiaxian;
 
             return "登录成功";        }
-            return "未知错误";
+        return "未知错误";
     }
     public void xiaxian_cmcc(){
         mHttp.get_string(xiaxian);
