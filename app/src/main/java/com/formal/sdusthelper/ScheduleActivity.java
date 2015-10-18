@@ -1,13 +1,27 @@
 package com.formal.sdusthelper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import pw.isdust.isdust.function.Xiaoli;
@@ -18,6 +32,36 @@ import pw.isdust.isdust.function.Xuankepingtai;
  * Created by Administrator on 2015/10/16.
  */
 public class ScheduleActivity extends Activity {
+    List<TextView> mTextView=new ArrayList<TextView>();
+    Xuankepingtai mXuankepingtai;
+
+
+
+    // 工具栏
+    private RelativeLayout rlTopBar;
+
+    // 左中右三个控件（工具栏里）
+
+    private TextView tvMiddle;
+
+    // 左中右三个弹出窗口
+
+    private PopupWindow popMiddle;
+
+    // 左中右三个layout
+
+    private View layoutMiddle;
+
+    // 左中右三个ListView控件（弹出窗口里）
+
+    private ListView menulistMiddle;
+
+    // 菜单数据项
+
+    private List<Map<String, String>> listMiddle;
+
+
+    Context mContext;
     /** 第一个无内容的格子 */
     protected TextView empty;
     /** 星期一的格子 */
@@ -44,6 +88,7 @@ public class ScheduleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        mContext=this;
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("课表查询");
 
@@ -122,11 +167,12 @@ public class ScheduleActivity extends Activity {
         }
         //title_name.setText("空自习室查询");
         Xiaoyuanka b=new Xiaoyuanka(this);
-		Xuankepingtai a=new Xuankepingtai();
-		a.losin("201501060225", "960826wang");
+//		Xuankepingtai a=new Xuankepingtai();
+        mXuankepingtai=new Xuankepingtai();
+        mXuankepingtai.losin("201501060225", "960826wang");
         Random mRandom=new Random();
 
-		String c[][]=a.chaxun(Xiaoli.get_xiaoli() + "", "2015-2016", "1");
+		String c[][]=mXuankepingtai.chaxun(Xiaoli.get_xiaoli() + "", "2015-2016", "1");
         int xingqi,jieci;
         for (int i=0;i<c.length;i++){
             String temp[]=c[i][2].split("<br>");
@@ -137,6 +183,17 @@ public class ScheduleActivity extends Activity {
 //        addcourse(1,1,"软件工程\n@302",3);
 //        addcourse(2,2,"大学英语\n@J7-302",1);
 
+    }
+    public void bangding(String xiaoli,String xuenian,String xueqi){
+        Random mRandom=new Random();
+        String c[][]=mXuankepingtai.chaxun(xiaoli, xuenian, xueqi);
+        int xingqi,jieci;
+        for (int i=0;i<c.length;i++){
+            String temp[]=c[i][2].split("<br>");
+            xingqi=Integer.parseInt(c[i][0]);
+            jieci=Integer.parseInt(c[i][1]);
+            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
+        }
 
     }
     public void addcourse(int xingqi,int jieci,String neirong,int color){
@@ -148,6 +205,8 @@ public class ScheduleActivity extends Activity {
                 R.drawable.course_info_yellow};
         // 添加课程信息
         TextView courseInfo = new TextView(this);
+        mTextView.add(courseInfo);
+        //courseInfo.setVisibility(View.GONE);
         courseInfo.setText(neirong);//"软件工程\n@302"
         //该textview的高度根据其节数的跨度来设置
         RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
@@ -168,6 +227,111 @@ public class ScheduleActivity extends Activity {
         //设置不透明度
         courseInfo.getBackground().setAlpha(255);
         course_table_layout.addView(courseInfo);
+        initParam();
+    }
+    public void xiaohuiquanbu(){
+        int len=mTextView.size();
+        for (int i=0;i<len;i++){
+            mTextView.get(i).setVisibility(View.INVISIBLE);
+        }
+        mTextView.clear();
 
+    }
+    private void initParam() {
+        rlTopBar = (RelativeLayout) this.findViewById(R.id.rl_topbar);
+
+
+//
+        tvMiddle = (TextView) this.findViewById(R.id.tv_middle);
+        tvMiddle.setOnClickListener(myListener);
+        // 初始化数据项
+        listMiddle = new ArrayList<Map<String, String>>();
+        for (int i = 1; i < 23; i++) {
+            HashMap<String, String> mapTemp = new HashMap<String, String>();
+            mapTemp.put("item", ""+ i);
+            listMiddle.add(mapTemp);
+        }
+    }
+
+    private View.OnClickListener myListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.tv_middle:
+                    if (popMiddle != null && popMiddle.isShowing()) {
+                        popMiddle.dismiss();
+                    } else {
+                        layoutMiddle = getLayoutInflater().inflate(
+                                R.layout.pop_menulist, null);
+                        menulistMiddle = (ListView) layoutMiddle
+                                .findViewById(R.id.menulist);
+                        SimpleAdapter listAdapter = new SimpleAdapter(
+                                mContext, listMiddle, R.layout.pop_menuitem,
+                                new String[] { "item" },
+                                new int[] { R.id.menuitem });
+                        menulistMiddle.setAdapter(listAdapter);
+
+                        // 点击listview中item的处理
+                        menulistMiddle
+                                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                    @Override
+                                    public void onItemClick(AdapterView<?> arg0,
+                                                            View arg1, int arg2, long arg3) {
+                                        String strItem = listMiddle.get(arg2).get(
+                                                "item");
+                                        xiaohuiquanbu();
+                                        bangding(strItem, "2015-2016", "1");
+                                        tvMiddle.setText(strItem);
+
+                                        if (popMiddle != null && popMiddle.isShowing()) {
+                                            popMiddle.dismiss();
+                                        }
+                                    }
+                                });
+
+                        popMiddle = new PopupWindow(layoutMiddle, tvMiddle.getWidth(),
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                        ColorDrawable cd = new ColorDrawable(-0000);
+                        popMiddle.setBackgroundDrawable(cd);
+                        popMiddle.setAnimationStyle(R.style.PopupAnimation);
+                        popMiddle.update();
+                        popMiddle.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+                        popMiddle.setTouchable(true); // 设置popupwindow可点击
+                        popMiddle.setOutsideTouchable(true); // 设置popupwindow外部可点击
+                        popMiddle.setFocusable(true); // 获取焦点
+
+                        // 设置popupwindow的位置
+                        int topBarHeight = rlTopBar.getBottom();
+                        popMiddle.showAsDropDown(tvMiddle, 0,
+                                (topBarHeight - tvMiddle.getHeight()) / 2);
+
+                        popMiddle.setTouchInterceptor(new View.OnTouchListener() {
+
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                // 如果点击了popupwindow的外部，popupwindow也会消失
+                                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                                    popMiddle.dismiss();
+                                    return true;
+                                }
+                                return false;
+                            }
+                        });
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
     }
 }

@@ -119,4 +119,28 @@
 
         </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_topbar"
+        android:layout_width="70dip"
+        android:layout_height="30dip"
+        android:background="#BF7F40"
+        android:gravity="center_vertical" >
+
+
+
+        <TextView
+            android:id="@+id/tv_middle"
+            android:layout_width="70dip"
+            android:layout_height="30dip"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_selector_pop"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="middle"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
