@@ -60,6 +60,35 @@
             android:name="com.formal.sdusthelper.CardLossActivity"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name="com.formal.sdusthelper.GoNetActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.JiaowuActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.LibraryActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.CardActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.LifeActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.NewsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.SetActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 
