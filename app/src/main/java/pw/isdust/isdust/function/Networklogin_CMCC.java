@@ -1,5 +1,7 @@
 package pw.isdust.isdust.function;
 
+import android.telephony.SmsManager;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -43,6 +45,10 @@ public class Networklogin_CMCC {
         wlanuserip=zhongjian(html, "<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=\"", "\"/>", 0);
         wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
         CSRFToken_HW=zhongjian(html,"<input type='hidden' name='CSRFToken_HW' value='","' /></form>",0);
+    }
+    public void cmcc_changepwd(String pwd){
+        SmsManager mSmsManager=SmsManager.getDefault();
+        mSmsManager.sendTextMessage("10086",null,"806 "+pwd,null,null);
     }
     public String cmcc_geyanzheng(String user){
         String submit="username="+user+"&password=&cmccdynapw=cmccdynapw&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
