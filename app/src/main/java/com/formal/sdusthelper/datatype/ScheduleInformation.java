@@ -3,21 +3,21 @@ package com.formal.sdusthelper.datatype;
 /**
  * Created by wzq on 15/10/16.
  */
-public class Kebiaoxinxi {
+public class ScheduleInformation {
     int mzhoushu;
     int mxinqi;
     int mjieci;
     String mlocation;
     String mcourse;
     String mteacher;
-    public Kebiaoxinxi(String location,int zhoushu,int xingqi,int jieci){
+    public ScheduleInformation(String location, int zhoushu, int xingqi, int jieci){
         mlocation=location;
         mzhoushu=zhoushu;
         mxinqi=xingqi;
         mjieci=jieci;
 
     }
-    public  Kebiaoxinxi(String location,int zhoushu,int xingqi,int jieci,String course,String teacher){
+    public ScheduleInformation(String location, int zhoushu, int xingqi, int jieci, String course, String teacher){
         mlocation=location;
         mzhoushu=zhoushu;
         mxinqi=xingqi;

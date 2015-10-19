@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import pw.isdust.isdust.function.Xiaoyuanka;
-
 public class MainActivity_old extends AppCompatActivity {
     Bitmap myzm_biaozhuan [];
 

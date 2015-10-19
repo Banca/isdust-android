@@ -11,14 +11,14 @@ import pw.isdust.isdust.Http;
 /**
  * Created by wzq on 15/10/10.
  */
-public class Xuankepingtai {
+public class SelectCoursePlatform {
     Http mHttp;
-    public Xuankepingtai(){
+    public SelectCoursePlatform(){
         mHttp=new Http();
         mHttp.newcookie();
         mHttp.setProxy("219.146.243.3", 2000);
     }
-    public String losin(String user,String pwd){
+    public String login(String user, String pwd){
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F");
         String __RequestVerificationToken= Networklogin_CMCC.zhongjian(text_web, "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0);
@@ -36,7 +36,7 @@ public class Xuankepingtai {
 
         return "";
     }
-    public String[][] chaxun(String zhou,String xn,String xq){
+    public Kebiao[] chaxun(String zhou,String xn,String xq){
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
         text_web=text_web.replace(" rowspan=\"2\" ","");
@@ -70,19 +70,29 @@ public class Xuankepingtai {
         }
 
         int len=mkebiao.size();
-        String [][] result=new String[len][3];
+        Kebiao [] result1=new Kebiao[len];
+//        String [][] result=new String[len][3];
         for (i=0;i<len;i++){
-            result[i][0]=mkebiao.get(i).xingqi;
-            result[i][1]=mkebiao.get(i).jieci;
-            result[i][2]=mkebiao.get(i).kecheng;
+            result1[i]=new Kebiao();
+            result1[i].zhoushu=zhou;
+            result1[i].xingqi=mkebiao.get(i).xingqi;
+            result1[i].jieci=mkebiao.get(i).jieci;
+            result1[i].kecheng=mkebiao.get(i).kecheng;
+
+
+//            result[i][0]=mkebiao.get(i).xingqi;
+//            result[i][1]=mkebiao.get(i).jieci;
+//            result[i][2]=mkebiao.get(i).kecheng;
 
 
         }
 
 
-        return result;//星期，节次，课程
+        return result1;//星期，节次，课程
     }
+
     public class Kebiao{
+        public String zhoushu;
         public String xingqi;
         public String jieci;
         public String kecheng;

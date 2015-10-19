@@ -11,8 +11,6 @@ import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pw.isdust.isdust.function.Tushuguan;
-
 
 public class MainActivity extends BaseMainActivity {
 
@@ -30,11 +28,20 @@ public class MainActivity extends BaseMainActivity {
 		timer_wel.schedule(task_wel, 500, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
 
-		Tushuguan a=new Tushuguan();
-		a.login("1301051618", "1301051618");
-		a.get_borrwingdetail();
-		a.renew_all();
-
+//		Tushuguan a=new Tushuguan();
+//		a.json_analyze();
+//		a.login("1301051618", "1301051618");
+//		a.get_borrwingdetail();
+//		a.renew_all();
+//		try{
+//			a.xml_analyze();
+//		} catch (ParserConfigurationException e) {
+//			e.printStackTrace();
+//		} catch (SAXException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
 
 //Networklogin_CMCC a =new Networklogin_CMCC();
@@ -43,7 +50,7 @@ public class MainActivity extends BaseMainActivity {
 //		//a.cmcc_geyanzheng("15762284638");
 //		a.cmcc_login("15762284638","287157");
 //		Kongzixishi a=new Kongzixishi();
-//		a.huoquzixishi("J7-310室",5);
+//		a.getEmptyClassroom("J7-310室",5);
 
 //		Xiaoyuanka b=new Xiaoyuanka(this);
 //		String c= b.login("1501060225", "960826");
@@ -52,7 +59,7 @@ public class MainActivity extends BaseMainActivity {
 //		Xiaoli b=new Xiaoli();
 //
 //		Xuankepingtai a=new Xuankepingtai();
-//		a.losin("201501060225","960826wang");
+//		a.login("201501060225","960826wang");
 //		a.chaxun(Xiaoli.get_xiaoli()+"","2015-2016","1");
 
 

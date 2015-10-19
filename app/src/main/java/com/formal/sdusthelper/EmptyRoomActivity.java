@@ -8,7 +8,7 @@ import android.os.Message;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.formal.sdusthelper.datatype.Kebiaoxinxi;
+import com.formal.sdusthelper.datatype.ScheduleInformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import pw.isdust.isdust.function.Kongzixishi;
+import pw.isdust.isdust.function.EmptyClassroom;
 
 /**
  * Created by wzq on 15/10/16.
@@ -29,10 +29,10 @@ public class EmptyRoomActivity extends ListActivity {
     private int xiancheng_zhoushu,xiancheng_xingqi,xiancheng_jieci;
 
     private boolean xiancheng_first;
-    private Kebiaoxinxi xiancheng_Kebiaoxinxi[];
+    private ScheduleInformation xiancheng_Kebiaoxinxi[];
     //?method=4&building=&zhoushu=&xingqi=&jieci=
 
-    private Kongzixishi mKongzixishi;
+    private EmptyClassroom mKongzixishi;
 
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();	//列表框的数据
     private ProgressDialog dialog;
@@ -73,8 +73,8 @@ public class EmptyRoomActivity extends ListActivity {
         public void run() {
 
             //listdata=null;
-            mKongzixishi=new Kongzixishi();
-            xiancheng_Kebiaoxinxi = mKongzixishi.huoquzixishi(xiancheng_building,xiancheng_zhoushu, xiancheng_xingqi,xiancheng_jieci);
+            mKongzixishi=new EmptyClassroom();
+            xiancheng_Kebiaoxinxi = mKongzixishi.getEmptyClassroom(xiancheng_building, xiancheng_zhoushu, xiancheng_xingqi, xiancheng_jieci);
 
             Message message=new Message();
             message.what=0;

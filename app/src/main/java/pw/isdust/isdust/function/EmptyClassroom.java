@@ -1,6 +1,6 @@
 package pw.isdust.isdust.function;
 
-import com.formal.sdusthelper.datatype.Kebiaoxinxi;
+import com.formal.sdusthelper.datatype.ScheduleInformation;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,22 +10,22 @@ import pw.isdust.isdust.Http;
 /**
  * Created by wzq on 15/10/15.
  */
-public class Kongzixishi {
-    Kebiaoxinxi[] mKebiaoxinxi;
+public class EmptyClassroom {
+    ScheduleInformation[] mScheduleInformations;
     JSONArray mJSONArray;
     Http mHttp;
-    public Kongzixishi(){
+    public EmptyClassroom(){
         mHttp=new Http();
     }
-    public Kebiaoxinxi [] jiexi(String text){//将PHP返回的信息处理
+    public ScheduleInformation[] jiexi(String text){//将PHP返回的信息处理
         String zhuanhuan=convert(text);
         try {
             mJSONArray=new JSONArray(zhuanhuan);
             int len=mJSONArray.length();
-            mKebiaoxinxi=new Kebiaoxinxi[len];
+            mScheduleInformations =new ScheduleInformation[len];
             for (int i=0;i<len;i++){
                 JSONObject obj = mJSONArray.getJSONObject(i);
-                mKebiaoxinxi[i]=new Kebiaoxinxi(obj.getString("location"),obj.getInt("zhoushu"),obj.getInt("xingqi"),obj.getInt("jieci"));
+                mScheduleInformations[i]=new ScheduleInformation(obj.getString("location"),obj.getInt("zhoushu"),obj.getInt("xingqi"),obj.getInt("jieci"));
             }
         }catch (Exception e){
             System.out.println(e);
@@ -34,15 +34,15 @@ public class Kongzixishi {
 
 
 
-        return mKebiaoxinxi;
+        return mScheduleInformations;
 
 
 
     }
-    public Kebiaoxinxi [] huoquzixishi(String building,int zhoushu,int xingqi,int jieci){//按教室获取整周课程表
+    public ScheduleInformation[] getEmptyClassroom(String building, int schooldate, int week, int jieci){//按教室获取整周课程表
         //?method=4&building=&zhoushu=&xingqi=&jieci=
-        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+zhoushu+"&xingqi="+xingqi+"&jieci="+jieci);
-        Kebiaoxinxi []result=jiexi(text);
+        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+ schooldate +"&xingqi="+week+"&jieci="+jieci);
+        ScheduleInformation[]result=jiexi(text);
 
         return result;
     }

@@ -24,16 +24,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import pw.isdust.isdust.function.Xiaoli;
-import pw.isdust.isdust.function.Xiaoyuanka;
-import pw.isdust.isdust.function.Xuankepingtai;
+import pw.isdust.isdust.function.SchoolDate;
+import pw.isdust.isdust.function.SchoolCard;
+import pw.isdust.isdust.function.SelectCoursePlatform;
 
 /**
  * Created by Administrator on 2015/10/16.
  */
 public class ScheduleActivity extends Activity {
     List<TextView> mTextView=new ArrayList<TextView>();
-    Xuankepingtai mXuankepingtai;
+    SelectCoursePlatform mXuankepingtai;
 
 
 
@@ -166,18 +166,18 @@ public class ScheduleActivity extends Activity {
             }
         }
         //title_name.setText("空自习室查询");
-        Xiaoyuanka b=new Xiaoyuanka(this);
+        SchoolCard b=new SchoolCard(this);
 //		Xuankepingtai a=new Xuankepingtai();
-        mXuankepingtai=new Xuankepingtai();
-        mXuankepingtai.losin("201501060225", "960826wang");
+        mXuankepingtai=new SelectCoursePlatform();
+        mXuankepingtai.login("201501060225", "960826wang");
         Random mRandom=new Random();
 
-		String c[][]=mXuankepingtai.chaxun(Xiaoli.get_xiaoli() + "", "2015-2016", "1");
+		SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(SchoolDate.get_xiaoli() + "", "2015-2016", "1");
         int xingqi,jieci;
         for (int i=0;i<c.length;i++){
-            String temp[]=c[i][2].split("<br>");
-            xingqi=Integer.parseInt(c[i][0]);
-            jieci=Integer.parseInt(c[i][1]);
+            String temp[]=c[i].kecheng.split("<br>");
+            xingqi=Integer.parseInt(c[i].xingqi);
+            jieci=Integer.parseInt(c[i].jieci);
             addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
         }
 //        addcourse(1,1,"软件工程\n@302",3);
@@ -186,12 +186,12 @@ public class ScheduleActivity extends Activity {
     }
     public void bangding(String xiaoli,String xuenian,String xueqi){
         Random mRandom=new Random();
-        String c[][]=mXuankepingtai.chaxun(xiaoli, xuenian, xueqi);
+        SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(SchoolDate.get_xiaoli() + "", "2015-2016", "1");
         int xingqi,jieci;
         for (int i=0;i<c.length;i++){
-            String temp[]=c[i][2].split("<br>");
-            xingqi=Integer.parseInt(c[i][0]);
-            jieci=Integer.parseInt(c[i][1]);
+            String temp[]=c[i].kecheng.split("<br>");
+            xingqi=Integer.parseInt(c[i].xingqi);
+            jieci=Integer.parseInt(c[i].jieci);
             addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
         }
 

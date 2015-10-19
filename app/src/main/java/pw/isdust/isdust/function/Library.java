@@ -1,5 +1,13 @@
 package pw.isdust.isdust.function;
 
+import org.json.JSONArray;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.StringReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -7,15 +15,19 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import pw.isdust.isdust.Http;
 
 /**
  * Created by wzq on 15/10/19.
  */
-public class Tushuguan {
+public class Library {
     Http mHttp;
     String [] mPersonalInformation;
-    public Tushuguan(){
+    public Library(){
         mHttp=new Http();
     }
     public String login(String user,String password){
@@ -65,9 +77,43 @@ public class Tushuguan {
         for (int i=0;i<len;i++){
             String [] temp=array_temp.get(i);
             result[i]=temp;
-
         }
         return result;
+    }
+    public Book [] xml_analyze_jianjie(String text) throws ParserConfigurationException, IOException, SAXException {
+//        String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/book/holdingpreview/248193");
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        InputSource is = new InputSource();
+        is.setCharacterStream(new StringReader(text));
+
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(is);
+        NodeList nodes = document.getElementsByTagName("record");
+        int len=nodes.getLength();
+        Book result []=new Book[len];
+        String  []c=new String[6];
+        for (int i=0;i<len;i++){
+            for (int j=0;j<6;j++){
+                c[j]=nodes.item(i).getChildNodes().item(j).getChildNodes().item(0).getNodeValue();
+            }
+            Book temp=new Book(c[0],c[2],c[4],c[5]);
+            result[i]=temp;
+        }
+
+
+        return result;
+    }
+    public void json_analyze(){
+        String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/api/holding/1900737876");
+        try {
+            JSONArray mJSONArray=new JSONArray(text);
+            int len=mJSONArray.length();
+        }catch (Exception e){
+            System.out.println(e);
+
+        }
+
     }
     public String renew_all(){
         String text=mHttp.post_string("http://interlib.sdust.edu.cn/opac/loan/doRenew","furl=%2Fopac%2Floan%2FrenewList&renewAll=all" );
@@ -107,4 +153,29 @@ public class Tushuguan {
             e.printStackTrace();
         }
         return "";}
+    public
+    class Book{
+        String mFindingNumber;//索书号
+        String mLibryLocation;//所在馆
+        String mSpecificLocation;//所在馆藏地点
+        String mCopy;//在馆复本数
+        public Book(String FindingNumber, String LibryLocation,String SpecificLocation,String Copy){
+            mFindingNumber=FindingNumber;
+            mLibryLocation=LibryLocation;
+            mSpecificLocation=SpecificLocation;
+            mCopy=Copy;
+        }
+        public String get_FindingNumber(){
+            return  mFindingNumber;
+        }
+        public String get_LibryLocation(){
+            return  mLibryLocation;
+        }
+        public String get_SpecificLocation(){
+            return  mSpecificLocation;
+        }
+        public String get_Copy(){
+            return  mCopy;
+        }
+    }
 }

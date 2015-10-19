@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by wzq on 15/10/11.
  */
-public class Xiaoli {
+public class SchoolDate {
     public static int get_xiaoli(){
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ParsePosition pos = new ParsePosition(0);

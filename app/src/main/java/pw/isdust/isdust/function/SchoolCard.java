@@ -26,7 +26,7 @@ import pw.isdust.isdust.Http;
 /**
  * Created by wzq on 15/9/18.
  */
-public class Xiaoyuanka {
+public class SchoolCard {
     private Http mHttp;
     private Context mContext;
     private Bitmap myzm_biaozhuan[];
@@ -56,7 +56,7 @@ public class Xiaoyuanka {
     }
 
 
-    public Xiaoyuanka(Context context) {
+    public SchoolCard(Context context) {
         mHttp=new Http();
         mHttp.newcookie();
 
