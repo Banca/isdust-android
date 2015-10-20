@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#E5E5E5"
+        android:orientation="vertical" >
+
+        <include layout="@layout/subpage_title_bar"
+            android:id="@+id/include" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/message_pager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </android.support.v4.view.ViewPager>
+
+        <RadioGroup
+            android:id="@+id/message_radiogroup"
+            android:layout_width="fill_parent"
+            android:layout_height="48dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/message_message"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/gonet_tabsbar_background"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="CMCC"
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/message_friend"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/gonet_tabsbar_background"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="China Unicom"
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/message_birthday"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/gonet_tabsbar_background"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="快通有线"
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

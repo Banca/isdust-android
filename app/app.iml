@@ -90,14 +90,18 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="okhttp-2.5.0" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="java-json" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="org.json" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.1.2" level="project" />
     <orderEntry type="library" exported="" name="IndoorscapeAlbumPlugin" level="project" />
     <orderEntry type="library" exported="" name="BaiduLBS_Android" level="project" />
+=======
+    <orderEntry type="library" exported="" name="okhttp-2.5.0" level="project" />
+>>>>>>> 0fe1df18a313dbf5877ef3a08ac8f09fa626e5e7
     <orderEntry type="library" exported="" name="support-v4-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.0" level="project" />
   </component>
