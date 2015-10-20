@@ -27,6 +27,28 @@ public class MainActivity extends BaseMainActivity {
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel, 500, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
+//		Intent a=new Intent()
+//		this.setClass(this, JiaowuActivity.class);
+//		SelectCoursePlatform b=new SelectCoursePlatform();
+//		Kebiao[] kebiao=new Kebiao[3];
+//		kebiao[0]=new Kebiao();
+//		kebiao[0].zhoushu ="1";
+//		kebiao[0].xingqi="3";
+//		kebiao[0].jieci ="2";
+//		kebiao[0].kecheng="wzq";
+//
+//		kebiao[1]=new Kebiao();
+//		kebiao[1].zhoushu ="1";
+//		kebiao[1].xingqi="3";
+//		kebiao[1].jieci ="2";
+//		kebiao[1].kecheng="wzq";
+//		kebiao[2]=new Kebiao();
+//		kebiao[2].zhoushu ="1";
+//		kebiao[2].xingqi="3";
+//		kebiao[2].jieci ="2";
+//		kebiao[2].kecheng="wzq";
+//		b.scheduletojson(kebiao);
+
 
 //		Tushuguan a=new Tushuguan();
 //		a.json_analyze();

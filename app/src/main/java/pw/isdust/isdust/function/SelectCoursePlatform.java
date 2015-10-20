@@ -1,6 +1,9 @@
 package pw.isdust.isdust.function;
 
+import com.formal.sdusthelper.datatype.Kebiao;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
@@ -19,7 +22,7 @@ public class SelectCoursePlatform {
     public SelectCoursePlatform(){
         mHttp=new Http();
         mHttp.newcookie();
-        mHttp.setProxy("219.146.243.3", 2000);
+//        mHttp.setProxy("219.146.243.3", 2000);
     }
     public String login(String user, String pwd){
         String text_web;
@@ -93,17 +96,28 @@ public class SelectCoursePlatform {
 
         return result1;//星期，节次，课程
     }
-    public void saveschedule(){
+    public String scheduletojson(Kebiao [] kebiao){
+        JSONObject mJSONObject_each;
         JSONArray mJSONArray=new JSONArray();
-        JSONObject mJSONObject=new JSONObject();
-//        mJSONObject.put("a","");
-    }
-    public class Kebiao{
-        public String zhoushu;
-        public String xingqi;
-        public String jieci;
-        public String kecheng;
+        int len=kebiao.length;
+        for (int i=0;i<len;i++){
+            try {
+                mJSONObject_each=new JSONObject();
+                mJSONObject_each.put("zhoushu",kebiao[i].zhoushu);
+                mJSONObject_each.put("xingqi",kebiao[i].xingqi);
+                mJSONObject_each.put("jieci",kebiao[i].jieci);
+                mJSONObject_each.put("kecheng",kebiao[i].kecheng);
+                mJSONArray.put(mJSONObject_each);
+                ;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+        }
+        String result=mJSONArray.toString();
+        return result;
+        //System.out.println(result);
 
     }
+
 }

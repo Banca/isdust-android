@@ -1,10 +1,13 @@
 package com.formal.sdusthelper;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Menu;
@@ -18,14 +21,20 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.formal.sdusthelper.datatype.Kebiao;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.SchoolDate;
-import pw.isdust.isdust.function.SchoolCard;
 import pw.isdust.isdust.function.SelectCoursePlatform;
 
 /**
@@ -85,6 +94,102 @@ public class ScheduleActivity extends Activity {
     /** 课程格子平均宽度 **/
     protected int aveWidth;
     DisplayMetrics dm;
+
+//线程池
+    String xianchengchi_user;
+    String xianchengchi_password;
+    String xianchengchi_login_status;
+    double xianchengchi_percent;
+    String xianchengchi_saving_json;
+    ProgressDialog xianchengchi_ProgressDialog;
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+
+    Runnable mRunnable_login=new Runnable(){
+        @Override
+        public void run() {
+            mXuankepingtai=new SelectCoursePlatform();
+            xianchengchi_login_status=mXuankepingtai.login(xianchengchi_user, xianchengchi_password);
+            if(xianchengchi_login_status.contains("登录成功")){
+                Message mMessage=new Message();
+                mMessage.what=0;
+                mHandler.sendMessage(mMessage);
+                return;
+
+                //下载课程表
+
+
+
+
+
+            }
+            Message mMessage=new Message();
+            mMessage.what=1;
+            mHandler.sendMessage(mMessage);
+
+
+        }
+
+    };
+    Runnable mRunnable_download=new Runnable() {
+        @Override
+        public void run() {
+            int zhoushu=22;
+            xianchengchi_saving_json="";
+            Message mMessage=new Message();
+            mMessage.what=3;
+            for(int i=0;i<zhoushu;i++){
+                xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"","2015-2016","1"));
+                xianchengchi_percent=((double)(i+1)/(double)zhoushu)*100;
+                xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
+            }
+            xianchengchi_saving_json=xianchengchi_saving_json.replace("][",",");
+            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
+            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
+            xianchengchi_saving_json=xianchengchi_saving_json.replace("[,","[");
+            xianchengchi_saving_json=xianchengchi_saving_json.replace(",]","]");
+            try {
+                JSONArray m=new JSONArray(xianchengchi_saving_json);
+
+                System.out.println(xianchengchi_saving_json);
+            }catch (Exception e){
+
+            }
+
+            mHandler.sendMessage(mMessage);
+            return;
+        }
+    };
+
+    final android.os.Handler mHandler=new Handler(){
+        @Override
+        public void  handleMessage(Message msg){
+            super.handleMessage(msg);
+            if (msg.what==0){//登录成功
+                xianchengchi_ProgressDialog = new ProgressDialog(mContext);
+                xianchengchi_ProgressDialog.setMessage("正则下载课程表到本地");
+                xianchengchi_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                xianchengchi_ProgressDialog.setCancelable(false);
+                xianchengchi_ProgressDialog.show();
+
+                executorService.execute(mRunnable_download);
+                return;
+            }
+            if (msg.what==1){//登录失败
+
+            }
+            if (msg.what==2){//下载进度显示
+//               System.out.println(xianchengchi_percent);
+//                xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
+                return;
+            }
+            if (msg.what==3){//下载完成
+                xianchengchi_ProgressDialog.dismiss();
+                return;
+            }
+        }
+    };
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
@@ -166,29 +271,19 @@ public class ScheduleActivity extends Activity {
             }
         }
         //title_name.setText("空自习室查询");
-        SchoolCard b=new SchoolCard(this);
-//		Xuankepingtai a=new Xuankepingtai();
-        mXuankepingtai=new SelectCoursePlatform();
-        mXuankepingtai.login("201501060225", "960826wang");
-        Random mRandom=new Random();
-        bangding(SchoolDate.get_xiaoli()+"", "2015-2016", "1");
-//		SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(SchoolDate.get_xiaoli() + "", "2015-2016", "1");
-//        int xingqi,jieci;
-//        for (int i=0;i<c.length;i++){
-//            String temp[]=c[i].kecheng.split("<br>");
-//            xingqi=Integer.parseInt(c[i].xingqi);
-//            jieci=Integer.parseInt(c[i].jieci);
-//            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
-//        }
-//        addcourse(1,1,"软件工程\n@302",3);
-//        addcourse(2,2,"大学英语\n@J7-302",1);
+        xianchengchi_user="201501060225";
+        xianchengchi_password="960826wang";
+        executorService.execute(mRunnable_login);
+
+
+        //bangding(SchoolDate.get_xiaoli()+"", "2015-2016", "1");
+
 
     }
     public void bangding(String xiaoli,String xuenian,String xueqi){
-//        Random mRandom=new Random();
         xiaohuiquanbu();
         int color=0;
-        SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
+        Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
         int xingqi,jieci;
         for (int i=0;i<c.length;i++){
             String temp[]=c[i].kecheng.split("<br>");
