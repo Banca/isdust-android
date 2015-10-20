@@ -1,5 +1,8 @@
 package pw.isdust.isdust.function;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +93,11 @@ public class SelectCoursePlatform {
 
         return result1;//星期，节次，课程
     }
-
+    public void saveschedule(){
+        JSONArray mJSONArray=new JSONArray();
+        JSONObject mJSONObject=new JSONObject();
+        mJSONObject.put("a","");
+    }
     public class Kebiao{
         public String zhoushu;
         public String xingqi;
