@@ -5,8 +5,8 @@
     android:background="@drawable/bg_title_bar"
     android:gravity="center_vertical" >
     <ImageView
-        android:onClick="onClick"
-        android:id="@+id/title_bar_menu_btn"
+        android:onClick="onTitleBarClick"
+        android:id="@+id/title_bar_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

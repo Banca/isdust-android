@@ -80,10 +80,8 @@ public class BaseMainActivity extends Activity{
         }
         //启动activity
         this.startActivity(intent);
-        finish();
-//        if (!slideMenu.isMainScreenShowing()) {
-//            slideMenu.closeMenu();
-//        }
+        if (v.getId() != R.id.slide_menu_cmcc)
+            finish();
     }
 
 }
