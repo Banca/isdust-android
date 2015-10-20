@@ -171,28 +171,34 @@ public class ScheduleActivity extends Activity {
         mXuankepingtai=new SelectCoursePlatform();
         mXuankepingtai.login("201501060225", "960826wang");
         Random mRandom=new Random();
-
-		SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(SchoolDate.get_xiaoli() + "", "2015-2016", "1");
-        int xingqi,jieci;
-        for (int i=0;i<c.length;i++){
-            String temp[]=c[i].kecheng.split("<br>");
-            xingqi=Integer.parseInt(c[i].xingqi);
-            jieci=Integer.parseInt(c[i].jieci);
-            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
-        }
+        bangding(SchoolDate.get_xiaoli()+"", "2015-2016", "1");
+//		SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(SchoolDate.get_xiaoli() + "", "2015-2016", "1");
+//        int xingqi,jieci;
+//        for (int i=0;i<c.length;i++){
+//            String temp[]=c[i].kecheng.split("<br>");
+//            xingqi=Integer.parseInt(c[i].xingqi);
+//            jieci=Integer.parseInt(c[i].jieci);
+//            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
+//        }
 //        addcourse(1,1,"软件工程\n@302",3);
 //        addcourse(2,2,"大学英语\n@J7-302",1);
 
     }
     public void bangding(String xiaoli,String xuenian,String xueqi){
-        Random mRandom=new Random();
-        SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(SchoolDate.get_xiaoli() + "", "2015-2016", "1");
+//        Random mRandom=new Random();
+        xiaohuiquanbu();
+        int color=0;
+        SelectCoursePlatform.Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
         int xingqi,jieci;
         for (int i=0;i<c.length;i++){
             String temp[]=c[i].kecheng.split("<br>");
             xingqi=Integer.parseInt(c[i].xingqi);
             jieci=Integer.parseInt(c[i].jieci);
-            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],mRandom.nextInt(5));
+            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],color);
+            if (color==6){
+                color=0;
+            }
+            color++;
         }
 
     }
@@ -201,8 +207,8 @@ public class ScheduleActivity extends Activity {
         int gridHeight = height / 8;
         //五种颜色的背景
         int[] background = {R.drawable.course_info_blue, R.drawable.course_info_green,
-                R.drawable.course_info_red, R.drawable.course_info_red,
-                R.drawable.course_info_yellow};
+                R.drawable.course_info_red, R.drawable.course_info_bluegreen,
+                R.drawable.course_info_yellow,R.drawable.course_info_orange,R.drawable.course_info_purple};
         // 添加课程信息
         TextView courseInfo = new TextView(this);
         mTextView.add(courseInfo);
@@ -281,7 +287,7 @@ public class ScheduleActivity extends Activity {
                                                             View arg1, int arg2, long arg3) {
                                         String strItem = listMiddle.get(arg2).get(
                                                 "item");
-                                        xiaohuiquanbu();
+
                                         bangding(strItem, "2015-2016", "1");
                                         tvMiddle.setText(strItem);
 

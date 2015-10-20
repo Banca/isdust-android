@@ -96,7 +96,7 @@ public class SelectCoursePlatform {
     public void saveschedule(){
         JSONArray mJSONArray=new JSONArray();
         JSONObject mJSONObject=new JSONObject();
-        mJSONObject.put("a","");
+//        mJSONObject.put("a","");
     }
     public class Kebiao{
         public String zhoushu;
