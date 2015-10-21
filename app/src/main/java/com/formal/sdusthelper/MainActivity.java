@@ -27,6 +27,16 @@ public class MainActivity extends BaseMainActivity {
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel, 500, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
+
+//		writeToFile("wzq");
+//		String a=readFromFile();
+//		a="";
+
+
+
+
+
+
 //		Intent a=new Intent()
 //		this.setClass(this, JiaowuActivity.class);
 //		SelectCoursePlatform b=new SelectCoursePlatform();
@@ -119,5 +129,5 @@ public class MainActivity extends BaseMainActivity {
                 super.handleMessage(msg);
         }
 	};
-	
+
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -27,6 +28,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -103,6 +110,7 @@ public class ScheduleActivity extends Activity {
     String xianchengchi_saving_json;
     ProgressDialog xianchengchi_ProgressDialog;
     private ExecutorService executorService = Executors.newCachedThreadPool();
+    Kebiao [] mKebiao_all;
 
     Runnable mRunnable_login=new Runnable(){
         @Override
@@ -184,6 +192,7 @@ public class ScheduleActivity extends Activity {
             }
             if (msg.what==3){//下载完成
                 xianchengchi_ProgressDialog.dismiss();
+                writeToFile("schedule.dat",xianchengchi_saving_json);
                 return;
             }
         }
@@ -271,24 +280,60 @@ public class ScheduleActivity extends Activity {
             }
         }
         //title_name.setText("空自习室查询");
-        xianchengchi_user="201501060225";
-        xianchengchi_password="960826wang";
-        executorService.execute(mRunnable_login);
+
+        String kebiao_json=readFromFile("schedule.dat");
+        if(kebiao_json==""){
+            xianchengchi_user="201501060225";
+            xianchengchi_password="960826wang";
+            executorService.execute(mRunnable_login);
+        return;}
+
+//        Kebiao mkebiao_all=
+        initParam();
+        getScheduleFromJson(kebiao_json);
+
+
 
 
         //bangding(SchoolDate.get_xiaoli()+"", "2015-2016", "1");
 
 
     }
-    public void bangding(String xiaoli,String xuenian,String xueqi){
+    public void bangding(String zhoushu){//public void bangding(String xiaoli,String xuenian,String xueqi){
+//        xiaohuiquanbu();
+//        int color=0;
+//        Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
+//        int xingqi,jieci;
+//        for (int i=0;i<c.length;i++){
+//            String temp[]=c[i].kecheng.split("<br>");
+//            xingqi=Integer.parseInt(c[i].xingqi);
+//            jieci=Integer.parseInt(c[i].jieci);
+//            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],color);
+//            if (color==6){
+//                color=0;
+//            }
+//            color++;
+//        }
+
+        //以上为在线读取课表，以下为重构后的程序，读取本地课表
+
         xiaohuiquanbu();
         int color=0;
-        Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
+        List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
+        int len=mKebiao_all.length;
+        for (int i=0;i<len;i++){
+            if (mKebiao_all[i].zhoushu.equals(zhoushu)){
+                mList_kebiao.add(mKebiao_all[i]);
+
+            }
+        }
+        len=mList_kebiao.size();
+        //Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
         int xingqi,jieci;
-        for (int i=0;i<c.length;i++){
-            String temp[]=c[i].kecheng.split("<br>");
-            xingqi=Integer.parseInt(c[i].xingqi);
-            jieci=Integer.parseInt(c[i].jieci);
+        for (int i=0;i<len;i++){
+            String temp[]=mList_kebiao.get(i).kecheng.split("<br>");
+            xingqi=Integer.parseInt(mList_kebiao.get(i).xingqi);
+            jieci=Integer.parseInt(mList_kebiao.get(i).jieci);
             addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],color);
             if (color==6){
                 color=0;
@@ -296,7 +341,9 @@ public class ScheduleActivity extends Activity {
             color++;
         }
 
+
     }
+
     public void addcourse(int xingqi,int jieci,String neirong,int color){
         int height = dm.heightPixels;
         int gridHeight = height / 8;
@@ -383,7 +430,7 @@ public class ScheduleActivity extends Activity {
                                         String strItem = listMiddle.get(arg2).get(
                                                 "item");
 
-                                        bangding(strItem, "2015-2016", "1");
+                                        bangding(strItem);
                                         tvMiddle.setText(strItem);
 
                                         if (popMiddle != null && popMiddle.isShowing()) {
@@ -434,5 +481,68 @@ public class ScheduleActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+
+    private void writeToFile(String file,String data) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(file, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+
+    private String readFromFile(String filename) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = openFileInput(filename);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+    public void getScheduleFromJson(String  kebiao_json){
+        try {
+            JSONArray mJSONArray=new JSONArray(kebiao_json);
+            int len=mJSONArray.length();
+            mKebiao_all=new Kebiao[len];
+            JSONObject obj;
+            Kebiao kebiao_temp;
+            for (int i=0;i<len;i++){
+                obj=mJSONArray.getJSONObject(i);
+                kebiao_temp=new Kebiao();
+                kebiao_temp.zhoushu=obj.getString("zhoushu");
+                kebiao_temp.xingqi=obj.getString("xingqi");
+                kebiao_temp.jieci=obj.getString("jieci");
+                kebiao_temp.kecheng=obj.getString("kecheng");
+                mKebiao_all[i]=kebiao_temp;
+            }
+            System.out.println("");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
