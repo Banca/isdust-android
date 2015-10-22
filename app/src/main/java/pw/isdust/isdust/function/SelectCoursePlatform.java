@@ -24,7 +24,15 @@ public class SelectCoursePlatform {
         mHttp.newcookie();
 //        mHttp.setProxy("219.146.243.3", 2000);
     }
-    public String login(String user, String pwd){
+    public String login_zhengfang(String user, String pwd){
+        String text_web;
+        text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx","gb2312");
+        String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
+        String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+pwd+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
+        text_web=mHttp.post_string("http://192.168.100.136/default_ysdx.aspx", submit);
+        return "";
+    }
+    public String login_xuankepingtai(String user, String pwd){
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F");
         String __RequestVerificationToken= Networklogin_CMCC.zhongjian(text_web, "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0);

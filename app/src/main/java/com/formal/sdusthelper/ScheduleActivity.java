@@ -116,7 +116,7 @@ public class ScheduleActivity extends Activity {
         @Override
         public void run() {
             mXuankepingtai=new SelectCoursePlatform();
-            xianchengchi_login_status=mXuankepingtai.login(xianchengchi_user, xianchengchi_password);
+            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
             if(xianchengchi_login_status.contains("登录成功")){
                 Message mMessage=new Message();
                 mMessage.what=0;
