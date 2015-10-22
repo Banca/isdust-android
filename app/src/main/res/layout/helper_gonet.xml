@@ -28,7 +28,7 @@
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/message_message"
+                android:id="@+id/tab_cmcc"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -41,7 +41,7 @@
                 android:textSize="12sp" />
 
             <RadioButton
-                android:id="@+id/message_friend"
+                android:id="@+id/tab_chinaunicom"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -54,7 +54,7 @@
                 android:textSize="12sp" />
 
             <RadioButton
-                android:id="@+id/message_birthday"
+                android:id="@+id/tab_kuaitong"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"

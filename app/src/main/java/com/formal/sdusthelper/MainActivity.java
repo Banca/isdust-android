@@ -25,7 +25,7 @@ public class MainActivity extends BaseMainActivity {
 		setContentView(form_welcome);		//Show welcome page
 		//next add some load event
 		timer_wel = new Timer();
-		timer_wel.schedule(task_wel, 500, 2);		// start a 5s's timer after 2s
+		timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
 
 //		writeToFile("wzq");

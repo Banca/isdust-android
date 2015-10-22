@@ -142,7 +142,6 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 
 
-
 //		Intent intent = getIntent();
 //		//获取数据
 //		Bundle data = intent.getExtras();
@@ -166,7 +165,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		Toast.makeText(this, "positon = "+position, 1000).show();
+		//Toast.makeText(this, "positon = "+position, 1000).show();
 	}
 	@Override
 	public void onFooterRefresh(PullToRefreshView view) {
