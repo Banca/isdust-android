@@ -26,11 +26,30 @@ public class SelectCoursePlatform {
     }
     public String login_zhengfang(String user, String pwd){
         String text_web;
-        text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx","gb2312");
+        text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx", "gb2312");
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
+        __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
         String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+pwd+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
-        text_web=mHttp.post_string("http://192.168.100.136/default_ysdx.aspx", submit);
-        return "";
+        text_web=mHttp.post_string_noturlencode("http://192.168.100.136/default_ysdx.aspx", submit);
+        if (text_web.contains("<script>window.open('xs_main.aspx?xh=2")){
+            String url_login_zhengfang=Networklogin_CMCC.zhongjian(text_web,"<script>window.open('","','_parent');</script>",0);
+            url_login_zhengfang="http://192.168.100.136/"+url_login_zhengfang;
+            text_web=mHttp.get_string(url_login_zhengfang,"gb2312");
+            String url_login_xuanke=Networklogin_CMCC.zhongjian(text_web,"信息员意见反馈</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('激活选课平台帐户');",0);
+            url_login_xuanke="http://192.168.100.136/"+url_login_xuanke;
+            text_web=mHttp.get_string(url_login_xuanke, "gb2312");
+            url_login_xuanke=Networklogin_CMCC.zhongjian(text_web, "<a target=\"_top\" href=\"", "\">如果您的浏览器没有跳转，请点这里</a>", 0);
+            text_web=mHttp.get_string(url_login_xuanke);
+            return "登录成功";
+        }if (text_web.contains("密码错误")){
+            return "密码错误";
+
+        }if (text_web.contains("用户名不存在")){
+            return "用户名不存在";
+
+        }
+
+        return "未知错误login_zhengfang";
     }
     public String login_xuankepingtai(String user, String pwd){
         String text_web;

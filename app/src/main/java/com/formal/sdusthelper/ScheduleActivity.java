@@ -116,7 +116,8 @@ public class ScheduleActivity extends Activity {
         @Override
         public void run() {
             mXuankepingtai=new SelectCoursePlatform();
-            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
+//            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
+            xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
             if(xianchengchi_login_status.contains("登录成功")){
                 Message mMessage=new Message();
                 mMessage.what=0;
@@ -280,7 +281,7 @@ public class ScheduleActivity extends Activity {
             }
         }
         //title_name.setText("空自习室查询");
-
+        //writeToFile("schedule.dat","");
         String kebiao_json=readFromFile("schedule.dat");
         if(kebiao_json==""){
             xianchengchi_user="201501060225";
@@ -495,7 +496,7 @@ public class ScheduleActivity extends Activity {
     }
 
 
-    private String readFromFile(String filename) {
+    public String readFromFile(String filename) {
 
         String ret = "";
 

@@ -32,7 +32,7 @@ public class MainActivity extends BaseMainActivity {
 
 
 		SelectCoursePlatform a=new SelectCoursePlatform();
-		a.login_zhengfang("201501060225","960826wang");
+
 
 
 
