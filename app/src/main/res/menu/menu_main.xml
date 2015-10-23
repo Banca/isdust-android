@@ -6,4 +6,14 @@
 
           android:orderInCategory="100"
           app:showAsAction="never"/>
+
+      <item
+          android:id="@+id/id_map_location"
+          android:title="我的位置"
+          app:showAsAction="never"/>
+
+      <item
+          android:id="@+id/id_add_overlay"
+          android:title="添加覆盖物"
+          app:showAsAction="never"/>
 </menu>
