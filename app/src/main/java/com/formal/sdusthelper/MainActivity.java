@@ -11,6 +11,8 @@ import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pw.isdust.isdust.function.SelectCoursePlatform;
+
 
 public class MainActivity extends BaseMainActivity {
 
@@ -27,6 +29,20 @@ public class MainActivity extends BaseMainActivity {
 		timer_wel = new Timer();
 		timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
+
+
+		SelectCoursePlatform a=new SelectCoursePlatform();
+
+
+
+
+//		Network_Kuaitong a =new Network_Kuaitong();
+//		String b=a.kuaitong_chongzhi_login("1501060238","147147");
+//		a.kuaitong_chongzhi("0.01");
+
+		//a.kuaitong_getinfo();
+
+
 
 //		writeToFile("wzq");
 //		String a=readFromFile();
