@@ -50,7 +50,7 @@ public class Networklogin_CMCC {
         SmsManager mSmsManager=SmsManager.getDefault();
         mSmsManager.sendTextMessage("10086",null,"806 "+pwd,null,null);
     }
-    public String cmcc_geyanzheng(String user){
+    public String cmcc_getyanzheng(String user){
         String submit="username="+user+"&password=&cmccdynapw=cmccdynapw&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
         String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
         if (html1.contains("动态密码已经发往手机号码")){
