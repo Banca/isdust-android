@@ -65,55 +65,70 @@ public class GoNetActivity extends BaseSubPageActivity {
 	}
 
     public void onFormCMCCClick(View v) {
+        switch (v.getId()) {
+            case R.id.cmcc_first_button_login:  //登陆一层账号
+                GoFirstNet();
+                break;
+            case R.id.cmcc_sec_button_login:
+                GoSecNet();
+                break;
+            case R.id.cmcc_imgbtn_quicklogin:
+                GoFirstNet();
+                GoSecNet();
+                break;
+        }
+    }
+    private void GoFirstNet() {
         String result,str_user,str_pwd;
 
         //实例化SharedPreferences对象
         SharedPreferences mySharedPreferences= getSharedPreferences("CMCCData",	Activity.MODE_PRIVATE);
         //实例化SharedPreferences.Editor对象
         SharedPreferences.Editor editor = mySharedPreferences.edit();
-        switch (v.getId()) {
-            case R.id.cmcc_first_button_login:  //登陆一层账号
-                str_user = text_cmcc_user_first.getText().toString();
-                str_pwd = text_cmcc_pwd_first.getText().toString();
-                //用putString的方法保存数据
-                editor.putString("username_first", str_user);
-                if (check_cmcc_first.isChecked()) {	//记住密码
-                    editor.putBoolean("keeppwd_first", true);
-                    editor.putString("password_first", str_pwd);
-                }
-                else {	//不记住密码
-                    editor.putBoolean("keeppwd_first", false);
-                    editor.putString("password_first", "");
-                }
-                //提交当前数据
-                editor.commit();
-                result = obj_cmcc.login(str_user,str_pwd);  //登陆一层
-                Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
-//                if (result.equals("登陆成功"))
-//                    obj_cmcc.cmcc_init();   //为登陆二层做准备
-                break;
-            case R.id.cmcc_sec_button_login:
-                str_user = text_cmcc_user_sec.getText().toString();
-                str_pwd = text_cmcc_pwd_sec.getText().toString();
-                //用putString的方法保存数据
-                editor.putString("username_sec", text_cmcc_user_sec.getText().toString());
-                if (check_cmcc_sec.isChecked()) {	//记住密码
-                    editor.putBoolean("keeppwd_sec", true);
-                    editor.putString("password_sec", text_cmcc_pwd_sec.getText().toString());
-                }
-                else {	//不记住密码
-                    editor.putBoolean("keeppwd_sec", false);
-                    editor.putString("password_sec", "");
-                }
-                //提交当前数据
-                editor.commit();
-                obj_cmcc.cmcc_init();   //为登陆二层做准备
-                result = obj_cmcc.cmcc_login(str_user, str_pwd);  //登陆二层
-                Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
-                break;
+        str_user = text_cmcc_user_first.getText().toString();
+        str_pwd = text_cmcc_pwd_first.getText().toString();
+        //用putString的方法保存数据
+        editor.putString("username_first", str_user);
+        if (check_cmcc_first.isChecked()) {	//记住密码
+            editor.putBoolean("keeppwd_first", true);
+            editor.putString("password_first", str_pwd);
         }
-    }
+        else {	//不记住密码
+            editor.putBoolean("keeppwd_first", false);
+            editor.putString("password_first", "");
+        }
+        //提交当前数据
+        editor.commit();
+        result = obj_cmcc.login(str_user,str_pwd);  //登陆一层
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+        if (result.equals("登录成功"))
+            obj_cmcc.cmcc_init();   //为登陆二层做准备
+    }   //登录一层
+    private void GoSecNet() {
+        String result,str_user,str_pwd;
 
+        //实例化SharedPreferences对象
+        SharedPreferences mySharedPreferences= getSharedPreferences("CMCCData",	Activity.MODE_PRIVATE);
+        //实例化SharedPreferences.Editor对象
+        SharedPreferences.Editor editor = mySharedPreferences.edit();
+        str_user = text_cmcc_user_sec.getText().toString();
+        str_pwd = text_cmcc_pwd_sec.getText().toString();
+        //用putString的方法保存数据
+        editor.putString("username_sec", text_cmcc_user_sec.getText().toString());
+        if (check_cmcc_sec.isChecked()) {	//记住密码
+            editor.putBoolean("keeppwd_sec", true);
+            editor.putString("password_sec", text_cmcc_pwd_sec.getText().toString());
+        }
+        else {	//不记住密码
+            editor.putBoolean("keeppwd_sec", false);
+            editor.putString("password_sec", "");
+        }
+        //提交当前数据
+        editor.commit();
+//                obj_cmcc.cmcc_init();   //为登陆二层做准备
+        result = obj_cmcc.cmcc_login(str_user, str_pwd);  //登陆二层
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+    }   //登录二层
     private void findView() {
 //        mFlip = (ImageView) this.findViewById(R.id.title_bar_menu_btn);
 //        mEdit = (Button) this.findViewById(R.id.message_edit);

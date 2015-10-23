@@ -8,6 +8,8 @@ import android.os.Message;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.ScheduleInformation;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import pw.isdust.isdust.function.EmptyClassroom;
 /**
  * Created by wzq on 15/10/16.
  */
-public class EmptyRoomActivity extends ListActivity {
+public class EmptyRoomActivity extends BaseSubListPageActivity {
     //线程池
     private ExecutorService executorService = Executors.newCachedThreadPool();
     private String xiancheng_location,xiancheng_building;

@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.Kebiao;
 
 import org.json.JSONArray;
@@ -47,7 +48,7 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class ScheduleActivity extends Activity {
+public class ScheduleActivity extends BaseSubPageActivity {
     List<TextView> mTextView=new ArrayList<TextView>();
     SelectCoursePlatform mXuankepingtai;
 

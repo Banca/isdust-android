@@ -9,7 +9,7 @@
             android:background="@color/color_page_white"
              >
 
-            <include layout="@layout/layout_title_bar"
+            <include layout="@layout/subpage_title_bar"
                      android:id="@+id/include2" />
             <TextView android:id="@+id/test_empty"
                       android:layout_width="wrap_content"
