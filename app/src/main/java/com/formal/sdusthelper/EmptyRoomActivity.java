@@ -1,6 +1,5 @@
 package com.formal.sdusthelper;
 
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
-import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.ScheduleInformation;
 
 import java.util.ArrayList;
