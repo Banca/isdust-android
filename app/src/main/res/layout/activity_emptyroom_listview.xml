@@ -117,10 +117,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="周次："
+            android:text="星期："
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -132,39 +132,127 @@
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/textView7"
             android:layout_alignStart="@+id/textView7" />
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:id="@+id/spinner_building"
-            android:entries="@array/spingarr"
-            android:layout_alignParentTop="true"
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_jieci"
+            android:layout_width="110dip"
+            android:layout_height="30dip"
+            android:background="#BF7F40"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/textView8"
             android:layout_toRightOf="@+id/textView3"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/textView3">
 
-            android:layout_above="@+id/spinner_zhoushu" />
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:id="@+id/spinner_jieci"
-            android:entries="@array/spingarr"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/spinner_building"
-            android:layout_alignStart="@+id/spinner_building"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/spinner_zhoushu" />
+            <TextView
+                android:id="@+id/textView_jieci"
+                android:layout_width="110dip"
+                android:layout_height="30dip"
+                android:background="@drawable/btn_selector_pop"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="第一、二节"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        </RelativeLayout>
 
-        <Spinner
-            android:id="@+id/spinner_zhoushu"
-            android:entries="@array/spingarr"
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:text="查询"
+            android:id="@+id/button_chaxun_kongzixishi"
+            android:layout_marginRight="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_alignBottom="@+id/relativeLayout_xingqi"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/spinner_building"
-            android:layout_alignStart="@+id/spinner_building" />
+            android:layout_alignParentEnd="true"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_xingqi"
+            android:layout_width="80dip"
+            android:layout_height="30dip"
+            android:background="#BF7F40"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/relativeLayout_jieci"
+            android:layout_alignStart="@+id/relativeLayout_jieci">
+
+            <TextView
+                android:id="@+id/textView_xingqi"
+                android:layout_width="80dip"
+                android:layout_height="30dip"
+                android:background="@drawable/btn_selector_pop"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="星期一"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_building"
+            android:layout_width="70dip"
+            android:layout_height="30dip"
+            android:background="#BF7F40"
+            android:gravity="center_vertical"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3">
+
+            <TextView
+                android:id="@+id/textView_building"
+                android:layout_width="70dip"
+                android:layout_height="30dip"
+                android:background="@drawable/btn_selector_pop"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="J1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="周次："
+            android:layout_above="@+id/button_chaxun_kongzixishi"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_zhoushu"
+            android:layout_width="70dip"
+            android:layout_height="30dip"
+            android:background="#BF7F40"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/textView9"
+            android:layout_alignLeft="@+id/relativeLayout_xingqi"
+            android:layout_alignStart="@+id/relativeLayout_xingqi">
+
+            <TextView
+                android:id="@+id/textView_zhoushu"
+                android:layout_width="70dip"
+                android:layout_height="30dip"
+                android:background="@drawable/btn_selector_pop"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 
