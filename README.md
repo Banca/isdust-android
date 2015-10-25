@@ -2,9 +2,10 @@
 开源声明：本软件作者想有其著作权，开源仅供学习交流，禁止将本软件代码抄袭，商业化使用  
 项目成员：  
             王梓樯   Coder/Developer  
-            冷汉超   UI/UE Coder
-            亓文凯   UI Designer 
-            胡旸     UI Designer
+            冷汉超   UI/UE Coder  
+            亓文凯   UI Designer  
+            胡旸     UI Designer  
+              
 已实现功能:   
               1.校园卡  
                     校园卡余额，消费纪录查询，校园卡修改密码以及挂失  
