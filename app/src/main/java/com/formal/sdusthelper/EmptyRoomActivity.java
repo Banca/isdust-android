@@ -339,7 +339,7 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
                         // 设置popupwindow的位置
                         int topBarHeight = mRelativeLayout_building.getBottom();
                         mPopupWindow_building.showAsDropDown(mTextView_building, 0,
-                                (topBarHeight - mTextView_building.getHeight()) / 2);
+                                (topBarHeight - mTextView_building.getHeight()) / 2-80);
 
                         mPopupWindow_building.setTouchInterceptor(new View.OnTouchListener() {
 
@@ -403,7 +403,7 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
                         // 设置popupwindow的位置
                         int topBarHeight = mRelativeLayout_xingqi.getBottom();
                         mPopupWindow_xingqi.showAsDropDown(mTextView_xingqi, 0,
-                                (topBarHeight - mTextView_xingqi.getHeight()) / 2-100);
+                                (topBarHeight - mTextView_xingqi.getHeight()) / 2-200);
 
                         mPopupWindow_xingqi.setTouchInterceptor(new View.OnTouchListener() {
 
@@ -467,7 +467,7 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
                         // 设置popupwindow的位置
                         int topBarHeight = mRelativeLayout_jieci.getBottom();
                         mPopupWindow_jieci.showAsDropDown(mTextView_jieci, 0,
-                                (topBarHeight - mTextView_jieci.getHeight()) / 2-200);
+                                (topBarHeight - mTextView_jieci.getHeight()) / 2-260);
 
                         mPopupWindow_jieci.setTouchInterceptor(new View.OnTouchListener() {
 
@@ -531,7 +531,7 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
                         // 设置popupwindow的位置
                         int topBarHeight = mRelativeLayout_zhoushu.getBottom();
                         mPopupWindow_zhoushu.showAsDropDown(mTextView_zhoushu, 0,
-                                (topBarHeight - mTextView_zhoushu.getHeight()) / 2-100);
+                                (topBarHeight - mTextView_zhoushu.getHeight()) / 2-140);
 
                         mPopupWindow_zhoushu.setTouchInterceptor(new View.OnTouchListener() {
 

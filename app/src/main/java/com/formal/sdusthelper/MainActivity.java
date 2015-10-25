@@ -11,8 +11,6 @@ import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pw.isdust.isdust.function.SelectCoursePlatform;
-
 
 public class MainActivity extends BaseMainActivity {
 
@@ -31,7 +29,7 @@ public class MainActivity extends BaseMainActivity {
 		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
 
 
-		SelectCoursePlatform a=new SelectCoursePlatform();
+//		SelectCoursePlatform a=new SelectCoursePlatform();
 
 
 
