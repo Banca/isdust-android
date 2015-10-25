@@ -15,14 +15,45 @@
             android:background="@color/color_page_white"
             android:orientation="vertical" >
 
-            <include layout="@layout/layout_title_bar" />
+            <include layout="@layout/layout_title_bar"
+                android:id="@+id/include3" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Set"
-                android:textSize="22sp" />
+            <ScrollView
+                android:id="@+id/widget54"
+                android:background="@color/color_page_white"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_below="@+id/include3">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    >
+                    <Button
+                        android:id="@+id/set_btn_account"
+                        android:onClick="onFormSetClick"
+                        android:background="@drawable/selector_item_button"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="账号管理"
+                        android:drawableLeft="@drawable/pwd"
+                        android:drawableRight="@drawable/pwd"
+                         />
+                    <Button
+                        android:id="@+id/button"
+                        android:onClick="onFormSetClick"
+                        android:background="@drawable/selector_item_button"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="``````"
+                        android:drawableLeft="@drawable/pwd"
+                        android:drawableRight="@drawable/pwd"
+                         />
+                </LinearLayout>
+            </ScrollView>
+
         </RelativeLayout>
     </com.formal.sdusthelper.SlideMenu>
 

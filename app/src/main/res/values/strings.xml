@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_settings">Settings</string>
-    <string name="app_name">山科助手</string>
+    <string name="app_name">爱山科</string>
     <string name="menu_home">  首页</string>
     <string name="menu_cmcc">  上网登录</string>
     <string name="menu_jiaowu">  教务查询</string>
@@ -21,7 +21,7 @@
 
     <drawable name="clr_normal">#32A8EB</drawable>
     <drawable name="clr_pressed">#2088C4</drawable>
-    <drawable name="clr_whitebtn_normal">#E6E6E6</drawable>
+    <drawable name="clr_whitebtn_normal">#ffffff</drawable>
     <drawable name="clr_whitebtn_pressed">#c6c6c6</drawable>
 
     <string-array name="spingarr">

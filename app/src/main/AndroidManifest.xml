@@ -37,7 +37,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="G20BbP97XFljW1KUC2wKkCPU" />
+            android:value="0FUKrqI7pKyoYYMVqmW5ttVP" />
 
 
         <activity
@@ -104,7 +104,14 @@
             android:name="com.formal.sdusthelper.SetActivity"
             android:screenOrientation="portrait">
         </activity>
-
+        <activity
+            android:name="com.formal.sdusthelper.SetAccountActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.GoNetCMCCAcntActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

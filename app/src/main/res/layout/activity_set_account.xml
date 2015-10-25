@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/color_page_white"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <include layout="@layout/subpage_title_bar"
+            android:id="@+id/include" />
+
+        <ScrollView
+            android:id="@+id/widget54"
+            android:background="@color/color_page_white"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_below="@+id/include">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                >
+                <Button
+                    android:id="@+id/set_btn_card"
+                    android:onClick="onFormSetClick"
+                    android:background="@drawable/selector_item_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="校园卡"
+                    android:drawableLeft="@drawable/pwd"
+                    android:drawableRight="@drawable/pwd"
+                    />
+                <Button
+                android:id="@+id/set_btn_jiaowu"
+                android:onClick="onFormSetClick"
+                android:background="@drawable/selector_item_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="教务系统"
+                android:drawableLeft="@drawable/pwd"
+                android:drawableRight="@drawable/pwd"
+                />
+                <Button
+                    android:id="@+id/set_btn_cmcc"
+                    android:onClick="onFormSetAcntClick"
+                    android:background="@drawable/selector_item_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CMCC"
+                    android:drawableLeft="@drawable/pwd"
+                    android:drawableRight="@drawable/pwd"
+                    />
+                <Button
+                    android:id="@+id/set_btn_chainaunicom"
+                    android:onClick="onFormSetClick"
+                    android:background="@drawable/selector_item_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ChinaUnicom"
+                    android:drawableLeft="@drawable/pwd"
+                    android:drawableRight="@drawable/pwd"
+                    />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</RelativeLayout>
