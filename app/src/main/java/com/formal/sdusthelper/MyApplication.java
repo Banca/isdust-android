@@ -9,7 +9,6 @@ import pw.isdust.isdust.function.SchoolCard;
  */
 public class MyApplication extends Application {
     private SchoolCard usercard;
-
     public void onCreate() {
         super.onCreate();
         usercard = new SchoolCard(this);

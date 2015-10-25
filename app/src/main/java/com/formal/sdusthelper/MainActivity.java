@@ -3,8 +3,10 @@ package com.formal.sdusthelper;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 
@@ -13,21 +15,24 @@ import java.util.TimerTask;
 
 
 public class MainActivity extends BaseMainActivity {
-
+	static boolean ishadopended = false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
 	private View form_welcome;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		LayoutInflater inflate = LayoutInflater.from(this);
-		form_welcome = inflate.inflate(R.layout.welcome,null);
-		setContentView(form_welcome);		//Show welcome page
-		//next add some load event
-		timer_wel = new Timer();
-		timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
-		//reDimUI(form_main);		//Menu and title's xml to band this And Show home page
-
+		if (ishadopended == true)	//程序已经启动
+			INIT(R.layout.activity_main,"首页");
+		else {
+			ishadopended = true;
+			LayoutInflater inflate = LayoutInflater.from(this);
+			form_welcome = inflate.inflate(R.layout.welcome,null);
+			setContentView(form_welcome);		//Show welcome page
+			//next add some load event
+			timer_wel = new Timer();
+			timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
+		}
 
 //		SelectCoursePlatform a=new SelectCoursePlatform();
 
