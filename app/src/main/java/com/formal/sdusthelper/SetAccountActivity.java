@@ -4,25 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.formal.sdusthelper.baseactivity.BaseMainActivity;
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 
 /**
- * Created by Administrator on 2015/10/17.
+ * Created by Administrator on 2015/10/24.
  */
-public class SetActivity extends BaseMainActivity {
-    @Override
+public class SetAccountActivity extends BaseSubPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_set, "设置");
+        INIT(R.layout.activity_set_account, "账号管理");
     }
 
-    public void onFormSetClick(View v) {
+    public void onFormSetAcntClick(View v) {
         switch (v.getId()) {
-            case R.id.set_btn_account:
+            case R.id.set_btn_cmcc:
                 //设置传递方向
                 Intent intent = new Intent();
 
-                intent.setClass(this,SetAccountActivity.class);
+                intent.setClass(this,GoNetCMCCAcntActivity.class);
 
                 //启动activity
                 this.startActivity(intent);

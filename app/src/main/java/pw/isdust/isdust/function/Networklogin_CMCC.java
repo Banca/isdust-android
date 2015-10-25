@@ -46,10 +46,17 @@ public class Networklogin_CMCC {
         wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
         CSRFToken_HW=zhongjian(html,"<input type='hidden' name='CSRFToken_HW' value='","' /></form>",0);
     }
+
     public void cmcc_changepwd(String pwd){
         SmsManager mSmsManager=SmsManager.getDefault();
         mSmsManager.sendTextMessage("10086",null,"806 "+pwd,null,null);
     }
+
+    public void cmcc_query(){
+        SmsManager mSmsManager=SmsManager.getDefault();
+        mSmsManager.sendTextMessage("10086",null,"3",null,null);
+    }
+
     public String cmcc_getyanzheng(String user){
         String submit="username="+user+"&password=&cmccdynapw=cmccdynapw&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
         String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
