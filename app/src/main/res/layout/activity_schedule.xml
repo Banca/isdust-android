@@ -123,11 +123,11 @@
                 android:layout_height="30dip"
                 android:background="#BF7F40"
                 android:gravity="center_vertical"
-                android:layout_above="@+id/test_sunday_course"
+                android:layout_marginRight="23dp"
+                android:layout_marginEnd="23dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="56dp"
-                android:layout_marginEnd="56dp">
+                android:layout_alignParentEnd="true">
 
 
                 <TextView

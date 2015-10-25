@@ -24,16 +24,7 @@
     <drawable name="clr_whitebtn_normal">#ffffff</drawable>
     <drawable name="clr_whitebtn_pressed">#c6c6c6</drawable>
 
-    <string-array name="spingarr">
-        <item>J1</item>
-        <item>Js1</item>
-        <item>J3</item>
-        <item>J5</item>
-        <item>J7</item>
-        <item>J11</item>
-        <item>J14</item>
-        <item>J15</item>
-    </string-array>
+
     <string name="empty"></string>
     <string name="mon">周一</string>
     <string name="tue">周二</string>
