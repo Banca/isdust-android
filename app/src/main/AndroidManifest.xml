@@ -28,6 +28,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
 
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/isdust"
@@ -111,6 +112,10 @@
         <activity
             android:name="com.formal.sdusthelper.GoNetCMCCAcntActivity"
             android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.IntelligentSchedule"
+            android:screenOrientation="portrait" >
         </activity>
         <service
             android:name="com.baidu.location.f"

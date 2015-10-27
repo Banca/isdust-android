@@ -22,57 +22,15 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
-<<<<<<< HEAD
 
-//    compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
-//    compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
-//    compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
-//    compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
-    compile files('G:/Android/isdust/libs/java-json.jar')
-    compile files('G:/Android/isdust/libs/okhttp-2.5.0.jar')
-    compile files('G:/Android/isdust/libs/okio-1.6.0.jar')
-
-    //    compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
-    //    compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
-    //    compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
-    //    compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
-    //    compile files('G:/Android/isdust/libs/java-json.jar')
-    //    compile files('G:/Android/isdust/libs/okhttp-2.5.0.jar')
-    //    compile files('G:/Android/isdust/libs/okio-1.6.0.jar')
-//    compile files('F:/Back/GitHub/isdust/libs/java-json.jar')
-//    compile files('F:/Back/GitHub/isdust/libs/okhttp-2.5.0.jar')
-//    compile files('F:/Back/GitHub/isdust/libs/okio-1.6.0.jar')
-    compile files('libs/BaiduLBS_Android.jar')
-
-=======
-//<<<<<<< HEAD
-        compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
-        compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
-        compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
-        compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
-        compile files('libs/BaiduLBS_Android.jar')
-//=======
-//<<<<<<< HEAD
-////    compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
-////    compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
-////    compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
-////    compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
 //    compile files('G:/Android/isdust/libs/java-json.jar')
 //    compile files('G:/Android/isdust/libs/okhttp-2.5.0.jar')
 //    compile files('G:/Android/isdust/libs/okio-1.6.0.jar')
-//=======
-//    //    compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
-//    //    compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
-//    //    compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
-//    //    compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
-//>>>>>>> e6fbe687e2787b5b8def0f63199615ffbe7bec05
-//    //    compile files('G:/Android/isdust/libs/java-json.jar')
-//    //    compile files('G:/Android/isdust/libs/okhttp-2.5.0.jar')
-//    //    compile files('G:/Android/isdust/libs/okio-1.6.0.jar')
-////    compile files('F:/Back/GitHub/isdust/libs/java-json.jar')
-////    compile files('F:/Back/GitHub/isdust/libs/okhttp-2.5.0.jar')
-////    compile files('F:/Back/GitHub/isdust/libs/okio-1.6.0.jar')
-
-//>>>>>>> origin/master
->>>>>>> origin/master
+//
+//    compile files('libs/BaiduLBS_Android.jar')
+    compile files('/Users/wzq/Desktop/isdust/libs/okhttp-2.5.0.jar')
+    compile files('/Users/wzq/Desktop/isdust/libs/okio-1.6.0.jar')
+    compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
+    compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
+    compile files('libs/BaiduLBS_Android.jar')
 }

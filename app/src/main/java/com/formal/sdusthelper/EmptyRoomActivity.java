@@ -1,6 +1,7 @@
 package com.formal.sdusthelper;
 
 import android.app.ProgressDialog;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,12 +16,14 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
 import com.formal.sdusthelper.datatype.ScheduleInformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -568,5 +571,44 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
         }
 
     };
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Map<String, Object> map;
+        map=listdata.get(position);
+        String mlocation=getMapValue(map,"location").replace(" ","");
+        String mzhoushu=getMapValue(map,"zhoushu").replace(" ", "");
+        String mxingqi=getMapValue(map, "xingqi").replace(" ", "");
+        String mjieci=getMapValue(map,"jieci").replace(" ", "");
+        setClipboard(mContext,mlocation+"      "+mzhoushu+"      "+mxingqi+"      "+mjieci);
+        Toast.makeText(this, "信息已复制到剪切板", 1000).show();
+    }
+
+
+    private String getMapValue(Map map,String key){
+
+        Iterator iter = map.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry entry = (Map.Entry) iter.next();
+            Object mkey = entry.getKey();
+            Object mval = entry.getValue();
+            if(mkey.toString().equals(key)){
+                return mval.toString();
+            }
+        }
+
+        return null;
+    }
+
+    private void setClipboard(Context context,String text) {
+        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        } else {
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
+            clipboard.setPrimaryClip(clip);
+        }
+    }
 
 }
