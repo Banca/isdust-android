@@ -22,6 +22,7 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+<<<<<<< HEAD
 
 //    compile files('G:/Android/isdust/libs/java-json.jar')
 //    compile files('G:/Android/isdust/libs/okhttp-2.5.0.jar')
@@ -33,4 +34,11 @@ dependencies {
     compile files('/Users/wzq/Desktop/isdust/libs/org.json.jar')
     compile files('/Users/wzq/Desktop/isdust/libs/java-json.jar')
     compile files('libs/BaiduLBS_Android.jar')
+=======
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/java-json.jar')
+    compile files('libs/okhttp-2.5.0.jar')
+    compile files('libs/okio-1.6.0.jar')
+>>>>>>> 396c8b85e6310933cb89c11463348e35b907ac94
 }
