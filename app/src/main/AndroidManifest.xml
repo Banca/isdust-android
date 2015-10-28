@@ -26,6 +26,11 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
 
@@ -115,6 +120,10 @@
         </activity>
         <activity
             android:name="com.formal.sdusthelper.IntelligentSchedule"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.Library_scan"
             android:screenOrientation="portrait" >
         </activity>
         <service
