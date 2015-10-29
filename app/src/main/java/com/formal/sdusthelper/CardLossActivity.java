@@ -10,20 +10,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class CardLossActivity extends Activity {
-    private MyApplication isdustapp;	//通过app调全局变量
-    Context mContext;
+public class CardLossActivity extends BaseSubPageActivity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardloss);
-        mContext = this;
-        isdustapp = (MyApplication)this.getApplication();
-        TextView texttitle = (TextView) findViewById(R.id.title_bar_name);
-        texttitle.setText("校园卡挂失");
+        INIT(R.layout.activity_cardloss,"校园卡挂失");
     }
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.FormCard_button_ok:   //确认按钮
@@ -52,9 +50,6 @@ public class CardLossActivity extends Activity {
                                 // 点击“返回”后的操作,这里不设置没有任何操作
                             }
                         }).show();
-                break;
-            case R.id.title_bar_menu_btn:   //返回按钮
-                finish();
                 break;
         }
     }

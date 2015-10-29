@@ -13,6 +13,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+import com.formal.sdusthelper.view.IsdustDialog;
+
 import pw.isdust.isdust.function.Networkjudge;
 import pw.isdust.isdust.function.Networklogin_CMCC;
 
@@ -24,17 +28,14 @@ public class GoNetCMCCActivity {
     private final static int REQUEST_CODE=1;
     private Context mContext;
 
-    private Button btn_state,btn_login,
-            btn_logout,btn_changepwd,btn_query;
     private String str_user1,str_user2,
             str_pwd1,str_pwd2;
 
     private Networklogin_CMCC obj_cmcc;
-    private Networkjudge obj_netstate;
+
     public GoNetCMCCActivity(Context parent) {
         mContext = parent;
         obj_cmcc = new Networklogin_CMCC(); //实例化cmcc
-        //obj_netstate = new Networkjudge(mContext);
     }
 
     public View Init() {
@@ -50,36 +51,30 @@ public class GoNetCMCCActivity {
         str_user2 =sharedPreferencesCMCC.getString("username_sec", "");
         str_pwd2 =sharedPreferencesCMCC.getString("password_sec", "");
 
-//        int state = obj_netstate.cmcc_judge();  //判断当前CMCC连接不同状态
-//        if (state == 0) {
-//
-//        }
-//        else if (state == 1) {
-//
-//        }
-//        else if (state == 2) {
-//
-//        }
         return cmcc;
     }   //初始化 更新按钮状态
 
-    public void GoFirstNet() {
+
+    public boolean GoFirstNet() {
         String result;
         result = obj_cmcc.login(str_user1, str_pwd1);  //登陆一层
-        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
         if (result.equals("登录成功")) {
             obj_cmcc.cmcc_init();   //为登陆二层做准备
+            return true;
         }
+        else
+            return false;
     }   //登录一层
 
-    public void GoSecNet() {
+    public boolean GoSecNet() {
         String result;
         result = obj_cmcc.cmcc_login(str_user2, str_pwd2);  //登陆二层
-        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+        return result.equals("登录成功");
     }   //登录二层
 
-    public void changePwd() {
-        obj_cmcc.cmcc_changepwd("将汉字替换为密码");
+    public void changePwd(String pwd) {
+        obj_cmcc.cmcc_changepwd(pwd);
+
     }   //修改密码
 
     public boolean haveEmptyData() {

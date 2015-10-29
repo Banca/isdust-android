@@ -110,7 +110,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 			xiancheng_ph =  isdustapp.getUsercard().getPurData();
 			Message message = new Message();
 			message.what = 2;
-			handler.sendMessage(message);;
+			handler.sendMessage(message);
 
 		}
 	};

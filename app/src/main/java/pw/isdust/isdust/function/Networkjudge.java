@@ -63,7 +63,6 @@ public class Networkjudge {
             return 0;//内网
         }
             return 1;//外网
-
     }
     public static String getCurrentSsid(Context context) {
         String ssid = null;

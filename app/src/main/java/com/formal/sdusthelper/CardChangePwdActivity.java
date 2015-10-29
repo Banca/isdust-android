@@ -7,17 +7,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class CardChangePwdActivity extends Activity {
-    private MyApplication isdustapp;	//通过app调全局变量
+public class CardChangePwdActivity extends BaseSubPageActivity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardchangepwd);
-        isdustapp = (MyApplication)this.getApplication();
-        TextView texttitle = (TextView) findViewById(R.id.title_bar_name);
-        texttitle.setText("密码修改");
+        INIT(R.layout.activity_cardchangepwd,"密码修改");
     }
 
     public void onClick(View v) {
@@ -40,9 +39,6 @@ public class CardChangePwdActivity extends Activity {
                 }
                 else
                     Toast.makeText(this, "新密码前后不一致", 1000).show();
-                break;
-            case R.id.title_bar_menu_btn:
-                finish();
                 break;
         }
     }

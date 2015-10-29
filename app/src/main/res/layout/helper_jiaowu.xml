@@ -21,21 +21,22 @@
             <Button
                 android:id="@+id/FormJiaowu_button_emptyroom"
                 android:onClick="onFormJiaowuClick"
+                android:background="@drawable/emptyroom"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="空自习室"
-                android:layout_below="@+id/include2"
+                android:layout_height="60dp"
+                android:layout_below="@+id/FormJiaowu_button_schedule"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <Button
+           <Button
                 android:id="@+id/FormJiaowu_button_schedule"
                 android:onClick="onFormJiaowuClick"
+                android:background="@drawable/courelist"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="课表查询"
+                android:layout_height="60dp"
                 android:layout_below="@+id/include2"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"/>
+
         </RelativeLayout>
     </com.formal.sdusthelper.SlideMenu>
 

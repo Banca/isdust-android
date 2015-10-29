@@ -21,27 +21,31 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="441dp"
+                android:layout_height="316dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_weight="3.10">
+                android:layout_weight="0.52">
 
                 <ImageButton
                     android:id="@+id/btn_cmcc_state"
                     android:onClick="onFormCMCCClick"
+                    android:background="@drawable/alconnected"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/btn_cmcc_quicklogin"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentTop="true" />
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@+id/btn_cmcc_quicklogin" />
 
                 <Button
                     android:id="@+id/btn_cmcc_quicklogin"
                     android:onClick="onFormCMCCClick"
                     android:text="一键登录"
+                    android:background="@drawable/selector_leftimg_button"
+                    android:drawableLeft="@drawable/quicklogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -50,32 +54,36 @@
                     android:id="@+id/btn_cmcc_quicklogout"
                     android:onClick="onFormCMCCClick"
                     android:text="一键下线"
+                    android:background="@drawable/selector_leftimg_button"
+                    android:drawableLeft="@drawable/quicklogout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:layout_below="@+id/btn_cmcc_quicklogin"
                     android:layout_centerHorizontal="true" />
 
                 <Button
                     android:id="@+id/btn_cmcc_changepwd"
                     android:onClick="onFormCMCCClick"
-                    android:text="密码修改"
+                    android:text="密码修改   "
+                    android:background="@drawable/selector_leftimg_button"
+                    android:drawableLeft="@drawable/changepwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="3dp"
                     android:layout_below="@+id/btn_cmcc_quicklogout" />
 
                 <Button
                     android:id="@+id/btn_cmcc_query"
                     android:onClick="onFormCMCCClick"
-                    android:text="流量查询"
+                    android:text="流量查询   "
+                    android:background="@drawable/selector_leftimg_button"
+                    android:drawableLeft="@drawable/inquiry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/btn_cmcc_changepwd"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true" />
+                     />
 
             </RelativeLayout>
         </LinearLayout>
