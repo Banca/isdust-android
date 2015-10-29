@@ -48,8 +48,9 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class ScheduleActivity extends BaseSubPageActivity {
-
+public class IntelligentSchedule extends BaseSubPageActivity {
+    View view;
+    PopupWindow pop;
 
 
     List<TextView> mTextView=new ArrayList<TextView>();
@@ -106,107 +107,16 @@ public class ScheduleActivity extends BaseSubPageActivity {
     protected int aveWidth;
     DisplayMetrics dm;
 
-//线程池
-    String xianchengchi_user;
-    String xianchengchi_password;
-    String xianchengchi_login_status;
-    double xianchengchi_percent;
-    String xianchengchi_saving_json;
-    ProgressDialog xianchengchi_ProgressDialog;
-    private ExecutorService executorService = Executors.newCachedThreadPool();
+
     Kebiao [] mKebiao_all;
 
-    Runnable mRunnable_login=new Runnable(){
-        @Override
-        public void run() {
-            mXuankepingtai=new SelectCoursePlatform();
-//            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
-            xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
-            if(xianchengchi_login_status.contains("登录成功")){
-                Message mMessage=new Message();
-                mMessage.what=0;
-                mHandler.sendMessage(mMessage);
-                return;
 
-                //下载课程表
-
-
-
-
-
-            }
-            Message mMessage=new Message();
-            mMessage.what=1;
-            mHandler.sendMessage(mMessage);
-
-
-        }
-
-    };
-    Runnable mRunnable_download=new Runnable() {
-        @Override
-        public void run() {
-            int zhoushu=22;
-            xianchengchi_saving_json="";
-            Message mMessage=new Message();
-            mMessage.what=3;
-            for(int i=0;i<zhoushu;i++){
-                xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"","2015-2016","1"));
-                xianchengchi_percent=((double)(i+1)/(double)zhoushu)*100;
-                xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
-            }
-            xianchengchi_saving_json=xianchengchi_saving_json.replace("][",",");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace("[,","[");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace(",]","]");
-            try {
-                JSONArray m=new JSONArray(xianchengchi_saving_json);
-
-                System.out.println(xianchengchi_saving_json);
-            }catch (Exception e){
-
-            }
-
-            mHandler.sendMessage(mMessage);
-            return;
-        }
-    };
-
-    final android.os.Handler mHandler=new Handler(){
-        @Override
-        public void  handleMessage(Message msg){
-            super.handleMessage(msg);
-            if (msg.what==0){//登录成功
-                xianchengchi_ProgressDialog = new ProgressDialog(mContext);
-                xianchengchi_ProgressDialog.setMessage("正则下载课程表到本地");
-                xianchengchi_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                xianchengchi_ProgressDialog.setCancelable(false);
-                xianchengchi_ProgressDialog.show();
-
-                executorService.execute(mRunnable_download);
-                return;
-            }
-            if (msg.what==1){//登录失败
-
-            }
-            if (msg.what==2){//下载进度显示
-//               System.out.println(xianchengchi_percent);
-//                xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
-                return;
-            }
-            if (msg.what==3){//下载完成
-                xianchengchi_ProgressDialog.dismiss();
-                writeToFile("schedule.dat",xianchengchi_saving_json);
-                return;
-            }
-        }
-    };
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        initPopupWindow();
 
 
         mContext=this;
@@ -289,11 +199,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
         //title_name.setText("空自习室查询");
         //writeToFile("schedule.dat","");
         String kebiao_json=readFromFile("schedule.dat");
-        if(kebiao_json==""){
-            xianchengchi_user="201501060225";
-            xianchengchi_password="960826wang";
-            executorService.execute(mRunnable_login);
-        return;}
+
 
 //        Kebiao mkebiao_all=
         initParam();
@@ -307,23 +213,6 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
     }
     public void bangding(String zhoushu){//public void bangding(String xiaoli,String xuenian,String xueqi){
-//        xiaohuiquanbu();
-//        int color=0;
-//        Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
-//        int xingqi,jieci;
-//        for (int i=0;i<c.length;i++){
-//            String temp[]=c[i].kecheng.split("<br>");
-//            xingqi=Integer.parseInt(c[i].xingqi);
-//            jieci=Integer.parseInt(c[i].jieci);
-//            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],color);
-//            if (color==6){
-//                color=0;
-//            }
-//            color++;
-//        }
-
-        //以上为在线读取课表，以下为重构后的程序，读取本地课表
-
         xiaohuiquanbu();//销毁所有已经生成对课表
         int color=0;
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
@@ -389,10 +278,16 @@ public class ScheduleActivity extends BaseSubPageActivity {
         course_table_layout.addView(courseInfo);
         initParam();
         courseInfo.setOnClickListener(new View.OnClickListener() {
-            PopupWindow mPopupWindow;
+            View mView_datail;
             @Override
             public void onClick(View view) {
 
+                mView_datail = getLayoutInflater().inflate(
+                        R.layout.activity_schedule_pop, null);
+
+
+
+                //pop=new PopupWindow(mView_datail, mTextView_detail.getWidth(),ViewGroup.LayoutParams.WRAP_CONTENT);
 
                 int[] background = {R.drawable.course_info_blue, R.drawable.course_info_green,
                         R.drawable.course_info_red, R.drawable.course_info_bluegreen,
@@ -404,21 +299,21 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 String temp=mraw.replace("<br>", "\n");
                 mTextView_detail.setText(temp);
                 mTextView_detail.setBackgroundResource(background[color]);
-                mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.FILL_PARENT,
+                pop = new PopupWindow(view, ViewGroup.LayoutParams.FILL_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
 
 
                 ColorDrawable cd = new ColorDrawable(-0000);
-                mPopupWindow.setBackgroundDrawable(cd);
-                mPopupWindow.setAnimationStyle(R.style.PopupAnimation);
-                mPopupWindow.update();
-                mPopupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-                mPopupWindow.setTouchable(true); // 设置popupwindow可点击
-                mPopupWindow.setOutsideTouchable(true); // 设置popupwindow外部可点击
-                mPopupWindow.setFocusable(true); // 获取焦点
-                mPopupWindow.showAsDropDown(findViewById(R.id.include2));
+                pop.setBackgroundDrawable(cd);
+                pop.setAnimationStyle(R.style.PopupAnimation);
+                pop.update();
+                pop.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+                pop.setTouchable(true); // 设置popupwindow可点击
+                pop.setOutsideTouchable(true); // 设置popupwindow外部可点击
+                pop.setFocusable(true); // 获取焦点
+                pop.showAsDropDown(findViewById(R.id.include2));
                 ;
                 System.out.println(mraw);
 //                View mview=findViewById(R.id.include2);
@@ -599,6 +494,19 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
     }
 
-
+    private void initPopupWindow() {
+        view = this.getLayoutInflater().inflate(R.layout.activity_schedule_pop, null);
+        //view.setBackgroundResource(R.drawable.course_info_blue);
+        pop = new PopupWindow(view, ViewGroup.LayoutParams.FILL_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        pop.setOutsideTouchable(true);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                pop.dismiss();
+            }
+        });
+    }
 
 }

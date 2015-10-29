@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.formal.sdusthelper.datatype.PurchaseHistory;
 import com.formal.sdusthelper.view.PullToRefreshView;
@@ -62,7 +61,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 //			if (msg.what == 1){
 //				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
 //			}
-			if (msg.what == 2){
+			if (msg.what == 2){//获取纪录
 
 
 

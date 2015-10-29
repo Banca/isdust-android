@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+                android:id="@+id/RelativeLayout_schedule_pop">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView_schedule_detail"
+            android:textSize="20sp"
+            android:text="毛泽东思想和中国特色社会主义理论体系概论\n周五第5,6节{第4-17周}\n朱见广\nJ3-304室"
+
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

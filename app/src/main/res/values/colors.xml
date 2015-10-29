@@ -15,4 +15,11 @@
     <color name="color_form_white">#ffffff</color>
     <color name="color_list_white">#ffffff</color>
     <color name="color_list_cutline">#dddddd</color>
+
+
+    <color name="black_overlay">#66000000</color>
+    <color name="translucent_background">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
 </resources>

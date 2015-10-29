@@ -13,7 +13,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/color_page_white"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:id="@+id/RelativeLayout_schedule">
 
             <include layout="@layout/layout_title_bar"
                 android:id="@+id/include2" />
@@ -35,8 +36,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_below="@+id/include2"
+<<<<<<< HEAD
                 android:layout_centerInParent="true"/>
 
+=======
+                android:layout_centerInParent="true" />
+
+            <Button
+                android:id="@+id/FormJiaowu_button_IntlligentSchedule"
+                android:onClick="onFormJiaowuClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="智能课程表"
+                android:layout_below="@+id/FormJiaowu_button_emptyroom"
+                android:layout_alignRight="@+id/FormJiaowu_button_schedule"
+                android:layout_alignEnd="@+id/FormJiaowu_button_schedule"
+                android:layout_marginTop="77dp"/>
+>>>>>>> origin/master
         </RelativeLayout>
     </com.formal.sdusthelper.SlideMenu>
 
