@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,13 +38,14 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.navisdk.comapi.mapcontrol.MapParams;
+import com.formal.sdusthelper.view.FlipperLayout;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/10/14.
  */
-public class SchoolMapActivity extends Activity {
+public class SchoolMapActivity extends Activity implements View.OnClickListener {
     private MapView mMapView;
     private BaiduMap mBaiduMap;
     private Context context;
@@ -59,6 +61,9 @@ public class SchoolMapActivity extends Activity {
     private BitmapDescriptor mMarker;
     private RelativeLayout mMarkerLy;
 
+    //界面按键
+    Button mylocation_button;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +72,16 @@ public class SchoolMapActivity extends Activity {
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.schoolmap);
 
+        mylocation_button= (Button) findViewById(R.id.mylocation);
         this.context = this;
         initView();//初始化地图
         initLocation();//初始化定位
-        initMaker();
+        initMaker();//初始化覆盖物
 
+        //监听是否点击覆盖物
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
-            public boolean onMarkerClick(Marker marker)
-            {
+            public boolean onMarkerClick(Marker marker) {
                 Bundle extraInfo = marker.getExtraInfo();
                 Info info = (Info) extraInfo.getSerializable("info");
                 ImageView iv = (ImageView) mMarkerLy
@@ -110,13 +116,14 @@ public class SchoolMapActivity extends Activity {
 //                    }
 //                };
                 //为弹出的InfoWindow添加点击事件
-                minfoWindow = new InfoWindow(tv,ll,-10);
+                minfoWindow = new InfoWindow(tv, ll, -10);
 
                 mBaiduMap.showInfoWindow(minfoWindow);
                 mMarkerLy.setVisibility(View.VISIBLE);
                 return true;
             }
         });
+        //监听点击地图非覆盖物使覆盖我消失
         mBaiduMap.setOnMapClickListener(new BaiduMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -129,11 +136,15 @@ public class SchoolMapActivity extends Activity {
                 return false;
             }
         });
+
+        mylocation_button.setOnClickListener(this);
+
     }
 
     private void initMaker() {
         mMarker = BitmapDescriptorFactory.fromResource(R.drawable.maker);
         mMarkerLy = (RelativeLayout) findViewById(R.id.id_maker_ly);
+        addOverloay(Info.infos);
     }
 
     private void initLocation() {
@@ -195,32 +206,6 @@ public class SchoolMapActivity extends Activity {
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.id_map_location:
-                //定位到我的当前位置
-                centerToMyLocation();
-                break;
-            case R.id.id_add_overlay:
-                addOverloay(Info.infos);
-                break;
-
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     //添加覆盖物
     private void addOverloay(List<Info> infos) {
@@ -252,6 +237,11 @@ public class SchoolMapActivity extends Activity {
         mBaiduMap.animateMapStatus(msu);
     }
 
+    @Override
+    public void onClick(View v) {
+        centerToMyLocation();//点击按钮定位到我的位置
+    }
+
 
     private class MyLocationListener implements BDLocationListener
     {
@@ -265,11 +255,7 @@ public class SchoolMapActivity extends Activity {
             .longitude(location.getLongitude())//
             .build();
             mBaiduMap.setMyLocationData(data);
-            //定位图标
-//            //设置定位的自定义图标
-//            MyLocationConfiguration config = new//
-//                   MyLocationConfiguration(mLocationMode, true, mIconLocation);
-//            mBaiduMap.setMyLocationConfigeration(config);
+
 
             mLatitude = location.getLatitude();
             mLongtitude = location.getLongitude();
