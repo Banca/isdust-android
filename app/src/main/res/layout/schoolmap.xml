@@ -16,6 +16,15 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clickable="true" />
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:id="@+id/mylocation"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:text="我的位置"/>
 
     <RelativeLayout
         android:id="@+id/id_maker_ly"

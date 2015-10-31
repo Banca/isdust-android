@@ -1,24 +1,16 @@
 package pw.isdust.isdust.function;
 
+import com.formal.sdusthelper.datatype.Book;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import pw.isdust.isdust.Http;
 
@@ -81,30 +73,30 @@ public class Library {
         }
         return result;
     }
-    public Book [] xml_analyze_jianjie(String text) throws ParserConfigurationException, IOException, SAXException {
-//        String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/book/holdingpreview/248193");
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
-        InputSource is = new InputSource();
-        is.setCharacterStream(new StringReader(text));
-
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document document = db.parse(is);
-        NodeList nodes = document.getElementsByTagName("record");
-        int len=nodes.getLength();
-        Book result []=new Book[len];
-        String  []c=new String[6];
-        for (int i=0;i<len;i++){
-            for (int j=0;j<6;j++){
-                c[j]=nodes.item(i).getChildNodes().item(j).getChildNodes().item(0).getNodeValue();
-            }
-            Book temp=new Book(c[0],c[2],c[4],c[5]);
-            result[i]=temp;
-        }
-
-
-        return result;
-    }
+//    public Book [] xml_analyze_jianjie(String text) throws ParserConfigurationException, IOException, SAXException {
+////        String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/book/holdingpreview/248193");
+//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//
+//        InputSource is = new InputSource();
+//        is.setCharacterStream(new StringReader(text));
+//
+//        DocumentBuilder db = dbf.newDocumentBuilder();
+//        Document document = db.parse(is);
+//        NodeList nodes = document.getElementsByTagName("record");
+//        int len=nodes.getLength();
+//        Book result []=new Book[len];
+//        String  []c=new String[6];
+//        for (int i=0;i<len;i++){
+//            for (int j=0;j<6;j++){
+//                c[j]=nodes.item(i).getChildNodes().item(j).getChildNodes().item(0).getNodeValue();
+//            }
+//            Book temp=new Book(c[0],c[2],c[4],c[5]);
+//            result[i]=temp;
+//        }
+//
+//
+//        return result;
+//    }
     public void json_analyze(){
         String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/api/holding/1900737876");
         try {
@@ -154,31 +146,7 @@ public class Library {
             e.printStackTrace();
         }
         return "";}
-    public
-    class Book{
-        String mFindingNumber;//索书号
-        String mLibryLocation;//所在馆
-        String mSpecificLocation;//所在馆藏地点
-        String mCopy;//在馆复本数
-        public Book(String FindingNumber, String LibryLocation,String SpecificLocation,String Copy){
-            mFindingNumber=FindingNumber;
-            mLibryLocation=LibryLocation;
-            mSpecificLocation=SpecificLocation;
-            mCopy=Copy;
-        }
-        public String get_FindingNumber(){
-            return  mFindingNumber;
-        }
-        public String get_LibryLocation(){
-            return  mLibryLocation;
-        }
-        public String get_SpecificLocation(){
-            return  mSpecificLocation;
-        }
-        public String get_Copy(){
-            return  mCopy;
-        }
-    }
+
 
 
 
@@ -263,6 +231,39 @@ public class Library {
         Long timestamp = Long.parseLong(timestampString);
         String date = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(timestamp));
         return date;
+    }
+    
+    public  List<Book> analyze_search(String text){
+        List<Book> mBook=new ArrayList<Book>();
+        Pattern mPattern_all=Pattern.compile("<td class=\"bookmetaTD\" style=\"background-color([\\s\\S]*?)<div id=\"bookSimpleDetailDiv_");
+        Matcher mMatcher_all=mPattern_all.matcher(text);
+        Matcher mMatcher_name;
+        Pattern mPattern_name=Pattern.compile("<a href=\"book/[\\s\\S]*?\\?globalSearchWay=[\\s\\S]*?\" id=\"title_[\\s\\S]*?\" target=\"_blank\">([\\S\\s]*?)</a>");
+        while (mMatcher_all.find()){
+            mMatcher_all.start();
+            String text_all=mMatcher_all.group(1);
+            mMatcher_name=mPattern_name.matcher(text_all);
+            mMatcher_name.find();
+            mMatcher_name.start();
+            mMatcher_name.group(1);
+            mMatcher_name.end();
+            Book temp=new Book();
+            temp.setName(mMatcher_name.group(1).replace("\n", "").replace("\r", "").replace("\t", ""));
+            temp.setWriter(Networklogin_CMCC.zhongjian(text_all, "?searchWay=author&q=", "\" target=\"_blank\"> ", 0));
+            temp.setPublisher(Networklogin_CMCC.zhongjian(text_all, "?searchWay=publisher&q=", "\" target=\"_blank\"> ", 0));
+            temp.setPublishedday(Networklogin_CMCC.zhongjian(text_all, "出版日期: ", "</div>", 0).replace("\n", "").replace("\r", "").replace("\t", ""));
+            temp.setbookrecno(Networklogin_CMCC.zhongjian(text_all, "express_bookrecno=\"", "\" express_isbn=", 0));
+            temp.setISBN(Networklogin_CMCC.zhongjian(text_all, "express_isbn=\"", "\" express_bookmeta_", 0).replace("-", ""));
+//            temp.downloadpicture();
+            mBook.add(temp);
+
+        }
+        return mBook;
+    }
+
+    public List<Book> findBookByISBN(String ISBN){
+        List<Book> mBook=analyze_search(mHttp.get_string( "http://interlib.sdust.edu.cn/opac/search?rows=10&hasholding=1&searchWay0=marc&q0=&logical0=AND&q="+ISBN+"&searchWay=isbn&scWay=dim&searchSource=reader"));
+    return mBook;
     }
 
 
