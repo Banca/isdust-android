@@ -50,6 +50,15 @@ public class Networkjudge {
        }
        return 0;//0.没有登录1.登录一层2.登录二层
    }
+
+    public boolean isOnline() {
+        String text= mHttp.get_string("http://www.baidu.com");
+        if (text.contains("百度")){
+            return true;
+        }
+        return false;
+    }
+
     public int chinaunicom_judge(){
         String text= mHttp.get_string("http://10.249.255.253/","gb2312");
         if (text.contains("注销")){

@@ -6,6 +6,8 @@
     android:orientation="vertical" 
     android:gravity="center">
 
+    <include layout="@layout/subpage_title_bar"
+        android:id="@+id/include" />
     <ScrollView
         android:id="@+id/widget54"
         android:background="@color/color_page_white"
@@ -28,18 +30,18 @@
                 android:layout_weight="0.52">
 
                 <ImageButton
-                    android:id="@+id/btn_cmcc_state"
-                    android:onClick="onFormCMCCClick"
-                    android:background="@drawable/alconnected"
+                    android:id="@+id/btn_state"
+                    android:onClick="onBtnClick"
+                    android:background="@drawable/offline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentTop="true"
-                    android:layout_above="@+id/btn_cmcc_quicklogin" />
+                    android:layout_above="@+id/btn_quicklogin" />
 
                 <Button
-                    android:id="@+id/btn_cmcc_quicklogin"
-                    android:onClick="onFormCMCCClick"
+                    android:id="@+id/btn_quicklogin"
+                    android:onClick="onBtnClick"
                     android:text="一键登录"
                     android:background="@drawable/selector_leftimg_button"
                     android:drawableLeft="@drawable/quicklogin"
@@ -51,39 +53,59 @@
                     android:layout_alignParentStart="true" />
 
                 <Button
-                    android:id="@+id/btn_cmcc_quicklogout"
-                    android:onClick="onFormCMCCClick"
+                    android:id="@+id/btn_quicklogout"
+                    android:onClick="onBtnClick"
                     android:text="一键下线"
                     android:background="@drawable/selector_leftimg_button"
                     android:drawableLeft="@drawable/quicklogout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_below="@+id/btn_cmcc_quicklogin"
+                    android:layout_below="@+id/btn_quicklogin"
                     android:layout_centerHorizontal="true" />
 
-                <Button
-                    android:id="@+id/btn_cmcc_changepwd"
-                    android:onClick="onFormCMCCClick"
-                    android:text="密码修改   "
-                    android:background="@drawable/selector_leftimg_button"
-                    android:drawableLeft="@drawable/changepwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_below="@+id/btn_cmcc_quicklogout" />
 
-                <Button
-                    android:id="@+id/btn_cmcc_query"
-                    android:onClick="onFormCMCCClick"
-                    android:text="流量查询   "
-                    android:background="@drawable/selector_leftimg_button"
-                    android:drawableLeft="@drawable/inquiry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/btn_cmcc_changepwd"
-                    android:layout_alignParentRight="true"
-                     />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/btn_quicklogout"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:weightSum="1">
+
+                    <Button
+                        android:id="@+id/btn_changepwd"
+                        android:onClick="onBtnClick"
+                        android:text="密码修改   "
+                        android:background="@drawable/selector_leftimg_button"
+                        android:drawableLeft="@drawable/changepwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_below="@+id/btn_quicklogout"
+                        android:layout_weight="0.46" />
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/color_page_white" />
+
+                    <Button
+                        android:id="@+id/btn_query"
+                        android:onClick="onBtnClick"
+                        android:text="流量查询   "
+                        android:background="@drawable/selector_leftimg_button"
+                        android:drawableLeft="@drawable/inquiry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@+id/btn_changepwd"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="0.63" />
+
+                </LinearLayout>
 
             </RelativeLayout>
         </LinearLayout>

@@ -119,6 +119,18 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name="com.formal.sdusthelper.GoNetCMCCActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.GoNetChinaUnicomActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.formal.sdusthelper.GoNetChinaUnicomAcntActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name="com.formal.sdusthelper.IntelligentSchedule"
             android:screenOrientation="portrait" >
         </activity>

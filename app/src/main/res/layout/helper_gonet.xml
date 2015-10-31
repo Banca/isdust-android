@@ -1,71 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <LinearLayout
+    <com.formal.sdusthelper.SlideMenu
+        android:id="@+id/slide_menu"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#E5E5E5"
-        android:orientation="vertical" >
+        android:layout_height="fill_parent" >
 
-        <include layout="@layout/subpage_title_bar"
-            android:id="@+id/include" />
+        <include layout="@layout/layout_menu" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/message_pager"
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1" >
-        </android.support.v4.view.ViewPager>
+            android:background="#fff"
+            android:orientation="vertical"
+            android:id="@+id/RelativeLayout_schedule">
 
-        <RadioGroup
-            android:id="@+id/message_radiogroup"
-            android:layout_width="fill_parent"
-            android:layout_height="48dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <RadioButton
-                android:id="@+id/tab_cmcc"
+            <include layout="@layout/layout_title_bar"
+                android:id="@+id/include2" />
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@drawable/gonet_tabsbar_background"
-                android:button="@null"
-                android:checked="true"
-                android:gravity="center"
-                android:text="CMCC"
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/color_btn_white"
+                android:orientation="vertical"
+                android:layout_below="@+id/include2">
+                <Button
+                    android:id="@+id/FormGoNet_button_cmcc"
+                    android:onClick="onFormGoNetClick"
+                    android:text="  CMCC"
+                    android:gravity="center_vertical|left"
+                    android:textSize="18sp"
+                    android:background="@drawable/selector_item_button"
+                    android:drawableLeft="@drawable/item_schedule"
+                    android:drawableRight="@drawable/arrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent" />
 
-            <RadioButton
-                android:id="@+id/tab_chinaunicom"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@drawable/gonet_tabsbar_background"
-                android:button="@null"
-                android:checked="false"
-                android:gravity="center"
-                android:text="China Unicom"
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
 
-            <RadioButton
-                android:id="@+id/tab_kuaitong"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@drawable/gonet_tabsbar_background"
-                android:button="@null"
-                android:checked="false"
-                android:gravity="center"
-                android:text="快通有线"
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
-        </RadioGroup>
-    </LinearLayout>
+                <Button
+                    android:id="@+id/FormGoNet_button_chinaunicom"
+                    android:onClick="onFormGoNetClick"
+                    android:text="  ChinaUnicom"
+                    android:gravity="center_vertical|left"
+                    android:textSize="18sp"
+                    android:background="@drawable/selector_item_button"
+                    android:drawableLeft="@drawable/item_schedule"
+                    android:drawableRight="@drawable/arrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent" />
 
-</LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
+
+                <Button
+                    android:id="@+id/FormGoNet_button_kuaitong"
+                    android:onClick="onFormGoNetClick"
+                    android:text="  快通有线查询"
+                    android:gravity="center_vertical|left"
+                    android:textSize="18sp"
+                    android:background="@drawable/selector_item_button"
+                    android:drawableLeft="@drawable/item_emptyroom"
+                    android:drawableRight="@drawable/arrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </com.formal.sdusthelper.SlideMenu>
+
+</RelativeLayout>
