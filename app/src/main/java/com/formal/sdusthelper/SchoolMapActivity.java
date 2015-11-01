@@ -3,6 +3,7 @@ package com.formal.sdusthelper;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Location;
@@ -38,6 +39,7 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.navisdk.comapi.mapcontrol.MapParams;
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.view.FlipperLayout;
 
 import java.util.List;
@@ -45,7 +47,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/10/14.
  */
-public class SchoolMapActivity extends Activity implements View.OnClickListener {
+public class SchoolMapActivity extends BaseSubPageActivity implements View.OnClickListener {
     private MapView mMapView;
     private BaiduMap mBaiduMap;
     private Context context;
@@ -70,12 +72,16 @@ public class SchoolMapActivity extends Activity implements View.OnClickListener 
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
         //注意该方法要再setContentView方法之前实现
         SDKInitializer.initialize(getApplicationContext());
-        setContentView(R.layout.schoolmap);
+        INIT(R.layout.schoolmap, "山科地图");
 
         mylocation_button= (Button) findViewById(R.id.mylocation);
         this.context = this;
         initView();//初始化地图
         initLocation();//初始化定位
+        //使用Intent获得参数
+        Intent intent = getIntent();
+        String judge = intent.getStringExtra("judge");
+        if(judge.equals("ATMmap"))
         initMaker();//初始化覆盖物
 
         //监听是否点击覆盖物

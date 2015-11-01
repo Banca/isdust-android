@@ -3,28 +3,33 @@
     android:layout_height="wrap_content" >
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/color_page_white"
             android:orientation="vertical" >
-            <include layout="@layout/subpage_title_bar" />
+            <include layout="@layout/subpage_title_bar"
+                android:id="@+id/include5" />
+
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:id="@+id/mylocation"
+                android:text="我的位置"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/include5" />
+
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/id_bmapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true"
+                android:layout_alignRight="@+id/mylocation"
+                android:layout_alignEnd="@+id/mylocation"
+                android:layout_below="@+id/mylocation" />
 
         </RelativeLayout>
-
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/id_bmapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true" />
-    <Button
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:id="@+id/mylocation"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-        android:text="我的位置"/>
 
     <RelativeLayout
         android:id="@+id/id_maker_ly"
@@ -99,6 +104,8 @@
                     android:textColor="#fff5eb" />
             </LinearLayout>
         </RelativeLayout>
+
+
     </RelativeLayout>
 
 </RelativeLayout>

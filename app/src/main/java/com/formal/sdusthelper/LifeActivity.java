@@ -20,8 +20,7 @@ public class LifeActivity extends BaseMainActivity {
             case R.id.FormLife_btn_map:
                 //设置传递方向
                 Intent intent = new Intent();
-
-                intent.setClass(this,SchoolMapActivity.class);
+                intent.setClass(this,MapchooseActivity.class);
 
                 //启动activity
                 this.startActivity(intent);
