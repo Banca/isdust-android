@@ -2,6 +2,7 @@ package com.formal.sdusthelper;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -51,7 +52,7 @@ public class Library_result extends ListActivity {
         }
 
         madapter = new SimpleAdapter(mContext, listdata,
-                R.layout.activity_library_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
+                R.layout.activity_library_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
                 new int[] { R.id.TextView_library_title, R.id.TextView_library_author,
                         R.id.TextView_library_bookrecnos,	R.id.TextView_library_suoshuhao});
         setListAdapter(madapter);	//捆绑适配器}
@@ -61,5 +62,21 @@ public class Library_result extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Toast.makeText(this, "positon = " + position, 1000).show();
+        l.getLastVisiblePosition();
+        l.getFirstVisiblePosition();
+        try {
+//            l.getChildAt(position).findViewById(R.id.TextView_library_bookrecnos);
+            TextView mTextView_library_bookrecnos=(TextView)v.findViewById(R.id.TextView_library_bookrecnos);
+            String bookrecnos=mTextView_library_bookrecnos.getText().toString().replace("书本编号：","");
+            Intent intent=new Intent();
+            intent.putExtra("bookrecnos", bookrecnos);
+            intent.setClass(mContext, Library_detail.class);
+            startActivity(intent);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+
+
     }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import com.formal.sdusthelper.datatype.Book;
@@ -78,11 +77,18 @@ public class LibraryActivity extends BaseMainActivity {
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
                     String isbnString = bundle.getString("result");
-                    Toast.makeText(mContext, "ISBN:" + isbnString,
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, "ISBN:" + isbnString,
+//                            Toast.LENGTH_SHORT).show();
                     mEditText.setText(isbnString);
                     mBooks=mLibrary.findBookByISBN(isbnString);
                     isdustapp.setBooks(mBooks);
+
+
+
+                    Intent intent = new Intent();
+
+                    intent.setClass(mContext,Library_result.class);
+                    startActivity(intent);
 //                    mBooks.get(0).downloadpicture();
 
                 }

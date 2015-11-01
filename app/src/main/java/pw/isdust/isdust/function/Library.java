@@ -196,7 +196,7 @@ public class Library {
 
 
     }
-    public static void getBook(String text){
+    public static List<String []>  getBook(String text){
         JSONArray mJSONArray;
 
         String raw_tushuxinxi="[{\""+Networklogin_CMCC.zhongjian(text,"[{\"","}]",0)+"}]";
@@ -223,6 +223,8 @@ public class Library {
         }catch (Exception e){
 
         }
+        //http://interlib.sdust.edu.cn/opac/api/holding/
+        return mfinal;
     }
     public static String getreturndate(String raw,String barcode){
         JSONObject mJSONObject;
@@ -316,12 +318,16 @@ public class Library {
     }
 
     public List<Book> findBookByISBN(String ISBN){
-        List<Book> mBook=analyze_search(mHttp.get_string("http://interlib.sdust.edu.cn/opac/search?rows=10&hasholding=1&searchWay0=marc&q0=&logical0=AND&q=" + ISBN + "&searchWay=isbn&scWay=dim&searchSource=reader"));
+        List<Book> mBook=analyze_search(mHttp.get_string("http://interlib.sdust.edu.cn/opac/search?rows=100&hasholding=1&searchWay0=marc&q0=&logical0=AND&q=" + ISBN + "&searchWay=isbn&scWay=dim&searchSource=reader"));
     return mBook;
     }
     public List<Book> findBookByName(String Name){
-        List<Book> mBook=analyze_search(mHttp.get_string( "http://interlib.sdust.edu.cn/opac/search?rows=10&hasholding=1&searchWay0=marc&q0=&logical0=AND&q="+Name+"&searchWay=title&searchSource=reader"));
+        List<Book> mBook=analyze_search(mHttp.get_string( "http://interlib.sdust.edu.cn/opac/search?rows=100&hasholding=1&searchWay0=marc&q0=&logical0=AND&q="+Name+"&searchWay=title&searchSource=reader"));
         return mBook;
     }
-
+    public  List<String []> getguancang(String bookrecno){
+        String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/api/holding/"+bookrecno);
+        List<String []> result=getBook(text);
+        return result;
+    }
 }

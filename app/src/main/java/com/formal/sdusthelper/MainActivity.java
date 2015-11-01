@@ -44,6 +44,7 @@ public class MainActivity extends BaseMainActivity {
 //			@Override
 //			public void onClick(View view) {
 //				Library a = new Library();
+//		a.getguancang("169716");
 //				List<Book> mBooks;
 //				mBooks = a.findBookByName("高等数学");
 //				isdustapp1.setBooks(mBooks);
