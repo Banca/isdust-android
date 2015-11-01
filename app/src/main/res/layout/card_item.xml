@@ -6,7 +6,7 @@
     android:background="@color/color_list_white">
 
     <TextView
-        android:id="@+id/tv_gridview_item_name"
+        android:id="@+id/TextView_library_title"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:src="@drawable/ic_card_mark"
         />
     <TextView 
-        android:id="@+id/tv_gridview_item_addr"
+        android:id="@+id/TextView_library_author"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,13 +38,13 @@
         android:layout_toEndOf="@+id/iv_gridview_item" />
 
     <TextView
-        android:id="@+id/tv_gridview_item_time"
+        android:id="@+id/TextView_library_bookrecnos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0000-00-00 00:00:00"
         android:textSize="13dp"
         android:textColor="#555555"
-        android:layout_alignTop="@+id/tv_gridview_item_addr"
+        android:layout_alignTop="@+id/TextView_library_author"
         android:layout_alignRight="@+id/tv_gridview_item_bala"
         android:layout_alignEnd="@+id/tv_gridview_item_bala" />
 
@@ -56,7 +56,7 @@
         android:textSize="15dp"
         android:layout_marginRight="27dp"
         android:layout_marginEnd="27dp"
-        android:layout_alignBottom="@+id/tv_gridview_item_name"
+        android:layout_alignBottom="@+id/TextView_library_title"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

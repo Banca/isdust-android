@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/color_list_white">
+
+    <TextView
+        android:id="@+id/TextView_library_title"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="书名"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/TextView_library_author"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="作者："
+        android:textSize="13dp"
+        android:textColor="#555555"
+        android:layout_below="@+id/TextView_library_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/TextView_library_bookrecnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="书本编号："
+        android:textSize="13dp"
+        android:textColor="#555555"
+        android:layout_below="@+id/TextView_library_author"
+        android:layout_alignLeft="@+id/TextView_library_author"
+        android:layout_alignStart="@+id/TextView_library_author"/>
+
+    <TextView
+        android:id="@+id/TextView_library_suoshuhao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="索书号："
+        android:textSize="13dp"
+        android:textColor="#555555"
+        android:layout_below="@+id/TextView_library_bookrecnos"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"/>
+
+</RelativeLayout>

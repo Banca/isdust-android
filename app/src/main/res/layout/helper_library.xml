@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
     <com.formal.sdusthelper.SlideMenu
         android:id="@+id/slide_menu"
@@ -15,26 +15,95 @@
             android:background="@color/color_page_white"
             android:orientation="vertical" >
 
-            <include layout="@layout/layout_title_bar"
-                     android:id="@+id/include4"/>
 
-            <TextView
+            <ScrollView
+                android:id="@+id/scrollView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Library"
-                android:textSize="22sp" />
+                android:layout_centerHorizontal="true">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button_library_scan"
-                android:layout_below="@+id/include4"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="58dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/guancang_head"
+                            android:layout_width="wrap_content"
+                            android:layout_height="240dp"
+                            android:src="@drawable/guancang_head"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="54dp"/>
+
+                        <ImageView
+                            android:id="@+id/guancang_edittext_left"
+                            android:layout_width="fill_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            android:onClick="scan"
+                            android:src="@drawable/guancang_edittext1"
+                            android:layout_below="@+id/guancang_head"/>
+
+
+                        <EditText
+                            android:id="@+id/guancang_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_below="@+id/guancang_head"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/guancang_edittext2"
+                            android:ems="20"
+                            android:inputType="text">
+
+                        </EditText>
+
+                        <ImageView
+                            android:id="@+id/guancang_scan"
+                            android:layout_width="45dp"
+                            android:layout_height="60dp"
+                            android:onClick="scan"
+                            android:src="@drawable/guancang_scan"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignBottom="@+id/guancang_edittext_left"
+                            android:layout_marginBottom="-8dp"/>
+
+                        <ImageView
+                            android:id="@+id/guancang_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/guancang_head"
+                            android:layout_alignRight="@+id/guancang_head"
+                            android:layout_below="@+id/guancang_scan"
+                            android:layout_marginTop="10dp"
+                            android:onClick="search"
+                            android:src="@drawable/guancang_search" />
+
+                        <ImageView
+                            android:id="@+id/guancang_head2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/guancang_head2"
+                            android:layout_below="@+id/guancang_search"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+
+
         </RelativeLayout>
+
+
     </com.formal.sdusthelper.SlideMenu>
+
+    <include layout="@layout/layout_title_bar"
+             android:id="@+id/include4"/>
 
 </RelativeLayout>

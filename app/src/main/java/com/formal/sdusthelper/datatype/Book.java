@@ -17,6 +17,7 @@ public class Book {
     String mbookrecno;
     String mISBN;
     Http mHttp;
+    String mSuoshuhao;
 //    Book(String name,String writer,String publisher,String publishday){
 //        mname=name;
 //        mwriter=writer;
@@ -47,6 +48,9 @@ public class Book {
     public String getISBN(){
         return  mISBN;
     }
+    public String getSuoshuhao(){
+        return  mSuoshuhao;
+    }
     public Bitmap getCover(){
         return mBitmap;
     }
@@ -68,10 +72,16 @@ public class Book {
     public void setISBN(String ISBN){
         mISBN=ISBN;
     }
+    public void setSuoshuhao(String Suoshuhao){
+        mSuoshuhao=Suoshuhao;
+    }
     public void downloadpicture(){
         String json=mHttp.get_string("http://api.interlib.com.cn/interlibopac/websearch/metares?cmdACT=getImages&isbns="+mISBN);
         String coverlink=Networklogin_CMCC.zhongjian(json,"coverlink\":\"","\",\"handleTi",0);
         mBitmap=mHttp.get_image(coverlink);
+
+    }
+    public void downloadSuoshuhao(){
 
     }
 }

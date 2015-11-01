@@ -62,7 +62,8 @@
         </activity>
         <activity
         android:name="com.formal.sdusthelper.SchoolMapActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            >
          </activity>
 
         <activity
@@ -138,6 +139,11 @@
             android:name="com.formal.sdusthelper.Library_scan"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.formal.sdusthelper.Library_result"
+            android:screenOrientation="portrait" >
+        </activity>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

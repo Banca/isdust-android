@@ -90,8 +90,8 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 				adapter = new SimpleAdapter(mContext, listdata,
 						R.layout.card_item, new String[] { "name", "ima", "addr", "time", "bala"},
-						new int[] { R.id.tv_gridview_item_name, R.id.iv_gridview_item,
-								R.id.tv_gridview_item_addr,	R.id.tv_gridview_item_time,R.id.tv_gridview_item_bala});
+						new int[] { R.id.TextView_library_title, R.id.iv_gridview_item,
+								R.id.TextView_library_author,	R.id.TextView_library_bookrecnos,R.id.tv_gridview_item_bala});
 				setListAdapter(adapter);	//捆绑适配器}
 				}
 				adapter.notifyDataSetChanged();	//列表刷新

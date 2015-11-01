@@ -2,6 +2,10 @@ package com.formal.sdusthelper;
 
 import android.app.Application;
 
+import com.formal.sdusthelper.datatype.Book;
+
+import java.util.List;
+
 import pw.isdust.isdust.function.SchoolCard;
 
 /**
@@ -9,11 +13,18 @@ import pw.isdust.isdust.function.SchoolCard;
  */
 public class MyApplication extends Application {
     private SchoolCard usercard;
+    private List<Book> mBooks;
     public void onCreate() {
         super.onCreate();
         usercard = new SchoolCard(this);
-    }
 
+    }
+    public void setBooks(List<Book> Books){
+        mBooks=Books;
+    }
+    public List<Book> getBooks(){
+        return mBooks;
+    }
     public SchoolCard getUsercard() {
         return usercard;
     }  //使usercard这种非序列化对象 全局可调

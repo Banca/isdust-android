@@ -4,13 +4,23 @@ import com.formal.sdusthelper.datatype.Book;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import pw.isdust.isdust.Http;
 
@@ -239,6 +249,8 @@ public class Library {
         Matcher mMatcher_all=mPattern_all.matcher(text);
         Matcher mMatcher_name;
         Pattern mPattern_name=Pattern.compile("<a href=\"book/[\\s\\S]*?\\?globalSearchWay=[\\s\\S]*?\" id=\"title_[\\s\\S]*?\" target=\"_blank\">([\\S\\s]*?)</a>");
+        String url_suoshuhao="http://interlib.sdust.edu.cn/opac/book/callnos?bookrecnos=";
+        Book temp;
         while (mMatcher_all.find()){
             mMatcher_all.start();
             String text_all=mMatcher_all.group(1);
@@ -247,24 +259,69 @@ public class Library {
             mMatcher_name.start();
             mMatcher_name.group(1);
             mMatcher_name.end();
-            Book temp=new Book();
+            temp=new Book();
             temp.setName(mMatcher_name.group(1).replace("\n", "").replace("\r", "").replace("\t", ""));
             temp.setWriter(Networklogin_CMCC.zhongjian(text_all, "?searchWay=author&q=", "\" target=\"_blank\"> ", 0));
             temp.setPublisher(Networklogin_CMCC.zhongjian(text_all, "?searchWay=publisher&q=", "\" target=\"_blank\"> ", 0));
             temp.setPublishedday(Networklogin_CMCC.zhongjian(text_all, "出版日期: ", "</div>", 0).replace("\n", "").replace("\r", "").replace("\t", ""));
             temp.setbookrecno(Networklogin_CMCC.zhongjian(text_all, "express_bookrecno=\"", "\" express_isbn=", 0));
             temp.setISBN(Networklogin_CMCC.zhongjian(text_all, "express_isbn=\"", "\" express_bookmeta_", 0).replace("-", ""));
-//            temp.downloadpicture();
+            url_suoshuhao+=temp.getbookrecno()+",";
+//  temp.downloadpicture();
             mBook.add(temp);
 
         }
+        int len=mBook.size();
+        String raw_suoshuhao=mHttp.get_string(url_suoshuhao);
+
+        for (int i=0;i<len;i++){
+            temp=mBook.get(i);
+            try {
+                temp.setSuoshuhao(xml_getSuoshuhao(raw_suoshuhao,temp.getbookrecno()));
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SAXException e) {
+                e.printStackTrace();
+            }
+            mBook.set(i,temp);
+        }
+
+
         return mBook;
+    }
+    public String xml_getSuoshuhao(String raw,String bookrecno) throws ParserConfigurationException, IOException, SAXException {
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        InputSource is = new InputSource();
+        is.setCharacterStream(new StringReader(raw));
+
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(is);
+        NodeList nodes = document.getElementsByTagName("record");
+        NodeList wzq;
+        int len=nodes.getLength();
+        for (int i=0;i<len;i++){
+            wzq=nodes.item(i).getChildNodes().item(0).getChildNodes();
+            String test=nodes.item(i).getChildNodes().item(0).getChildNodes().item(0).getNodeValue();
+            if (nodes.item(i).getChildNodes().item(0).getChildNodes().item(0).getNodeValue().equals(bookrecno)){
+                return nodes.item(i).getChildNodes().item(1).getChildNodes().item(0).getNodeValue();
+            }
+
+        }
+
+
+        return "";
     }
 
     public List<Book> findBookByISBN(String ISBN){
-        List<Book> mBook=analyze_search(mHttp.get_string( "http://interlib.sdust.edu.cn/opac/search?rows=10&hasholding=1&searchWay0=marc&q0=&logical0=AND&q="+ISBN+"&searchWay=isbn&scWay=dim&searchSource=reader"));
+        List<Book> mBook=analyze_search(mHttp.get_string("http://interlib.sdust.edu.cn/opac/search?rows=10&hasholding=1&searchWay0=marc&q0=&logical0=AND&q=" + ISBN + "&searchWay=isbn&scWay=dim&searchSource=reader"));
     return mBook;
     }
-
+    public List<Book> findBookByName(String Name){
+        List<Book> mBook=analyze_search(mHttp.get_string( "http://interlib.sdust.edu.cn/opac/search?rows=10&hasholding=1&searchWay0=marc&q0=&logical0=AND&q="+Name+"&searchWay=title&searchSource=reader"));
+        return mBook;
+    }
 
 }
