@@ -52,7 +52,6 @@
                     android:layout_marginTop="7px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="numberPassword"
                     android:ems="10"
                     android:layout_below="@+id/FormCard_editText_user"
                     android:layout_alignParentRight="true"
@@ -60,7 +59,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:singleLine="true"
-                    android:numeric="integer" />
+                    android:numeric="integer"
+                    android:inputType="textPassword"/>
 
                 <Button
                     android:id="@+id/FormCard_button_login"

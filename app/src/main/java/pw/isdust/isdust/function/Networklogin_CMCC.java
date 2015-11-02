@@ -2,10 +2,6 @@ package pw.isdust.isdust.function;
 
 import android.telephony.SmsManager;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import pw.isdust.isdust.Http;
 import pw.isdust.isdust.function.baseclass.BaseNetworklogin;
 
 /**
@@ -33,7 +29,7 @@ public class Networklogin_CMCC extends BaseNetworklogin {
     }
 
     public void cmcc_init(){
-        String html= mHttp.get_string("http://www.baidu.com/");
+        String html= mHttp.get_string("http://baidu.com/");
         wlanuserip=zhongjian(html, "<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=\"", "\"/>", 0);
         wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
         CSRFToken_HW=zhongjian(html,"<input type='hidden' name='CSRFToken_HW' value='","' /></form>",0);
@@ -79,7 +75,7 @@ public class Networklogin_CMCC extends BaseNetworklogin {
         mHttp.get_string(xiaxian);
     }
     public boolean isOnline(){
-        String html= mHttp.get_string("http://www.baidu.com/");
+        String html= mHttp.get_string("http://baidu.com/");
         if (html.contains("百度一下")){
             return true;
         }

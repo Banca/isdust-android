@@ -42,7 +42,7 @@ public class Networkjudge {
    public int cmcc_judge(){
       String text= mHttp.get_string("http://172.16.0.86/","gb2312");
        if (text.contains("注销")){
-           text= mHttp.get_string("http://www.baidu.com");
+           text= mHttp.get_string("http://baidu.com");
            if (text.contains("百度")){
                return 2;
            }
@@ -52,7 +52,7 @@ public class Networkjudge {
    }
 
     public boolean isOnline() {
-        String text= mHttp.get_string("http://www.baidu.com");
+        String text= mHttp.get_string("http://baidu.com");
         if (text.contains("百度")){
             return true;
         }

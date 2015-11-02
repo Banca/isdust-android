@@ -61,7 +61,7 @@ public class Library_result extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Toast.makeText(this, "positon = " + position, 1000).show();
+        Toast.makeText(this, "positon = " + position, Toast.LENGTH_SHORT).show();
         l.getLastVisiblePosition();
         l.getFirstVisiblePosition();
         try {

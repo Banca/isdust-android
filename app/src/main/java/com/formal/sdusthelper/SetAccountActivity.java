@@ -26,6 +26,7 @@ public class SetAccountActivity extends BaseSubPageActivity {
                 //启动activity
                 this.startActivity(intent);
                 break;
+
         }
     }
 }

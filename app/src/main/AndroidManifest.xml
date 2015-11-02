@@ -147,7 +147,10 @@
             android:name="com.formal.sdusthelper.Library_detail"
             android:screenOrientation="portrait" >
         </activity>
-
+        <activity
+            android:name="com.formal.sdusthelper.Schedule_login"
+            android:screenOrientation="portrait" >
+        </activity>
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

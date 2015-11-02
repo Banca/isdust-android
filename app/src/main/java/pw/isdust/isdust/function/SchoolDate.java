@@ -17,7 +17,7 @@ public class SchoolDate {
 
         long time = new Date().getTime() - d1.getTime();// 得出的时间间隔是毫秒
         long day=time/(1000*3600*24);
-        int xiaoli=(int)day%7-1;
+        int xiaoli=(int)day/7+1;
         return xiaoli;
     }
 }

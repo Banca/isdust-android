@@ -8,11 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
-
-import pw.isdust.isdust.function.Networklogin_CMCC;
 
 /**
  * chinaunicom账号管理页面
@@ -24,7 +21,7 @@ public class GoNetChinaUnicomAcntActivity extends BaseSubPageActivity {
             text_cmcc_pwd_first,text_cmcc_pwd_sec;
     private Button btn_ok;
     private CheckBox check_savepwd;
-    private SharedPreferences preferences_data;
+    SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
 
     protected void onCreate(Bundle savedInstanceState) {

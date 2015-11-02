@@ -3,6 +3,8 @@ package com.formal.sdusthelper;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -49,13 +52,17 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
  * Created by Administrator on 2015/10/16.
  */
 public class ScheduleActivity extends BaseSubPageActivity {
+    SharedPreferences preferences_data;
+    SharedPreferences.Editor preferences_editor;
+    //实例化SharedPreferences对象
+
 
 
 
     List<TextView> mTextView=new ArrayList<TextView>();
     SelectCoursePlatform mXuankepingtai;
 
-
+    Button mButton_update;
 
     // 工具栏
     private RelativeLayout rlTopBar;
@@ -179,7 +186,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
             super.handleMessage(msg);
             if (msg.what==0){//登录成功
                 xianchengchi_ProgressDialog = new ProgressDialog(mContext);
-                xianchengchi_ProgressDialog.setMessage("正则下载课程表到本地");
+                xianchengchi_ProgressDialog.setMessage("正在下载课程表到本地");
                 xianchengchi_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 xianchengchi_ProgressDialog.setCancelable(false);
                 xianchengchi_ProgressDialog.show();
@@ -188,6 +195,13 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 return;
             }
             if (msg.what==1){//登录失败
+                preferences_editor.putBoolean("keeppwd", false);
+                preferences_editor.putString("password", "");
+                Intent intent=new Intent();
+                intent.setClass(mContext, Schedule_login.class);
+                startActivity(intent);
+
+
 
             }
             if (msg.what==2){//下载进度显示
@@ -198,6 +212,9 @@ public class ScheduleActivity extends BaseSubPageActivity {
             if (msg.what==3){//下载完成
                 xianchengchi_ProgressDialog.dismiss();
                 writeToFile("schedule.dat",xianchengchi_saving_json);
+                String kebiao_json=readFromFile("schedule.dat");
+                initParam();
+                getScheduleFromJson(kebiao_json);
                 return;
             }
         }
@@ -207,11 +224,38 @@ public class ScheduleActivity extends BaseSubPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
-
         mContext=this;
+        preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
+        //实例化SharedPreferences.Editor对象
+        preferences_editor = preferences_data.edit();
+
+
+
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("课表查询");
+        mButton_update=(Button)findViewById(R.id.button_update);
+        mButton_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                writeToFile("schedule.dat","");
+                String user_save=preferences_data.getString("username", "");
+                String password_save=preferences_data.getString("password", "");
+                if (user_save.equals("") || password_save.equals("")){
+
+                        Intent intent = new Intent();
+                        intent.setClass(mContext,Schedule_login.class);
+                        startActivity(intent);
+                        return;
+
+                }else{
+                    xianchengchi_user=user_save;
+                    xianchengchi_password=password_save;}
+
+
+                executorService.execute(mRunnable_login);
+            }
+        });
+
 
         empty = (TextView) this.findViewById(R.id.test_empty);
         monColum = (TextView) this.findViewById(R.id.test_monday_course);
@@ -289,16 +333,41 @@ public class ScheduleActivity extends BaseSubPageActivity {
         //title_name.setText("空自习室查询");
         //writeToFile("schedule.dat","");
         String kebiao_json=readFromFile("schedule.dat");
+//        writeToFile("schedule.dat","");
         if(kebiao_json==""){
-            xianchengchi_user="201501060225";
-            xianchengchi_password="960826wang";
+            String user_save=preferences_data.getString("username", "");
+            String password_save=preferences_data.getString("password", "");
+            if (user_save.equals("") || password_save.equals("")){
+                if (getIntent().getExtras()!=null){
+                String user_intent=getIntent().getExtras().getString("username");;
+                String password_intent=getIntent().getExtras().getString("password");;
+                if (user_intent.equals("")||password_intent.equals("")){
+                    Intent intent=new Intent();
+                    intent.setClass(mContext,Schedule_login.class);
+                    startActivity(intent);
+                    return;
+                }else {
+                    xianchengchi_user=user_intent;
+                    xianchengchi_password=password_intent;
+                }}else{
+                    Intent intent = new Intent();
+                    intent.setClass(mContext,Schedule_login.class);
+                    startActivity(intent);
+                    return;
+                }
+                }else{
+                xianchengchi_user=user_save;
+                xianchengchi_password=password_save;}
+
+
             executorService.execute(mRunnable_login);
         return;}
 
 //        Kebiao mkebiao_all=
         initParam();
         getScheduleFromJson(kebiao_json);
-
+        tvMiddle.setText(SchoolDate.get_xiaoli() + "");
+        bangding(SchoolDate.get_xiaoli() + "");
 
 
 

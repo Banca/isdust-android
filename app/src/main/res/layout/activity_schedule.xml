@@ -17,7 +17,7 @@
                       style="@style/courseTableText"
                       android:text="@string/empty"
                       android:background="@drawable/course_text_view_bg"
-                      android:layout_below="@+id/include2"
+                      android:layout_marginTop="90dp"
                       android:layout_alignParentLeft="true"
                       android:layout_alignParentStart="true"/>
 
@@ -65,7 +65,7 @@
                       android:text="@string/thu"
                       style="@style/courseTableText"
                       android:background="@drawable/course_text_view_bg"
-                      android:layout_below="@+id/include2"
+                      android:layout_alignTop="@+id/test_wednesday_course"
                       android:layout_toRightOf="@+id/test_wednesday_course"
                       android:layout_toEndOf="@+id/test_wednesday_course"/>
 
@@ -123,11 +123,8 @@
                 android:layout_height="30dip"
                 android:background="#BF7F40"
                 android:gravity="center_vertical"
-                android:layout_marginRight="23dp"
-                android:layout_marginEnd="23dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="55dp">
 
 
                 <TextView
@@ -140,10 +137,23 @@
                     android:text="middle"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"/>
+                    />
             </RelativeLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="重新加载课表"
+                android:id="@+id/button_update"
+                android:layout_marginTop="50dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周次："
+                android:id="@+id/textView16"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="120dp"/>
 
         </RelativeLayout>
 
