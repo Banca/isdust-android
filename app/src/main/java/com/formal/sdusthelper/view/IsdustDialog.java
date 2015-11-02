@@ -53,9 +53,9 @@ public class IsdustDialog extends Dialog {
                 setContentView(R.layout.dialog_runing);
                 textMsg = (TextView) findViewById(R.id.textView_dialog_message);
                 break;
-            case PROGRESSBAR_DIALOG:
-                setContentView(R.layout.dialog_progressbar);
-                break;
+//            case PROGRESSBAR_DIALOG:
+//                setContentView(R.layout.dialog_progressbar);
+//                break;
 //            case OK_DIALOG:
 //                setContentView(layout);
 //                break;
@@ -69,14 +69,14 @@ public class IsdustDialog extends Dialog {
         }
     }
 
-    public boolean setProgress(int n) {
-        if (layout_id != PROGRESSBAR_DIALOG)    //非进度条类型禁止设置
-            return false;
-        ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
-        pb.setMax(100);
-        pb.setProgress(n);
-        return true;
-    }
+//    public boolean setProgress(int n) {
+//        if (layout_id != PROGRESSBAR_DIALOG)    //非进度条类型禁止设置
+//            return false;
+//        ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
+//        pb.setMax(100);
+//        pb.setProgress(n);
+//        return true;
+//    }
 
     public boolean setMessage(String msg) {
         textMsg.setText(msg);

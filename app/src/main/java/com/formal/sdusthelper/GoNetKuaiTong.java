@@ -1,7 +1,17 @@
 package com.formal.sdusthelper;
 
+import android.app.Activity;
+import android.os.Bundle;
+
+import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+
 /**
  * Created by Administrator on 2015/10/31.
  */
-public class GoNetKuaiTong {
+public class GoNetKuaiTong extends BaseSubPageActivity {
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        INIT(R.layout.activity_kuaitong, "快通有线");
+    }
 }
