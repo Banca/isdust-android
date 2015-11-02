@@ -85,14 +85,27 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
     }
 
     private boolean judgeEmptyData() {
-        if (str_user1.isEmpty() || str_pwd1.isEmpty() || str_user2.isEmpty() || str_pwd2.isEmpty()) {
-            Intent intent=new Intent();
-            intent.setClass(BaseCMCCandChinaUnicom.this, anct_cls);
-            startActivityForResult(intent, 1);  //获取返回值方式启动
-            return true;
-        }
-        else
-            return false;
+        if (anct_cls.equals(GoNetCMCCAcntActivity.class)) {
+            if (str_user1.isEmpty() || str_pwd1.isEmpty() || str_user2.isEmpty() || str_pwd2.isEmpty()) {
+                Intent intent=new Intent();
+                intent.setClass(BaseCMCCandChinaUnicom.this, anct_cls);
+                startActivityForResult(intent, 1);  //获取返回值方式启动
+                return true;
+            }
+            else
+                return false;
+        }   //当前页面为CMCC
+        else {
+            if (str_user1.isEmpty() || str_pwd1.isEmpty()) {
+                Intent intent=new Intent();
+                intent.setClass(BaseCMCCandChinaUnicom.this, anct_cls);
+                startActivityForResult(intent, 1);  //获取返回值方式启动
+                return true;
+            }
+            else
+                return false;
+        }   //当前页面为ChinaUnicom
+
     }//有数据为空，需要编辑
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

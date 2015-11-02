@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color_page_white"
+    android:orientation="vertical" 
+    android:gravity="center">
+
+    <include layout="@layout/subpage_title_bar"
+        android:id="@+id/include" />
+    <ScrollView
+        android:id="@+id/widget54"
+        android:background="@color/color_page_white"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/relativeLayout">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
