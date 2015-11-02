@@ -83,8 +83,7 @@ public class BaseMainActivity extends Activity{
         }
         //启动activity
         this.startActivity(intent);
-        if (v.getId() != R.id.slide_menu_cmcc)
-            finish();
+        finish();
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event)
@@ -102,7 +101,6 @@ public class BaseMainActivity extends Activity{
                 finish();
                 System.exit(0);
             }
-
             return true;
         }
         return super.onKeyDown(keyCode, event);

@@ -31,7 +31,6 @@ public class Network_Kuaitong {
             return "登录成功";
         }
         return "kuaitong_login：未知错误";
-
     }
 
     public String [] kuaitong_getinfo(){
@@ -70,9 +69,6 @@ public class Network_Kuaitong {
             return "密码请输入校园卡查询密码，即圈存机登录密码";
         }
     return "kuaitong_chongzhi_login：error";
-
-
-
     }
     public String kuaitong_chongzhi(String money){
         String text=mHttp.post_string("https://epay.sdust.edu.cn/StudNet/Charge","money="+money);

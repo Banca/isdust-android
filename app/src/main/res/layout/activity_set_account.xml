@@ -16,7 +16,7 @@
 
         <ScrollView
             android:id="@+id/widget54"
-            android:background="@color/color_page_white"
+            android:background="#fff"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,18 +28,21 @@
                 >
                 <Button
                     android:id="@+id/set_btn_card"
-                    android:onClick="onFormSetClick"
+                    android:onClick="onFormSetAcntClick"
                     android:background="@drawable/selector_item_button"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-
                     android:text="校园卡"
                     android:drawableLeft="@drawable/pwd"
                     android:drawableRight="@drawable/pwd"
                     />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
                 <Button
                 android:id="@+id/set_btn_jiaowu"
-                android:onClick="onFormSetClick"
+                android:onClick="onFormSetAcntClick"
                 android:background="@drawable/selector_item_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -47,6 +50,10 @@
                 android:drawableLeft="@drawable/pwd"
                 android:drawableRight="@drawable/pwd"
                 />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
                 <Button
                     android:id="@+id/set_btn_cmcc"
                     android:onClick="onFormSetAcntClick"
@@ -57,9 +64,13 @@
                     android:drawableLeft="@drawable/pwd"
                     android:drawableRight="@drawable/pwd"
                     />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
                 <Button
-                    android:id="@+id/set_btn_chainaunicom"
-                    android:onClick="onFormSetClick"
+                    android:id="@+id/set_btn_chinaunicom"
+                    android:onClick="onFormSetAcntClick"
                     android:background="@drawable/selector_item_button"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -67,6 +78,38 @@
                     android:drawableLeft="@drawable/pwd"
                     android:drawableRight="@drawable/pwd"
                     />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
+                <Button
+                    android:id="@+id/set_btn_kuaitong"
+                    android:onClick="onFormSetAcntClick"
+                    android:background="@drawable/selector_item_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="快通有线"
+                    android:drawableLeft="@drawable/pwd"
+                    android:drawableRight="@drawable/pwd"
+                    />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
+                <Button
+                    android:id="@+id/set_btn_library"
+                    android:onClick="onFormSetAcntClick"
+                    android:background="@drawable/selector_item_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="图书馆"
+                    android:drawableLeft="@drawable/pwd"
+                    android:drawableRight="@drawable/pwd"
+                    />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
