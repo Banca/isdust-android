@@ -28,110 +28,172 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="182dp"
+                        android:background="@color/color_page_black"
                         android:orientation="vertical" >
                         <LinearLayout
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="147dp"
                             android:orientation="horizontal"
-                            android:weightSum="2">
+                            android:weightSum="2"
+                            android:id="@+id/linearLayout2"
+                            android:layout_alignParentTop="true"
+                            android:layout_above="@+id/linearLayout3">
                             <ImageView
                                 android:id="@+id/image_kuaitong_state"
                                 android:background="@drawable/quicklogin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="90dp"
-                                 />
+                                android:layout_gravity="center_vertical" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="149dp"
+                                android:layout_height="77dp"
+                                android:layout_gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/text_kuaitong_user"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="用户"
+                                    android:textSize="15sp"
+                                    android:textColor="#fff"
+                                     />
+                                <TextView
+                                    android:id="@+id/text_kuaitong_userstate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="用户状态"
+                                    android:textSize="15sp"
+                                    android:textColor="#fff"
+                                    />
+                                <TextView
+                                    android:id="@+id/text_kuaitong_package"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="当前套餐"
+                                    android:textSize="15sp"
+                                    android:textColor="#fff"/>
+                            </LinearLayout>
+
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
+                            android:background="@color/color_page_gray"
                             android:orientation="horizontal"
-                            android:weightSum="2">
+                            android:weightSum="2"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:id="@+id/linearLayout3">
                             <TextView
                                 android:id="@+id/text_kuaitong_flowmeter"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
-                                android:text="流量剩余："
-                                android:textSize="20sp"
+                                android:text="   流量剩余："
+                                android:textSize="16sp"
+                                android:textColor="#fff"
                                  />
                             <TextView
                                 android:id="@+id/text_kuaitong_balance"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:text="下月余额："
-                                android:textSize="20sp"
+                                android:textSize="16sp"
+                                android:textColor="#fff"
                                 />
                         </LinearLayout>
-                    </LinearLayout>
+                    </RelativeLayout>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal"
                         android:weightSum="3">
                         <Button
                             android:id="@+id/btn_kuaitong_infomation"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_view_white"
+                            android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="账户信息"
+                            android:text="  账户信息\n"
+                            android:textSize="@dimen/abc_text_size_button_material"
                              />
                         <Button
                             android:id="@+id/btn_kuaitong_package"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_view_white"
+                            android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="更换套餐"
+                            android:text="更换套餐\n"
+                            android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
                             android:id="@+id/btn_kuaitong_pay"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_view_white"
+                            android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="充值"
+                            android:text="充值\n"
+                            android:textSize="@dimen/abc_text_size_button_material"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal"
                         android:weightSum="3">
                         <Button
                             android:id="@+id/btn_kuaitong_changepwd"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_view_white"
+                            android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="开停机"
+                            android:text="开停机\n"
+                            android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
                             android:id="@+id/btn_kuaitong_switch"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_view_white"
+                            android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="更换套餐"
+                            android:text="更换套餐\n"
+                            android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
-                            android:id="@+id/btn_kuaitong_back"
+                            android:id="@+id/btn_kuaitong_su"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_view_white"
+                            android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="返回"
+                            android:text="切换账号\n"
+                            android:textSize="@dimen/abc_text_size_button_material"
                             />
                     </LinearLayout>
                 </LinearLayout>
