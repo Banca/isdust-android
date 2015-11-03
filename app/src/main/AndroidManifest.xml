@@ -118,6 +118,10 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name="com.formal.sdusthelper.AboutActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name="com.formal.sdusthelper.SetAccountActivity"
             android:screenOrientation="portrait">
         </activity>
@@ -134,7 +138,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.formal.sdusthelper.GoNetKuaiTong"
+            android:name="com.formal.sdusthelper.KuaiTongActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
