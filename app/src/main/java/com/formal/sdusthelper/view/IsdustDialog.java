@@ -2,11 +2,6 @@ package com.formal.sdusthelper.view;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -54,7 +49,7 @@ public class IsdustDialog extends Dialog {
                 textMsg = (TextView) findViewById(R.id.textView_dialog_message);
                 break;
             case PROGRESSBAR_DIALOG:
-                setContentView(R.layout.dialog_progressbar);
+                //setContentView(R.layout.dialog_progressbar);
                 break;
 //            case OK_DIALOG:
 //                setContentView(layout);
@@ -72,9 +67,9 @@ public class IsdustDialog extends Dialog {
     public boolean setProgress(int n) {
         if (layout_id != PROGRESSBAR_DIALOG)    //非进度条类型禁止设置
             return false;
-        ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
-        pb.setMax(100);
-        pb.setProgress(n);
+        //ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
+//        pb.setMax(100);
+//        pb.setProgress(n);
         return true;
     }
 
