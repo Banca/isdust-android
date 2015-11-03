@@ -36,6 +36,7 @@ public class SchoolCard {
     private int page_total;
     private int page_current;
     private String day_current;
+    private String day_last;
     private Date mDate;
     private SimpleDateFormat mSimpleDateFormat;
     private String [] personalinformation;
@@ -46,7 +47,7 @@ public class SchoolCard {
 
         Calendar rightNow = Calendar.getInstance();
         rightNow.setTime(mDate);
-        rightNow.add(Calendar.DAY_OF_YEAR, -1);//减一天
+        rightNow.add(Calendar.DAY_OF_YEAR, -30);//减一天
         mDate=rightNow.getTime();
     }
     public String day_get(){
@@ -73,9 +74,8 @@ public class SchoolCard {
         }
 
 
-        mDate=new Date();//初始化日期
-        mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
-        day_minus();
+
+        //day_minus();
 
         //导入标准对比库
         myzm_biaozhuan = new Bitmap[10];
@@ -275,8 +275,8 @@ public class SchoolCard {
             String []a=result_arraylist.get(i);
             result_final[i]=a;
         }
-        page_total = Integer.parseInt(Networklogin_CMCC.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;", 0));
-
+        //page_total = Integer.parseInt(Networklogin_CMCC.zhongjian(text, "&nbsp;&nbsp;共", "页&nbsp;&nbsp;", 0));
+        page_total=0;
         return result_final;
 
     }//处理查询的文本
@@ -316,7 +316,17 @@ public class SchoolCard {
         return result;
 
     }
+
+    public String[][]chaxun_nextpage(String inputStartDate,String inputEndDate,int page){
+
+        String result[][]= fenxi(mHttp.post_string("http://192.168.100.126/accountconsubBrows.action", "inputStartDate="+inputStartDate+"&inputEndDate="+inputEndDate+"&pageNum="+page));
+        return result;
+
+    }
     public String[][]chaxun(){
+        mDate=new Date();//初始化日期
+        mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
+        page_current=0;
 //        mkey=getkey();
 //        String text= Http.post_string("http://192.168.100.126/accounttodatTrjnObject.action" , "account="+zhanghao+"&inputObject=all&Submit=+%C8%B7+%B6%A8+");
 //
@@ -334,12 +344,13 @@ public class SchoolCard {
         if (page_current>page_total){
 
             page_current=1;
+            day_last=day_get();
             day_minus();
             day_current=day_get();
 
-            return chaxun(day_current,day_current,page_current);
+            return chaxun(day_current,day_last,page_current);
         }
-        return chaxun(day_current,day_current,page_current);
+        return chaxun_nextpage(day_current, day_last, page_current);
 
 
 
@@ -391,7 +402,7 @@ public class SchoolCard {
         if (conid == 0) {	//第一次获取时，获取当天和昨天几条记录
             String[][] str1,str2;
             str1 = chaxun();
-            str2 = chaxunlishi();
+            str2 = nextpage();
             int slen1 = str1.length;
             int slen2 = str2.length;
             int slen = slen1 + slen2;
