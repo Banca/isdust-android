@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2015/10/16.
@@ -16,7 +17,9 @@ public class CardChangePwdActivity extends BaseSubPageActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.activity_cardchangepwd,"密码修改");
+        INIT(R.layout.activity_cardchangepwd, "密码修改");
+        MobclickAgent.onEvent(this, "schoolcard_changePwd");
+
     }
 
     public void onClick(View v) {

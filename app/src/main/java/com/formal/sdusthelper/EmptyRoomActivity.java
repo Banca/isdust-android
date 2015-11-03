@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
 import com.formal.sdusthelper.datatype.ScheduleInformation;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +36,7 @@ import pw.isdust.isdust.function.EmptyClassroom;
  * Created by wzq on 15/10/16.
  */
 public class EmptyRoomActivity extends BaseSubListPageActivity {
+
     //按钮
     private Button mButton_chaxun_kongzixishi;
 
@@ -146,6 +148,8 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
     };
 
     protected void onCreate(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "jiaowu_Emptyroom");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emptyroom_listview);
         mContext=this;

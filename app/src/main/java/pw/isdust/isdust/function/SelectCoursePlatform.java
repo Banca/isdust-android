@@ -1,5 +1,7 @@
 package pw.isdust.isdust.function;
 
+import android.content.Context;
+
 import com.formal.sdusthelper.datatype.Kebiao;
 
 import org.json.JSONArray;
@@ -19,9 +21,18 @@ import pw.isdust.isdust.Http;
  */
 public class SelectCoursePlatform {
     Http mHttp;
-    public SelectCoursePlatform(){
+    public SelectCoursePlatform(Context context){
         mHttp=new Http();
         mHttp.newcookie();
+        Networkjudge mNetworkjudge=new Networkjudge(context);
+
+        if(mNetworkjudge.judgetype()==3){
+            mHttp.setProxy("139.129.133.235", 1999);
+        }else if(mNetworkjudge.judgetype()==4){
+            if (mNetworkjudge.neiwaiwang_judge()==1){
+                mHttp.setProxy("139.129.133.235", 1999);
+            }
+        }
 //        mHttp.setProxy("219.146.243.3", 2000);
     }
     public String login_zhengfang(String user, String pwd){

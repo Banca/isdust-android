@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.Kebiao;
+import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -126,7 +127,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
     Runnable mRunnable_login=new Runnable(){
         @Override
         public void run() {
-            mXuankepingtai=new SelectCoursePlatform();
+            mXuankepingtai=new SelectCoursePlatform(mContext);
 //            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
             xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
             if(xianchengchi_login_status.contains("登录成功")){
@@ -222,6 +223,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "jiaowu_schedule");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
         mContext=this;
@@ -663,6 +666,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
             System.out.println("");
         } catch (JSONException e) {
             e.printStackTrace();
+            writeToFile("schedule.dat","");
         }
 
 

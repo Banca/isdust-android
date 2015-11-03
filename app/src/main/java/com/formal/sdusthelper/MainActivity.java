@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.formal.sdusthelper.baseactivity.BaseMainActivity;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,15 +22,28 @@ public class MainActivity extends BaseMainActivity {
 	private View form_welcome;
 	private MyApplication isdustapp1;
 	Context mContext;
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		isdustapp1=(MyApplication)getApplication();
 		mContext=this;
+		MobclickAgent.updateOnlineConfig( mContext );
+
 
 		super.onCreate(savedInstanceState);
-		if (ishadopended == true)	//程序已经启动
-			INIT(R.layout.activity_main,"首页");
-		else {
+		if (ishadopended == true) {    //程序已经启动
+			INIT(R.layout.activity_main, "首页");
+			UmengUpdateAgent.setUpdateOnlyWifi(false);
+			UmengUpdateAgent.update(this);
+
+		}else {
 			ishadopended = true;
 			LayoutInflater inflate = LayoutInflater.from(this);
 			form_welcome = inflate.inflate(R.layout.welcome,null);

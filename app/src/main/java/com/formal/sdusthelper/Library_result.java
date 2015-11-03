@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.formal.sdusthelper.datatype.Book;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +28,8 @@ public class Library_result extends ListActivity {
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "Library_guancang");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library_result);
         mContext=this;
@@ -61,7 +63,7 @@ public class Library_result extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Toast.makeText(this, "positon = " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "positon = " + position, Toast.LENGTH_SHORT).show();
         l.getLastVisiblePosition();
         l.getFirstVisiblePosition();
         try {

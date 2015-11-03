@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by lenovo on 2015/11/1.
@@ -13,6 +13,8 @@ import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 public class MapchooseActivity extends BaseSubPageActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "Map");
+
         super.onCreate(savedInstanceState);
         INIT(R.layout.schoolmapchoose, "地图指南");
     }

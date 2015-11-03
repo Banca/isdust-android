@@ -10,8 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseMainActivity;
-import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.view.IsdustDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.function.Network_Kuaitong;
 
@@ -29,6 +29,8 @@ public class KuaiTongActivity extends BaseMainActivity {
     protected IsdustDialog customRuningDialog;  //自定义运行中提示框
 
     protected void onCreate(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "network_kuaitong");
+
         super.onCreate(savedInstanceState);
         INIT(R.layout.helper_kuaitong, "快通有线");
         obj_kuaitong = new Network_Kuaitong();

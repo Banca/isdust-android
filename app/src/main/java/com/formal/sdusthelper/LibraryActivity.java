@@ -79,7 +79,7 @@ public class LibraryActivity extends BaseMainActivity {
                     String isbnString = bundle.getString("result");
 //                    Toast.makeText(mContext, "ISBN:" + isbnString,
 //                            Toast.LENGTH_SHORT).show();
-                    mEditText.setText(isbnString);
+//                    mEditText.setText(isbnString);
                     mBooks=mLibrary.findBookByISBN(isbnString);
                     isdustapp.setBooks(mBooks);
 
