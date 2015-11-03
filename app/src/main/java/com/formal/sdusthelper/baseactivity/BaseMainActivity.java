@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.formal.sdusthelper.AboutActivity;
 import com.formal.sdusthelper.CardActivity;
 import com.formal.sdusthelper.GoNetActivity;
 import com.formal.sdusthelper.JiaowuActivity;
+import com.formal.sdusthelper.KuaiTongActivity;
 import com.formal.sdusthelper.LibraryActivity;
 import com.formal.sdusthelper.LifeActivity;
 import com.formal.sdusthelper.MainActivity;
@@ -62,6 +64,9 @@ public class BaseMainActivity extends Activity{
             case R.id.slide_menu_cmcc:
                 intent.setClass(this, GoNetActivity.class);
                 break;
+            case R.id.slide_menu_kuaitong:
+                intent.setClass(this, KuaiTongActivity.class);
+                break;
             case R.id.slide_menu_jiaowu:
                 intent.setClass(this, JiaowuActivity.class);
                 break;
@@ -79,6 +84,9 @@ public class BaseMainActivity extends Activity{
                 break;
             case R.id.slide_menu_set:
                 intent.setClass(this, SetActivity.class);
+                break;
+            case R.id.slide_menu_about:
+                intent.setClass(this, AboutActivity.class);
                 break;
         }
         //启动activity

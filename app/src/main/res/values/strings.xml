@@ -4,12 +4,14 @@
     <string name="app_name">爱山科</string>
     <string name="menu_home">  首页</string>
     <string name="menu_cmcc">  上网登录</string>
+    <string name="menu_kuaitong">  快通有线</string>
     <string name="menu_jiaowu">  教务查询</string>
     <string name="menu_library">  图书馆</string>
     <string name="menu_card">  校园卡</string>
     <string name="menu_life">  生活服务</string>
     <string name="menu_news">  校园资讯</string>
     <string name="menu_set">  设置</string>
+    <string name="menu_about">  关于</string>
 
 
     <string name="pull_to_refresh_pull_label">下拉刷新</string>

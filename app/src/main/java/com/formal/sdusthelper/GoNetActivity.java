@@ -29,11 +29,6 @@ public class GoNetActivity extends BaseMainActivity {
                 //启动activity
                 this.startActivity(intent);
                 break;
-            case R.id.FormGoNet_button_kuaitong:
-                intent.setClass(this,GoNetKuaiTong.class);
-                //启动activity
-                this.startActivity(intent);
-                break;
         }
     }
 }

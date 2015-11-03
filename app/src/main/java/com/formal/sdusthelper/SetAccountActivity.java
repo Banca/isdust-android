@@ -29,7 +29,10 @@ public class SetAccountActivity extends BaseSubPageActivity {
                 intent.setClass(this,GoNetCMCCAcntActivity.class);
                 this.startActivity(intent);
                 break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d47d5a697fc059c7bd0614f917577ccddc126445
             case R.id.set_btn_chinaunicom:
                 intent.setClass(this,GoNetChinaUnicomAcntActivity.class);
                 this.startActivity(intent);
