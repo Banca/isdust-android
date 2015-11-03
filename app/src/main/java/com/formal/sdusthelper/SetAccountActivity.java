@@ -34,7 +34,8 @@ public class SetAccountActivity extends BaseSubPageActivity {
                 this.startActivity(intent);
                 break;
             case R.id.set_btn_kuaitong:
-
+                intent.setClass(this,KuaiTongAcntActivity.class);
+                this.startActivity(intent);
                 break;
             case R.id.set_btn_library:
 

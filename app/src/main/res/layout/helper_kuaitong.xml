@@ -30,7 +30,7 @@
                     android:orientation="vertical" >
                     <RelativeLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="155dp"
+                        android:layout_height="182dp"
                         android:background="@color/color_page_black"
                         android:orientation="vertical" >
                         <LinearLayout
@@ -86,7 +86,7 @@
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="fill_parent"
-                            android:layout_height="32dp"
+                            android:layout_height="40dp"
                             android:background="@color/color_page_gray"
                             android:orientation="horizontal"
                             android:weightSum="2"
@@ -124,32 +124,35 @@
                         android:weightSum="3">
                         <Button
                             android:id="@+id/btn_kuaitong_infomation"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="  账户信息"
+                            android:text="  账户信息\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                              />
                         <Button
                             android:id="@+id/btn_kuaitong_package"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="更换套餐"
+                            android:text="更换套餐\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
                             android:id="@+id/btn_kuaitong_pay"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="充值"
+                            android:text="充值\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                     </LinearLayout>
@@ -161,32 +164,35 @@
                         android:weightSum="3">
                         <Button
                             android:id="@+id/btn_kuaitong_changepwd"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="开停机"
+                            android:text="开停机\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
                             android:id="@+id/btn_kuaitong_switch"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="更换套餐"
+                            android:text="更换套餐\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
                             android:id="@+id/btn_kuaitong_su"
+                            android:onClick="onFormKuaiTongClick"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
                             android:drawableTop="@drawable/quicklogin"
-                            android:text="切换账号"
+                            android:text="切换账号\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                     </LinearLayout>

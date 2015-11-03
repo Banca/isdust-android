@@ -53,11 +53,9 @@ public class GoNetChinaUnicomAcntActivity extends BaseSubPageActivity {
         text_cmcc_pwd_first.setText(pwd);
         keeppwd = preferences_data.getBoolean("keeppwd", true);
         check_savepwd.setChecked(keeppwd);
-
-
     }   //读取本地数据
 
-    public void onFormCMCCAcntlick(View v) {
+    public void onFormCMCCAcntClick(View v) {
         switch (v.getId()) {
             case R.id.btn_cmccacnt_ok:
                 String result,str_user1,str_pwd1,str_user2,str_pwd2;

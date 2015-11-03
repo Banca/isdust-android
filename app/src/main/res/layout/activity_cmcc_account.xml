@@ -81,7 +81,7 @@
 
                     <Button
                         android:id="@+id/btn_cmccacnt_ok"
-                        android:onClick="onFormCMCCAcntlick"
+                        android:onClick="onFormCMCCAcntClick"
                         android:background="@drawable/selector_ok_button"
                         android:textColor="@color/color_btn_text"
                         android:textSize="16dp"
@@ -135,7 +135,7 @@
 
                     <Button
                         android:id="@+id/btn_cmcc_dynamicpwd"
-                        android:onClick="onFormCMCCAcntlick"
+                        android:onClick="onFormCMCCAcntClick"
                         android:background="@drawable/selector_ok_button"
                         android:textColor="@color/color_btn_text"
                         android:textSize="16dp"
