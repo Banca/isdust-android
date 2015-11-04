@@ -60,7 +60,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="用户"
+                                    android:text="用户:"
                                     android:textSize="15sp"
                                     android:textColor="#fff"
                                      />
@@ -69,7 +69,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="用户状态"
+                                    android:text="状态:"
                                     android:textSize="15sp"
                                     android:textColor="#fff"
                                     />
@@ -78,7 +78,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="当前套餐"
+                                    android:text="当前套餐:"
                                     android:textSize="15sp"
                                     android:textColor="#fff"/>
                             </LinearLayout>
@@ -129,7 +129,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
-                            android:drawableTop="@drawable/quicklogin"
+                            android:drawableTop="@drawable/kt_information"
                             android:text="  账户信息\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                              />
@@ -140,7 +140,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
-                            android:drawableTop="@drawable/quicklogin"
+                            android:drawableTop="@drawable/kt_package"
                             android:text="更换套餐\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
@@ -151,7 +151,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
-                            android:drawableTop="@drawable/quicklogin"
+                            android:drawableTop="@drawable/kt_pay"
                             android:text="充值\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
@@ -169,8 +169,8 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
-                            android:drawableTop="@drawable/quicklogin"
-                            android:text="开停机\n"
+                            android:drawableTop="@drawable/kt_changepwd"
+                            android:text="修改密码\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
@@ -180,8 +180,8 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
-                            android:drawableTop="@drawable/quicklogin"
-                            android:text="更换套餐\n"
+                            android:drawableTop="@drawable/kt_switch"
+                            android:text="开停机\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
                         <Button
@@ -191,7 +191,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_topimg_button"
-                            android:drawableTop="@drawable/quicklogin"
+                            android:drawableTop="@drawable/kt_su"
                             android:text="切换账号\n"
                             android:textSize="@dimen/abc_text_size_button_material"
                             />
