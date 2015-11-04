@@ -57,14 +57,22 @@ public class KuaiTongActivity extends BaseMainActivity {
             case R.id.btn_kuaitong_su:  //切换账户
                 startAcntActivity();
                 break;
+            case R.id.btn_kuaitong_pay: //充值
+                dealPay();
+                break;
         }
     }
 
+    private void dealPay() {
+
+    }   //处理充值任务
+    
     private void startAcntActivity() {
         Intent intent = new Intent();
         intent.setClass(this, KuaiTongAcntActivity.class);
         startActivityForResult(intent, KuaiTongAcntActivity.RESULT_CODE);
     }   //以获取结果的方式打开账户页面
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //注意分清楚 requestCode和resultCode，后者是setResult里设置的
         if (resultCode==KuaiTongAcntActivity.RESULT_CODE)
@@ -90,6 +98,7 @@ public class KuaiTongActivity extends BaseMainActivity {
             startAcntActivity();
             return;
         }   //有空数据，打开账号管理
+        textuser.setText(textuser.getText().toString()+kuaitong_user);
         customRuningDialog.show();    //打开等待框
         customRuningDialog.setMessage("正在获取数据...");
         Thread threadRe = new Thread(new Runnable() {
@@ -103,8 +112,8 @@ public class KuaiTongActivity extends BaseMainActivity {
                         if (result.equals("登录成功")){
                             imgstate.setBackgroundResource(R.drawable.pwd);
                             carddata = obj_kuaitong.getKuaitongInfo();
-                            textuserstate.setText(carddata[11]);
-                            textpackage.setText(carddata[2]);
+                            textuserstate.setText(textuserstate.getText().toString()+carddata[11]);//用户状态
+                            textpackage.setText(textpackage.getText().toString()+carddata[2]);//当前套餐
                             textflow.setText("   剩余流量："+carddata[5]);
                             textbala.setText("  下月余额："+carddata[13]);
                         }

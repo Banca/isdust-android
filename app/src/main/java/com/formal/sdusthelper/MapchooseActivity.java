@@ -4,11 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-//<<<<<<< HEAD
-//import com.formal.sdusthelper.baseactivity.BaseMainActivity;
-//import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
-//=======
-//>>>>>>> origin/master
+
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
