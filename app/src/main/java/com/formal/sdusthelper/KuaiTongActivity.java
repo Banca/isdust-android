@@ -47,6 +47,13 @@ public class KuaiTongActivity extends BaseMainActivity {
 
     public void onFormKuaiTongClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_kuaitong_infomation:  //切换账户
+                Intent intent = new Intent(KuaiTongActivity.this,KuaiTongInfoActivity.class) ;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("KuaiTongData", carddata) ;
+                intent.putExtras(bundle) ;
+                startActivity(intent);
+                break;
             case R.id.btn_kuaitong_su:  //切换账户
                 startAcntActivity();
                 break;

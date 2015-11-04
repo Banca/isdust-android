@@ -135,6 +135,10 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name="com.formal.sdusthelper.KuaiTongInfoActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name="com.formal.sdusthelper.GoNetCMCCActivity"
             android:screenOrientation="portrait">
         </activity>
