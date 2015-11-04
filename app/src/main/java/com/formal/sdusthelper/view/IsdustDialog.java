@@ -2,11 +2,6 @@ package com.formal.sdusthelper.view;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -53,10 +48,16 @@ public class IsdustDialog extends Dialog {
                 setContentView(R.layout.dialog_runing);
                 textMsg = (TextView) findViewById(R.id.textView_dialog_message);
                 break;
-//            case PROGRESSBAR_DIALOG:
-//                setContentView(R.layout.dialog_progressbar);
-//                break;
-//            case OK_DIALOG:
+//<<<<<<< HEAD
+            case PROGRESSBAR_DIALOG:
+                //setContentView(R.layout.dialog_progressbar);
+                break;
+//=======
+////            case PROGRESSBAR_DIALOG:
+////                setContentView(R.layout.dialog_progressbar);
+////                break;
+//>>>>>>> d47d5a697fc059c7bd0614f917577ccddc126445
+////            case OK_DIALOG:
 //                setContentView(layout);
 //                break;
 //            case YES_NO_DIALOG:
@@ -69,14 +70,25 @@ public class IsdustDialog extends Dialog {
         }
     }
 
-//    public boolean setProgress(int n) {
-//        if (layout_id != PROGRESSBAR_DIALOG)    //非进度条类型禁止设置
-//            return false;
-//        ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
+//<<<<<<< HEAD
+    public boolean setProgress(int n) {
+        if (layout_id != PROGRESSBAR_DIALOG)    //非进度条类型禁止设置
+            return false;
+        //ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
 //        pb.setMax(100);
 //        pb.setProgress(n);
-//        return true;
-//    }
+        return true;
+    }
+//=======
+////    public boolean setProgress(int n) {
+////        if (layout_id != PROGRESSBAR_DIALOG)    //非进度条类型禁止设置
+////            return false;
+////        ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar_dialog);
+////        pb.setMax(100);
+////        pb.setProgress(n);
+////        return true;
+////    }
+//>>>>>>> d47d5a697fc059c7bd0614f917577ccddc126445
 
     public boolean setMessage(String msg) {
         textMsg.setText(msg);

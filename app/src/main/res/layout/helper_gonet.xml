@@ -59,22 +59,6 @@
                     android:layout_height="3px"
                     android:background="@color/color_page_white" />
 
-                <Button
-                    android:id="@+id/FormGoNet_button_kuaitong"
-                    android:onClick="onFormGoNetClick"
-                    android:text="  快通有线查询"
-                    android:gravity="center_vertical|left"
-                    android:textSize="18sp"
-                    android:background="@drawable/selector_item_button"
-                    android:drawableLeft="@drawable/item_emptyroom"
-                    android:drawableRight="@drawable/arrow"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent" />
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="3px"
-                    android:background="@color/color_page_white" />
             </LinearLayout>
 
         </RelativeLayout>

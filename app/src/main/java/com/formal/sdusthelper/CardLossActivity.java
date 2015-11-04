@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2015/10/16.
@@ -19,7 +20,9 @@ public class CardLossActivity extends BaseSubPageActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.activity_cardloss,"校园卡挂失");
+        INIT(R.layout.activity_cardloss, "校园卡挂失");
+        MobclickAgent.onEvent(this, "schoolcard_guashi");
+
     }
 
     public void onClick(View v) {

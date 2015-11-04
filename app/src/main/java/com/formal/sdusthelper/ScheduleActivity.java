@@ -24,9 +24,11 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.Kebiao;
+import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,6 +65,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
     SelectCoursePlatform mXuankepingtai;
 
     Button mButton_update;
+    Button mButton_logout;
 
     // 工具栏
     private RelativeLayout rlTopBar;
@@ -126,7 +129,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
     Runnable mRunnable_login=new Runnable(){
         @Override
         public void run() {
-            mXuankepingtai=new SelectCoursePlatform();
+            mXuankepingtai=new SelectCoursePlatform(mContext);
 //            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
             xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
             if(xianchengchi_login_status.contains("登录成功")){
@@ -136,11 +139,6 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 return;
 
                 //下载课程表
-
-
-
-
-
             }
             Message mMessage=new Message();
             mMessage.what=1;
@@ -185,6 +183,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
         public void  handleMessage(Message msg){
             super.handleMessage(msg);
             if (msg.what==0){//登录成功
+
                 xianchengchi_ProgressDialog = new ProgressDialog(mContext);
                 xianchengchi_ProgressDialog.setMessage("正在下载课程表到本地");
                 xianchengchi_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -197,9 +196,11 @@ public class ScheduleActivity extends BaseSubPageActivity {
             if (msg.what==1){//登录失败
                 preferences_editor.putBoolean("keeppwd", false);
                 preferences_editor.putString("password", "");
+                Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent();
                 intent.setClass(mContext, Schedule_login.class);
                 startActivity(intent);
+                finish();
 
 
 
@@ -215,6 +216,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 String kebiao_json=readFromFile("schedule.dat");
                 initParam();
                 getScheduleFromJson(kebiao_json);
+                xianshidangqian();
+                mButton_update.setClickable(true);
                 return;
             }
         }
@@ -222,6 +225,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        MobclickAgent.onEvent(this, "jiaowu_schedule");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
         mContext=this;
@@ -234,9 +239,11 @@ public class ScheduleActivity extends BaseSubPageActivity {
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("课表查询");
         mButton_update=(Button)findViewById(R.id.button_update);
+        mButton_logout=(Button)findViewById(R.id.button_logout);
         mButton_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mButton_update.setClickable(false);
                 writeToFile("schedule.dat","");
                 String user_save=preferences_data.getString("username", "");
                 String password_save=preferences_data.getString("password", "");
@@ -245,6 +252,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
                         Intent intent = new Intent();
                         intent.setClass(mContext,Schedule_login.class);
                         startActivity(intent);
+                        finish();
                         return;
 
                 }else{
@@ -256,7 +264,18 @@ public class ScheduleActivity extends BaseSubPageActivity {
             }
         });
 
+        mButton_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                preferences_editor.putString("password", "");
+                writeToFile("schedule.dat","");
+                Intent intent = new Intent();
+                intent.setClass(mContext,Schedule_login.class);
+                startActivity(intent);
+                finish();
 
+            }
+        });
         empty = (TextView) this.findViewById(R.id.test_empty);
         monColum = (TextView) this.findViewById(R.id.test_monday_course);
         tueColum = (TextView) this.findViewById(R.id.test_tuesday_course);
@@ -366,13 +385,18 @@ public class ScheduleActivity extends BaseSubPageActivity {
 //        Kebiao mkebiao_all=
         initParam();
         getScheduleFromJson(kebiao_json);
-        tvMiddle.setText(SchoolDate.get_xiaoli() + "");
-        bangding(SchoolDate.get_xiaoli() + "");
+        xianshidangqian();
+
 
 
 
         //bangding(SchoolDate.get_xiaoli()+"", "2015-2016", "1");
 
+
+    }
+    public void xianshidangqian(){
+        tvMiddle.setText(SchoolDate.get_xiaoli() + "");
+        bangding(SchoolDate.get_xiaoli() + "");
 
     }
     public void bangding(String zhoushu){//public void bangding(String xiaoli,String xuenian,String xueqi){
@@ -663,6 +687,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
             System.out.println("");
         } catch (JSONException e) {
             e.printStackTrace();
+            writeToFile("schedule.dat","");
         }
 
 

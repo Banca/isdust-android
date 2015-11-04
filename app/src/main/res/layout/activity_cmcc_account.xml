@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -81,7 +83,7 @@
 
                     <Button
                         android:id="@+id/btn_cmccacnt_ok"
-                        android:onClick="onFormCMCCAcntlick"
+                        android:onClick="onFormCMCCAcntClick"
                         android:background="@drawable/selector_ok_button"
                         android:textColor="@color/color_btn_text"
                         android:textSize="16dp"
@@ -135,7 +137,7 @@
 
                     <Button
                         android:id="@+id/btn_cmcc_dynamicpwd"
-                        android:onClick="onFormCMCCAcntlick"
+                        android:onClick="onFormCMCCAcntClick"
                         android:background="@drawable/selector_ok_button"
                         android:textColor="@color/color_btn_text"
                         android:textSize="16dp"

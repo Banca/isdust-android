@@ -7,6 +7,8 @@
     <color name="color_3">#f26d7e</color>
     <color name="color_4">#a286c0</color>
     <color name="color_page_white">#E6E6E6</color>
+    <color name="color_page_black">#333333</color>
+    <color name="color_page_gray">#666666</color>
     <color name="color_btn_white">#ffffff</color>
     <color name="color_view_white">#ffffff</color>
     <color name="color_btn_text">#ffffff</color>

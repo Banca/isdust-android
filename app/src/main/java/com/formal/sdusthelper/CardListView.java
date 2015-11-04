@@ -14,6 +14,7 @@ import com.formal.sdusthelper.datatype.PurchaseHistory;
 import com.formal.sdusthelper.view.PullToRefreshView;
 import com.formal.sdusthelper.view.PullToRefreshView.OnFooterRefreshListener;
 import com.formal.sdusthelper.view.PullToRefreshView.OnHeaderRefreshListener;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import java.util.concurrent.Executors;
  *
  */
 public class CardListView extends ListActivity implements OnHeaderRefreshListener,OnFooterRefreshListener{
+
 	//线程池
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 	private PurchaseHistory[] xiancheng_ph;
@@ -119,6 +121,8 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
+
 		mContext=this;
 		isdustapp=(MyApplication)getApplication();
 		isdustapp.getUsercard().chongzhijilu();
@@ -126,6 +130,7 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 
 
+		MobclickAgent.onEvent(this, "schoolcard_record");
 
 
 

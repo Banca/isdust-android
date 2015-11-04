@@ -3,14 +3,19 @@ package com.formal.sdusthelper;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import com.formal.sdusthelper.datatype.Book;
+import com.formal.sdusthelper.view.IsdustDialog;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.Library;
 
@@ -24,6 +29,68 @@ public class LibraryActivity extends BaseMainActivity {
     List<Book> mBooks;
     ImageView mImageView_library;
     ImageView mImageView_search;
+
+    protected IsdustDialog customRuningDialog;  //自定义运行中提示框
+
+
+    //线程池搭建
+    String mxiancheng_isbn;
+    String mxiancheng_bookname;
+    ExecutorService mExecutorService= Executors.newCachedThreadPool();
+    Runnable mRunnable_findbookbyisbn=new Runnable() {
+        @Override
+        public void run() {
+            mBooks=mLibrary.findBookByISBN(mxiancheng_isbn);
+            Message message = new Message();
+            if (mBooks.size()==0){
+                message.what = 0;
+                mHandler.sendMessage(message);;
+                return;
+            }
+            message.what = 1;
+            mHandler.sendMessage(message);;
+
+        }
+    };
+    Runnable mRunnable_findbookbyname=new Runnable() {
+        @Override
+        public void run() {
+            mBooks=mLibrary.findBookByName(mxiancheng_bookname);
+            Message message = new Message();
+
+            if (mBooks.size()==0){
+                message.what = 0;
+                mHandler.sendMessage(message);;
+                return;
+            }
+            message.what = 1;
+            mHandler.sendMessage(message);;
+
+
+
+        }
+    };
+
+    final android.os.Handler mHandler=new android.os.Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        if (msg.what==0){
+            customRuningDialog.hide();
+            Toast.makeText(mContext, "没有找到该书", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (msg.what==1){
+            customRuningDialog.hide();
+            isdustapp.setBooks(mBooks);
+            Intent intent = new Intent();
+
+            intent.setClass(mContext,Library_result.class);
+            startActivity(intent);
+            return;
+         }
+        }
+    };
+
 
     //Application isdust;
     @Override
@@ -48,26 +115,22 @@ public class LibraryActivity extends BaseMainActivity {
         mImageView_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mBooks=mLibrary.findBookByName(mEditText.getText().toString());
-                isdustapp.setBooks(mBooks);
+                mxiancheng_bookname =mEditText.getText().toString();
+                if (mxiancheng_bookname.equals("")){
+                    Toast.makeText(mContext, "书本名字不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                mExecutorService.execute(mRunnable_findbookbyname);
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage("正在查找图书...");
 
-                Intent intent = new Intent();
 
-                intent.setClass(mContext,Library_result.class);
-                startActivity(intent);
-                //启动activity
-//                this.startActivity(intent);
-//
-//                Intent intent = new Intent();
-//                intent.setClass(mContext, Library_result.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivityForResult(intent,1);
             }
         });
-//        Intent intent = new Intent();
-//        intent.setClass(mContext, Library_result.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivityForResult(intent,1);
+
+        customRuningDialog = new IsdustDialog(mContext,
+                IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -76,19 +139,11 @@ public class LibraryActivity extends BaseMainActivity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
-                    String isbnString = bundle.getString("result");
-//                    Toast.makeText(mContext, "ISBN:" + isbnString,
-//                            Toast.LENGTH_SHORT).show();
-                    mEditText.setText(isbnString);
-                    mBooks=mLibrary.findBookByISBN(isbnString);
-                    isdustapp.setBooks(mBooks);
+                    mxiancheng_isbn = bundle.getString("result");
 
-
-
-                    Intent intent = new Intent();
-
-                    intent.setClass(mContext,Library_result.class);
-                    startActivity(intent);
+                    mExecutorService.execute(mRunnable_findbookbyisbn);
+                    customRuningDialog.show();    //打开等待框
+                    customRuningDialog.setMessage("正在查找图书...");
 //                    mBooks.get(0).downloadpicture();
 
                 }

@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
 
     <com.formal.sdusthelper.SlideMenu
         android:id="@+id/slide_menu"
@@ -43,7 +45,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:singleLine="true"
-                    android:numeric="integer" />
+                    android:numeric="integer" android:hint="1501060275"/>
 
                 <EditText
                     android:id="@+id/FormCard_editText_pwd"
@@ -60,7 +62,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:singleLine="true"
-                    android:numeric="integer" />
+                    android:numeric="integer" android:maxLength="6" android:hint="初始密码为校园卡后6位"/>
 
                 <Button
                     android:id="@+id/FormCard_button_login"
