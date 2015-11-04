@@ -134,11 +134,16 @@ public class CardActivity extends BaseMainActivity {
                 //提交当前数据
                 editor.commit();
 
+                xiancheng_username=textuser.getText().toString();
+                xiancheng_password = textpwd.getText().toString();
+                if(xiancheng_username.equals("")||xiancheng_password.equals("")){
+                    Toast.makeText(mContext,"用户名或密码不能为空",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 dialog = ProgressDialog.show(
                         mContext, "提示",
                         "正在登录中", true, true);
-                xiancheng_username=textuser.getText().toString();
-                xiancheng_password=textpwd.getText().toString();
+
                 executorService.execute(mRunnable_xiancheng_login);
 
                 break;

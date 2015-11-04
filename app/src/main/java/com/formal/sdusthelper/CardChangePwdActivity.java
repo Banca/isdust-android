@@ -1,10 +1,8 @@
 package com.formal.sdusthelper;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
@@ -33,15 +31,19 @@ public class CardChangePwdActivity extends BaseSubPageActivity {
                 String stroldpwd = textoldpwd.getText().toString();
                 String strnewpwd = textnewpwd.getText().toString();
                 String strrenewpwd = textrenewpwd.getText().toString();
+                if (strnewpwd.length()!=6){
+                    Toast.makeText(this, "密码需要设置为6位纯数字", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (strnewpwd.equals(strrenewpwd)) {
                     String result;
                     result = isdustapp.getUsercard().changepassword(stroldpwd,strnewpwd,strid);
-                    Toast.makeText(this, result, 1000).show();
+                    Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
                     if (result.equals("修改密码成功"))
                         finish();
                 }
                 else
-                    Toast.makeText(this, "新密码前后不一致", 1000).show();
+                    Toast.makeText(this, "新密码前后不一致", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

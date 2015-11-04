@@ -4,7 +4,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/color_list_white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+                                               android:focusable="true"
+                                               android:focusableInTouchMode="true" >
 	<!-- 这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
 	要设置android:orientation="vertical"属性
 	否则,显示不正确-->
