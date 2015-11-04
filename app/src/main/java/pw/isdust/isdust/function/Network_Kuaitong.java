@@ -90,6 +90,30 @@ public class Network_Kuaitong {
             return "充值成功";
         }
         return "kuaitong_chongzhierror";
+
+    }
+    public void tingwang(){
+        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ControlNet?MercID=%E5%BF%AB%E9%80%9A", "netStatus=%E5%81%9C%E6%9C%BA");
+    }
+    public void kaiwang(){
+        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ControlNet?MercID=%E5%BF%AB%E9%80%9A", "netStatus=%E5%BC%80%E5%90%AF" );
+    }
+    public void gaitaocan(String id){
+        /*
+        id      套餐
+        5      5元包5G
+        6      15元包22G
+        7      30元包50G
+
+         */
+        //
+        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetMode?MercID=%E5%BF%AB%E9%80%9A", "GroupIDList="+id );
+
+    }
+    public void gaimima(String OldPassword,String NewPassword,String ConfirmPassword){
+        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetPwd?MercID=%E5%BF%AB%E9%80%9A", "OldPassword="+OldPassword+"&NewPassword="+NewPassword+"&ConfirmPassword="+ConfirmPassword );
+
+
     }
 
 }
