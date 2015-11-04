@@ -18,6 +18,7 @@ import com.formal.sdusthelper.KuaiTongActivity;
 import com.formal.sdusthelper.LibraryActivity;
 import com.formal.sdusthelper.LifeActivity;
 import com.formal.sdusthelper.MainActivity;
+import com.formal.sdusthelper.MapchooseActivity;
 import com.formal.sdusthelper.MyApplication;
 import com.formal.sdusthelper.NewsActivity;
 import com.formal.sdusthelper.R;

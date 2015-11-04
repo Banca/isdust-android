@@ -29,10 +29,15 @@ public class SetAccountActivity extends BaseSubPageActivity {
                 intent.setClass(this,GoNetCMCCAcntActivity.class);
                 this.startActivity(intent);
                 break;
+////<<<<<<< HEAD
 //<<<<<<< HEAD
 //
+////=======
 //=======
-//>>>>>>> d47d5a697fc059c7bd0614f917577ccddc126445
+////
+////=======
+////>>>>>>> d47d5a697fc059c7bd0614f917577ccddc126445
+//>>>>>>> origin/master
             case R.id.set_btn_chinaunicom:
                 intent.setClass(this,GoNetChinaUnicomAcntActivity.class);
                 this.startActivity(intent);
@@ -44,6 +49,10 @@ public class SetAccountActivity extends BaseSubPageActivity {
             case R.id.set_btn_library:
 
                 break;
+//<<<<<<< HEAD
+////>>>>>>> 1efe3ae89ab69dea886099a30f5d64cc02315f9a
+//=======
+//>>>>>>> origin/master
         }
     }
 }

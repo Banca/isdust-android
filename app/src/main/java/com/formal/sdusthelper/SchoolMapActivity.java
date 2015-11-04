@@ -78,10 +78,7 @@ public class SchoolMapActivity extends BaseSubPageActivity implements View.OnCli
         this.context = this;
         initView();//初始化地图
         initLocation();//初始化定位
-        //使用Intent获得参数
-        Intent intent = getIntent();
-        String judge = intent.getStringExtra("judge");
-        if(judge.equals("ATMmap"))
+
         initMaker();//初始化覆盖物
 
         //监听是否点击覆盖物
@@ -150,7 +147,21 @@ public class SchoolMapActivity extends BaseSubPageActivity implements View.OnCli
     private void initMaker() {
         mMarker = BitmapDescriptorFactory.fromResource(R.drawable.maker);
         mMarkerLy = (RelativeLayout) findViewById(R.id.id_maker_ly);
-        addOverloay(Info.infos);
+        //使用Intent获得参数
+        Intent intent = getIntent();
+        String judge = intent.getStringExtra("judge");
+        if(judge.equals("ATMmap"))
+            addOverloay(Info.infos1);
+        else if(judge.equals("printmap"))
+            addOverloay(Info.infos2);
+        else if(judge.equals("hospitalmap"))
+            addOverloay(Info.infos3);
+        else if(judge.equals("expressmap"))
+            addOverloay(Info.infos4);
+        else if(judge.equals("KTVmap"))
+            addOverloay(Info.infos5);
+        else if(judge.equals("barbershopmap"))
+            addOverloay(Info.infos6);
     }
 
     private void initLocation() {
@@ -170,7 +181,7 @@ public class SchoolMapActivity extends BaseSubPageActivity implements View.OnCli
     private void initView() {
         mMapView = (MapView) findViewById(R.id.id_bmapView);
         mBaiduMap = mMapView.getMap();
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(18.0f);//设置地图比例尺100米
+        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(16.0f);//设置地图比例尺100米
         mBaiduMap.setMapStatus(msu);
     }
 
