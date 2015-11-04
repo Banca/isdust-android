@@ -24,6 +24,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.Kebiao;
@@ -138,11 +139,6 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 return;
 
                 //下载课程表
-
-
-
-
-
             }
             Message mMessage=new Message();
             mMessage.what=1;
@@ -200,6 +196,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
             if (msg.what==1){//登录失败
                 preferences_editor.putBoolean("keeppwd", false);
                 preferences_editor.putString("password", "");
+                Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent();
                 intent.setClass(mContext, Schedule_login.class);
                 startActivity(intent);
