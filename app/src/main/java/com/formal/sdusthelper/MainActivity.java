@@ -37,13 +37,14 @@ public class MainActivity extends BaseMainActivity {
 		isdustapp1=(MyApplication)getApplication();
 		mContext=this;
 		MobclickAgent.updateOnlineConfig( mContext );
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
+		UmengUpdateAgent.update(this);
 
 
 		super.onCreate(savedInstanceState);
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
-			UmengUpdateAgent.setUpdateOnlyWifi(false);
-			UmengUpdateAgent.update(this);
+
 
 		}else {
 			ishadopended = true;
