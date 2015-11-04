@@ -3,7 +3,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/color_list_white">
+                android:background="@color/color_list_white"
+    >
 
     <TableLayout
         android:layout_width="300dp"

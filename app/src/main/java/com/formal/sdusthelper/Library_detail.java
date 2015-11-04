@@ -1,10 +1,11 @@
 package com.formal.sdusthelper;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
+
+import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,19 +17,21 @@ import pw.isdust.isdust.function.Library;
 /**
  * Created by wzq on 15/11/1.
  */
-public class Library_detail extends ListActivity  {
+public class Library_detail extends BaseSubListPageActivity {
     Library mLibrary;
     List<String[]> mguancang;
     SimpleAdapter madapter;
     Context mContext;
+    ListView mListView;
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_library_detail);
+            INIT(R.layout.activity_library_detail, "馆藏信息");
+            //mListView=(ListView)findViewById(R.id.ListView_library_detail);
+            //mListView.setEnabled(false);
             mContext=this;
-            TextView title_name = (TextView) findViewById(R.id.title_bar_name);
-            title_name.setText("馆藏信息");	//修改页面标题
+
             mLibrary=new Library();
             String bookrecnos=getIntent().getExtras().getString("bookrecnos");
             mguancang =mLibrary.getguancang(bookrecnos);
@@ -53,6 +56,7 @@ public class Library_detail extends ListActivity  {
                 R.layout.activity_library_detail_item, new String[] { "suoshuhao", "tiaomahao", "guancangzhuangtai", "guancangdi","huanshushijian"},
                 new int[] { R.id.textView_library_detail_suoshuhao, R.id.textView_library_detail_tiaomahao,
                         R.id.textView_library_detail_guancangzhuangtai,	R.id.textView_library_detail_guancangdi,R.id.textView_library_detail_huanshushijian});
+
         setListAdapter(madapter);	//捆绑适配器}
 
 //        madapter = new SimpleAdapter(mContext, listdata,
@@ -62,4 +66,5 @@ public class Library_detail extends ListActivity  {
 //        setListAdapter(madapter);	//捆绑适配器}
 
     }
+
 }
