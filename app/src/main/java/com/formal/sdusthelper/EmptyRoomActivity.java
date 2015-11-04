@@ -113,14 +113,14 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
 
                     map = new HashMap<String, Object>();
                     map.put("location", " "+ xiancheng_Kebiaoxinxi[i].getlocation());
-                    map.put("zhoushu","     第"+ xiancheng_Kebiaoxinxi[i].getxinqi()+"周");
+                    map.put("zhoushu","     第"+ xiancheng_Kebiaoxinxi[i].getzhoushu()+"周");
                     map.put("xingqi","     "+xingqizhuanhuan(xiancheng_Kebiaoxinxi[i].getxinqi()));
                     map.put("jieci",jiecizhuanhuan(xiancheng_Kebiaoxinxi[i].getjieci()));
                     listdata.add(map);
                 }
                 adapter = new SimpleAdapter(mContext, listdata,
                         R.layout.activity_emptyroom_item, new String[] { "location", "zhoushu", "xingqi", "jieci"},
-                        new int[] { R.id.textView_kongzixishi_location, R.id.textView_kongzixishi_xingqi,
+                        new int[] { R.id.textView_kongzixishi_location, R.id.textView_kongzixishi_zhoushu,
                                 R.id.textView_kongzixishi_xingqi,	R.id.textView_kongzixishi_jieci});
                 setListAdapter(adapter);	//捆绑适配器
                 dialog.dismiss();// }
