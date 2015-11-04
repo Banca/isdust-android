@@ -1,8 +1,9 @@
 package com.formal.sdusthelper;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -23,6 +24,7 @@ import com.formal.sdusthelper.datatype.ScheduleInformation;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -31,11 +33,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.EmptyClassroom;
+import pw.isdust.isdust.function.SchoolDate;
 
 /**
  * Created by wzq on 15/10/16.
  */
 public class EmptyRoomActivity extends BaseSubListPageActivity {
+
+    //储存教学楼选择
+    SharedPreferences.Editor preferences_editor;
+    SharedPreferences preferences_data;
 
     //按钮
     private Button mButton_chaxun_kongzixishi;
@@ -158,7 +165,12 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
         title_name.setText("空自习室查询");
         mButton_chaxun_kongzixishi=(Button)findViewById(R.id.button_chaxun_kongzixishi);
         mButton_chaxun_kongzixishi.setOnClickListener(mButton_onclick);
+        //实例化SharedPreferences对象
+        preferences_data = mContext.getSharedPreferences("EmptyRoomData", Activity.MODE_PRIVATE);
+        //实例化SharedPreferences.Editor对象
+        preferences_editor = preferences_data.edit();
         initParam();
+        zhinengxuanze();
 
 
 
@@ -324,6 +336,8 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
 
 //                                        bangding(strItem);
                                         mTextView_building.setText(strItem);
+                                        preferences_editor.putString("building",strItem);
+                                        preferences_editor.commit();
 
                                         if (mPopupWindow_building != null && mPopupWindow_building.isShowing()) {
                                             mPopupWindow_building.dismiss();
@@ -613,6 +627,34 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
             android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
             clipboard.setPrimaryClip(clip);
         }
+    }
+    public void zhinengxuanze(){//按照日期自动填写表单
+        int zhoushu,xingqi,jieci;
+        String building= preferences_data.getString("building", "");
+
+        Date mDate = new Date();
+        int hours = mDate.getHours();
+        zhoushu= SchoolDate.get_xiaoli();
+        jieci=SchoolDate.get_jieci(hours);
+        xingqi=SchoolDate.gei_xingqi();
+        if (hours>21){
+            if (xingqi!=7){
+                xingqi=xingqi+1;
+            }else{
+                xingqi=1;
+                zhoushu=zhoushu+1;
+            }
+
+        }
+        mTextView_zhoushu.setText(zhoushu+"");
+        mTextView_xingqi.setText(xingqizhuanhuan(xingqi));
+        mTextView_jieci.setText(jiecizhuanhuan(jieci));
+        if (building!=""){
+            mTextView_building.setText(building);
+        }
+
+
+
     }
 
 }

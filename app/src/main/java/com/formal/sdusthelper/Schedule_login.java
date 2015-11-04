@@ -17,10 +17,10 @@ import com.formal.sdusthelper.baseactivity.BaseMainActivity;
  */
 public class Schedule_login extends BaseMainActivity {
     SharedPreferences.Editor preferences_editor;
+    SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;
     EditText mEditText_user,mEditText_password;
     Button mButton_login;
-    SharedPreferences preferences_data;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_login);

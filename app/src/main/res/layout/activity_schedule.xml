@@ -123,7 +123,7 @@
                 android:layout_height="30dip"
                 android:background="#BF7F40"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="170dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="55dp">
 
 
@@ -145,7 +145,8 @@
                 android:layout_height="40dp"
                 android:text="重新加载课表"
                 android:id="@+id/button_update"
-                android:layout_marginTop="50dp"/>
+                android:layout_below="@+id/include2" android:layout_toRightOf="@+id/rl_topbar"
+                android:layout_toEndOf="@+id/rl_topbar"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -153,7 +154,10 @@
                 android:text="周次："
                 android:id="@+id/textView16"
                 android:layout_marginTop="60dp"
-                android:layout_marginLeft="120dp"/>
+                android:layout_marginLeft="20dp"/>
+            <Button android:layout_width="wrap_content" android:layout_height="40dp"
+                    android:text="注销" android:id="@+id/button_logout"
+                    android:layout_marginTop="50dp" android:layout_marginLeft="270dp"/>
 
         </RelativeLayout>
 

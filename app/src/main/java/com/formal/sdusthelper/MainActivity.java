@@ -14,6 +14,8 @@ import com.umeng.update.UmengUpdateAgent;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pw.isdust.isdust.function.SchoolDate;
+
 
 public class MainActivity extends BaseMainActivity {
 	static boolean ishadopended = false;
@@ -53,6 +55,8 @@ public class MainActivity extends BaseMainActivity {
 			timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
 
 		}
+
+		System.out.println("星期"+SchoolDate.gei_xingqi());
 
 
 	}
