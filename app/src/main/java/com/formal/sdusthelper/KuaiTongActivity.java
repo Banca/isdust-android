@@ -33,7 +33,7 @@ public class KuaiTongActivity extends BaseMainActivity {
 
         super.onCreate(savedInstanceState);
         INIT(R.layout.helper_kuaitong, "快通有线");
-        obj_kuaitong = new Network_Kuaitong();
+        obj_kuaitong = new Network_Kuaitong(this);
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
         //在读取SharedPreferences数据前要实例化出一个SharedPreferences对象

@@ -1,5 +1,7 @@
 package pw.isdust.isdust.function;
 
+import android.content.Context;
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +15,20 @@ import pw.isdust.isdust.Http;
  */
 public class Network_Kuaitong {
     Http mHttp;
-    public Network_Kuaitong(){
+    private Context mContext;
+
+    public Network_Kuaitong(Context context){
         mHttp=new Http();
+        mContext = context;
+
+        Networkjudge mNetworkjudge=new Networkjudge(mContext);
+        if(mNetworkjudge.judgetype()==3){
+            mHttp.setProxy("139.129.133.235", 1999);
+        }else if(mNetworkjudge.judgetype()==4){
+            if (mNetworkjudge.neiwaiwang_judge()==1){
+                mHttp.setProxy("139.129.133.235", 1999);
+            }
+        }
     }
     public String loginKuaitong(String user,String password){
         String text=mHttp.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx");

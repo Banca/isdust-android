@@ -1,6 +1,5 @@
 package com.formal.sdusthelper;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
 import com.formal.sdusthelper.datatype.Book;
 import com.umeng.analytics.MobclickAgent;
 
@@ -20,7 +20,9 @@ import java.util.Map;
 /**
  * Created by wzq on 15/11/1.
  */
-public class Library_result extends ListActivity {
+public class Library_result extends BaseSubListPageActivity {
+
+
     Context mContext;
     List<Book> mBooks;
     SimpleAdapter madapter;
@@ -29,13 +31,12 @@ public class Library_result extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MobclickAgent.onEvent(this, "Library_guancang");
-
+        INIT(R.layout.activity_library_result,"查询结果");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_library_result);
+        //setContentView(R.layout.activity_library_result);
         mContext=this;
         isdustapp=(MyApplication)getApplication();
-        TextView title_name = (TextView) findViewById(R.id.title_bar_name);
-        title_name.setText("查询结果");	//修改页面标题
+
         mBooks=isdustapp.getBooks();
 
         jiazaishuju();
