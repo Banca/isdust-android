@@ -14,8 +14,6 @@ import com.umeng.update.UmengUpdateAgent;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pw.isdust.isdust.function.SchoolDate;
-
 
 public class MainActivity extends BaseMainActivity {
 	static boolean ishadopended = false;
@@ -34,14 +32,25 @@ public class MainActivity extends BaseMainActivity {
 	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+//		Network_Kuaitong a=new Network_Kuaitong(this);
+//		a.loginSmartCard("1501060238", "147147");
+//		a.gaitaocan("1");
+//		a.gaitaocan("2");
+//		a.gaitaocan("3");
+//		a.gaitaocan("4");
+//		a.gaitaocan("5");
+//		a.gaitaocan("6");
+//		a.gaitaocan("7");
+//		a.gaitaocan("8");
+//		a.gaitaocan("9");
 		isdustapp1=(MyApplication)getApplication();
 		mContext=this;
-		MobclickAgent.updateOnlineConfig( mContext );
+		MobclickAgent.updateOnlineConfig(mContext);
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
 
 
-		super.onCreate(savedInstanceState);
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
 
@@ -57,8 +66,9 @@ public class MainActivity extends BaseMainActivity {
 
 		}
 
-		System.out.println("星期"+SchoolDate.gei_xingqi());
 
+//		Library a=new Library();
+//		String b=a.login("1501060225","960826wang");
 
 	}
 

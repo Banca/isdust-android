@@ -43,23 +43,6 @@
                     android:background="@color/color_page_white" />
 
                 <Button
-                    android:id="@+id/FormJiaowu_button_IntlligentSchedule"
-                    android:onClick="onFormJiaowuClick"
-                    android:text="  智能课程表"
-                    android:gravity="center_vertical|left"
-                    android:textSize="18sp"
-                    android:background="@drawable/selector_item_button"
-                    android:drawableLeft="@drawable/item_schedule"
-                    android:drawableRight="@drawable/arrow"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent" />
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="3px"
-                    android:background="@color/color_page_white" />
-
-                <Button
                     android:id="@+id/FormJiaowu_button_emptyroom"
                     android:onClick="onFormJiaowuClick"
                     android:text="  空自习室"
@@ -75,6 +58,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="3px"
                     android:background="@color/color_page_white" />
+
+
+                <Button
+                    android:id="@+id/FormJiaowu_button_IntlligentSchedule"
+                    android:onClick="onFormJiaowuClick"
+                    android:text="  智能课程表"
+                    android:gravity="center_vertical|left"
+                    android:textSize="18sp"
+                    android:background="@drawable/selector_item_button"
+                    android:drawableLeft="@drawable/item_schedule"
+                    android:drawableRight="@drawable/arrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent" android:visibility="invisible"/>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" android:visibility="invisible"/>
             </LinearLayout>
 
         </RelativeLayout>
