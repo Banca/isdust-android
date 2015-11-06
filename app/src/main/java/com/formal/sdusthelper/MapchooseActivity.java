@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 
-
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 

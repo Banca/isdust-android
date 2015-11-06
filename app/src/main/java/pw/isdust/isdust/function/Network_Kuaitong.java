@@ -119,8 +119,6 @@ public class Network_Kuaitong {
     }
     public void gaimima(String OldPassword,String NewPassword,String ConfirmPassword) throws IOException {
         String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetPwd?MercID=%E5%BF%AB%E9%80%9A", "OldPassword="+OldPassword+"&NewPassword="+NewPassword+"&ConfirmPassword="+ConfirmPassword );
-
-
     }
 
 }
