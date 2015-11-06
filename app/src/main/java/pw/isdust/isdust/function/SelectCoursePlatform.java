@@ -2,7 +2,7 @@ package pw.isdust.isdust.function;
 
 import android.content.Context;
 
-import com.formal.sdusthelper.datatype.Kebiao;
+import com.isdust.www.datatype.Kebiao;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.formal.sdusthelper.SlideMenu
+    <com.isdust.www.SlideMenu
         android:id="@+id/slide_menu"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
@@ -34,6 +34,6 @@
                 android:layout_above="@+id/textView10"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
-    </com.formal.sdusthelper.SlideMenu>
+    </com.isdust.www.SlideMenu>
 
 </RelativeLayout>

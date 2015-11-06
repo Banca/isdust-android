@@ -25,8 +25,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.formal.sdusthelper.Library_scan;
-import com.formal.sdusthelper.R;
+import com.isdust.www.Library_scan;
+import com.isdust.www.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.mining.app.zxing.camera.CameraManager;

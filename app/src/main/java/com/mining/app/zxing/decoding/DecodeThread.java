@@ -19,7 +19,7 @@ package com.mining.app.zxing.decoding;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.formal.sdusthelper.Library_scan;
+import com.isdust.www.Library_scan;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;

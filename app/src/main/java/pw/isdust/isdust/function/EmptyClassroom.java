@@ -1,6 +1,6 @@
 package pw.isdust.isdust.function;
 
-import com.formal.sdusthelper.datatype.ScheduleInformation;
+import com.isdust.www.datatype.ScheduleInformation;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

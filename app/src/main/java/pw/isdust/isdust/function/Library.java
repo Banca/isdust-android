@@ -1,6 +1,6 @@
 package pw.isdust.isdust.function;
 
-import com.formal.sdusthelper.datatype.Book;
+import com.isdust.www.datatype.Book;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

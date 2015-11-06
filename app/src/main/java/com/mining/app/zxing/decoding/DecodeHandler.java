@@ -22,8 +22,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.formal.sdusthelper.Library_scan;
-import com.formal.sdusthelper.R;
+import com.isdust.www.Library_scan;
+import com.isdust.www.R;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;

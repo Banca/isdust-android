@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
-import com.formal.sdusthelper.datatype.PurchaseHistory;
+import com.isdust.www.datatype.PurchaseHistory;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
