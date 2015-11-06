@@ -25,7 +25,7 @@
             android:layout_marginRight="20dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/relativeLayout"
+            android:id="@+id/relativeLayout_card"
             android:layout_alignParentBottom="true">
 
             <EditText
@@ -39,7 +39,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:singleLine="true"
-                android:numeric="integer"
                 android:hint="身份证号码"/>
 
             <EditText

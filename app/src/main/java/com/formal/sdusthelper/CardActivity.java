@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseMainActivity;
@@ -31,6 +32,8 @@ public class CardActivity extends BaseMainActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0){//登录成功
+                RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativeLayout_card);
+                mRelativeLayout_card.setVisibility(View.INVISIBLE);
                 Button btnlogin = (Button) findViewById(R.id.FormCard_button_login);
                 ImageButton btnquery = (ImageButton) findViewById(R.id.FormCard_button_query);
                 ImageButton btnchangepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
@@ -75,6 +78,7 @@ public class CardActivity extends BaseMainActivity {
             }
             dialog.dismiss();
             if (xiancheng_login_status.equals("登录成功")){
+
 
                 Message message = new Message();
                 message.what = 0;
@@ -169,6 +173,8 @@ public class CardActivity extends BaseMainActivity {
                 //启动activity
                 this.startActivity(intent);
             case R.id.FormCard_button_logout:	//注销按钮
+                RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativeLayout_card);
+                mRelativeLayout_card.setVisibility(View.VISIBLE);
                 btnlogin.setEnabled(true);
                 btnquery.setEnabled(false);
                 btnchangepwd.setEnabled(false);
