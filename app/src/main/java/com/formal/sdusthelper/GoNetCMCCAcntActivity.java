@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 
+import java.io.IOException;
+
 import pw.isdust.isdust.function.Networklogin_CMCC;
 
 /**
@@ -98,12 +100,17 @@ public class GoNetCMCCAcntActivity extends BaseSubPageActivity {
                 finish();
                 break;
             case R.id.btn_cmcc_dynamicpwd:
-                sendDynamicPwd();
+                try {
+                    sendDynamicPwd();
+                } catch (IOException e) {
+                    Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 break;
         }
     }
 
-    public void sendDynamicPwd() {
+    public void sendDynamicPwd() throws IOException {
         String result;
         Networklogin_CMCC obj_cmcc = new Networklogin_CMCC();
         result = obj_cmcc.cmcc_getyanzheng(text_cmcc_user_sec.getText().toString());

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.datatype.PurchaseHistory;
 import com.formal.sdusthelper.view.PullToRefreshView;
@@ -16,6 +17,7 @@ import com.formal.sdusthelper.view.PullToRefreshView.OnFooterRefreshListener;
 import com.formal.sdusthelper.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +102,9 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 				mPullToRefreshView.onFooterRefreshComplete();
 			}
+			if (msg.what == 10){
+				Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+			}
 		}
 	};
 
@@ -108,7 +113,15 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 	Runnable mRunnable_xiancheng_getdata = new Runnable() {
 		public void run() {
 
-			xiancheng_ph =  isdustapp.getUsercard().getPurData();
+			try {
+				xiancheng_ph =  isdustapp.getUsercard().getPurData();
+			} catch (IOException e) {
+				e.printStackTrace();
+				Message message = new Message();
+				message.what = 10;
+				handler.sendMessage(message);;
+				return;
+			}
 			Message message = new Message();
 			message.what = 2;
 			handler.sendMessage(message);

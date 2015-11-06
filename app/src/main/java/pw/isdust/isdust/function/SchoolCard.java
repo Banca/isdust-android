@@ -180,7 +180,7 @@ public class SchoolCard {
 
 
     }//密码转化
-    public String login(String user,String password){
+    public String login(String user,String password) throws IOException {
         mHttp.newcookie();
 
         importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
@@ -280,7 +280,7 @@ public class SchoolCard {
         return result_final;
 
     }//处理查询的文本
-    public String getkey(){
+    public String getkey() throws IOException {
         //get_key_init
         String text=mHttp.get_string("http://192.168.100.126/accounthisTrjn.action");
         Pattern mpattern = Pattern.compile("\"/accounthisTrjn.action\\?__continue=([\\s\\S]*?)\"");
@@ -302,7 +302,7 @@ public class SchoolCard {
 
         return result;
     }//获取会话key
-    public String[][]chaxun(String inputStartDate,String inputEndDate,int page){
+    public String[][]chaxun(String inputStartDate,String inputEndDate,int page) throws IOException {
         mkey=getkey();
         String text= mHttp.post_string("http://192.168.100.126/accounthisTrjn.action?__continue=" + mkey, "inputStartDate=" + inputStartDate + "&inputEndDate=" + inputEndDate + "&pageNum=" + page);
         page_current=page;
@@ -317,13 +317,13 @@ public class SchoolCard {
 
     }
 
-    public String[][]chaxun_nextpage(String inputStartDate,String inputEndDate,int page){
+    public String[][]chaxun_nextpage(String inputStartDate,String inputEndDate,int page) throws IOException {
 
         String result[][]= fenxi(mHttp.post_string("http://192.168.100.126/accountconsubBrows.action", "inputStartDate="+inputStartDate+"&inputEndDate="+inputEndDate+"&pageNum="+page));
         return result;
 
     }
-    public String[][]chaxun(){
+    public String[][]chaxun() throws IOException {
         mDate=new Date();//初始化日期
         mSimpleDateFormat=new SimpleDateFormat("yyyyMMdd");
         page_current=0;
@@ -339,7 +339,7 @@ public class SchoolCard {
         return result;
 
     }
-    public String[][]nextpage(){
+    public String[][]nextpage() throws IOException {
         page_current=page_current+1;
         if (page_current>page_total){
 
@@ -355,7 +355,7 @@ public class SchoolCard {
 
 
     }
-    public String[][]chaxunlishi(){
+    public String[][]chaxunlishi() throws IOException {
         page_current=1;
         day_current=day_get();
         return chaxun(day_current,day_current,page_current);
@@ -397,7 +397,7 @@ public class SchoolCard {
     public  void chongzhijilu(){
         conid=0;
     }
-    public PurchaseHistory[] getPurData() {
+    public PurchaseHistory[] getPurData() throws IOException {
         PurchaseHistory[] ph;
         if (conid == 0) {	//第一次获取时，获取当天和昨天几条记录
             String[][] str1,str2;
@@ -445,7 +445,7 @@ public class SchoolCard {
     public String getStuNumber() {return personalinformation[3]; }
     //获取学生专业班级
     public String getStuClass() {return personalinformation[13]; }
-    public String changepassword(String oldpassword,String newpassword,String shengfenzheng){
+    public String changepassword(String oldpassword,String newpassword,String shengfenzheng) throws IOException {
         if (!shengfenzheng.equals(getShengfenzheng())){
             return "身份证号码错误";
         }
@@ -482,7 +482,7 @@ public class SchoolCard {
     private String getXuegonghao(){
         return personalinformation[3];
     }
-    public String guashi(String password,String shengfenzheng){
+    public String guashi(String password,String shengfenzheng) throws IOException {
         if (!shengfenzheng.equals(getShengfenzheng())){
             return "身份证号码错误";
         }

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubListPageActivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +36,12 @@ public class Library_detail extends BaseSubListPageActivity {
 
             mLibrary=new Library();
             String bookrecnos=getIntent().getExtras().getString("bookrecnos");
-            mguancang =mLibrary.getguancang(bookrecnos);
+            try {
+                mguancang =mLibrary.getguancang(bookrecnos);
+            } catch (IOException e) {
+                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                return;
+            }
             jiazaishuju();
         }
     public void jiazaishuju(){

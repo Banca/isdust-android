@@ -13,6 +13,8 @@ import com.formal.sdusthelper.baseactivity.BaseMainActivity;
 import com.formal.sdusthelper.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
+
 import pw.isdust.isdust.function.Network_Kuaitong;
 
 /**
@@ -105,13 +107,22 @@ public class KuaiTongActivity extends BaseMainActivity {
             @Override
             public void run() {
                 final String result;
-                result = obj_kuaitong.loginKuaitong(kuaitong_user,kuaitong_pwd);
+                try {
+                    result = obj_kuaitong.loginKuaitong(kuaitong_user,kuaitong_pwd);
+                } catch (IOException e) {
+                    Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 KuaiTongActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (result.equals("登录成功")){
                             imgstate.setBackgroundResource(R.drawable.pwd);
-                            carddata = obj_kuaitong.getKuaitongInfo();
+                            try {
+                                carddata = obj_kuaitong.getKuaitongInfo();
+                            } catch (IOException e) {
+                                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                                return;                            }
                             textuserstate.setText(textuserstate.getText().toString()+carddata[11]);//用户状态
                             textpackage.setText(textpackage.getText().toString()+carddata[2]);//当前套餐
                             textflow.setText("   剩余流量："+carddata[5]);

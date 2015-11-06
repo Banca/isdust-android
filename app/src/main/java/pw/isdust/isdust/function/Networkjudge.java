@@ -7,6 +7,8 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.text.TextUtils;
 
+import java.io.IOException;
+
 import pw.isdust.isdust.Http;
 
 /**
@@ -40,9 +42,18 @@ public class Networkjudge {
         return 4;//0.无网络1.CMCC2.CHINAUNICOME3.纯数据4.其它WIFI
     }
    public int cmcc_judge(){
-      String text= mHttp.get_string("http://172.16.0.86/","gb2312");
+       String text= null;
+       try {
+           text = mHttp.get_string("http://172.16.0.86/","gb2312");
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
        if (text.contains("注销")){
-           text= mHttp.get_string("http://baidu.com");
+           try {
+               text= mHttp.get_string("http://baidu.com");
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
            if (text.contains("百度")){
                return 2;
            }
@@ -52,7 +63,12 @@ public class Networkjudge {
    }
 
     public boolean isOnline() {
-        String text= mHttp.get_string("http://baidu.com");
+        String text= null;
+        try {
+            text = mHttp.get_string("http://baidu.com");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (text.contains("百度")){
             return true;
         }
@@ -60,14 +76,24 @@ public class Networkjudge {
     }
 
     public int chinaunicom_judge(){
-        String text= mHttp.get_string("http://10.249.255.253/","gb2312");
+        String text= null;
+        try {
+            text = mHttp.get_string("http://10.249.255.253/","gb2312");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (text.contains("注销")){
             return 1;
         }
         return 0;//0.没有登录1.登录一层
     }
     public int neiwaiwang_judge(){//对于连接的不是cmcc的wifi判定
-        String html=mHttp.get_string("http://192.168.109.62/");
+        String html= null;
+        try {
+            html = mHttp.get_string("http://192.168.109.62/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (html.contains("RadioButtonList1_0")){
             return 0;//内网
         }

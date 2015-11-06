@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
+
 /**
  * Created by Administrator on 2015/10/16.
  */
@@ -20,8 +22,10 @@ public class CardLossActivity extends BaseSubPageActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext=this;
         INIT(R.layout.activity_cardloss, "校园卡挂失");
         MobclickAgent.onEvent(this, "schoolcard_guashi");
+
 
     }
 
@@ -40,10 +44,17 @@ public class CardLossActivity extends BaseSubPageActivity {
                                 String strid = textid.getText().toString();
                                 String strpwd = textpwd.getText().toString();
                                 String result;
-                                result = isdustapp.getUsercard().guashi(strpwd, strid);
-                                Toast.makeText(mContext, result, 1000).show();
-                                if (result.equals("挂失成功"))
-                                    finish();
+                                try {
+                                    result = isdustapp.getUsercard().guashi(strpwd, strid);
+                                    Toast.makeText(mContext, result, 1000).show();
+                                    if (result.equals("挂失成功"))
+                                        finish();
+                                } catch (Exception e) {
+                                    Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                                    return;
+
+                                }
+
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {

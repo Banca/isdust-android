@@ -51,16 +51,28 @@ public class CardActivity extends BaseMainActivity {
 //				intent.setClass(mContext,CardListView.class);
 //				mContext.startActivity(intent);
             }
-            if (msg.what == 1){
-                Toast.makeText(mContext, xiancheng_login_status, 1000).show();
+            if (msg.what == 1){//显示登录状态
+                Toast.makeText(mContext, xiancheng_login_status, Toast.LENGTH_SHORT).show();
             }
+            if (msg.what == 10){//网络超时
+                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+            }
+
 
         }
     };
     Runnable mRunnable_xiancheng_login = new Runnable() {
         @Override
         public void run() {
-            xiancheng_login_status = isdustapp.getUsercard().login(xiancheng_username,xiancheng_password);
+            try {
+                xiancheng_login_status = isdustapp.getUsercard().login(xiancheng_username,xiancheng_password);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Message message = new Message();
+                message.what = 10;
+                handler.sendMessage(message);;
+                return;
+            }
             dialog.dismiss();
             if (xiancheng_login_status.equals("登录成功")){
 

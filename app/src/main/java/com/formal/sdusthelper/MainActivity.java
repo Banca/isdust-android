@@ -33,6 +33,9 @@ public class MainActivity extends BaseMainActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+//		Http b=new Http();
+//		String c=b.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building=J1&zhoushu=9&xingqi=5&jieci=3");
 //		Network_Kuaitong a=new Network_Kuaitong(this);
 //		a.loginSmartCard("1501060238", "147147");
 //		a.gaitaocan("1");

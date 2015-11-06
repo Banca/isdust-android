@@ -2,6 +2,8 @@ package pw.isdust.isdust.function;
 
 import android.telephony.SmsManager;
 
+import java.io.IOException;
+
 import pw.isdust.isdust.function.baseclass.BaseNetworklogin;
 
 /**
@@ -14,7 +16,7 @@ public class Networklogin_CMCC extends BaseNetworklogin {
 
     String xiaxian;
 
-    public String login(String user,String password,String user2,String password2){
+    public String login(String user,String password,String user2,String password2) throws IOException {
         String submit="DDDDD="+user+"&upass="+encodepassword(password)+"&R1=0&R2=1&para=00&0MKKey=123456";
         String html= mHttp.post_string("http://172.16.0.86/",submit,"gb2312");
         if(html.contains("登录成功窗")){
@@ -28,7 +30,7 @@ public class Networklogin_CMCC extends BaseNetworklogin {
         return "";
     }
 
-    public void cmcc_init(){
+    public void cmcc_init() throws IOException {
         String html= mHttp.get_string("http://baidu.com/");
         wlanuserip=zhongjian(html, "<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=\"", "\"/>", 0);
         wlanacname=zhongjian(html,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=\"","\"/>",0);
@@ -47,7 +49,7 @@ public class Networklogin_CMCC extends BaseNetworklogin {
         return true;
     }
 
-    public String cmcc_getyanzheng(String user){
+    public String cmcc_getyanzheng(String user) throws IOException {
         String submit="username="+user+"&password=&cmccdynapw=cmccdynapw&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
         String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
         if (html1.contains("动态密码已经发往手机号码")){
@@ -56,7 +58,7 @@ public class Networklogin_CMCC extends BaseNetworklogin {
 
         return "cmcc_geyanzheng:未知错误";
     }
-    public String cmcc_login(String user, String password){
+    public String cmcc_login(String user, String password) throws IOException {
 
         String submit="username="+user+"&password="+password+"&cmccdynapw=&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
         String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
@@ -71,10 +73,10 @@ public class Networklogin_CMCC extends BaseNetworklogin {
             return "登录成功";        }
         return "未知错误";
     }
-    public void xiaxian_cmcc(){
+    public void xiaxian_cmcc() throws IOException {
         mHttp.get_string(xiaxian);
     }
-    public boolean isOnline(){
+    public boolean isOnline() throws IOException {
         String html= mHttp.get_string("http://baidu.com/");
         if (html.contains("百度一下")){
             return true;

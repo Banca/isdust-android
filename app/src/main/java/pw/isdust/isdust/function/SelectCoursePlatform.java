@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class SelectCoursePlatform {
         }
 //        mHttp.setProxy("219.146.243.3", 2000);
     }
-    public String login_zhengfang(String user, String pwd){
+    public String login_zhengfang(String user, String pwd) throws IOException {
         String text_web;
         text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx", "gb2312");
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
@@ -62,7 +63,7 @@ public class SelectCoursePlatform {
 
         return "未知错误login_zhengfang";
     }
-    public String login_xuankepingtai(String user, String pwd){
+    public String login_xuankepingtai(String user, String pwd) throws IOException {
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/Account/Login?ReturnUrl=%2F");
         String __RequestVerificationToken= Networklogin_CMCC.zhongjian(text_web, "<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0);
@@ -80,7 +81,7 @@ public class SelectCoursePlatform {
 
         return "";
     }
-    public Kebiao[] chaxun(String zhou,String xn,String xq){
+    public Kebiao[] chaxun(String zhou,String xn,String xq) throws IOException {
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
         text_web=text_web.replace(" rowspan=\"2\" ","");

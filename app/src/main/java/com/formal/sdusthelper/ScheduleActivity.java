@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.formal.sdusthelper.datatype.Kebiao;
+import com.formal.sdusthelper.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONArray;
@@ -116,7 +117,9 @@ public class ScheduleActivity extends BaseSubPageActivity {
     protected int aveWidth;
     DisplayMetrics dm;
 
-//线程池
+     IsdustDialog customRuningDialog;
+
+    //线程池
     String xianchengchi_user;
     String xianchengchi_password;
     String xianchengchi_login_status;
@@ -130,8 +133,18 @@ public class ScheduleActivity extends BaseSubPageActivity {
         @Override
         public void run() {
             mXuankepingtai=new SelectCoursePlatform(mContext);
+
 //            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
-            xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
+            try {
+                xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
+            } catch (IOException e) {
+                Message mMessage=new Message();
+                mMessage.what = 10;
+                mHandler.sendMessage(mMessage);;
+                return;
+            }
+            //customRuningDialog.dismiss();
+
             if(xianchengchi_login_status.contains("登录成功")){
                 Message mMessage=new Message();
                 mMessage.what=0;
@@ -156,7 +169,13 @@ public class ScheduleActivity extends BaseSubPageActivity {
             Message mMessage=new Message();
             mMessage.what=3;
             for(int i=0;i<zhoushu;i++){
-                xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"","2015-2016","1"));
+                try {
+                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"","2015-2016","1"));
+                } catch (Exception e) {
+                    mMessage.what = 10;
+                    mHandler.sendMessage(mMessage);;
+                    return;
+                }
                 xianchengchi_percent=((double)(i+1)/(double)zhoushu)*100;
                 xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
             }
@@ -183,6 +202,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
         public void  handleMessage(Message msg){
             super.handleMessage(msg);
             if (msg.what==0){//登录成功
+                customRuningDialog.dismiss();    //打开等待框
 
                 xianchengchi_ProgressDialog = new ProgressDialog(mContext);
                 xianchengchi_ProgressDialog.setMessage("正在下载课程表到本地");
@@ -194,6 +214,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 return;
             }
             if (msg.what==1){//登录失败
+                customRuningDialog.dismiss();
                 preferences_editor.putBoolean("keeppwd", false);
                 preferences_editor.putString("password", "");
                 Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
@@ -220,6 +241,9 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 mButton_update.setClickable(true);
                 return;
             }
+            if (msg.what == 10){//网络超时
+                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -234,7 +258,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
         //实例化SharedPreferences.Editor对象
         preferences_editor = preferences_data.edit();
 
-
+        customRuningDialog = new IsdustDialog(mContext,
+                IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);
 
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("课表查询");
@@ -259,6 +284,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
                     xianchengchi_user=user_save;
                     xianchengchi_password=password_save;}
 
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage("正在登录");
 
                 executorService.execute(mRunnable_login);
             }
@@ -378,7 +405,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 xianchengchi_user=user_save;
                 xianchengchi_password=password_save;}
 
-
+            customRuningDialog.show();    //打开等待框
+            customRuningDialog.setMessage("正在登录");
             executorService.execute(mRunnable_login);
         return;}
 

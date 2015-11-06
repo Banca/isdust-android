@@ -33,7 +33,7 @@ public class Library {
     public Library(){
         mHttp=new Http();
     }
-    public String login(String user,String password){
+    public String login(String user,String password) throws IOException {
         String msubmit="rdid="+user+"&rdPasswd="+md5(password)+"&returnUrl=";
         String text= mHttp.post_string("http://interlib.sdust.edu.cn/opac/reader/doLogin",msubmit);
         if (text.contains("读者姓名")){
@@ -61,7 +61,7 @@ public class Library {
     public String get_name(){
         return mPersonalInformation[1];
     }
-    public String [] [] get_borrwingdetail(){
+    public String [] [] get_borrwingdetail() throws IOException {
         String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/loan/renewList");
         Pattern mPattern=Pattern.compile("<td width=\"40\"><input type=\"checkbox\" name=\"barcodeList\" value=\"([0-9]*?)\" />[\\s\\S]*?target=\"_blank\">([\\S\\s]*?)</a></td>[\\S\\s]*?<td width=\"100\">([0-9]{4}-[0-9]{2}-[0-9]{2})[\\S\\s]*?<td width=\"100\">([0-9]{4}-[0-9]{2}-[0-9]{2})");
         Matcher mMatcher=mPattern.matcher(text);
@@ -107,7 +107,7 @@ public class Library {
 //
 //        return result;
 //    }
-    public void json_analyze(){
+    public void json_analyze() throws IOException {
         String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/api/holding/1900737876");
         try {
             JSONArray mJSONArray=new JSONArray(text);
@@ -118,7 +118,7 @@ public class Library {
         }
 
     }
-    public String renew_all(){
+    public String renew_all() throws IOException {
         String text=mHttp.post_string("http://interlib.sdust.edu.cn/opac/loan/doRenew","furl=%2Fopac%2Floan%2FrenewList&renewAll=all" );
         String content=Networklogin_CMCC.zhongjian(text, "<div style=\"margin:20px auto; width:50%; height:auto!important; min-height:200px; border:2px dashed #ccc;\">", "<input", 0);
         content=content.replace("\t","");
@@ -245,7 +245,7 @@ public class Library {
         return date;
     }
     
-    public  List<Book> analyze_search(String text){
+    public  List<Book> analyze_search(String text) throws IOException {
         List<Book> mBook=new ArrayList<Book>();
         Pattern mPattern_all=Pattern.compile("<td class=\"bookmetaTD\" style=\"background-color([\\s\\S]*?)<div id=\"bookSimpleDetailDiv_");
         Matcher mMatcher_all=mPattern_all.matcher(text);
@@ -317,15 +317,15 @@ public class Library {
         return "";
     }
 
-    public List<Book> findBookByISBN(String ISBN){
+    public List<Book> findBookByISBN(String ISBN) throws IOException {
         List<Book> mBook=analyze_search(mHttp.get_string("http://interlib.sdust.edu.cn/opac/search?rows=100&hasholding=1&searchWay0=marc&q0=&logical0=AND&q=" + ISBN + "&searchWay=isbn&scWay=dim&searchSource=reader"));
     return mBook;
     }
-    public List<Book> findBookByName(String Name){
+    public List<Book> findBookByName(String Name) throws IOException {
         List<Book> mBook=analyze_search(mHttp.get_string( "http://interlib.sdust.edu.cn/opac/search?rows=100&hasholding=1&searchWay0=marc&q0=&logical0=AND&q="+Name+"&searchWay=title&searchSource=reader"));
         return mBook;
     }
-    public  List<String []> getguancang(String bookrecno){
+    public  List<String []> getguancang(String bookrecno) throws IOException {
         String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/api/holding/"+bookrecno);
         List<String []> result=getBook(text);
         return result;

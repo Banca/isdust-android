@@ -2,6 +2,8 @@ package com.formal.sdusthelper.datatype;
 
 import android.graphics.Bitmap;
 
+import java.io.IOException;
+
 import pw.isdust.isdust.Http;
 import pw.isdust.isdust.function.Networklogin_CMCC;
 
@@ -75,7 +77,7 @@ public class Book {
     public void setSuoshuhao(String Suoshuhao){
         mSuoshuhao=Suoshuhao;
     }
-    public void downloadpicture(){
+    public void downloadpicture() throws IOException {
         String json=mHttp.get_string("http://api.interlib.com.cn/interlibopac/websearch/metares?cmdACT=getImages&isbns="+mISBN);
         String coverlink=Networklogin_CMCC.zhongjian(json,"coverlink\":\"","\",\"handleTi",0);
         mBitmap=mHttp.get_image(coverlink);

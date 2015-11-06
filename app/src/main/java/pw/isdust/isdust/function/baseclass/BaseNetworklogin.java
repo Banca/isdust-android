@@ -1,5 +1,6 @@
 package pw.isdust.isdust.function.baseclass;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -15,7 +16,7 @@ public class BaseNetworklogin {
         mHttp=new Http();
     }
 
-    public String login(String user1,String password1,String user2,String password2){return "";}
+    public String login(String user1,String password1,String user2,String password2) throws IOException {return "";}
 
     public boolean logout(){return false;}
 
@@ -23,7 +24,7 @@ public class BaseNetworklogin {
 
     public boolean query() {return false;}
 
-    public boolean isOnline() {return false;}
+    public boolean isOnline() throws IOException {return false;}
 
     protected String encodepassword(String rawpassword){
         String pid="1";

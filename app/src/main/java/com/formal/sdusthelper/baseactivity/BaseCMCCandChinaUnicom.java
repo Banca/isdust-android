@@ -1,9 +1,9 @@
 package com.formal.sdusthelper.baseactivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -12,6 +12,10 @@ import com.formal.sdusthelper.GoNetCMCCAcntActivity;
 import com.formal.sdusthelper.GoNetChinaUnicomAcntActivity;
 import com.formal.sdusthelper.R;
 import com.formal.sdusthelper.view.IsdustDialog;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.Networkjudge;
 import pw.isdust.isdust.function.baseclass.BaseNetworklogin;
@@ -32,6 +36,87 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
     private String str_user1,str_user2,
             str_pwd1,str_pwd2;
 
+    //构建线程池
+    String xiancheng_result;
+    ExecutorService mExecutorService= Executors.newCachedThreadPool();
+    final android.os.Handler handler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 0){//未连接
+                imgbtn_state.setBackgroundResource(R.drawable.offline);//设置状态按钮
+                customRuningDialog.hide();
+            }
+            if (msg.what == 1){//已连接
+                imgbtn_state.setBackgroundResource(R.drawable.online);//设置状态按钮
+                customRuningDialog.hide();
+            }
+            if (msg.what == 2){//登录成功
+                imgbtn_state.setBackgroundResource(R.drawable.online);
+                customRuningDialog.hide();
+                Toast.makeText(BaseCMCCandChinaUnicom.this, xiancheng_result, Toast.LENGTH_SHORT).show();
+
+            }
+            if (msg.what == 3){//登录失败
+                customRuningDialog.hide();
+                Toast.makeText(BaseCMCCandChinaUnicom.this, xiancheng_result, Toast.LENGTH_SHORT).show();
+
+            }
+
+            if (msg.what == 10){//网络超时
+                Toast.makeText(BaseCMCCandChinaUnicom.this, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+    };
+    Runnable xiancheng_login=new Runnable() {
+        @Override
+        public void run() {
+
+            try {
+                xiancheng_result = obj_gonet.login(str_user1,str_pwd1,str_user2,str_pwd2);
+            } catch (IOException e) {
+                Message message = new Message();
+                message.what = 10;
+                handler.sendMessage(message);
+                return;
+            }
+            if(xiancheng_result.equals("登录成功")){
+                Message message = new Message();
+                message.what = 2;
+                handler.sendMessage(message);
+            return;
+        }else {
+                Message message = new Message();
+                message.what = 3;
+                handler.sendMessage(message);
+            }
+        }
+
+
+                                                      };
+    Runnable xiancheng_JudgeNet= new Runnable() {
+        @Override
+        public void run() {
+            boolean isonline = obj_netstate.isOnline();
+            if (isonline) {
+
+                Message message = new Message();
+                message.what = 1;//已连接
+                handler.sendMessage(message);
+
+
+
+            }
+            else {
+                Message message = new Message();
+                message.what = 0;//未连接
+                handler.sendMessage(message);
+            }
+        }
+    };
+
     protected void BaseCMCCandChinaUnicomInit() {
         imgbtn_state = (ImageButton) findViewById(R.id.btn_state); //连接状态按钮
         customRuningDialog = new IsdustDialog(mContext,
@@ -44,8 +129,10 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
         str_user2 =sharedPreferences.getString("username_sec", "");
         str_pwd2 =sharedPreferences.getString("password_sec", "");
         if (!judgeEmptyData()) {
-            initTreadJudgeNet();
-            threadJudgeNet.start();
+            obj_netstate = new Networkjudge(this);
+            customRuningDialog.show();    //打开等待框
+            customRuningDialog.setMessage("正在检测网络状态...");
+            mExecutorService.execute(xiancheng_JudgeNet);
         }   //如果没有空数据，就判断网络状态
     }
 
@@ -60,7 +147,9 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
                     startActivityForResult(intent, GoNetChinaUnicomAcntActivity.RESULT_CODE);
                 break;
             case R.id.btn_quicklogin:  //一键登录
-                initThreadLogin();  //初始化进程
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage("正在登录...");
+                mExecutorService.execute(xiancheng_login);  //初始化进程
                 threadLogin.start();    //打开登录进程
                 break;
             case R.id.btn_quicklogout:
@@ -121,54 +210,7 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
         }
     }   //处理子页面返回的数据
 
-    private void initThreadLogin() {
-        customRuningDialog.show();    //打开等待框
-        customRuningDialog.setMessage("正在登录...");
-        threadLogin = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final String result;
-                result = obj_gonet.login(str_user1,str_pwd1,str_user2,str_pwd2);
-                BaseCMCCandChinaUnicom.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (result.equals("登录成功"))
-                            imgbtn_state.setBackgroundResource(R.drawable.online);
-                        customRuningDialog.hide();
-                        Toast.makeText(BaseCMCCandChinaUnicom.this, result, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });     //初始化登录线程
-    }   //快捷登录CMCC
 
-    private void initTreadJudgeNet() {
-        obj_netstate = new Networkjudge(this);
-        customRuningDialog.show();    //打开等待框
-        customRuningDialog.setMessage("正在检测网络状态...");
-        threadJudgeNet = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                boolean isonline = obj_netstate.isOnline();
-                if (isonline) {
-                    BaseCMCCandChinaUnicom.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            imgbtn_state.setBackgroundResource(R.drawable.online);//设置状态按钮
-                            customRuningDialog.hide();
-                        }
-                    });
-                }   //已连接
-                else {
-                    BaseCMCCandChinaUnicom.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            imgbtn_state.setBackgroundResource(R.drawable.offline);//设置状态按钮
-                            customRuningDialog.hide();
-                        }
-                    });
-                }   //未连接
-            }
-        });
-    }   //判断当前网络及界面切换
+
+
 }

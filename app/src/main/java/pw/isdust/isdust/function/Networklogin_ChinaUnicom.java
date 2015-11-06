@@ -1,7 +1,6 @@
 package pw.isdust.isdust.function;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
 
 import pw.isdust.isdust.Http;
 import pw.isdust.isdust.function.baseclass.BaseNetworklogin;
@@ -16,7 +15,7 @@ public class Networklogin_ChinaUnicom extends BaseNetworklogin {
     String xiaxian;
     Http mHttp;
 
-    public String login(String user,String password,String user2,String password2){
+    public String login(String user,String password,String user2,String password2) throws IOException {
         String submit="DDDDD="+user+"&upass="+encodepassword(password)+"&R1=0&R2=1&para=00&0MKKey=123456";
         String html= mHttp.post_string("http://10.249.255.253/", submit, "gb2312");
         if(html.contains("登录成功窗")){

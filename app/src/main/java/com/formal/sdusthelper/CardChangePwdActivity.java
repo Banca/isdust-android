@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.formal.sdusthelper.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
+
 /**
  * Created by Administrator on 2015/10/16.
  */
@@ -37,10 +39,16 @@ public class CardChangePwdActivity extends BaseSubPageActivity {
                 }
                 if (strnewpwd.equals(strrenewpwd)) {
                     String result;
-                    result = isdustapp.getUsercard().changepassword(stroldpwd,strnewpwd,strid);
-                    Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
-                    if (result.equals("修改密码成功"))
-                        finish();
+                    try {
+                        result = isdustapp.getUsercard().changepassword(stroldpwd,strnewpwd,strid);
+                        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+                        if (result.equals("修改密码成功"))
+                            finish();
+                    } catch (IOException e) {
+                        Toast.makeText(this, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+
                 }
                 else
                     Toast.makeText(this, "新密码前后不一致", Toast.LENGTH_SHORT).show();

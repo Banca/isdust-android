@@ -40,8 +40,15 @@ public class LibraryActivity extends BaseMainActivity {
     Runnable mRunnable_findbookbyisbn=new Runnable() {
         @Override
         public void run() {
-            mBooks=mLibrary.findBookByISBN(mxiancheng_isbn);
+
             Message message = new Message();
+            try {
+                mBooks=mLibrary.findBookByISBN(mxiancheng_isbn);
+            } catch (Exception e) {
+                message.what = 10;
+                mHandler.sendMessage(message);;
+                return;            }
+
             if (mBooks.size()==0){
                 message.what = 0;
                 mHandler.sendMessage(message);;
@@ -55,8 +62,15 @@ public class LibraryActivity extends BaseMainActivity {
     Runnable mRunnable_findbookbyname=new Runnable() {
         @Override
         public void run() {
-            mBooks=mLibrary.findBookByName(mxiancheng_bookname);
             Message message = new Message();
+
+            try {
+                mBooks=mLibrary.findBookByName(mxiancheng_bookname);
+            } catch (Exception e) {
+                message.what = 10;
+                mHandler.sendMessage(message);;
+                return;
+            }
 
             if (mBooks.size()==0){
                 message.what = 0;
@@ -87,7 +101,9 @@ public class LibraryActivity extends BaseMainActivity {
             intent.setClass(mContext,Library_result.class);
             startActivity(intent);
             return;
-         }
+         }else if (msg.what == 10){
+                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 

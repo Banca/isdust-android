@@ -5,6 +5,8 @@ import com.formal.sdusthelper.datatype.ScheduleInformation;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import pw.isdust.isdust.Http;
 
 /**
@@ -39,7 +41,7 @@ public class EmptyClassroom {
 
 
     }
-    public ScheduleInformation[] getEmptyClassroom(String building, int schooldate, int week, int jieci){//按教室获取整周课程表
+    public ScheduleInformation[] getEmptyClassroom(String building, int schooldate, int week, int jieci) throws IOException {//按教室获取整周课程表
         //?method=4&building=&zhoushu=&xingqi=&jieci=
         String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+ schooldate +"&xingqi="+week+"&jieci="+jieci);
         ScheduleInformation[]result=jiexi(text);

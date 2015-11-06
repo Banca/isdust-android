@@ -132,6 +132,10 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
                 setListAdapter(adapter);	//捆绑适配器
                 dialog.dismiss();// }
 
+            }else if(msg.what==10){
+
+                dialog.dismiss();
+                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -144,11 +148,19 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
 
             //listdata=null;
             mKongzixishi=new EmptyClassroom();
-            xiancheng_Kebiaoxinxi = mKongzixishi.getEmptyClassroom(xiancheng_building, xiancheng_zhoushu, xiancheng_xingqi, xiancheng_jieci);
+            try {
+                xiancheng_Kebiaoxinxi = mKongzixishi.getEmptyClassroom(xiancheng_building, xiancheng_zhoushu, xiancheng_xingqi, xiancheng_jieci);
 
-            Message message=new Message();
-            message.what=0;
-            mHandler.sendMessage(message);
+                Message message=new Message();
+                message.what=0;
+                mHandler.sendMessage(message);
+            }catch (Exception e){
+                Message message=new Message();
+                message.what=10;
+                mHandler.sendMessage(message);
+            }
+
+
 
         }
 
