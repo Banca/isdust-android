@@ -29,7 +29,6 @@ public class SetAccountActivity extends BaseSubPageActivity {
                 intent.setClass(this,GoNetCMCCAcntActivity.class);
                 this.startActivity(intent);
                 break;
-
             case R.id.set_btn_chinaunicom:
                 intent.setClass(this,GoNetChinaUnicomAcntActivity.class);
                 this.startActivity(intent);
@@ -41,7 +40,6 @@ public class SetAccountActivity extends BaseSubPageActivity {
             case R.id.set_btn_library:
 
                 break;
-
         }
     }
 }

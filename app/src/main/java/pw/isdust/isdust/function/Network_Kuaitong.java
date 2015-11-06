@@ -32,6 +32,7 @@ public class Network_Kuaitong {
         }
     }
     public String loginKuaitong(String user,String password) throws IOException {
+
         String text=mHttp.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx");
         String __VIEWSTATE= (Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"", "\" />", 0).replace("=", ""));
         String __EVENTVALIDATION=(Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"", "\" />", 0).replace("=",""));

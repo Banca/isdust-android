@@ -100,7 +100,7 @@ public class KuaiTongActivity extends BaseMainActivity {
             startAcntActivity();
             return;
         }   //有空数据，打开账号管理
-        textuser.setText(textuser.getText().toString()+kuaitong_user);
+        textuser.setText("用户："+kuaitong_user);
         customRuningDialog.show();    //打开等待框
         customRuningDialog.setMessage("正在获取数据...");
         Thread threadRe = new Thread(new Runnable() {
