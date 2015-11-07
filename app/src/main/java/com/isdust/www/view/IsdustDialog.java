@@ -37,6 +37,7 @@ public class IsdustDialog extends Dialog {
     public IsdustDialog(Context context, int width, int height, int layout, int style) {
         super(context, style);
         // 设置内容
+        setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         selectView(layout);
         layout_id = layout;
 

@@ -15,31 +15,36 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/10/21.
  */
 public class Network_Kuaitong {
-    Http mHttp;
+    Http mHttp_waiwang;//支持外网内网访问
+    Http mHttp_direct;//仅支持外网访问
+
     private Context mContext;
 
     public Network_Kuaitong(Context context){
-        mHttp=new Http();
+        mHttp_waiwang =new Http();
+        mHttp_direct=new Http();
+        //mHttp_waiwang.setTimeout(10);
         mContext = context;
 
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
-        if(mNetworkjudge.judgetype()==3){
-            mHttp.setProxy("139.129.133.235", 1999);
-        }else if(mNetworkjudge.judgetype()==4){
-            if (mNetworkjudge.neiwaiwang_judge()==1){
-                mHttp.setProxy("139.129.133.235", 1999);
-            }
-        }
+        mHttp_waiwang.setProxy("139.129.133.235", 1999);
+//        if(mNetworkjudge.judgetype()==3){
+//            mHttp_waiwang.setProxy("139.129.133.235", 1999);
+//        }else if(mNetworkjudge.judgetype()==4){
+//            if (mNetworkjudge.neiwaiwang_judge()==1){
+//                mHttp_waiwang.setProxy("139.129.133.235", 1999);
+//            }
+//        }
     }
     public String loginKuaitong(String user,String password) throws IOException {
 
-        String text=mHttp.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx");
+        String text=mHttp_direct.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx");
         String __VIEWSTATE= (Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"", "\" />", 0).replace("=", ""));
         String __EVENTVALIDATION=(Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"", "\" />", 0).replace("=",""));
 
         String submit="sm1=UpdatePanel1|checkpassword&account="+user+"&password="+password+"&__LASTFOCUS=&__VIEWSTATE=/wEPDwUKLTYxOTM4OTQ0NQ9kFgICAw9kFgICAw9kFgJmD2QWAgIHDw8WAh4HVmlzaWJsZWdkFgICAQ8PFgIeBFRleHQFLemqjOivgeeUqOaIt+i1hOaWmeWksei0pe+8jOivt+mHjeaWsOi+k+WFpeOAgmRkZMoDcVF3wbH+p1FlLRDMchSLXNfAtPe42jc5J9hf8/AV&__EVENTTARGET=&__EVENTARGUMENT=&__EVENTVALIDATION=/wEWBAL+2PeNCgLPmcHwCwLyveCRDwKKv7vgAa5bXtnUEDotW8uQGmqBnnORnV8DoZpRR7SCjosBorQc&__ASYNCPOST=true&checkpassword=身份验证";
         //submit="sm1=UpdatePanel1|checkpassword&account=2&password=2&__LASTFOCUS=&__VIEWSTATE=/wEPDwUKLTYxOTM4OTQ0NQ9kFgICAw9kFgICAw9kFgJmD2QWAgIHDw8WAh4HVmlzaWJsZWdkFgICAQ8PFgIeBFRleHQFLemqjOivgeeUqOaIt+i1hOaWmeWksei0pe+8jOivt+mHjeaWsOi+k+WFpeOAgmRkZMoDcVF3wbH+p1FlLRDMchSLXNfAtPe42jc5J9hf8/AV&__EVENTTARGET=&__EVENTARGUMENT=&__EVENTVALIDATION=/wEWBAL+2PeNCgLPmcHwCwLyveCRDwKKv7vgAa5bXtnUEDotW8uQGmqBnnORnV8DoZpRR7SCjosBorQc&__ASYNCPOST=true&checkpassword=身份验证";
-        text=mHttp.post_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx",submit);
+        text=mHttp_direct.post_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx",submit);
         if (text.contains("验证用户资料失败，请重新输入")){
             return "验证用户资料失败，请重新输入";//1|#||4|32|pageRedirect||%2fmmsg_kt%2fcontent%2fmain.aspx|
         }
@@ -50,7 +55,7 @@ public class Network_Kuaitong {
     }
 
     public String [] getKuaitongInfo() throws IOException {
-        String text=mHttp.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/account.aspx");
+        String text=mHttp_direct.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/account.aspx");
         Pattern mPattern=Pattern.compile("：([\\s\\S]*?)</td>");
         Matcher mMatcher=mPattern.matcher(text);
         List<String> temp=new ArrayList<String>();
@@ -67,11 +72,11 @@ public class Network_Kuaitong {
         return result;
     }
     public String loginSmartCard(String user,String password) throws IOException {
-        mHttp.getUnsafeOkHttpClient();
-        String text=mHttp.get_string("https://epay.sdust.edu.cn/Account/Login");
+        mHttp_waiwang.getUnsafeOkHttpClient();
+        String text= mHttp_waiwang.get_string("https://epay.sdust.edu.cn/Account/Login");
         String __RequestVerificationToken= URLEncoder.encode(Networklogin_CMCC.zhongjian(text, "<form action=\"/Account/Login\" method=\"post\"><input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"", "\" />", 0));
         String submit="__RequestVerificationToken="+__RequestVerificationToken+"&UserName="+user+"&Password="+password;
-        text=mHttp.post_string("https://epay.sdust.edu.cn/Account/Login?ReturnUrl=%2F",submit);
+        text= mHttp_waiwang.post_string("https://epay.sdust.edu.cn/Account/Login?ReturnUrl=%2F",submit);
         if (text.contains("你好")){
             return "登录成功";
         }
@@ -86,13 +91,11 @@ public class Network_Kuaitong {
         }
     return "kuaitong_chongzhi_login：error";
     }
-    public String pay(String money){
+    public String pay(String money) throws IOException {
         String text= null;
-        try {
-            text = mHttp.post_string("https://epay.sdust.edu.cn/StudNet/Charge","money="+money);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+            text = mHttp_waiwang.post_string("https://epay.sdust.edu.cn/StudNet/Charge","money="+money);
+
         if (text.contains("充值成功")){
             return "充值成功";
         }
@@ -100,25 +103,48 @@ public class Network_Kuaitong {
 
     }
     public void tingwang() throws IOException {
-        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ControlNet?MercID=%E5%BF%AB%E9%80%9A", "netStatus=%E5%81%9C%E6%9C%BA");
+        String text= mHttp_waiwang.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ControlNet?MercID=%E5%BF%AB%E9%80%9A", "netStatus=%E5%81%9C%E6%9C%BA");
     }
     public void kaiwang() throws IOException {
-        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ControlNet?MercID=%E5%BF%AB%E9%80%9A", "netStatus=%E5%BC%80%E5%90%AF" );
+        String text= mHttp_waiwang.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ControlNet?MercID=%E5%BF%AB%E9%80%9A", "netStatus=%E5%BC%80%E5%90%AF" );
     }
-    public void gaitaocan(String id) throws IOException {
+    public String gaitaocan(String id) throws IOException {
         /*
         id      套餐
         5      5元包5G
         6      15元包22G
         7      30元包50G
+        11     停用
 
          */
         //
-        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetMode?MercID=%E5%BF%AB%E9%80%9A", "GroupIDList="+id );
+        String text= mHttp_waiwang.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetMode?MercID=%E5%BF%AB%E9%80%9A", "GroupIDList="+id );
+        if (text.contains("修改成功")){
+            return "修改成功";
+        }
+        if (text.contains("您已更改本月套餐类型!")){
+            return "修改成功";
 
+        }
+        return "gaitaocanerr";
     }
-    public void gaimima(String OldPassword,String NewPassword,String ConfirmPassword) throws IOException {
-        String text=mHttp.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetPwd?MercID=%E5%BF%AB%E9%80%9A", "OldPassword="+OldPassword+"&NewPassword="+NewPassword+"&ConfirmPassword="+ConfirmPassword );
+    public String gaimima(String OldPassword,String NewPassword,String ConfirmPassword) throws IOException {
+        String text= mHttp_waiwang.post_string_noturlencode("https://epay.sdust.edu.cn/StudNet/ChangeNetPwd?MercID=%E5%BF%AB%E9%80%9A", "OldPassword="+OldPassword+"&NewPassword="+NewPassword+"&ConfirmPassword="+ConfirmPassword );
+        if (text.contains("修改密码成功")){
+            return "修改密码成功";
+        }
+        if (text.contains("原密码错误")){
+        return "原密码错误";
+    }
+     if (text.contains("新密码和确认密码不匹配")){
+         return "新密码和确认密码不匹配";
+     }
+      if (text.contains("新密码 必须至少包含 6 个字符")){
+            return "新密码 必须至少包含 6 个字符";
+        }
+
+
+        return "gaimimaerror";
     }
 
 }

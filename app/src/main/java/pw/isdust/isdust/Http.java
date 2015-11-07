@@ -17,6 +17,7 @@ import java.net.CookiePolicy;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.security.cert.CertificateException;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -228,5 +229,10 @@ public class Http {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    public void setTimeout(int time){
+        mHTTP.setConnectTimeout(time, TimeUnit.SECONDS); // connect timeout
+        mHTTP.setReadTimeout(time, TimeUnit.SECONDS);    // socket timeout
+
     }
 }

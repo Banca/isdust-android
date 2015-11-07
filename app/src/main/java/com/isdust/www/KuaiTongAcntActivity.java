@@ -12,11 +12,10 @@ import android.widget.EditText;
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
- * cmcc账号管理页面
+ * 快通账号管理页面
  * Created by Administrator on 2015/10/25.
  */
 public class KuaiTongAcntActivity extends BaseSubPageActivity {
-    public final static int RESULT_CODE=3;
     private EditText textuser,textpwd;
     private Button btn_ok;
     private CheckBox check_savepwd;
@@ -35,10 +34,10 @@ public class KuaiTongAcntActivity extends BaseSubPageActivity {
     }
 
     private void findView() {
-        textuser = (EditText) findViewById(R.id.edittext_kuaitongacnt_user);
-        textpwd = (EditText) findViewById(R.id.edittext_kuaitongacnt_pwd);
+        textuser = (EditText) findViewById(R.id.edittext_schoolcard_user);
+        textpwd = (EditText) findViewById(R.id.edittext_schoolcard_pwd);
         btn_ok = (Button) findViewById(R.id.btn_kuaitong_changepwd);
-        check_savepwd = (CheckBox) findViewById(R.id.check_kuaitong_savepwd);
+        check_savepwd = (CheckBox) findViewById(R.id.check_schoolcard_savepwd);
     }   //连接控件
 
     private void getLocalData() {
@@ -54,7 +53,7 @@ public class KuaiTongAcntActivity extends BaseSubPageActivity {
 
     public void onFormKuaiTongAcntClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_kuaitongacnt_ok:
+            case R.id.btn_schoolcard_ok:
                 String result,str_user,str_pwd;
                 str_user = textuser.getText().toString();
                 str_pwd = textpwd.getText().toString();
@@ -75,7 +74,7 @@ public class KuaiTongAcntActivity extends BaseSubPageActivity {
                 Intent intent=new Intent();
                 intent.putExtra("str_user", str_user);
                 intent.putExtra("str_pwd", str_pwd);
-                setResult(RESULT_CODE, intent); //返回结果
+                setResult(RESULT_OK, intent); //返回结果
                 finish();
                 break;
         }

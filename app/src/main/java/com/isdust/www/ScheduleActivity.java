@@ -232,6 +232,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 return;
             }
             if (msg.what == 10){//网络超时
+                customRuningDialog.dismiss();
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
         }
@@ -673,9 +674,8 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 if (user_save.equals("") || password_save.equals("")){
 
                     Intent intent = new Intent();
-                    intent.setClass(mContext,Schedule_login.class);
-                    startActivity(intent);
-                    finish();
+                    intent.setClass(mContext, Schedule_login.class);
+                    startActivityForResult(intent, 1);
                     return;
 
                 }else{

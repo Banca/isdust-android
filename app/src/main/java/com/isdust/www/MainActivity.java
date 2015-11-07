@@ -53,7 +53,16 @@ public class MainActivity extends BaseMainActivity {
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
 
-
+//		Intent intent = new Intent();
+//		intent.setClass(this, Card_login.class);
+//		startActivityForResult(intent, 1);
+//		Network_Kuaitong a=new Network_Kuaitong(this);
+//		try {
+//			a.loginSmartCard("1501060225","960826");
+//			a.gaitaocan("11");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
 
