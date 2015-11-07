@@ -23,18 +23,20 @@ public class Network_Kuaitong {
     public Network_Kuaitong(Context context){
         mHttp_waiwang =new Http();
         mHttp_direct=new Http();
-        //mHttp_waiwang.setTimeout(10);
+        mHttp_waiwang.setTimeout(3);
         mContext = context;
 
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
         mHttp_waiwang.setProxy("139.129.133.235", 1999);
-//        if(mNetworkjudge.judgetype()==3){
-//            mHttp_waiwang.setProxy("139.129.133.235", 1999);
-//        }else if(mNetworkjudge.judgetype()==4){
-//            if (mNetworkjudge.neiwaiwang_judge()==1){
-//                mHttp_waiwang.setProxy("139.129.133.235", 1999);
-//            }
-//        }
+        if(mNetworkjudge.judgetype()==3){
+            mHttp_waiwang.setProxy("139.129.133.235", 1999);
+        }else if(mNetworkjudge.judgetype()==4){
+            if (mNetworkjudge.neiwaiwang_judge()==1){
+                mHttp_waiwang.setProxy("139.129.133.235", 1999);
+            }
+        }
+        mHttp_waiwang.setTimeout(10);
+
     }
     public String loginKuaitong(String user,String password) throws IOException {
 
