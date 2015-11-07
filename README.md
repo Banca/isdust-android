@@ -3,7 +3,7 @@
 项目成员：  
             王梓樯   Coder/Developer  
             冷汉超   UI/UE Coder  
-            亓文凯   UI Designer  
+            亓文凯   Map Coder  
             胡旸     UI Designer  
               
 已实现功能:   
