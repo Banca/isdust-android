@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.isdust.www.view.PullToRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
-                                               android:id="@+id/main_pull_refresh_view"
-                                               android:layout_width="fill_parent"
-                                               android:layout_height="fill_parent"
-                                               android:background="@color/color_list_white"
-                                               android:orientation="vertical">
-    <!-- 这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
-    要设置android:orientation="vertical"属性
-    否则,显示不正确-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_pull_refresh_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color_list_white"
+    android:orientation="vertical">
+
     <include layout="@layout/subpage_title_bar"
              android:id="@+id/include2" />
     <ListView
@@ -19,4 +17,4 @@
 
         />
 
-</com.isdust.www.view.PullToRefreshView>
+</LinearLayout>
