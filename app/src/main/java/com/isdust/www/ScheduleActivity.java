@@ -62,6 +62,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
 
 
+
     List<TextView> mTextView=new ArrayList<TextView>();
     SelectCoursePlatform mXuankepingtai;
 
@@ -71,25 +72,15 @@ public class ScheduleActivity extends BaseSubPageActivity {
     // 工具栏
     private RelativeLayout rlTopBar;
 
-    // 左中右三个控件（工具栏里）
-
-    private TextView tvMiddle;
-
-    // 左中右三个弹出窗口
-
-    private PopupWindow popMiddle;
-
-    // 左中右三个layout
-
-    private View layoutMiddle;
+    private TextView mTextView_zhoushu;
+    private PopupWindow mPopupWindow_zhoushu;
+    private View mView_zhoushu;
 
     // 左中右三个ListView控件（弹出窗口里）
 
     private ListView menulistMiddle;
 
-    // 菜单数据项
-
-    private List<Map<String, String>> listMiddle;
+    private List<Map<String, String>> mList_zhoushu;
 
 
     Context mContext;
@@ -133,8 +124,6 @@ public class ScheduleActivity extends BaseSubPageActivity {
         @Override
         public void run() {
             mXuankepingtai=new SelectCoursePlatform(mContext);
-
-//            xianchengchi_login_status=mXuankepingtai.login_xuankepingtai(xianchengchi_user, xianchengchi_password);
             try {
                 xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
             } catch (IOException e) {
@@ -143,8 +132,6 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 mHandler.sendMessage(mMessage);;
                 return;
             }
-            //customRuningDialog.dismiss();
-
             if(xianchengchi_login_status.contains("登录成功")){
                 Message mMessage=new Message();
                 mMessage.what=0;
@@ -217,6 +204,9 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 customRuningDialog.dismiss();
                 preferences_editor.putBoolean("keeppwd", false);
                 preferences_editor.putString("password", "");
+                preferences_editor.commit();
+                //Toast.makeText(mContext,"test",Toast.LENGTH_SHORT).show();
+
                 Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent();
                 intent.setClass(mContext, Schedule_login.class);
@@ -257,150 +247,24 @@ public class ScheduleActivity extends BaseSubPageActivity {
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         //实例化SharedPreferences.Editor对象
         preferences_editor = preferences_data.edit();
-
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);
 
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("课表查询");
-        mButton_update=(Button)findViewById(R.id.button_update);
-        mButton_logout=(Button)findViewById(R.id.button_logout);
-        mButton_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mButton_update.setClickable(false);
-                writeToFile("schedule.dat","");
-                String user_save=preferences_data.getString("username", "");
-                String password_save=preferences_data.getString("password", "");
-                if (user_save.equals("") || password_save.equals("")){
+        init_button();//初始化按钮⌛事件
+        init_biaoge();//初始化表格
 
-                        Intent intent = new Intent();
-                        intent.setClass(mContext,Schedule_login.class);
-                        startActivity(intent);
-                        finish();
-                        return;
-
-                }else{
-                    xianchengchi_user=user_save;
-                    xianchengchi_password=password_save;}
-
-                customRuningDialog.show();    //打开等待框
-                customRuningDialog.setMessage("正在登录");
-
-                executorService.execute(mRunnable_login);
-            }
-        });
-
-        mButton_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                preferences_editor.putString("password", "");
-                writeToFile("schedule.dat","");
-                Intent intent = new Intent();
-                intent.setClass(mContext,Schedule_login.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
-        empty = (TextView) this.findViewById(R.id.test_empty);
-        monColum = (TextView) this.findViewById(R.id.test_monday_course);
-        tueColum = (TextView) this.findViewById(R.id.test_tuesday_course);
-        wedColum = (TextView) this.findViewById(R.id.test_wednesday_course);
-        thrusColum = (TextView) this.findViewById(R.id.test_thursday_course);
-        friColum = (TextView) this.findViewById(R.id.test_friday_course);
-        satColum  = (TextView) this.findViewById(R.id.test_saturday_course);
-        sunColum = (TextView) this.findViewById(R.id.test_sunday_course);
-        course_table_layout = (RelativeLayout) this.findViewById(R.id.test_course_rl);
-        dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        //屏幕宽度
-        int width = dm.widthPixels;
-        //平均宽度
-        int aveWidth = width / 8;
-        //第一个空白格子设置为25宽
-        empty.setWidth(aveWidth * 3/4);
-        monColum.setWidth(aveWidth * 33/32 + 1);
-        tueColum.setWidth(aveWidth * 33/32 + 1);
-        wedColum.setWidth(aveWidth * 33/32 + 1);
-        thrusColum.setWidth(aveWidth * 33/32 + 1);
-        friColum.setWidth(aveWidth * 33/32 + 1);
-        satColum.setWidth(aveWidth * 33/32 + 1);
-        sunColum.setWidth(aveWidth * 33/32 + 1);
-        this.screenWidth = width;
-        this.aveWidth = aveWidth;
-        int height = dm.heightPixels;
-        int gridHeight = height / 8;
-        //设置课表界面
-        //动态生成12 * maxCourseNum个textview
-        for(int i = 1; i <= 10; i ++){
-
-            for(int j = 1; j <= 8; j ++){
-
-                TextView tx = new TextView(this);
-                tx.setId((i - 1) * 8  + j);
-                //除了最后一列，都使用course_text_view_bg背景（最后一列没有右边框）
-                if(j < 8)
-                    tx.setBackgroundDrawable(this.
-                            getResources().getDrawable(R.drawable.course_text_view_bg));
-                else
-                    tx.setBackgroundDrawable(this.
-                            getResources().getDrawable(R.drawable.course_table_last_colum));
-                //相对布局参数
-                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(
-                        aveWidth * 33 / 32 + 1,
-                        gridHeight);
-                //文字对齐方式
-                tx.setGravity(Gravity.CENTER);
-                //字体样式
-                tx.setTextAppearance(this, R.style.courseTableText);
-                //如果是第一列，需要设置课的序号（1 到 12）
-                if(j == 1)
-                {
-                    tx.setText(String.valueOf(i));
-                    rp.width = aveWidth * 3/4;
-                    //设置他们的相对位置
-                    if(i == 1)
-                        rp.addRule(RelativeLayout.BELOW, empty.getId());
-                    else
-                        rp.addRule(RelativeLayout.BELOW, (i - 1) * 8);
-                }
-                else
-                {
-                    rp.addRule(RelativeLayout.RIGHT_OF, (i - 1) * 8  + j - 1);
-                    rp.addRule(RelativeLayout.ALIGN_TOP, (i - 1) * 8  + j - 1);
-                    tx.setText("");
-                }
-
-                tx.setLayoutParams(rp);
-                course_table_layout.addView(tx);
-            }
-        }
-        //title_name.setText("空自习室查询");
-        //writeToFile("schedule.dat","");
         String kebiao_json=readFromFile("schedule.dat");
 //        writeToFile("schedule.dat","");
         if(kebiao_json==""){
             String user_save=preferences_data.getString("username", "");
             String password_save=preferences_data.getString("password", "");
             if (user_save.equals("") || password_save.equals("")){
-                if (getIntent().getExtras()!=null){
-                String user_intent=getIntent().getExtras().getString("username");;
-                String password_intent=getIntent().getExtras().getString("password");;
-                if (user_intent.equals("")||password_intent.equals("")){
-                    Intent intent=new Intent();
-                    intent.setClass(mContext,Schedule_login.class);
-                    startActivity(intent);
-                    return;
-                }else {
-                    xianchengchi_user=user_intent;
-                    xianchengchi_password=password_intent;
-                }}else{
-                    Intent intent = new Intent();
-                    intent.setClass(mContext,Schedule_login.class);
-                    startActivity(intent);
-                    return;
-                }
+                Intent intent = new Intent();
+                intent.setClass(mContext, Schedule_login.class);
+                startActivityForResult(intent, 1);
+                return;
                 }else{
                 xianchengchi_user=user_save;
                 xianchengchi_password=password_save;}
@@ -423,7 +287,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
     }
     public void xianshidangqian(){
-        tvMiddle.setText(SchoolDate.get_xiaoli() + "");
+        mTextView_zhoushu.setText(SchoolDate.get_xiaoli() + "");
         bangding(SchoolDate.get_xiaoli() + "");
 
     }
@@ -562,14 +426,14 @@ public class ScheduleActivity extends BaseSubPageActivity {
 
 
 //
-        tvMiddle = (TextView) this.findViewById(R.id.tv_middle);
-        tvMiddle.setOnClickListener(myListener);
+        mTextView_zhoushu = (TextView) this.findViewById(R.id.TextView_zhoushu);
+        mTextView_zhoushu.setOnClickListener(myListener);
         // 初始化数据项
-        listMiddle = new ArrayList<Map<String, String>>();
+        mList_zhoushu = new ArrayList<Map<String, String>>();
         for (int i = 1; i < 23; i++) {
             HashMap<String, String> mapTemp = new HashMap<String, String>();
             mapTemp.put("item", ""+ i);
-            listMiddle.add(mapTemp);
+            mList_zhoushu.add(mapTemp);
         }
     }
 
@@ -578,16 +442,16 @@ public class ScheduleActivity extends BaseSubPageActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.tv_middle:
-                    if (popMiddle != null && popMiddle.isShowing()) {
-                        popMiddle.dismiss();
+                case R.id.TextView_zhoushu:
+                    if (mPopupWindow_zhoushu != null && mPopupWindow_zhoushu.isShowing()) {
+                        mPopupWindow_zhoushu.dismiss();
                     } else {
-                        layoutMiddle = getLayoutInflater().inflate(
+                        mView_zhoushu = getLayoutInflater().inflate(
                                 R.layout.pop_menulist, null);
-                        menulistMiddle = (ListView) layoutMiddle
+                        menulistMiddle = (ListView) mView_zhoushu
                                 .findViewById(R.id.menulist);
                         SimpleAdapter listAdapter = new SimpleAdapter(
-                                mContext, listMiddle, R.layout.pop_menuitem,
+                                mContext, mList_zhoushu, R.layout.pop_menuitem,
                                 new String[] { "item" },
                                 new int[] { R.id.menuitem });
                         menulistMiddle.setAdapter(listAdapter);
@@ -599,42 +463,42 @@ public class ScheduleActivity extends BaseSubPageActivity {
                                     @Override
                                     public void onItemClick(AdapterView<?> arg0,
                                                             View arg1, int arg2, long arg3) {
-                                        String strItem = listMiddle.get(arg2).get(
+                                        String strItem = mList_zhoushu.get(arg2).get(
                                                 "item");
 
                                         bangding(strItem);
-                                        tvMiddle.setText(strItem);
+                                        mTextView_zhoushu.setText(strItem);
 
-                                        if (popMiddle != null && popMiddle.isShowing()) {
-                                            popMiddle.dismiss();
+                                        if (mPopupWindow_zhoushu != null && mPopupWindow_zhoushu.isShowing()) {
+                                            mPopupWindow_zhoushu.dismiss();
                                         }
                                     }
                                 });
 
-                        popMiddle = new PopupWindow(layoutMiddle, tvMiddle.getWidth(),
+                        mPopupWindow_zhoushu = new PopupWindow(mView_zhoushu, mTextView_zhoushu.getWidth(),
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
                         ColorDrawable cd = new ColorDrawable(-0000);
-                        popMiddle.setBackgroundDrawable(cd);
-                        popMiddle.setAnimationStyle(R.style.PopupAnimation);
-                        popMiddle.update();
-                        popMiddle.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-                        popMiddle.setTouchable(true); // 设置popupwindow可点击
-                        popMiddle.setOutsideTouchable(true); // 设置popupwindow外部可点击
-                        popMiddle.setFocusable(true); // 获取焦点
+                        mPopupWindow_zhoushu.setBackgroundDrawable(cd);
+                        mPopupWindow_zhoushu.setAnimationStyle(R.style.PopupAnimation);
+                        mPopupWindow_zhoushu.update();
+                        mPopupWindow_zhoushu.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+                        mPopupWindow_zhoushu.setTouchable(true); // 设置popupwindow可点击
+                        mPopupWindow_zhoushu.setOutsideTouchable(true); // 设置popupwindow外部可点击
+                        mPopupWindow_zhoushu.setFocusable(true); // 获取焦点
 
                         // 设置popupwindow的位置
                         int topBarHeight = rlTopBar.getBottom();
-                        popMiddle.showAsDropDown(tvMiddle, 0,
-                                (topBarHeight - tvMiddle.getHeight()) / 2);
+                        mPopupWindow_zhoushu.showAsDropDown(mTextView_zhoushu, 0,
+                                0);
 
-                        popMiddle.setTouchInterceptor(new View.OnTouchListener() {
+                        mPopupWindow_zhoushu.setTouchInterceptor(new View.OnTouchListener() {
 
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
                                 // 如果点击了popupwindow的外部，popupwindow也会消失
                                 if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                                    popMiddle.dismiss();
+                                    mPopupWindow_zhoushu.dismiss();
                                     return true;
                                 }
                                 return false;
@@ -655,7 +519,7 @@ public class ScheduleActivity extends BaseSubPageActivity {
         return true;
     }
 
-    private void writeToFile(String file,String data) {
+    public void writeToFile(String file, String data) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(file, Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
@@ -715,12 +579,151 @@ public class ScheduleActivity extends BaseSubPageActivity {
             System.out.println("");
         } catch (JSONException e) {
             e.printStackTrace();
-            writeToFile("schedule.dat","");
+            writeToFile("schedule.dat", "");
         }
 
 
     }
 
+    public void init_biaoge(){
+        empty = (TextView) this.findViewById(R.id.test_empty);
+        monColum = (TextView) this.findViewById(R.id.test_monday_course);
+        tueColum = (TextView) this.findViewById(R.id.test_tuesday_course);
+        wedColum = (TextView) this.findViewById(R.id.test_wednesday_course);
+        thrusColum = (TextView) this.findViewById(R.id.test_thursday_course);
+        friColum = (TextView) this.findViewById(R.id.test_friday_course);
+        satColum  = (TextView) this.findViewById(R.id.test_saturday_course);
+        sunColum = (TextView) this.findViewById(R.id.test_sunday_course);
+        course_table_layout = (RelativeLayout) this.findViewById(R.id.test_course_rl);
+        dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        //屏幕宽度
+        int width = dm.widthPixels;
+        //平均宽度
+        int aveWidth = width / 8;
+        //第一个空白格子设置为25宽
+        empty.setWidth(aveWidth * 3/4);
+        monColum.setWidth(aveWidth * 33/32 + 1);
+        tueColum.setWidth(aveWidth * 33/32 + 1);
+        wedColum.setWidth(aveWidth * 33/32 + 1);
+        thrusColum.setWidth(aveWidth * 33/32 + 1);
+        friColum.setWidth(aveWidth * 33/32 + 1);
+        satColum.setWidth(aveWidth * 33/32 + 1);
+        sunColum.setWidth(aveWidth * 33/32 + 1);
+        this.screenWidth = width;
+        this.aveWidth = aveWidth;
+        int height = dm.heightPixels;
+        int gridHeight = height / 8;
+        //设置课表界面
+        //动态生成12 * maxCourseNum个textview
+        for(int i = 1; i <= 10; i ++){
+
+            for(int j = 1; j <= 8; j ++){
+
+                TextView tx = new TextView(this);
+                tx.setId((i - 1) * 8  + j);
+                //除了最后一列，都使用course_text_view_bg背景（最后一列没有右边框）
+                if(j < 8)
+                    tx.setBackgroundDrawable(this.
+                            getResources().getDrawable(R.drawable.course_text_view_bg));
+                else
+                    tx.setBackgroundDrawable(this.
+                            getResources().getDrawable(R.drawable.course_table_last_colum));
+                //相对布局参数
+                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(
+                        aveWidth * 33 / 32 + 1,
+                        gridHeight);
+                //文字对齐方式
+                tx.setGravity(Gravity.CENTER);
+                //字体样式
+                tx.setTextAppearance(this, R.style.courseTableText);
+                //如果是第一列，需要设置课的序号（1 到 12）
+                if(j == 1)
+                {
+                    tx.setText(String.valueOf(i));
+                    rp.width = aveWidth * 3/4;
+                    //设置他们的相对位置
+                    if(i == 1)
+                        rp.addRule(RelativeLayout.BELOW, empty.getId());
+                    else
+                        rp.addRule(RelativeLayout.BELOW, (i - 1) * 8);
+                }
+                else
+                {
+                    rp.addRule(RelativeLayout.RIGHT_OF, (i - 1) * 8  + j - 1);
+                    rp.addRule(RelativeLayout.ALIGN_TOP, (i - 1) * 8  + j - 1);
+                    tx.setText("");
+                }
+
+                tx.setLayoutParams(rp);
+                course_table_layout.addView(tx);
+            }
+        }
+    }
+    public void init_button(){
+        mButton_update=(Button)findViewById(R.id.button_update);
+        mButton_logout=(Button)findViewById(R.id.button_logout);
+        mButton_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mButton_update.setClickable(false);
+                writeToFile("schedule.dat","");
+                String user_save=preferences_data.getString("username", "");
+                String password_save=preferences_data.getString("password", "");
+                if (user_save.equals("") || password_save.equals("")){
+
+                    Intent intent = new Intent();
+                    intent.setClass(mContext,Schedule_login.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+
+                }else{
+                    xianchengchi_user=user_save;
+                    xianchengchi_password=password_save;}
+
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage("正在登录");
+
+                executorService.execute(mRunnable_login);
+            }
+        });
+
+        mButton_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                preferences_editor.putString("password", "");
+                writeToFile("schedule.dat","");
+                Intent intent = new Intent();
+                intent.setClass(mContext,Schedule_login.class);
+                startActivityForResult(intent, 1);
+
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    xianchengchi_user=bundle.getString("username");
+                    xianchengchi_password=bundle.getString("password");
+                    customRuningDialog.show();    //打开等待框
+                    customRuningDialog.setMessage("正在登录");
+                    executorService.execute(mRunnable_login);
 
 
+
+                }
+                if (resultCode == RESULT_CANCELED) {
+                    finish();
+
+
+
+                }
+        }
+    }
 }

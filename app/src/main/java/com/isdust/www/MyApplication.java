@@ -1,10 +1,13 @@
 package com.isdust.www;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.isdust.www.datatype.Book;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.SchoolCard;
 
@@ -14,9 +17,20 @@ import pw.isdust.isdust.function.SchoolCard;
 public class MyApplication extends Application {
     private SchoolCard usercard;
     private List<Book> mBooks;
+    private Context mContext;
+
+    ExecutorService mExecutorService= Executors.newCachedThreadPool();
+    Runnable xiancheng_init=new Runnable() {
+        @Override
+        public void run() {
+            usercard = new SchoolCard(mContext);
+        }
+    };
     public void onCreate() {
         super.onCreate();
-        usercard = new SchoolCard(this);
+        mContext=this;
+        mExecutorService.execute(xiancheng_init);
+
 
     }
     public void setBooks(List<Book> Books){

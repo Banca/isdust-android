@@ -8,14 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
  * Created by wzq on 15/11/2.
  */
-public class Schedule_login extends BaseMainActivity {
+public class Schedule_login extends BaseSubPageActivity {
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;
@@ -23,14 +22,13 @@ public class Schedule_login extends BaseMainActivity {
     Button mButton_login;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule_login);
+        INIT(R.layout.activity_schedule_login,"正方教务平台登录");
         mContext=this;
         //实例化SharedPreferences对象
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         //实例化SharedPreferences.Editor对象
         preferences_editor = preferences_data.edit();
-        TextView title_name = (TextView) findViewById(R.id.title_bar_name);
-        title_name.setText("正方教务平台登录");	//修改页面标题
+
         getview();
         getLocalData();
         mButton_login.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +49,13 @@ public class Schedule_login extends BaseMainActivity {
                 //提交当前数据
                 preferences_editor.commit();
                 Intent intent=new Intent();
-                intent.putExtra("username", user);
-                intent.putExtra("password", password);
-
-                intent.setClass(mContext, ScheduleActivity.class);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("username", user);
+                bundle.putString("password", password);
+                intent.putExtras(bundle);
+                Schedule_login.this.setResult(RESULT_OK,intent);
+//                intent.setClass(mContext, ScheduleActivity.class);
+//                startActivity(intent);
                 finish();
 
             }
@@ -81,4 +81,14 @@ public class Schedule_login extends BaseMainActivity {
 
 
     }   //读取本地数据
+    @Override
+    public void onTitleBarClick(View v) {
+        switch (v.getId()) {
+            case R.id.title_bar_back_btn:
+                this.setResult(RESULT_CANCELED);
+
+                finish();
+                break;
+        }
+    }
 }

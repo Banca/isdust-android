@@ -205,7 +205,7 @@ public class SchoolCard {
 
 
 
-            mpattern = Pattern.compile("<td class=\"neiwen\">([0-9]*.[0-9]*)元\\（卡余额\\）([0-9]*.[0-9]*)元\\(当前过渡余额\\)([0-9]*.[0-9]*)元\\(上次过渡余额\\)</td>");
+            mpattern = Pattern.compile("<td class=\"neiwen\">([-]*?[0-9]*.[0-9]*)元\\（卡余额\\）([-]*?[0-9]*.[0-9]*)元\\(当前过渡余额\\)([-]*?[0-9]*.[0-9]*)元\\(上次过渡余额\\)</td>");
             mmatcher = mpattern.matcher(result);
             yue=new String[3];
             mmatcher.find();

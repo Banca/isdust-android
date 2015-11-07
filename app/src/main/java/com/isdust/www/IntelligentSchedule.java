@@ -329,7 +329,7 @@ public class IntelligentSchedule extends BaseSubPageActivity {
 
 
 //
-        tvMiddle = (TextView) this.findViewById(R.id.tv_middle);
+        tvMiddle = (TextView) this.findViewById(R.id.TextView_zhoushu);
         tvMiddle.setOnClickListener(myListener);
         // 初始化数据项
         listMiddle = new ArrayList<Map<String, String>>();
@@ -345,7 +345,7 @@ public class IntelligentSchedule extends BaseSubPageActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.tv_middle:
+                case R.id.TextView_zhoushu:
                     if (popMiddle != null && popMiddle.isShowing()) {
                         popMiddle.dismiss();
                     } else {

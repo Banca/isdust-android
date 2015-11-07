@@ -68,6 +68,7 @@ public class Networkjudge {
             text = mHttp.get_string("http://baidu.com");
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
         if (text.contains("百度")){
             return true;
@@ -93,11 +94,12 @@ public class Networkjudge {
             html = mHttp.get_string("http://192.168.109.62/");
         } catch (IOException e) {
             e.printStackTrace();
+            return 1;//外网
         }
         if (html.contains("RadioButtonList1_0")){
             return 0;//内网
         }
-            return 1;//外网
+        return 0;
     }
     public static String getCurrentSsid(Context context) {
         String ssid = null;
