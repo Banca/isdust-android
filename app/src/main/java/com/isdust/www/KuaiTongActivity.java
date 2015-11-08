@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -104,8 +105,9 @@ public class KuaiTongActivity extends BaseMainActivity {
 
 
                 //smartcard登录
-                if (xiancheng_smartcard_user.equals("")||xiancheng_smartcard_pwd.equals("")){
+                if (xiancheng_smartcard_user.equals("")||xiancheng_smartcard_pwd.equals("")){//空指针崩溃
                     startActivity_smartcard_login();
+                    return;
 
                 }else{
                     mExecutorService.execute(xiancheng_smartcard_login);
@@ -403,9 +405,10 @@ public class KuaiTongActivity extends BaseMainActivity {
                 if (xiancheng_smartcard_login_status.equals("登录成功"))
                     dealSwitch();
                 break;
-            case R.id.btn_kuaitong_package:
+            case R.id.btn_kuaitong_package://换套餐
                 if (xiancheng_smartcard_login_status.equals("登录成功"))
                     changepackge();
+                break;
         }
 
     }
@@ -474,7 +477,7 @@ public class KuaiTongActivity extends BaseMainActivity {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                xiancheng_packge_id=((AlertDialog)dialog).getListView().getCheckedItemPosition()+5;
+                xiancheng_packge_id = ((AlertDialog) dialog).getListView().getCheckedItemPosition() + 5;
                 mExecutorService.execute(xiancheng_gaitaocan);
 //                Toast.makeText(mContext, ""+ xiancheng_packge_id, Toast.LENGTH_SHORT).show();
             }
@@ -543,9 +546,17 @@ public class KuaiTongActivity extends BaseMainActivity {
         final EditText edit_orgpwd = new EditText(this);    //原密码输入框
         final EditText edit_newpwd1 = new EditText(this);    //新密码输入框
         final EditText edit_newpwd2 = new EditText(this);    //确认密码输入框
-        edit_orgpwd.setInputType(InputType.TYPE_CLASS_NUMBER);
-        edit_newpwd1.setInputType(InputType.TYPE_CLASS_NUMBER);
-        edit_newpwd2.setInputType(InputType.TYPE_CLASS_NUMBER);
+        edit_orgpwd.setInputType(InputType.TYPE_CLASS_TEXT);
+        edit_newpwd1.setInputType(InputType.TYPE_CLASS_TEXT);
+        edit_newpwd2.setInputType(InputType.TYPE_CLASS_TEXT);
+
+            edit_orgpwd.setTransformationMethod( PasswordTransformationMethod.getInstance());
+            edit_newpwd1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            edit_newpwd2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+
+
+
 
         layout.addView(text1);
         layout.addView(edit_orgpwd);
@@ -581,12 +592,15 @@ public class KuaiTongActivity extends BaseMainActivity {
         Intent intent = new Intent();
         intent.setClass(this, KuaiTongAcntActivity.class);
         startActivityForResult(intent, request_kuaitong);
+        System.out.println("startActivity_kuaitong_login");
     }   //以获取结果的方式打开账户页面
 
     private void startActivity_smartcard_login() {
         Intent intent = new Intent();
         intent.setClass(this, Card_login.class);
         startActivityForResult(intent, request_xiaoyuanka);
+        System.out.println("startActivity_smartcard_login");
+
     }   //以获取结果的方式打开账户页面
 
 //    private void startCardAcntActivity() {
@@ -602,20 +616,28 @@ public class KuaiTongActivity extends BaseMainActivity {
             case request_kuaitong:
                 switch (resultCode){
                     case RESULT_OK:
+                        System.out.println("request_kuaitong");
+
                         Bundle bundle=data.getExtras();
                         xiancheng_kuaitong_user = bundle.getString("str_user");
                         xiancheng_kuaitong_pwd = bundle.getString("str_pwd");
                         mExecutorService.execute(xiancheng_login);
-
+                        break;
                 }
+                break;
             case request_xiaoyuanka:
                 switch (resultCode){
                     case RESULT_OK:
+                        System.out.println("request_xiaoyuanka");
                         Bundle bundle=data.getExtras();
                         xiancheng_smartcard_user = bundle.getString("username");
                         xiancheng_smartcard_pwd = bundle.getString("password");
+                        customRuningDialog.show();    //打开等待框
+                        customRuningDialog.setMessage("正在登录校园卡...");
                         mExecutorService.execute(xiancheng_smartcard_login);
+                        break;
                 }
+                break;
         }
 
     }   //处理子页面返回的数据
