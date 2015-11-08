@@ -97,8 +97,8 @@ public class KuaiTongActivity extends BaseMainActivity {
                 textuserstate.setText("当前状态:" + xiancheng_carddata[11]);//用户状态
                 textpackage.setText("当前套餐:" + xiancheng_carddata[2]);//当前套餐
 
-                textuserstate.setText(textuserstate.getText().toString() + xiancheng_carddata[11]);//用户状态
-                textpackage.setText(textpackage.getText().toString() + xiancheng_carddata[0]);//当前套餐
+//                textuserstate.setText(textuserstate.getText().toString() + xiancheng_carddata[11]);//用户状态
+//                textpackage.setText(textpackage.getText().toString() + xiancheng_carddata[0]);//当前套餐
                 textflow.setText("   剩余流量：" + xiancheng_carddata[5]);
                 textbala.setText("  下月余额：" + xiancheng_carddata[13]);
                 customRuningDialog.dismiss();
