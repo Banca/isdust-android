@@ -51,7 +51,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:singleLine="true"
-                        android:numeric="integer" />
+                        android:numeric="integer" android:hint="请输入您的10位校园卡号码"/>
 
                     <EditText
                         android:id="@+id/edittext_schoolcard_pwd"
@@ -68,7 +68,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:singleLine="true"
-                        android:numeric="integer" />
+                        android:numeric="integer" android:hint="密码默认为校园卡号码后六位"/>
 
                     <Button
                         android:id="@+id/btn_schoolcard_ok"
