@@ -17,7 +17,7 @@ public class LifeActivity extends BaseMainActivity {
     }
     public void onFormLifeClick(View v) {
         switch (v.getId()) {
-            case R.id.FormLife_btn_map:
+            case R.id.btn_formlife_map:
                 //设置传递方向
                 Intent intent = new Intent();
                 intent.setClass(this,MapchooseActivity.class);

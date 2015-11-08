@@ -12,27 +12,38 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/color_page_white"
+            android:background="#fff"
             android:orientation="vertical" >
 
-            <include layout="@layout/layout_title_bar" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <include layout="@layout/layout_title_bar"
+                android:id="@+id/include8" />
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Life"
-                android:textSize="22sp"
-                android:id="@+id/textView" />
+                android:layout_gravity="center"
+                android:background="@color/color_btn_white"
+                android:orientation="vertical"
+                android:layout_below="@+id/include8">
+                <Button
+                    android:id="@+id/btn_formlife_map"
+                    android:onClick="onFormLifeClick"
+                    android:text="  校园地图"
+                    android:gravity="center_vertical|left"
+                    android:textSize="18sp"
+                    android:background="@drawable/selector_item_button"
+                    android:drawableLeft="@drawable/item_schedule"
+                    android:drawableRight="@drawable/arrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent" />
 
-            <Button
-                android:id="@+id/FormLife_btn_map"
-                android:onClick="onFormLifeClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Map"
-                android:layout_above="@+id/textView"
-                android:layout_centerHorizontal="true" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:background="@color/color_page_white" />
+
+
+            </LinearLayout>
+
         </RelativeLayout>
     </com.isdust.www.SlideMenu>
 

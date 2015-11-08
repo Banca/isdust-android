@@ -96,9 +96,10 @@ public class KuaiTongActivity extends BaseMainActivity {
             if (msg.what==2){//信息获取成功
                 textuserstate.setText("当前状态:" + xiancheng_carddata[11]);//用户状态
                 textpackage.setText("当前套餐:" + xiancheng_carddata[2]);//当前套餐
-
-//                textuserstate.setText(textuserstate.getText().toString() + xiancheng_carddata[11]);//用户状态
-//                textpackage.setText(textpackage.getText().toString() + xiancheng_carddata[0]);//当前套餐
+                if (xiancheng_carddata[0].equals("正常"))
+                    imgstate.setBackgroundResource(R.drawable.kt_state_normal);
+                else
+                    imgstate.setBackgroundResource(R.drawable.kt_state_err);
                 textflow.setText("   剩余流量：" + xiancheng_carddata[5]);
                 textbala.setText("  下月余额：" + xiancheng_carddata[13]);
                 customRuningDialog.dismiss();
