@@ -14,7 +14,6 @@ import com.isdust.www.GoNetActivity;
 import com.isdust.www.JiaowuActivity;
 import com.isdust.www.KuaiTongActivity;
 import com.isdust.www.LibraryActivity;
-import com.isdust.www.LifeActivity;
 import com.isdust.www.MainActivity;
 import com.isdust.www.MyApplication;
 import com.isdust.www.NewsActivity;
@@ -73,9 +72,6 @@ public class BaseMainActivity extends Activity{
                 break;
             case R.id.slide_menu_card:
                 intent.setClass(this, CardActivity.class);
-                break;
-            case R.id.slide_menu_life:
-                intent.setClass(this, LifeActivity.class);
                 break;
             case R.id.slide_menu_news:
                 intent.setClass(this, NewsActivity.class);

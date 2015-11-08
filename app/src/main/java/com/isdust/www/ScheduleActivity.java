@@ -208,10 +208,9 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 //Toast.makeText(mContext,"test",Toast.LENGTH_SHORT).show();
 
                 Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.setClass(mContext, Schedule_login.class);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent, 1);
 
 
 
@@ -714,16 +713,17 @@ public class ScheduleActivity extends BaseSubPageActivity {
                     customRuningDialog.show();    //打开等待框
                     customRuningDialog.setMessage("正在登录");
                     executorService.execute(mRunnable_login);
+                    break;
 
 
 
                 }
                 if (resultCode == RESULT_CANCELED) {
                     finish();
-
-
+                    break;
 
                 }
+                break;
         }
     }
 }

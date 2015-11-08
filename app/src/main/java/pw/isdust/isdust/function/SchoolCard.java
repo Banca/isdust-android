@@ -452,8 +452,12 @@ public class SchoolCard {
 //        if (getXuegonghao().substring(getXuegonghao().length()-6,getXuegonghao().length()).equals(oldpassword)){
 //            return "默认密码无法使用此功能";
 //        }
+        try {
+            importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
 
-        importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
+        }catch (Exception e){
+            System.out.println(e);
+        }
         String moldpassword=zhuanhuan(oldpassword);
         String mnewpassword=zhuanhuan(newpassword);
         //account=84734&passwd=218371&newpasswd=218371&newpasswd2=218371

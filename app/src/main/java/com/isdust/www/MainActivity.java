@@ -39,37 +39,11 @@ public class MainActivity extends BaseMainActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-
-//		Http b=new Http();
-//		String c=b.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building=J1&zhoushu=9&xingqi=5&jieci=3");
-//		Network_Kuaitong a=new Network_Kuaitong(this);
-//		a.loginSmartCard("1501060238", "147147");
-//		a.gaitaocan("1");
-//		a.gaitaocan("2");
-//		a.gaitaocan("3");
-//		a.gaitaocan("4");
-//		a.gaitaocan("5");
-//		a.gaitaocan("6");
-//		a.gaitaocan("7");
-//		a.gaitaocan("8");
-//		a.gaitaocan("9");
-		isdustapp1=(MyApplication)getApplication();
 		mContext=this;
 		MobclickAgent.updateOnlineConfig(mContext);
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
 
-//		Intent intent = new Intent();
-//		intent.setClass(this, Card_login.class);
-//		startActivityForResult(intent, 1);
-//		Network_Kuaitong a=new Network_Kuaitong(this);
-//		try {
-//			a.loginSmartCard("1501060225","960826");
-//			a.gaitaocan("11");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
 //			img_could = (ImageView) findViewById(R.id.img_main_could);
@@ -105,35 +79,9 @@ public class MainActivity extends BaseMainActivity {
 
 		}
 
-//		Library a=new Library();
-//		String b=a.login("1501060225","960826wang");
-
 	}
 
-//	public void onFormMainClick(View v) {
-//		switch (v.getId()) {
-//			case R.id.btn_main_set:  //设置
-//				break;
-//			case R.id.btn_main_about:  //关于
-//				break;
-//			case R.id.btn_main_gonet:  //上网登录
-//				break;
-//			case R.id.btn_main_kuaitong:  //快通有线
-//				break;
-//			case R.id.btn_main_schedule:  //查课表
-//				break;
-//			case R.id.btn_main_emptyroom:  //空自习室
-//				break;
-//			case R.id.btn_main_library:  //图书馆
-//				break;
-//			case R.id.btn_main_card:  //校园卡
-//				break;
-//			case R.id.btn_main_map:  //校园地图
-//				break;
-//			case R.id.btn_main_news:  //校园资讯
-//				break;
-//		}
-//	}
+
 	private Animation getAnimation() {
 		// TranslateAnimation translateAnimation = new TranslateAnimation(0.0f,
 		// 200f, 0.0f,
@@ -185,9 +133,6 @@ public class MainActivity extends BaseMainActivity {
 				break;
 			case R.id.btn_main_card:
 				intent.setClass(this, CardActivity.class);//校园卡
-				break;
-			case R.id.btn_main_map:
-				intent.setClass(this, MapchooseActivity.class);//地图服务
 				break;
 			case R.id.btn_main_set:
 				intent.setClass(this, SetActivity.class);//设置

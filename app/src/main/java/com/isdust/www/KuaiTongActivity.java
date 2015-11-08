@@ -52,6 +52,7 @@ public class KuaiTongActivity extends BaseMainActivity {
 
     //线程池
     ExecutorService mExecutorService= Executors.newCachedThreadPool();
+    boolean xiancheng_islogin_kuaitong=false,xiancheng_islogin_smartcard=false;
     String xiancheng_kuaitong_user, xiancheng_kuaitong_pwd;  //快通账号密码
     String xiancheng_smartcard_user, xiancheng_smartcard_pwd;  //SmartCard账号密码
 
@@ -67,6 +68,7 @@ public class KuaiTongActivity extends BaseMainActivity {
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             if (msg.what==-1){//快通初始化成功
+
                 customRuningDialog.dismiss();
                 if (xiancheng_kuaitong_user.equals("")||xiancheng_kuaitong_pwd.equals("")){
                     startActivity_kuaitong_login();
@@ -78,6 +80,7 @@ public class KuaiTongActivity extends BaseMainActivity {
                 return;
             }
             if (msg.what==0){//登录失败（微信接口）
+                xiancheng_islogin_kuaitong=false;
                 preferences_editor_kuaitong.putString("password", "");
                 preferences_editor_kuaitong.commit();
                 Toast.makeText(mContext, xiancheng_login_status, Toast.LENGTH_SHORT).show();
@@ -85,6 +88,7 @@ public class KuaiTongActivity extends BaseMainActivity {
                 return;
             }
             if (msg.what==1){//登录成功（微信接口）
+                xiancheng_islogin_kuaitong=true;
                 textuser.setText("用户："+ xiancheng_kuaitong_user);
                 customRuningDialog.dismiss();
                 customRuningDialog.show();    //打开等待框
@@ -117,6 +121,7 @@ public class KuaiTongActivity extends BaseMainActivity {
 
             }
             if (msg.what==3){//登录成功（smartcard）
+                xiancheng_islogin_smartcard=true;
 
                 customRuningDialog.dismiss();
                 Toast.makeText(KuaiTongActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
@@ -126,6 +131,7 @@ public class KuaiTongActivity extends BaseMainActivity {
 
             }
             if (msg.what==4){//登录失败（smartcard）
+                xiancheng_islogin_smartcard=false;
                 preferences_editor_schoolcard.putString("password", "");
                 preferences_editor_schoolcard.commit();
 
@@ -383,31 +389,49 @@ public class KuaiTongActivity extends BaseMainActivity {
 
     public void onFormKuaiTongClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_kuaitong_infomation:  //切换账户
-                Intent intent = new Intent(KuaiTongActivity.this,KuaiTongInfoActivity.class) ;
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("KuaiTongData", xiancheng_carddata) ;
-                intent.putExtras(bundle) ;
-                startActivity(intent);
+            case R.id.btn_kuaitong_infomation:  //查看信息
+                if (xiancheng_islogin_kuaitong){
+                    Intent intent = new Intent(KuaiTongActivity.this,KuaiTongInfoActivity.class) ;
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("KuaiTongData", xiancheng_carddata) ;
+                    intent.putExtras(bundle) ;
+                    startActivity(intent);
+                }else{
+                    startActivity_kuaitong_login();
+                }
                 break;
             case R.id.btn_kuaitong_su:  //切换账户
                 startActivity_kuaitong_login();
                 break;
             case R.id.btn_kuaitong_pay: //充值
-                if (xiancheng_smartcard_login_status.equals("登录成功"))
+                if (xiancheng_islogin_smartcard){
                     dealPay();
+                }else {
+                    startActivity_smartcard_login();
+
+                }
                 break;
             case R.id.btn_kuaitong_changepwd: //改密
-                if (xiancheng_smartcard_login_status.equals("登录成功"))
+                if (xiancheng_islogin_smartcard) {
                     dealChangePwd();
+                }else {
+                    startActivity_smartcard_login();
+
+                }
                 break;
             case R.id.btn_kuaitong_switch: //开停机
-                if (xiancheng_smartcard_login_status.equals("登录成功"))
+                if (xiancheng_islogin_smartcard) {
                     dealSwitch();
+                }else {
+                    startActivity_smartcard_login();
+                }
                 break;
             case R.id.btn_kuaitong_package://换套餐
-                if (xiancheng_smartcard_login_status.equals("登录成功"))
+                if (xiancheng_islogin_smartcard) {
                     changepackge();
+                }else {
+                    startActivity_smartcard_login();
+                }
                 break;
         }
 

@@ -61,16 +61,6 @@
             android:name="com.isdust.www.CardListView"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-        android:name="com.isdust.www.SchoolMapActivity"
-            android:screenOrientation="portrait"
-            >
-         </activity>
-
-        <activity
-            android:name="com.isdust.www.MapchooseActivity"
-            android:screenOrientation="portrait" >
-        </activity>
 
         <activity
             android:name="com.isdust.www.EmptyRoomActivity"
@@ -105,10 +95,6 @@
             android:name="com.isdust.www.CardActivity"
             android:screenOrientation="portrait"
             >
-        </activity>
-        <activity
-            android:name="com.isdust.www.LifeActivity"
-            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.isdust.www.NewsActivity"
@@ -197,7 +183,7 @@
         </activity>
 
         <meta-data android:value="5632aefc67e58eef5d001100" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="Jingyu-neibu" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="Jingyu-all" android:name="UMENG_CHANNEL"/>
 
     </application>
 

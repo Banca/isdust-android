@@ -92,7 +92,6 @@ public class Card_login extends BaseSubPageActivity {
         switch (v.getId()) {
             case R.id.title_bar_back_btn:
                 this.setResult(RESULT_CANCELED);
-
                 finish();
                 break;
         }

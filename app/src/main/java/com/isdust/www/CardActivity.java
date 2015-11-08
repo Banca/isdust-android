@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 public class CardActivity extends BaseMainActivity {
     private String xiancheng_username,xiancheng_password,xiancheng_login_status;
     private ExecutorService mExecutorService = Executors.newCachedThreadPool();
-    final int request_xiaoyuanka=2;
+    final int request_xiaoyuanka=2,request_changgepassword=3;
     Context mContext;
 //    EditText mEditText_user;
 //    EditText mEditText_password ;
@@ -205,9 +205,10 @@ public class CardActivity extends BaseMainActivity {
                 this.startActivity(intent);
                 break;
             case R.id.FormCard_button_changepwd:	//改密按钮
-                intent.setClass(this,CardChangePwdActivity.class);
+                intent.setClass(this, CardChangePwdActivity.class);
                 //启动activity
-                this.startActivity(intent);
+                this.startActivityForResult(intent, request_changgepassword);
+                break;
             case R.id.FormCard_button_logout:	//注销按钮
                 RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativeLayout_card);
                 //mRelativeLayout_card.setVisibility(View.VISIBLE);
@@ -246,7 +247,33 @@ public class CardActivity extends BaseMainActivity {
                                 mContext, "提示",
                                 "正在登录中", true, true);
                         mExecutorService.execute(mRunnable_xiancheng_login);
+                        break;
                 }
+                break;
+            case request_changgepassword:
+                switch (resultCode){
+                    case RESULT_OK:
+                        Toast.makeText(mContext,"密码修改成功，请重新登录",Toast.LENGTH_SHORT);
+                        preferences_editor.putString("password", "");
+                        preferences_editor.commit();
+                        Intent intent=new Intent();
+                        mImageButton_query.setEnabled(false);
+                        mImageButton_changepwd.setEnabled(false);
+                        mImageButton_loss.setEnabled(false);
+                        mImageButton_logout.setEnabled(false);
+//                btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_blue));
+                        mImageButton_query.setBackgroundResource(R.drawable.btn_purchhistory_gray);
+                        mImageButton_changepwd.setBackgroundResource(R.drawable.btn_changepwd_gray);
+                        mImageButton_loss.setBackgroundResource(R.drawable.btn_loss_gray);
+                        mImageButton_logout.setBackgroundResource(R.drawable.btn_logout_gray);
+                        intent.setClass(mContext, Card_login.class);
+                        startActivityForResult(intent, request_xiaoyuanka);
+                        break;
+                    case RESULT_CANCELED:
+
+                        break;
+                }
+
         }
 
     }   //处理子页面返回的数据
