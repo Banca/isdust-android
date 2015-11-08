@@ -142,15 +142,15 @@ public class SchoolMapActivity extends BaseSubPageActivity implements View.OnCli
         String judge = intent.getStringExtra("judge");
         if(judge.equals("ATMmap"))
             addOverloay(Info.infos1);
-        else if(judge.equals("printmap"))
+        else if(judge.equals("librarymap"))
             addOverloay(Info.infos2);
         else if(judge.equals("hospitalmap"))
             addOverloay(Info.infos3);
         else if(judge.equals("expressmap"))
             addOverloay(Info.infos4);
-        else if(judge.equals("KTVmap"))
+        else if(judge.equals("printmap"))
             addOverloay(Info.infos5);
-        else if(judge.equals("barbershopmap"))
+        else if(judge.equals("bookshopmap"))
             addOverloay(Info.infos6);
     }
 
