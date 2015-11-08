@@ -42,9 +42,7 @@
         android:theme="@style/AppTheme"
         android:name="com.isdust.www.MyApplication">
 
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="qLBnMsMt4vX7bmQqyp27hVkF" />
+
 
 
         <activity
@@ -141,10 +139,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.IntelligentSchedule"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.isdust.www.Library_scan"
             android:screenOrientation="portrait" >
         </activity>
@@ -164,15 +158,7 @@
             android:name="com.isdust.www.Card_login"
             android:screenOrientation="portrait" >
         </activity>
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" >
-            <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" >
-                </action>
-            </intent-filter>
-        </service>
+
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" >

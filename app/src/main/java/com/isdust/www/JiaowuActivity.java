@@ -29,10 +29,7 @@ public class JiaowuActivity extends BaseMainActivity {
                 //启动activity
                 this.startActivity(intent);
                 break;
-            case R.id.FormJiaowu_button_IntlligentSchedule:
-                intent.setClass(this,IntelligentSchedule.class);
-                //启动activity
-                this.startActivity(intent);
+
 
 
         }

@@ -1,5 +1,6 @@
 package com.isdust.www;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -80,7 +81,6 @@ public class MainActivity extends BaseMainActivity {
 		}
 
 	}
-
 
 	private Animation getAnimation() {
 		// TranslateAnimation translateAnimation = new TranslateAnimation(0.0f,
