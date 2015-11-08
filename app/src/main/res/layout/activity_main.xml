@@ -51,6 +51,7 @@
             </RelativeLayout>
 
 
+
             <ImageView
                 android:id="@+id/img_main_could"
                 android:layout_width="wrap_content"

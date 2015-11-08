@@ -1,6 +1,9 @@
 package com.isdust.www;
 
+<<<<<<< HEAD
 import android.content.Context;
+=======
+>>>>>>> origin/master
 import android.content.Intent;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -9,8 +12,6 @@ import android.os.Message;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.isdust.www.baseactivity.BaseMainActivity;
@@ -113,30 +114,30 @@ public class MainActivity extends BaseMainActivity {
 
 	}
 
-	public void onFormMainClick(View v) {
-		switch (v.getId()) {
-			case R.id.btn_main_set:  //设置
-				break;
-			case R.id.btn_main_about:  //关于
-				break;
-			case R.id.btn_main_gonet:  //上网登录
-				break;
-			case R.id.btn_main_kuaitong:  //快通有线
-				break;
-			case R.id.btn_main_schedule:  //查课表
-				break;
-			case R.id.btn_main_emptyroom:  //空自习室
-				break;
-			case R.id.btn_main_library:  //图书馆
-				break;
-			case R.id.btn_main_card:  //校园卡
-				break;
-			case R.id.btn_main_map:  //校园地图
-				break;
-			case R.id.btn_main_news:  //校园资讯
-				break;
-		}
-	}
+//	public void onFormMainClick(View v) {
+//		switch (v.getId()) {
+//			case R.id.btn_main_set:  //设置
+//				break;
+//			case R.id.btn_main_about:  //关于
+//				break;
+//			case R.id.btn_main_gonet:  //上网登录
+//				break;
+//			case R.id.btn_main_kuaitong:  //快通有线
+//				break;
+//			case R.id.btn_main_schedule:  //查课表
+//				break;
+//			case R.id.btn_main_emptyroom:  //空自习室
+//				break;
+//			case R.id.btn_main_library:  //图书馆
+//				break;
+//			case R.id.btn_main_card:  //校园卡
+//				break;
+//			case R.id.btn_main_map:  //校园地图
+//				break;
+//			case R.id.btn_main_news:  //校园资讯
+//				break;
+//		}
+//	}
 	private Animation getAnimation() {
 		// TranslateAnimation translateAnimation = new TranslateAnimation(0.0f,
 		// 200f, 0.0f,
@@ -168,7 +169,45 @@ public class MainActivity extends BaseMainActivity {
 			img_could.invalidate();
 		}
 	}
+	public void onFormMainClick(View v) {
+		Intent intent=new Intent();
+		switch (v.getId()) {
+			case R.id.btn_main_gonet:
+				intent.setClass(this, GoNetActivity.class);//上网登录
+				break;
+			case R.id.btn_main_kuaitong:
+				intent.setClass(this, KuaiTongActivity.class);//快通查询
+				break;
+			case R.id.btn_main_schedule:
+				intent.setClass(this, ScheduleActivity.class);//课程表
+				break;
+			case R.id.btn_main_emptyroom:
+				intent.setClass(this, EmptyRoomActivity.class);//空自习室
+				break;
+			case R.id.btn_main_library:
+				intent.setClass(this, LibraryActivity.class);//图书馆
+				break;
+			case R.id.btn_main_card:
+				intent.setClass(this, CardActivity.class);//校园卡
+				break;
+			case R.id.btn_main_map:
+				intent.setClass(this, MapchooseActivity.class);//地图服务
+				break;
+			case R.id.btn_main_set:
+				intent.setClass(this, SetActivity.class);//设置
+				break;
+			case R.id.btn_main_news:
+				intent.setClass(this, NewsActivity.class);//咨询
+				break;
+			case R.id.btn_main_about:
+				intent.setClass(this, AboutActivity.class);//关于
+				break;
+		}
+		this.startActivity(intent);
 
+
+
+	}
 	TimerTask task_wel = new TimerTask(){
         public void run(){
                  Message message = new Message();

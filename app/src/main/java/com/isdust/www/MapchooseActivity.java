@@ -37,8 +37,8 @@ public class MapchooseActivity extends BaseSubPageActivity {
                 intent.putExtra("judge","ATMmap");
                 intent.setClass(this, SchoolMapActivity.class);
                 break;
-            case R.id.print:
-                intent.putExtra("judge","printmap");
+            case R.id.library:
+                intent.putExtra("judge","librarymap");
                 intent.setClass(this, SchoolMapActivity.class);
                 break;
             case R.id.hospital:
@@ -49,12 +49,12 @@ public class MapchooseActivity extends BaseSubPageActivity {
                 intent.putExtra("judge","expressmap");
                 intent.setClass(this, SchoolMapActivity.class);
                 break;
-            case R.id.KTV_map:
-                intent.putExtra("judge","KTVmap");
+            case R.id.print_map:
+                intent.putExtra("judge","printmap");
                 intent.setClass(this, SchoolMapActivity.class);
                 break;
-            case R.id.barbershop_map:
-                intent.putExtra("judge","barbershopmap");
+            case R.id.bookshop_map:
+                intent.putExtra("judge","bookshopmap");
                 intent.setClass(this, SchoolMapActivity.class);
                 break;
         }
