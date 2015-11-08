@@ -5,6 +5,7 @@ import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -95,15 +96,14 @@ public class MainActivity extends BaseMainActivity {
 //			img_could.invalidate();
 //			img_could.startAnimation(getAnimation());
 		}else {
-			INIT(R.layout.activity_main, "首页");
 
-//			ishadopended = true;
-//			LayoutInflater inflate = LayoutInflater.from(this);
-//			form_welcome = inflate.inflate(R.layout.welcome,null);
-//			setContentView(form_welcome);		//Show welcome page
-//			//next add some load event
-//			timer_wel = new Timer();
-//			timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
+			ishadopended = true;
+			LayoutInflater inflate = LayoutInflater.from(this);
+			form_welcome = inflate.inflate(R.layout.welcome,null);
+			setContentView(form_welcome);		//Show welcome page
+			//next add some load event
+			timer_wel = new Timer();
+			timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
 
 		}
 
