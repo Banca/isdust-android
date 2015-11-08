@@ -73,6 +73,10 @@
         </activity>
 
         <activity
+            android:name="com.isdust.www.Schoolpicture"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.isdust.www.EmptyRoomActivity"
             android:screenOrientation="portrait">
         </activity>

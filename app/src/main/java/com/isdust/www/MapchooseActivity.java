@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 
+import com.isdust.www.baseactivity.BaseMainActivity;
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
@@ -31,7 +32,7 @@ public class MapchooseActivity extends BaseSubPageActivity {
                 break;
             case R.id.picturemap:
                 intent.putExtra("judge","picturemap");
-                intent.setClass(this, SchoolMapActivity.class);
+                intent.setClass(this, Schoolpicture.class);
                 break;
             case R.id.ATM_map:
                 intent.putExtra("judge","ATMmap");
