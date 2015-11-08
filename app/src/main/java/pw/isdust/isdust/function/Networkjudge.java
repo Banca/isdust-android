@@ -54,7 +54,7 @@ public class Networkjudge {
            } catch (IOException e) {
                e.printStackTrace();
            }
-           if (text.contains("百度")){
+           if (text.contains("<meta http-equiv=\"refresh\" content=\"0;url=http://www.baidu.com/\">")){
                return 2;
            }
            return 1;
@@ -70,7 +70,7 @@ public class Networkjudge {
             e.printStackTrace();
             return false;
         }
-        if (text.contains("百度")){
+        if (text.contains("<meta http-equiv=\"refresh\" content=\"0;url=http://www.baidu.com/\">")){
             return true;
         }
         return false;

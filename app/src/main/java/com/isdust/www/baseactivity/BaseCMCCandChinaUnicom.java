@@ -47,14 +47,17 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
                 imgbtn_state.setBackgroundResource(R.drawable.offline);//设置状态按钮
                 customRuningDialog.hide();
             }
-            if (msg.what == 1){//已连接
+            if (msg.what == 1){//已连接,未登录
                 imgbtn_state.setBackgroundResource(R.drawable.online);//设置状态按钮
+                Toast.makeText(BaseCMCCandChinaUnicom.this, "已连接CMCC，请点击一键登录", Toast.LENGTH_SHORT).show();
+
                 customRuningDialog.hide();
             }
             if (msg.what == 2){//登录成功
                 imgbtn_state.setBackgroundResource(R.drawable.online);
                 customRuningDialog.hide();
-                Toast.makeText(BaseCMCCandChinaUnicom.this, xiancheng_result, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseCMCCandChinaUnicom.this, "CMCC登录成功", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(BaseCMCCandChinaUnicom.this, xiancheng_result, Toast.LENGTH_SHORT).show();
 
             }
             if (msg.what == 3){//登录失败
@@ -76,18 +79,18 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
 
             try {
                 xiancheng_result = obj_gonet.login(str_user1,str_pwd1,str_user2,str_pwd2);
-            } catch (IOException e) {
+            } catch (IOException e) {//登录超时
                 Message message = new Message();
                 message.what = 10;
                 handler.sendMessage(message);
                 return;
             }
-            if(xiancheng_result.equals("登录成功")){
+            if(xiancheng_result.equals("登录成功")){//登录成功
                 Message message = new Message();
                 message.what = 2;
                 handler.sendMessage(message);
             return;
-        }else {
+        }else {//登录失败
                 Message message = new Message();
                 message.what = 3;
                 handler.sendMessage(message);
@@ -99,17 +102,25 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
     Runnable xiancheng_JudgeNet= new Runnable() {
         @Override
         public void run() {
-            boolean isonline = obj_netstate.isOnline();
-            if (isonline) {
+            //boolean isonline = obj_netstate.isOnline();
+            int isonline=obj_netstate.judgetype();
+            if (isonline==1) {
+                if (obj_netstate.cmcc_judge()==2){//登录成功
+                    Message message = new Message();
+                    message.what = 2;
+                    handler.sendMessage(message);
+                    return;
+                }
 
                 Message message = new Message();
-                message.what = 1;//已连接
+                message.what = 1;//已连接,未登录
                 handler.sendMessage(message);
 
 
 
             }
             else {
+
                 Message message = new Message();
                 message.what = 0;//未连接
                 handler.sendMessage(message);
@@ -147,6 +158,7 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
                     startActivityForResult(intent, GoNetChinaUnicomAcntActivity.RESULT_CODE);
                 break;
             case R.id.btn_quicklogin:  //一键登录
+
                 customRuningDialog.show();    //打开等待框
                 customRuningDialog.setMessage("正在登录...");
                 mExecutorService.execute(xiancheng_login);  //初始化进程
