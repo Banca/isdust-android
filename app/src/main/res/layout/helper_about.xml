@@ -18,7 +18,7 @@
             <include layout="@layout/layout_title_bar" android:id="@+id/include7"/>
             <ImageView android:id="@+id/imageView6" android:layout_width="match_parent"
                        android:layout_height="wrap_content" android:adjustViewBounds="true"
-                       android:onClick="caidan" android:src="@drawable/about_background"
+                       android:src="@drawable/about_background"
                        android:layout_below="@+id/include7" android:layout_alignParentLeft="true"
                        android:layout_alignParentStart="false"/>
             <ScrollView android:id="@+id/scrollView" android:layout_width="match_parent"

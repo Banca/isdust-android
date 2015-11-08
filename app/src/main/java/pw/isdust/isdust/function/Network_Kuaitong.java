@@ -27,16 +27,20 @@ public class Network_Kuaitong {
         mContext = context;
 
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
-        mHttp_waiwang.setProxy("139.129.133.235", 1999);
-        if(mNetworkjudge.judgetype()==3){
+//        mHttp_waiwang.setProxy("139.129.133.235", 1999);
+        int status=mNetworkjudge.judgetype();
+        if(status==3){
             mHttp_waiwang.setProxy("139.129.133.235", 1999);
         }else if(mNetworkjudge.judgetype()==4){
             if (mNetworkjudge.neiwaiwang_judge()==1){
                 mHttp_waiwang.setProxy("139.129.133.235", 1999);
             }
         }
-        mHttp_waiwang.setTimeout(10);
+        if (status==1||status==2){
+            mHttp_direct.setProxy("139.129.133.235", 1999);
 
+        }
+        mHttp_waiwang.setTimeout(10);
     }
     public String loginKuaitong(String user,String password) throws IOException {
 

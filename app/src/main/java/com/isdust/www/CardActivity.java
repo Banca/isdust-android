@@ -88,8 +88,6 @@ public class CardActivity extends BaseMainActivity {
             if (msg.what == 10){//网络超时
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
-
-
         }
     };
     Runnable mRunnable_xiancheng_login = new Runnable() {
