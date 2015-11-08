@@ -58,7 +58,7 @@
                         android:layout_marginTop="7px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="numberPassword"
+                        android:inputType="textPassword"
                         android:ems="10"
                         android:layout_below="@+id/cmcc_first_editText_user"
                         android:layout_alignParentRight="true"

@@ -150,7 +150,7 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
                 customRuningDialog.show();    //打开等待框
                 customRuningDialog.setMessage("正在登录...");
                 mExecutorService.execute(xiancheng_login);  //初始化进程
-                threadLogin.start();    //打开登录进程
+                //threadLogin.start();    //打开登录进程
                 break;
             case R.id.btn_quicklogout:
                 if (obj_gonet.logout())
