@@ -467,6 +467,8 @@ public class SchoolCard {
             return "修改密码成功";
         }else if(result.contains("密码错误")){
             return "原始密码错误";
+        }else if(result.contains("本日业务已结束")){
+            return "本日业务已结束";
         }
         return "未知错误";
 

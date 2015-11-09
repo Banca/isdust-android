@@ -403,7 +403,9 @@ public class ScheduleActivity extends BaseSubPageActivity {
                 mPopupWindow.setTouchable(true); // 设置popupwindow可点击
                 mPopupWindow.setOutsideTouchable(true); // 设置popupwindow外部可点击
                 mPopupWindow.setFocusable(true); // 获取焦点
-                mPopupWindow.showAsDropDown(findViewById(R.id.include2));
+                mPopupWindow.showAtLocation(view,Gravity.CENTER,0,0);
+
+//                mPopupWindow.showAsDropDown(findViewById(R.id.include2));
                 ;
                 System.out.println(mraw);
 //                View mview=findViewById(R.id.include2);
