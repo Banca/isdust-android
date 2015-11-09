@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by Administrator on 2015/10/17.
  */
-public class CardActivity extends BaseMainActivity {
+public class CardActivity extends BaseMainActivity_new {
     private String xiancheng_username,xiancheng_password,xiancheng_login_status;
     private ExecutorService mExecutorService = Executors.newCachedThreadPool();
     final int request_xiaoyuanka=2,request_changgepassword=3;
@@ -122,7 +122,7 @@ public class CardActivity extends BaseMainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_card, "校园卡");
+        INIT(R.layout.helper_card, "校园卡",6);
         mContext=this;
         getview();
 

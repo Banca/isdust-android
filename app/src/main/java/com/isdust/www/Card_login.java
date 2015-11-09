@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  * Created by wzq on 15/11/7.
  */
-public class Card_login extends BaseSubPageActivity {
+public class Card_login extends BaseSubPageActivity_new {
     Context mContext;
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
@@ -23,6 +23,7 @@ public class Card_login extends BaseSubPageActivity {
     EditText mEditText_user,mEditText_password;
     Button mButton_login;
     protected void onCreate(Bundle savedInstanceState) {
+
         mContext=this;
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_card_login, "校园卡登录");

@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  * chinaunicom账号管理页面
  * Created by Administrator on 2015/10/25.
  */
-public class GoNetChinaUnicomAcntActivity extends BaseSubPageActivity {
+public class GoNetChinaUnicomAcntActivity extends BaseSubPageActivity_new {
     public final static int RESULT_CODE=2;
     private EditText text_cmcc_user_first,text_cmcc_user_sec,
             text_cmcc_pwd_first,text_cmcc_pwd_sec;

@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  * 快通账号管理页面
  * Created by Administrator on 2015/10/25.
  */
-public class KuaiTongAcntActivity extends BaseSubPageActivity {
+public class KuaiTongAcntActivity extends BaseSubPageActivity_new {
     private EditText textuser,textpwd;
     private Button btn_ok;
     private CheckBox check_savepwd;

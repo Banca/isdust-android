@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  *
  * Created by Administrator on 2015/10/24.
  */
-public class SetAccountActivity extends BaseSubPageActivity {
+public class SetAccountActivity extends BaseSubPageActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_set_account, "账号管理");

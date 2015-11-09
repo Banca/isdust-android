@@ -1,6 +1,5 @@
 package com.isdust.www.baseactivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
@@ -8,11 +7,12 @@ import android.widget.TextView;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
 /**
- * 子页面父类
- * Created by Administrator on 2015/10/20.
+ * Created by wzq on 15/11/9.
  */
-public class BaseSubPageActivity extends Activity{
+public class BaseSubPageActivity_new extends SwipeBackActivity {
     protected MyApplication isdustapp;	//通过app调全局变量
     protected Context mContext;
 
@@ -30,5 +30,4 @@ public class BaseSubPageActivity extends Activity{
                 finish();
                 break;
         }
-    }
-}
+}}

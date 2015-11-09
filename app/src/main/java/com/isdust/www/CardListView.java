@@ -1,20 +1,17 @@
 package com.isdust.www;
 
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.PurchaseHistory;
 import com.isdust.www.view.PullToRefreshView;
-import com.isdust.www.view.PullToRefreshView.OnFooterRefreshListener;
-import com.isdust.www.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
@@ -30,7 +27,8 @@ import java.util.concurrent.Executors;
  * @author Administrator
  *
  */
-public class CardListView extends ListActivity implements OnHeaderRefreshListener,OnFooterRefreshListener{
+public class CardListView extends BaseSubPageActivity_new {
+	ListView mListView;
 
 	//线程池
 	private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -92,11 +90,15 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 					xiancheng_bollean=true;
 					dialog.dismiss();
 
-				adapter = new SimpleAdapter(mContext, listdata,
+					adapter = new SimpleAdapter(mContext, listdata,
 						R.layout.card_item, new String[] { "name", "ima", "addr", "time", "bala"},
 						new int[] { R.id.TextView_library_title, R.id.iv_gridview_item,
 								R.id.TextView_library_author,	R.id.TextView_library_bookrecnos,R.id.tv_gridview_item_bala});
-				setListAdapter(adapter);	//捆绑适配器}
+
+						mListView.setAdapter(adapter);	//捆绑适配器}
+
+
+
 				}
 				adapter.notifyDataSetChanged();	//列表刷新
 
@@ -134,13 +136,11 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
-
+		super.onCreate(savedInstanceState);
 		mContext=this;
 		isdustapp=(MyApplication)getApplication();
 		isdustapp.getUsercard().chongzhijilu();
-		xiancheng_bollean=false;
-
+		xiancheng_bollean = false;
 
 
 		MobclickAgent.onEvent(this, "schoolcard_record");
@@ -148,11 +148,25 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 
 
-		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.card_listview);
+		mListView=(ListView)findViewById(R.id.card_lisitview_detail);
+
 		mPullToRefreshView = (PullToRefreshView)findViewById(R.id.main_pull_refresh_view);
-        mPullToRefreshView.setOnHeaderRefreshListener(this);
-        mPullToRefreshView.setOnFooterRefreshListener(this);
+        mPullToRefreshView.setOnHeaderRefreshListener(new PullToRefreshView.OnHeaderRefreshListener() {
+			@Override
+			public void onHeaderRefresh(PullToRefreshView view) {
+				mPullToRefreshView.onHeaderRefreshComplete();
+
+			}
+		});
+        mPullToRefreshView.setOnFooterRefreshListener(new PullToRefreshView.OnFooterRefreshListener() {
+			@Override
+			public void onFooterRefresh(PullToRefreshView view) {
+				executorService.execute(mRunnable_xiancheng_getdata);;	//加数据
+
+			}
+		});
 
 
 
@@ -179,32 +193,27 @@ public class CardListView extends ListActivity implements OnHeaderRefreshListene
 
 
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		//Toast.makeText(this, "positon = "+position, 1000).show();
-	}
-	@Override
-	public void onFooterRefresh(PullToRefreshView view) {
-		mPullToRefreshView.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				executorService.execute(mRunnable_xiancheng_getdata);;	//加数据
-
-			}
-		}, 1000);
-	}
-	@Override
-	public void onHeaderRefresh(PullToRefreshView view) {
-		mPullToRefreshView.postDelayed(new Runnable() {
-
-			@Override
-			public void run() {
-				//设置更新时间
-				//mPullToRefreshView.onHeaderRefreshComplete("最近更新:01-23 12:01");
-				mPullToRefreshView.onHeaderRefreshComplete();
-			}
-		}, 1000);
-		
-	}
+//	@Override
+//	public void onFooterRefresh(PullToRefreshView view) {
+//		mPullToRefreshView.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				executorService.execute(mRunnable_xiancheng_getdata);;	//加数据
+//
+//			}
+//		}, 1000);
+//	}
+//	@Override
+//	public void onHeaderRefresh(PullToRefreshView view) {
+//		mPullToRefreshView.postDelayed(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				//设置更新时间
+//				//mPullToRefreshView.onHeaderRefreshComplete("最近更新:01-23 12:01");
+//				mPullToRefreshView.onHeaderRefreshComplete();
+//			}
+//		}, 1000);
+//
+//	}
 }

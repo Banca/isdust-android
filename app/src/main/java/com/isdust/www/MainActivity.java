@@ -1,17 +1,13 @@
 package com.isdust.www;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
@@ -19,15 +15,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends BaseMainActivity {
+public class MainActivity extends BaseMainActivity_new {
+	protected MyApplication isdustapp;
 	static boolean ishadopended = false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
 	private View form_welcome;
 	private MyApplication isdustapp1;
 
-	private ImageView img_could;
-	private Matrix mMatrix;
+
+
 
 	public void onResume() {
 		super.onResume();
@@ -47,28 +44,11 @@ public class MainActivity extends BaseMainActivity {
 
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
-//			img_could = (ImageView) findViewById(R.id.img_main_could);
-///** 设置位移动画 向右位移150 */
-//			final TranslateAnimation animation = new TranslateAnimation(0,-500,0, 0);
-//			animation.setDuration(2000);//设置动画持续时间
-//			animation.setRepeatCount(2);//设置重复次数
-//			animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
-//
-//					img_could.setAnimation(animation);
-///** 开始动画 */
-//					animation.startNow();
 
-/** 结束动画 */
-//					animation.cancel();
-
-//			img_could = (ImageView) findViewById(R.id.img_main_could);
-//			mMatrix = new Matrix();
-//			mMatrix.postScale(1.5f, 1.5f, 0.5f, 0.5f);
-//			img_could.setImageMatrix(mMatrix);
-//			img_could.invalidate();
-//			img_could.startAnimation(getAnimation());
 		}else {
-			INIT(R.layout.activity_main, "首页");
+			INIT(R.layout.activity_main, "首页",1);
+
+
 
 //			ishadopended = true;
 //			LayoutInflater inflate = LayoutInflater.from(this);
@@ -81,40 +61,8 @@ public class MainActivity extends BaseMainActivity {
 		}
 
 	}
-
-	private Animation getAnimation() {
-		// TranslateAnimation translateAnimation = new TranslateAnimation(0.0f,
-		// 200f, 0.0f,
-		// 0.0f);
-		// translateAnimation.setDuration(5000);
-		// translateAnimation.setRepeatMode(Animation.REVERSE);
-		// translateAnimation.setRepeatCount(Animation.INFINITE);
-		// return translateAnimation;
-		MAnimation animation = new MAnimation();
-		animation.setDuration(5000);
-		animation.setRepeatMode(Animation.REVERSE);
-		animation.setRepeatCount(Animation.INFINITE);
-		return animation;
-	}
-	public class MAnimation extends Animation {
-		private float pre = 0.0f;
-		@Override
-		protected void applyTransformation(float interpolatedTime, Transformation t) {
-			System.out.println(interpolatedTime);
-			if (pre < interpolatedTime) {
-				pre = interpolatedTime;
-				mMatrix.postTranslate(-interpolatedTime * 3, 0);
-			} else {
-				pre = interpolatedTime;
-				mMatrix.postTranslate(interpolatedTime * 3, 0);
-			}
-//			 mMatrix.postScale(interpolatedTime, 1);
-			img_could.setImageMatrix(mMatrix);
-			img_could.invalidate();
-		}
-	}
 	public void onFormMainClick(View v) {
-		Intent intent=new Intent();
+		Intent intent = new Intent();
 		switch (v.getId()) {
 			case R.id.btn_main_gonet:
 				intent.setClass(this, GoNetActivity.class);//上网登录
@@ -146,19 +94,8 @@ public class MainActivity extends BaseMainActivity {
 		}
 		this.startActivity(intent);
 
-
-
 	}
-	TimerTask task_wel = new TimerTask(){
-        public void run(){
-                 Message message = new Message();
-                 if (bool_wel) 
-                	 message.what = 1 ;
-                 else
-                	 message.what = 2 ;		// Change Transparency's command
-                 handler_wel.sendMessage(message);
-        }
-	};
+
 	
 	final Handler handler_wel = new Handler(){
         public void handleMessage(Message msg){
@@ -181,5 +118,22 @@ public class MainActivity extends BaseMainActivity {
                 super.handleMessage(msg);
         }
 	};
+	protected void INIT(int pageid,String title) {
+		isdustapp = (MyApplication) this.getApplication();
+		setContentView(pageid);
+		mContext = this;
+		TextView title_name = (TextView) findViewById(R.id.title_bar_name);
+		title_name.setText(title);	//修改页面标题
+	}   //初始化
 
+	TimerTask task_wel = new TimerTask(){
+		public void run(){
+			Message message = new Message();
+			if (bool_wel)
+				message.what = 1 ;
+			else
+				message.what = 2 ;		// Change Transparency's command
+			handler_wel.sendMessage(message);
+		}
+	};
 }

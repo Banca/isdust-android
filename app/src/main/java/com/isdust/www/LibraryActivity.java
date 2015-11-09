@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.datatype.Book;
 import com.isdust.www.view.IsdustDialog;
 
@@ -22,7 +22,7 @@ import pw.isdust.isdust.function.Library;
 /**
  * Created by Administrator on 2015/10/17.
  */
-public class LibraryActivity extends BaseMainActivity {
+public class LibraryActivity extends BaseMainActivity_new {
     Context mContext;
     Library mLibrary;
     static EditText mEditText;
@@ -113,7 +113,7 @@ public class LibraryActivity extends BaseMainActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_library, "图书馆");
+        INIT(R.layout.helper_library, "图书馆",5);
         mContext=this;
         mLibrary=new Library();
         mEditText=(EditText)findViewById(R.id.guancang_edittext);

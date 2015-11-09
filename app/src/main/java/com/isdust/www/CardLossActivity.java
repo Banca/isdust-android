@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class CardLossActivity extends BaseSubPageActivity {
+public class CardLossActivity extends BaseSubPageActivity_new {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

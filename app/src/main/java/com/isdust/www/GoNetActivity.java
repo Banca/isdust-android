@@ -4,16 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 /**
  * Created by Administrator on 2015/10/17.
  */
-public class GoNetActivity extends BaseMainActivity {
+public class GoNetActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_gonet, "上网登录");
+        INIT(R.layout.helper_gonet, "上网登录",2);
     }
     public void onFormGoNetClick(View v) {
         //设置传递方向

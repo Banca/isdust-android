@@ -19,7 +19,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubListPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.ScheduleInformation;
 import com.umeng.analytics.MobclickAgent;
 
@@ -38,7 +38,9 @@ import pw.isdust.isdust.function.SchoolDate;
 /**
  * Created by wzq on 15/10/16.
  */
-public class EmptyRoomActivity extends BaseSubListPageActivity {
+public class EmptyRoomActivity extends BaseSubPageActivity_new {
+
+    ListView mListView;
 
     //储存教学楼选择
     SharedPreferences.Editor preferences_editor;
@@ -129,7 +131,7 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
                         R.layout.activity_emptyroom_item, new String[] { "location", "zhoushu", "xingqi", "jieci"},
                         new int[] { R.id.textView_kongzixishi_location, R.id.textView_kongzixishi_zhoushu,
                                 R.id.textView_kongzixishi_xingqi,	R.id.textView_kongzixishi_jieci});
-                setListAdapter(adapter);	//捆绑适配器
+                mListView.setAdapter(adapter);	//捆绑适配器
                 dialog.dismiss();// }
 
             }else if(msg.what==10){
@@ -171,6 +173,20 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emptyroom_listview);
+        mListView=(ListView)findViewById(R.id.listview_emptyroom);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Map<String, Object> map;
+                map=listdata.get(i);
+                String mlocation=getMapValue(map,"location").replace(" ","");
+                String mzhoushu=getMapValue(map,"zhoushu").replace(" ", "");
+                String mxingqi=getMapValue(map, "xingqi").replace(" ", "");
+                String mjieci=getMapValue(map,"jieci").replace(" ", "");
+                setClipboard(mContext,mlocation+"      "+mzhoushu+"      "+mxingqi+"      "+mjieci);
+                Toast.makeText(mContext, "信息已复制到剪切板", Toast.LENGTH_SHORT).show();
+            }
+        });
         mContext=this;
         xiancheng_first=false;
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
@@ -601,18 +617,7 @@ public class EmptyRoomActivity extends BaseSubListPageActivity {
         }
 
     };
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Map<String, Object> map;
-        map=listdata.get(position);
-        String mlocation=getMapValue(map,"location").replace(" ","");
-        String mzhoushu=getMapValue(map,"zhoushu").replace(" ", "");
-        String mxingqi=getMapValue(map, "xingqi").replace(" ", "");
-        String mjieci=getMapValue(map,"jieci").replace(" ", "");
-        setClipboard(mContext,mlocation+"      "+mzhoushu+"      "+mxingqi+"      "+mjieci);
-        Toast.makeText(this, "信息已复制到剪切板", 1000).show();
-    }
+
 
 
     private String getMapValue(Map map,String key){

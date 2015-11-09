@@ -1,4 +1,10 @@
 <resources>
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@drawable/shadow_left</item>
+        <item name="shadow_right">@drawable/shadow_right</item>
+        <item name="shadow_bottom">@drawable/shadow_bottom</item>
+    </style>
     <style name="custom_title_background">
         <item name="android:background">#2c78d7</item>
     </style>
@@ -51,6 +57,8 @@
     <!-- Application theme. -->
 
     <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowIsTranslucent">true</item>
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     <style name="PopupAnimation">

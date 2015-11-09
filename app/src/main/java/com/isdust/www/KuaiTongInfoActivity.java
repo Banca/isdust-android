@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  * Created by Administrator on 2015/10/31.
  */
-public class KuaiTongInfoActivity extends BaseSubPageActivity {
+public class KuaiTongInfoActivity extends BaseSubPageActivity_new {
 
     private String data[];
 

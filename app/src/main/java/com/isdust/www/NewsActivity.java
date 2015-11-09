@@ -5,18 +5,18 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 /**
  * Created by Administrator on 2015/10/17.
  */
-public class NewsActivity extends BaseMainActivity {
+public class NewsActivity extends BaseMainActivity_new {
     WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_news, "校园资讯");
+        INIT(R.layout.helper_news, "校园资讯",7);
         mWebView=(WebView)findViewById(R.id.webView_news);
         WebSettings mwebSettings = mWebView.getSettings();
         mwebSettings.setJavaScriptEnabled(true);

@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ import pw.isdust.isdust.function.Networklogin_CMCC;
  * cmcc账号管理页面
  * Created by Administrator on 2015/10/25.
  */
-public class GoNetCMCCAcntActivity extends BaseSubPageActivity {
+public class GoNetCMCCAcntActivity extends BaseSubPageActivity_new {
     public final static int RESULT_CODE=1;
     private EditText text_cmcc_user_first,text_cmcc_user_sec,
             text_cmcc_pwd_first,text_cmcc_pwd_sec;

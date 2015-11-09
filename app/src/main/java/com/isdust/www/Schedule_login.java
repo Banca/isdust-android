@@ -9,12 +9,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  * Created by wzq on 15/11/2.
  */
-public class Schedule_login extends BaseSubPageActivity {
+public class Schedule_login extends BaseSubPageActivity_new {
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;

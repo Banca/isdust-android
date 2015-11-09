@@ -9,7 +9,7 @@
     <include layout="@layout/subpage_title_bar"
              android:id="@+id/include2" />
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/listview_library_result"
         android:background="@color/color_list_white"
         android:cacheColorHint="#00000000"
         android:layout_width="fill_parent"

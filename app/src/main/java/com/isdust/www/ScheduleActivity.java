@@ -26,7 +26,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.Kebiao;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
@@ -54,7 +54,7 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class ScheduleActivity extends BaseSubPageActivity {
+public class ScheduleActivity extends BaseSubPageActivity_new {
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
     //实例化SharedPreferences对象

@@ -6,7 +6,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubListPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import pw.isdust.isdust.function.Library;
 /**
  * Created by wzq on 15/11/1.
  */
-public class Library_detail extends BaseSubListPageActivity {
+public class Library_detail extends BaseSubPageActivity_new {
     Library mLibrary;
     List<String[]> mguancang;
     SimpleAdapter madapter;
@@ -30,7 +30,7 @@ public class Library_detail extends BaseSubListPageActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             INIT(R.layout.activity_library_detail, "馆藏信息");
-            //mListView=(ListView)findViewById(R.id.ListView_library_detail);
+            mListView=(ListView)findViewById(R.id.listview_library_detail);
             //mListView.setEnabled(false);
             mContext=this;
 
@@ -64,7 +64,7 @@ public class Library_detail extends BaseSubListPageActivity {
                 new int[] { R.id.textView_library_detail_suoshuhao, R.id.textView_library_detail_tiaomahao,
                         R.id.textView_library_detail_guancangzhuangtai,	R.id.textView_library_detail_guancangdi,R.id.textView_library_detail_huanshushijian});
 
-        setListAdapter(madapter);	//捆绑适配器}
+        mListView.setAdapter(madapter);	//捆绑适配器}
 
 //        madapter = new SimpleAdapter(mContext, listdata,
 //                R.layout.activity_library_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},

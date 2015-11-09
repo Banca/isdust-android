@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class CardChangePwdActivity extends BaseSubPageActivity {
+public class CardChangePwdActivity extends BaseSubPageActivity_new {
     String xiancheng_oldpassword,xiancheng_newpassword1,xiancheng_newpassword2,xiancheng_shengfenzheng,xiancheng_result;
 
     ExecutorService mExecutorService= Executors.newCachedThreadPool();
@@ -45,6 +45,7 @@ public class CardChangePwdActivity extends BaseSubPageActivity {
         public void run() {
             Message message=new Message();
             try {
+
                 xiancheng_result = isdustapp.getUsercard().changepassword(xiancheng_oldpassword,xiancheng_newpassword1,xiancheng_shengfenzheng);
             } catch (IOException e) {
                 e.printStackTrace();

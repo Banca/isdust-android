@@ -23,7 +23,7 @@ import pw.isdust.isdust.function.baseclass.BaseNetworklogin;
 /**
  * Created by Administrator on 2015/10/31.
  */
-public class BaseCMCCandChinaUnicom extends BaseSubPageActivity {
+public class BaseCMCCandChinaUnicom extends BaseSubPageActivity_new {
     protected BaseNetworklogin obj_gonet;   //上网登录实例对象
     protected Class<?> anct_cls;    //账号页面类
     //在读取SharedPreferences数据前要实例化出一个SharedPreferences对象

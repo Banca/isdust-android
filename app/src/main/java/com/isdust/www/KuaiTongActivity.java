@@ -19,7 +19,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity;
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -32,7 +32,7 @@ import pw.isdust.isdust.function.Network_Kuaitong;
 /**
  * Created by Administrator on 2015/10/31.
  */
-public class KuaiTongActivity extends BaseMainActivity {
+public class KuaiTongActivity extends BaseMainActivity_new {
     private SharedPreferences preferences_data_kuaitong,preferences_data_schoolcard;
     private SharedPreferences.Editor preferences_editor_kuaitong,preferences_editor_schoolcard;
     final int request_kuaitong=1,request_xiaoyuanka=2;
@@ -356,7 +356,7 @@ public class KuaiTongActivity extends BaseMainActivity {
         MobclickAgent.onEvent(this, "network_kuaitong");
         mContext=this;
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_kuaitong, "快通有线");
+        INIT(R.layout.helper_kuaitong, "快通有线",3);
 
         //实例化SharedPreferences对象
         preferences_data_kuaitong = mContext.getSharedPreferences("KuaiTongData", Activity.MODE_PRIVATE);

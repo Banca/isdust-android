@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.isdust.www.baseactivity.BaseSubListPageActivity;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.Book;
 import com.umeng.analytics.MobclickAgent;
 
@@ -20,9 +21,9 @@ import java.util.Map;
 /**
  * Created by wzq on 15/11/1.
  */
-public class Library_result extends BaseSubListPageActivity {
+public class Library_result extends BaseSubPageActivity_new {
 
-
+    ListView mListView;
     Context mContext;
     List<Book> mBooks;
     SimpleAdapter madapter;
@@ -30,10 +31,29 @@ public class Library_result extends BaseSubListPageActivity {
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MobclickAgent.onEvent(this, "Library_guancang");
-        INIT(R.layout.activity_library_result,"查询结果");
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_library_result);
+        INIT(R.layout.activity_library_result, "查询结果");
+        MobclickAgent.onEvent(this, "Library_guancang");
+
+        mListView=(ListView)findViewById(R.id.listview_library_result);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                adapterView.getLastVisiblePosition();
+                adapterView.getFirstVisiblePosition();
+                try {
+                    TextView mTextView_library_bookrecnos=(TextView)view.findViewById(R.id.TextView_library_bookrecnos);
+                    String bookrecnos=mTextView_library_bookrecnos.getText().toString().replace("书本编号：","");
+                    Intent intent=new Intent();
+                    intent.putExtra("bookrecnos", bookrecnos);
+                    intent.setClass(mContext, Library_detail.class);
+                    startActivity(intent);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+            }
+        );
         mContext=this;
         isdustapp=(MyApplication)getApplication();
 
@@ -58,28 +78,8 @@ public class Library_result extends BaseSubListPageActivity {
                 R.layout.activity_library_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
                 new int[] { R.id.TextView_library_title, R.id.TextView_library_author,
                         R.id.TextView_library_bookrecnos,	R.id.TextView_library_suoshuhao});
-        setListAdapter(madapter);	//捆绑适配器}
+        mListView.setAdapter(madapter);	//捆绑适配器}
 
     }
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-//        Toast.makeText(this, "positon = " + position, Toast.LENGTH_SHORT).show();
-        l.getLastVisiblePosition();
-        l.getFirstVisiblePosition();
-        try {
-//            l.getChildAt(position).findViewById(R.id.TextView_library_bookrecnos);
-            TextView mTextView_library_bookrecnos=(TextView)v.findViewById(R.id.TextView_library_bookrecnos);
-            String bookrecnos=mTextView_library_bookrecnos.getText().toString().replace("书本编号：","");
-            Intent intent=new Intent();
-            intent.putExtra("bookrecnos", bookrecnos);
-            intent.setClass(mContext, Library_detail.class);
-            startActivity(intent);
-        }catch (Exception e){
-            System.out.println(e);
-        }
 
-
-
-    }
 }

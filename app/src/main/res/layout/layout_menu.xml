@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="240dip"
-    android:layout_height="fill_parent"
-    android:background="@drawable/bitmap_book_read_chapterlist_repeat"
-    android:orientation="vertical" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#3D3F4F">
 
-    <TextView
-        android:layout_width="240dip"
-        android:layout_height="50.0dip"
-        android:background="#2B2F3E"
-        android:gravity="center_vertical"
-        android:paddingLeft="15.0dip"
-        android:text="@string/app_name"
-        android:textColor="#ff959595"
-        android:textSize="15.0sp" />
 
-    <View
-        android:layout_width="240dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
-        
-    <TextView
+
+    <ScrollView
+        android:id="@+id/leftmenu_scrollview"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="24dp">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+        >
+
+        <View
+            android:layout_width="200dip"
+            android:layout_height="2.0dip"
+            android:background="@drawable/ic_shelf_category_divider" />
+        <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_home"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -37,14 +39,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
 
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_cmcc"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -58,14 +60,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
 
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_kuaitong"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -79,14 +81,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
 
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_jiaowu"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -100,14 +102,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
 
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_library"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -121,14 +123,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
     
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_card"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -142,14 +144,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
 
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_news"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -163,14 +165,14 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
     
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_set"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -184,13 +186,13 @@
         android:textSize="16.0sp" />
 
     <View
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
     <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_about"
-        android:layout_width="240dip"
+        android:layout_width="200dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
@@ -203,8 +205,6 @@
         android:textColor="#ff959595"
         android:textSize="16.0sp" />
 
-    <View
-        android:layout_width="240dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
-</LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
