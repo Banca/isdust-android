@@ -17,7 +17,6 @@ import com.isdust.www.LibraryActivity;
 import com.isdust.www.MainActivity;
 import com.isdust.www.NewsActivity;
 import com.isdust.www.R;
-import com.isdust.www.SetActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
@@ -101,8 +100,6 @@ public class Leftmenu {
                 .findViewById(R.id.slide_menu_card);
         TextView TextView_news = (TextView) thisActivity
                 .findViewById(R.id.slide_menu_news);
-        TextView TextView_set = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_set);
         TextView TextView_about = (TextView) thisActivity
                 .findViewById(R.id.slide_menu_about);
 
@@ -240,24 +237,7 @@ public class Leftmenu {
             }
         });
 
-        TextView_set.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(5);
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (type != 8) {
-                        Intent intent = new Intent();
-                        intent.setClass(thisActivity, SetActivity.class);
-                        thisActivity.startActivity(intent);
-                        thisActivity.finish();
-                    } else
-                        menu.toggle();
 
-                }
-                return true;
-            }
-        });
         TextView_about.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -300,7 +280,6 @@ public class Leftmenu {
                 (TextView) thisActivity.findViewById(R.id.slide_menu_library),
                 (TextView) thisActivity.findViewById(R.id.slide_menu_card),
                 (TextView) thisActivity.findViewById(R.id.slide_menu_news),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_set),
                 (TextView) thisActivity.findViewById(R.id.slide_menu_about),};
 //        int[] tu1 = {R.drawable.left_shangwang1, R.drawable.left_jiaowu1,
 //                R.drawable.left_shenghuo1, R.drawable.left_xiaoyuanka1,

@@ -100,15 +100,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.SetActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name="com.isdust.www.AboutActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.isdust.www.SetAccountActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity

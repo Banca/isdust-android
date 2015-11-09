@@ -168,28 +168,8 @@
         android:layout_width="200dip"
         android:layout_height="2.0dip"
         android:background="@drawable/ic_shelf_category_divider" />
-    
-    <TextView
-        android:onClick="onMenuClick"
-        android:id="@+id/slide_menu_set"
-        android:layout_width="200dip"
-        android:layout_height="50.0dip"
-        android:background="@drawable/selector_category_item"
-        android:clickable="true"
-        android:drawableLeft="@drawable/ic_menu_set"
-        android:drawablePadding="1.0dip"
-        android:gravity="center_vertical"
-        android:paddingLeft="15.0dip"
-        android:paddingRight="10.0dip"
-        android:text="@string/menu_set"
-        android:textColor="#ff959595"
-        android:textSize="16.0sp" />
 
-    <View
-        android:layout_width="200dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
-    <TextView
+        <TextView
         android:onClick="onMenuClick"
         android:id="@+id/slide_menu_about"
         android:layout_width="200dip"

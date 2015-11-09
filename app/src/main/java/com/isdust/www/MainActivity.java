@@ -82,9 +82,6 @@ public class MainActivity extends BaseMainActivity_new {
 			case R.id.btn_main_card:
 				intent.setClass(this, CardActivity.class);//校园卡
 				break;
-			case R.id.btn_main_set:
-				intent.setClass(this, SetActivity.class);//设置
-				break;
 			case R.id.btn_main_news:
 				intent.setClass(this, NewsActivity.class);//咨询
 				break;
