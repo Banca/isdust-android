@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 
+import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 /**
@@ -27,7 +28,8 @@ public class BaseSubPageActivity_new extends SwipeBackActivity {
     public void onTitleBarClick(View v) {
         switch (v.getId()) {
             case R.id.title_bar_back_btn:
-                finish();
+                Utils.convertActivityToTranslucent(this);
+                getSwipeBackLayout().scrollToFinishActivity();
                 break;
         }
 }}

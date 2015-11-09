@@ -2,6 +2,7 @@ package me.imid.swipebacklayout.lib.app;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.View;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
@@ -45,5 +46,15 @@ public class SwipeBackActivity extends FragmentActivity implements SwipeBackActi
     public void scrollToFinishActivity() {
         Utils.convertActivityToTranslucent(this);
         getSwipeBackLayout().scrollToFinishActivity();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+// TODO Auto-generated method stub
+        if(keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0){
+            Utils.convertActivityToTranslucent(this);
+            getSwipeBackLayout().scrollToFinishActivity();
+            //需要处理
+        }
+        return false;
     }
 }

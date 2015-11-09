@@ -58,6 +58,8 @@
 
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
