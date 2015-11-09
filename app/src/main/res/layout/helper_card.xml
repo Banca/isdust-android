@@ -4,10 +4,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true" >
 
-    <com.isdust.www.SlideMenu
-        android:id="@+id/slide_menu"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+
 
         <include layout="@layout/layout_menu" />
 
@@ -157,6 +154,5 @@
 
         </RelativeLayout>
 
-    </com.isdust.www.SlideMenu>
 
 </RelativeLayout>

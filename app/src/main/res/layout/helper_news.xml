@@ -2,10 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.isdust.www.SlideMenu
-        android:id="@+id/slide_menu"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+
 
         <include layout="@layout/layout_menu" />
 
@@ -23,6 +20,5 @@
                 android:id="@+id/webView_news" android:layout_below="@+id/include6"
                 android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
         </RelativeLayout>
-    </com.isdust.www.SlideMenu>
 
 </RelativeLayout>
