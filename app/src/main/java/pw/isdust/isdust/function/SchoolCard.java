@@ -65,15 +65,17 @@ public class SchoolCard {
 
         mContext = context;
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
-        if(mNetworkjudge.judgetype()==3){
-            mHttp.setProxy("139.129.133.235", 1999);
-        }else if(mNetworkjudge.judgetype()==4){
-            if (mNetworkjudge.neiwaiwang_judge()==1){
-                mHttp.setProxy("139.129.133.235", 1999);
-            }
+//        if(mNetworkjudge.judgetype()==3){
+//            mHttp.setProxy("proxy1.isdust.com", 1999);
+//        }else if(mNetworkjudge.judgetype()==4){
+//            if (mNetworkjudge.neiwaiwang_judge()==1){
+//                mHttp.setProxy("proxy1.isdust.com", 1999);
+//            }
+//        }
+        int status=mNetworkjudge.judgetype();
+        if(status==3||status==4){
+            mHttp.setProxy("proxy1.isdust.com", 1999);
         }
-
-
 
         //day_minus();
 

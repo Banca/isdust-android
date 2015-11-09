@@ -26,14 +26,18 @@ public class SelectCoursePlatform {
         mHttp=new Http();
         mHttp.newcookie();
         Networkjudge mNetworkjudge=new Networkjudge(context);
-
-        if(mNetworkjudge.judgetype()==3){
-            mHttp.setProxy("139.129.133.235", 1999);
-        }else if(mNetworkjudge.judgetype()==4){
-            if (mNetworkjudge.neiwaiwang_judge()==1){
-                mHttp.setProxy("139.129.133.235", 1999);
-            }
+        int status=mNetworkjudge.judgetype();
+        if(status==3||status==4){
+            mHttp.setProxy("proxy1.isdust.com", 1999);
         }
+
+//        if(mNetworkjudge.judgetype()==3){
+//            mHttp.setProxy("proxy1.isdust.com", 1999);
+//        }else if(mNetworkjudge.judgetype()==4){
+//            if (mNetworkjudge.neiwaiwang_judge()==1){
+//                mHttp.setProxy("proxy1.isdust.com", 1999);
+//            }
+//        }
 //        mHttp.setProxy("219.146.243.3", 2000);
     }
     public String login_zhengfang(String user, String pwd) throws IOException {

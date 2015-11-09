@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import pw.isdust.isdust.function.Network_Kuaitong;
 import pw.isdust.isdust.function.SchoolCard;
 
 /**
@@ -16,6 +17,7 @@ import pw.isdust.isdust.function.SchoolCard;
  */
 public class MyApplication extends Application {
     private SchoolCard usercard;
+    private Network_Kuaitong kuaitong;
     private List<Book> mBooks;
     private Context mContext;
 
@@ -24,6 +26,7 @@ public class MyApplication extends Application {
         @Override
         public void run() {
             usercard = new SchoolCard(mContext);
+            kuaitong=new Network_Kuaitong(mContext);
         }
     };
     public void onCreate() {

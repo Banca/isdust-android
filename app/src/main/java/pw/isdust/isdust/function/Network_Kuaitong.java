@@ -29,21 +29,28 @@ public class Network_Kuaitong {
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
 //        mHttp_waiwang.setProxy("139.129.133.235", 1999);
         int status=mNetworkjudge.judgetype();
-        if(status==3){
-            mHttp_waiwang.setProxy("139.129.133.235", 1999);
-        }else if(mNetworkjudge.judgetype()==4){
-            if (mNetworkjudge.neiwaiwang_judge()==1){
-                mHttp_waiwang.setProxy("139.129.133.235", 1999);
-            }
-        }
-        if (status==1||status==2){
-            mHttp_direct.setProxy("139.129.133.235", 1999);
+//        if(status==3){
+//            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
+//        }else if(mNetworkjudge.judgetype()==4){
+//            if (mNetworkjudge.neiwaiwang_judge()==1){
+//                mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
+//            }
+//        }
 
+        if(status==3||status==4){
+            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
         }
+
+
+        mHttp_direct.setProxy("proxy1.isdust.com", 1999);
+//        if (status==1||status==2){
+//            mHttp_direct.setProxy("139.129.133.235", 1999);
+//
+//        }
         mHttp_waiwang.setTimeout(10);
     }
     public String loginKuaitong(String user,String password) throws IOException {
-
+        mHttp_direct.newcookie();
         String text=mHttp_direct.get_string("http://ktcx.sdust.edu.cn/mmsg_kt/content/LoginByPassword.aspx");
         String __VIEWSTATE= (Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"", "\" />", 0).replace("=", ""));
         String __EVENTVALIDATION=(Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"", "\" />", 0).replace("=",""));
@@ -57,6 +64,7 @@ public class Network_Kuaitong {
         if (text.contains("pageRedirect")){
             return "登录成功";
         }
+        //return "登录成功";
         return "kuaitong_login：未知错误";
     }
 
