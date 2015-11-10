@@ -35,7 +35,7 @@ public class CardLossActivity extends BaseSubPageActivity_new {
                             public void onClick(DialogInterface dialog, int which) {
                                 // 点击“确认”后的操作
                                 EditText textid = (EditText) findViewById(R.id.FormCard_editText_IDcard);
-                                EditText textpwd = (EditText) findViewById(R.id.FormCard_editText_pwd);
+                                EditText textpwd = (EditText) findViewById(R.id.EditText_network_public_login_password);
                                 String strid = textid.getText().toString();
                                 String strpwd = textpwd.getText().toString();
                                 String result;

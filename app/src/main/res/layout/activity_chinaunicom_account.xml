@@ -71,7 +71,7 @@
                         android:numeric="integer" />
 
                     <Button
-                        android:id="@+id/btn_cmccacnt_ok"
+                        android:id="@+id/button_network_cmcc_login"
                         android:onClick="onFormCMCCAcntClick"
                         android:background="@drawable/selector_ok_button"
                         android:textColor="@color/color_btn_text"
@@ -90,14 +90,14 @@
                         android:layout_below="@+id/cmcc_first_editText_pwd" />
 
                     <CheckBox
-                        android:id="@+id/checkBox_cmcc_savepwd"
+                        android:id="@+id/checkbox_network_cmcc_savepassword"
                         android:layout_width="128dp"
                         android:layout_height="wrap_content"
                         android:text="记住密码"
-                        android:layout_alignBottom="@+id/btn_cmccacnt_ok"
+                        android:layout_alignBottom="@+id/button_network_cmcc_login"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_alignTop="@+id/btn_cmccacnt_ok" />
+                        android:layout_alignTop="@+id/button_network_cmcc_login" />
 
                 </RelativeLayout>
 

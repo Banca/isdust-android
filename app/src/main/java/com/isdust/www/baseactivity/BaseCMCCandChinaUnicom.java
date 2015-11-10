@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.isdust.www.GoNetCMCCAcntActivity;
+import com.isdust.www.NetworkPublicLoginActivity;
 import com.isdust.www.GoNetChinaUnicomAcntActivity;
 import com.isdust.www.R;
 import com.isdust.www.view.IsdustDialog;
@@ -152,8 +152,8 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity_new {
             case R.id.btn_state:   //点击状态按钮设置用户名密码
                 Intent intent=new Intent();
                 intent.setClass(this, anct_cls);
-                if (anct_cls.equals(GoNetCMCCAcntActivity.class))
-                    startActivityForResult(intent, GoNetCMCCAcntActivity.RESULT_CODE);
+                if (anct_cls.equals(NetworkPublicLoginActivity.class))
+                    startActivityForResult(intent, NetworkPublicLoginActivity.RESULT_CODE);
                 else if (anct_cls.equals(GoNetChinaUnicomAcntActivity.class))
                     startActivityForResult(intent, GoNetChinaUnicomAcntActivity.RESULT_CODE);
                 break;
@@ -186,7 +186,7 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity_new {
     }
 
     private boolean judgeEmptyData() {
-        if (anct_cls.equals(GoNetCMCCAcntActivity.class)) {
+        if (anct_cls.equals(NetworkPublicLoginActivity.class)) {
             if (str_user1.isEmpty() || str_pwd1.isEmpty() || str_user2.isEmpty() || str_pwd2.isEmpty()) {
                 Intent intent=new Intent();
                 intent.setClass(BaseCMCCandChinaUnicom.this, anct_cls);
@@ -211,7 +211,7 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity_new {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //注意分清楚 requestCode和resultCode，后者是setResult里设置的
-        if (resultCode==GoNetCMCCAcntActivity.RESULT_CODE ||
+        if (resultCode== NetworkPublicLoginActivity.RESULT_CODE ||
                 resultCode==GoNetChinaUnicomAcntActivity.RESULT_CODE) //cmcc&unicom
         {
             Bundle bundle=data.getExtras();

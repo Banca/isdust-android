@@ -1,8 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:focusable="true"
                 android:focusableInTouchMode="true" >
+
+
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -14,7 +17,7 @@
         android:layout_alignParentStart="true">
 
         <include layout="@layout/subpage_title_bar"
-            android:id="@+id/include" />
+                 android:id="@+id/include" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,13 +28,12 @@
             android:layout_marginRight="20dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/relativelayout_network_public_card"
-            android:layout_alignParentBottom="true">
+            android:id="@+id/relativelayout_network_public_card">
 
             <EditText
-                android:id="@+id/FormCard_editText_IDcard"
+                android:id="@+id/EditText_network_public_login_user"
                 android:background="@color/color_btn_white"
-                android:drawableLeft="@drawable/idcard"
+                android:drawableLeft="@drawable/user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -39,43 +41,55 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:singleLine="true"
-                android:hint="身份证号码"/>
+                android:numeric="integer"/>
 
             <EditText
                 android:id="@+id/EditText_network_public_login_password"
                 android:background="@color/color_btn_white"
-                android:layout_marginTop="7dp"
                 android:drawableLeft="@drawable/pwd"
+                android:layout_marginTop="7px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
                 android:ems="10"
-                android:singleLine="true"
-                android:numeric="integer"
-                android:hint="密码"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_below="@+id/EditText_network_public_login_user"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/FormCard_editText_IDcard" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:inputType="textPassword"/>
 
             <Button
-                android:id="@+id/FormCard_button_ok"
-                android:onClick="onClick"
+                android:id="@+id/button_network_public_login"
                 android:background="@drawable/selector_ok_button"
-                android:layout_marginTop="7dp"
                 android:textColor="@color/color_btn_text"
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="挂失"
+                android:layout_height="39dp"
+                android:text="登录"
+                android:layout_marginTop="14dp"
                 android:layout_below="@+id/EditText_network_public_login_password"
+                android:layout_alignRight="@+id/EditText_network_public_login_password"
+                android:layout_alignEnd="@+id/EditText_network_public_login_password"
+                android:layout_toRightOf="@+id/checkbox_network_public_savepassword"
+                android:layout_toEndOf="@+id/checkbox_network_public_savepassword"
+                android:layout_alignParentBottom="true" />
+
+            <CheckBox
+                android:id="@+id/checkbox_network_public_savepassword"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:text="记住密码"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
+                android:layout_alignBottom="@+id/button_network_public_login"
+                android:layout_alignTop="@+id/button_network_public_login" />
         </RelativeLayout>
+
+
+
     </RelativeLayout>
+
 
 </RelativeLayout>

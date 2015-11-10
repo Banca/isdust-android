@@ -63,10 +63,10 @@ public class Schedule_login extends BaseSubPageActivity_new {
 
     }
     private void getview(){
-        mEditText_user=(EditText)findViewById(R.id.FormCard_editText_user);
-        mEditText_password=(EditText)findViewById(R.id.FormCard_editText_pwd);
-        mCheckBox_savepwd=(CheckBox)findViewById(R.id.FormCard_checkBox_savepwd);
-        mButton_login=(Button)findViewById(R.id.FormCard_button_login);
+        mEditText_user=(EditText)findViewById(R.id.EditText_network_public_login_user);
+        mEditText_password=(EditText)findViewById(R.id.EditText_network_public_login_password);
+        mCheckBox_savepwd=(CheckBox)findViewById(R.id.checkbox_network_public_savepassword);
+        mButton_login=(Button)findViewById(R.id.button_network_public_login);
 
     }
     private void getLocalData() {

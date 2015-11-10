@@ -17,7 +17,7 @@
         android:layout_below="@+id/include"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout_card">
+        android:id="@+id/relativelayout_network_public_card">
 
 
         <TextView

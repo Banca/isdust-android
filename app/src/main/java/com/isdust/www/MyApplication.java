@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.Network_Kuaitong;
+import pw.isdust.isdust.function.Networklogin_CMCC;
 import pw.isdust.isdust.function.SchoolCard;
 
 /**
@@ -20,13 +21,14 @@ public class MyApplication extends Application {
     private Network_Kuaitong kuaitong;
     private List<Book> mBooks;
     private Context mContext;
-
+    private Networklogin_CMCC mNetworklogin_CMCC;
     ExecutorService mExecutorService= Executors.newCachedThreadPool();
     Runnable xiancheng_init=new Runnable() {
         @Override
         public void run() {
             usercard = new SchoolCard(mContext);
             kuaitong=new Network_Kuaitong(mContext);
+            mNetworklogin_CMCC=new Networklogin_CMCC();
         }
     };
     public void onCreate() {
@@ -36,6 +38,9 @@ public class MyApplication extends Application {
 
 
     }
+    public Networklogin_CMCC getNetworklogin_CMCC(){
+        return mNetworklogin_CMCC;
+    };
     public void setBooks(List<Book> Books){
         mBooks=Books;
     }

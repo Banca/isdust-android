@@ -40,8 +40,8 @@ public class GoNetChinaUnicomAcntActivity extends BaseSubPageActivity_new {
 
         text_cmcc_pwd_first = (EditText) findViewById(R.id.cmcc_first_editText_pwd);
 
-        btn_ok = (Button) findViewById(R.id.btn_cmccacnt_ok);
-        check_savepwd = (CheckBox) findViewById(R.id.checkBox_cmcc_savepwd);
+        btn_ok = (Button) findViewById(R.id.button_network_cmcc_login);
+        check_savepwd = (CheckBox) findViewById(R.id.checkbox_network_cmcc_savepassword);
     }   //连接控件
 
     private void getLocalData() {
@@ -57,7 +57,7 @@ public class GoNetChinaUnicomAcntActivity extends BaseSubPageActivity_new {
 
     public void onFormCMCCAcntClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_cmccacnt_ok:
+            case R.id.button_network_cmcc_login:
                 String result,str_user1,str_pwd1,str_user2,str_pwd2;
                 str_user1 = text_cmcc_user_first.getText().toString();
                 str_pwd1 = text_cmcc_pwd_first.getText().toString();

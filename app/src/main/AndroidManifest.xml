@@ -104,7 +104,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.GoNetCMCCAcntActivity"
+            android:name=".NetworkPublicLoginActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -151,7 +151,10 @@
             android:name="com.isdust.www.Card_login"
             android:screenOrientation="portrait" >
         </activity>
-
+        <activity
+            android:name="com.isdust.www.NetworkCMCCLoginActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" >

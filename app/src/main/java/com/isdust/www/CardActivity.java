@@ -170,7 +170,7 @@ public class CardActivity extends BaseMainActivity_new {
         //设置传递方向
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.FormCard_button_login:	//登陆按钮
+            case R.id.button_network_public_login:	//登陆按钮
 //                //实例化SharedPreferences对象
 //                SharedPreferences mySharedPreferences= getSharedPreferences("CardData",	Activity.MODE_PRIVATE);
 //                //实例化SharedPreferences.Editor对象
@@ -210,7 +210,7 @@ public class CardActivity extends BaseMainActivity_new {
                 this.startActivityForResult(intent, request_changgepassword);
                 break;
             case R.id.FormCard_button_logout:	//注销按钮
-                RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativeLayout_card);
+                RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativelayout_network_public_card);
                 //mRelativeLayout_card.setVisibility(View.VISIBLE);
 //                btnlogin.setEnabled(true);
                 mImageButton_query.setEnabled(false);

@@ -48,7 +48,7 @@ public class Networkjudge {
        } catch (IOException e) {
            e.printStackTrace();
        }
-       if (text.contains("注销")){
+       if (text.contains("已使用时间")){
            try {
                text= mHttp.get_string("http://baidu.com");
            } catch (IOException e) {
