@@ -1,7 +1,6 @@
 package com.isdust.www;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.view.IsdustDialog;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -35,15 +35,16 @@ public class CardActivity extends BaseMainActivity_new {
     ImageButton mImageButton_logout ;
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor ;
+    IsdustDialog customRuningDialog;
 
-    private ProgressDialog dialog;
+    //private ProgressDialog dialog;
 
     final android.os.Handler handler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0){//登录成功
-                dialog.dismiss();
+                customRuningDialog.dismiss();
 //                RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativeLayout_card);
                 //mRelativeLayout_card.setVisibility(View.INVISIBLE);
 //                Button btnlogin = (Button) findViewById(R.id.FormCard_button_login);
@@ -77,7 +78,7 @@ public class CardActivity extends BaseMainActivity_new {
 //				mContext.startActivity(intent);
             }
             if (msg.what == 1){//显示登录状态
-                dialog.dismiss();
+                customRuningDialog.dismiss();
                 Toast.makeText(mContext, xiancheng_login_status, Toast.LENGTH_SHORT).show();
                 preferences_editor.putString("password", "");
                 preferences_editor.commit();
@@ -122,8 +123,10 @@ public class CardActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_card, "校园卡",5);
+        INIT(R.layout.helper_card, "校园卡", 5);
         mContext=this;
+        customRuningDialog = new IsdustDialog(mContext,
+                IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
         getview();
 
         mImageButton_query.setEnabled(false);
@@ -142,9 +145,11 @@ public class CardActivity extends BaseMainActivity_new {
             intent.setClass(this, Card_login.class);
             startActivityForResult(intent, request_xiaoyuanka);
         }else {
-            dialog = ProgressDialog.show(
-                    mContext, "提示",
-                    "正在登录中", true, true);
+            customRuningDialog.show();
+            customRuningDialog.setMessage("正在登录中");
+//            dialog = ProgressDialog.show(
+//                    mContext, "提示",
+//                    "正在登录中", true, true);
             mExecutorService.execute(mRunnable_xiancheng_login);
 
         }
@@ -243,9 +248,11 @@ public class CardActivity extends BaseMainActivity_new {
                         Bundle bundle=data.getExtras();
                         xiancheng_username = bundle.getString("username");
                         xiancheng_password = bundle.getString("password");
-                        dialog = ProgressDialog.show(
-                                mContext, "提示",
-                                "正在登录中", true, true);
+                        customRuningDialog.show();
+                        customRuningDialog.setMessage("正在登录中");
+//                        dialog = ProgressDialog.show(
+//                                mContext, "提示",
+//                                "正在登录中", true, true);
                         mExecutorService.execute(mRunnable_xiancheng_login);
                         break;
                 }

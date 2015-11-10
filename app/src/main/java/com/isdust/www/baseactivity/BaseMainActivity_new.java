@@ -51,7 +51,7 @@ public void onResume() {
     {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            if (mtype==1){
+            if (mtype==0){
                 if((System.currentTimeMillis()-exitTime) > 1000)  //System.currentTimeMillis()无论何时调用，肯定大于2000
                 {
                     Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();

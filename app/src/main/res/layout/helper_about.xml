@@ -43,7 +43,13 @@
 
                 </LinearLayout>
             </ScrollView>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button_feedback" android:layout_alignBottom="@+id/imageView6"
+            android:layout_centerHorizontal="true"/>
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

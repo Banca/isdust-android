@@ -43,7 +43,8 @@
 
         android:name="com.isdust.www.MyApplication">
 
-
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"/>
 
 
         <activity

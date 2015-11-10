@@ -95,6 +95,7 @@
     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="java-json" level="project" />
     <orderEntry type="library" exported="" name="com.umeng.fb.v5.0.0" level="project" />
+    <orderEntry type="library" exported="" name="com.umeng.fb.5.4.0" level="project" />
     <orderEntry type="library" exported="" name="zxing" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="umeng-update-v2.6.0.1" level="project" />
