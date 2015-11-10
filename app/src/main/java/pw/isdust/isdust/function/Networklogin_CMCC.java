@@ -18,6 +18,9 @@ public class Networklogin_CMCC  {
     protected Http mHttp;
 
     String xiaxian;
+    public Networklogin_CMCC(){
+        mHttp=new Http();
+    }
     public static String encodepassword(String rawpassword){
         String pid="1";
         String calg="12345678";
@@ -82,17 +85,30 @@ public class Networklogin_CMCC  {
         mSmsManager.sendTextMessage("10086",null,"3",null,null);
         return true;
     }
-    public boolean logout(){
+    public boolean logout_cmcc(){
+
         SmsManager mSmsManager=SmsManager.getDefault();
         mSmsManager.sendTextMessage("10086222",null,"9",null,null);
         return true;
     }
-
+    public void logout_chengshiredian(){
+        try {
+            mHttp.get_string("http://172.16.0.86/F.htm");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public String cmcc_getyanzheng(String user) throws IOException {
         String submit="username="+user+"&password=&cmccdynapw=cmccdynapw&unreguser=&wlanuserip="+wlanuserip+"&wlanacname="+wlanacname+"&wlanparameter=null&wlanuserfirsturl=http%3A%2F%2Fwww.baidu.com&ssid=cmcc&loginpage=%2Fcmccpc.jsp&indexpage=%2Fcmccpc_index.jsp&CSRFToken_HW="+CSRFToken_HW;
         String html1= mHttp.post_string("https://cmcc.sd.chinamobile.com:8443/mobilelogin.do",submit);
         if (html1.contains("动态密码已经发往手机号码")){
             return "动态密码已经发往手机号码";
+        }
+        if (html1.contains("申请动态密码成功")){
+            return "动态密码已经发往手机号码";
+        }
+        if (html1.contains("申请密码过于频繁！")){
+            return "申请密码过于频繁！";
         }
 
         return "cmcc_geyanzheng:未知错误";
@@ -106,6 +122,9 @@ public class Networklogin_CMCC  {
         }
         if (html1.contains("用户名或密码错误！")){
             return "CMCC用户名或密码错误";
+        }
+        if (html1.contains("动态密码有效期已过期，请您重新获取动态密码。")){
+            return "动态密码有效期已过期，请您重新获取动态密码。";
         }
         if (html1.contains("下线成功")){
             xiaxian=zhongjian(html1,"var gurl = \"","\";",0);
