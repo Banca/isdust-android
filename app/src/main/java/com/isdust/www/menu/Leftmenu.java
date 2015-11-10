@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.isdust.www.AboutActivity;
 import com.isdust.www.CardActivity;
@@ -47,7 +47,7 @@ public class Leftmenu {
          */
         menu.attachToActivity(thisActivity, SlidingMenu.SLIDING_CONTENT);
         // 为侧滑菜单设置布局
-        menu.setMenu(R.layout.layout_menu);
+        menu.setMenu(R.layout.leftmenu);
 
         menu.setBehindScrollScale(0);
 
@@ -86,24 +86,24 @@ public class Leftmenu {
                  */
             }
         });
-        TextView TextView_home = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_home);
-        TextView TextView_shangwang = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_cmcc);
-        TextView TextView_kuaitong = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_kuaitong);
-        TextView TextView_jiaowu = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_jiaowu);
-        TextView TextView_library = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_library);
-        TextView TextView_card = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_card);
-        TextView TextView_news = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_news);
-        TextView TextView_about = (TextView) thisActivity
-                .findViewById(R.id.slide_menu_about);
+        ImageView ImageView_home = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_home);
+        ImageView ImageView_shangwang = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_cmcc);
+        ImageView ImageView_kuaitong = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_kuaitong);
+        ImageView ImageView_jiaowu = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_jiaowu);
+        ImageView ImageView_library = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_library);
+        ImageView ImageView_card = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_card);
+        ImageView ImageView_news = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_news);
+        ImageView ImageView_about = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_about);
 
-        TextView_home.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_home.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -111,6 +111,25 @@ public class Leftmenu {
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, MainActivity.class);
+                    intent.putExtra("menu", 0);
+                    thisActivity.startActivity(intent);
+                    if (type != 0)
+                        thisActivity.finish();
+                    else
+                        menu.toggle();
+                }
+                return true;
+            }
+        });
+
+        ImageView_shangwang.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    leftmenu_ui(1);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Intent intent = new Intent();
+                    intent.setClass(thisActivity, GoNetActivity.class);
                     intent.putExtra("menu", 1);
                     thisActivity.startActivity(intent);
                     if (type != 1)
@@ -122,15 +141,14 @@ public class Leftmenu {
             }
         });
 
-        TextView_shangwang.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_kuaitong.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(0);
+                    leftmenu_ui(2);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
-                    intent.setClass(thisActivity, GoNetActivity.class);
-                    intent.putExtra("menu", 1);
+                    intent.setClass(thisActivity, KuaiTongActivity.class);
                     thisActivity.startActivity(intent);
                     if (type != 2)
                         thisActivity.finish();
@@ -141,14 +159,14 @@ public class Leftmenu {
             }
         });
 
-        TextView_kuaitong.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_jiaowu.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(1);
+                    leftmenu_ui(3);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
-                    intent.setClass(thisActivity, KuaiTongActivity.class);
+                    intent.setClass(thisActivity, JiaowuActivity.class);
                     thisActivity.startActivity(intent);
                     if (type != 3)
                         thisActivity.finish();
@@ -159,31 +177,13 @@ public class Leftmenu {
             }
         });
 
-        TextView_jiaowu.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_library.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(2);
+                    leftmenu_ui(4);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Intent intent = new Intent();
-                    intent.setClass(thisActivity, JiaowuActivity.class);
-                    thisActivity.startActivity(intent);
-                    if (type != 4)
-                        thisActivity.finish();
-                    else
-                        menu.toggle();
-                }
-                return true;
-            }
-        });
-
-        TextView_library.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(6);
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (type != 5) {
+                    if (type != 4) {
                         Intent intent = new Intent();
                         intent.setClass(thisActivity, LibraryActivity.class);
                             thisActivity.startActivity(intent);
@@ -197,13 +197,13 @@ public class Leftmenu {
             }
         });
 
-        TextView_card.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_card.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(3);
+                    leftmenu_ui(5);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (type != 6) {
+                    if (type != 5) {
                         Intent intent = new Intent();
                         intent.setClass(thisActivity, CardActivity.class);
                         thisActivity.startActivity(intent);
@@ -216,13 +216,13 @@ public class Leftmenu {
         });
 
 
-        TextView_news.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_news.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(4);
+                    leftmenu_ui(6);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (type != 7) {
+                    if (type != 6) {
                         Intent intent = new Intent();
                         intent.setClass(thisActivity, NewsActivity.class);
                         thisActivity.startActivity(intent);
@@ -238,11 +238,11 @@ public class Leftmenu {
         });
 
 
-        TextView_about.setOnTouchListener(new View.OnTouchListener() {
+        ImageView_about.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    leftmenu_ui(5);
+                    leftmenu_ui(7);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, AboutActivity.class);
@@ -259,42 +259,34 @@ public class Leftmenu {
         return (int) (dipValue * scale + 0.5f);
     }
 
-//    private void setalpha() {
-//        if (type == 1) {
-//            thisActivity.findViewById(R.id.shangwang_deglu).getBackground()
-//                    .setAlpha(255);
-//            thisActivity.findViewById(R.id.shangwang_duankai).getBackground()
-//                    .setAlpha(255);
-//        }
-//    }
-
     public void leftmenu_ui(int a) {
 
 
+        ImageView[] myImageViews = {
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_home),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_cmcc),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_kuaitong),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_jiaowu),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_library),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_card),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_news),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_about),};
 
-        TextView[] myImageViews = {
-                (TextView) thisActivity.findViewById(R.id.slide_menu_home),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_cmcc),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_kuaitong),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_jiaowu),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_library),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_card),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_news),
-                (TextView) thisActivity.findViewById(R.id.slide_menu_about),};
-//        int[] tu1 = {R.drawable.left_shangwang1, R.drawable.left_jiaowu1,
-//                R.drawable.left_shenghuo1, R.drawable.left_xiaoyuanka1,
-//                R.drawable.left_ditie1, R.drawable.left_about1,
-//                R.drawable.left_guancang1,};
-//        int[] tu0 = {R.drawable.left_shangwang0, R.drawable.left_jiaowu0,
-//                R.drawable.left_shenghuo0, R.drawable.left_xiaoyuanka0,
-//                R.drawable.left_ditie0, R.drawable.left_about0,
-//                R.drawable.left_guancang0,};
-//        int i;
-//        for (i = 0; i < myImageViews.length; i++) {
-//            if (i == a)
-//                myImageViews[i].setBackgroundResource(tu1[i]);
-//            else
-//                myImageViews[i].setBackgroundResource(tu0[i]);
-//        }
-//    }
-}}
+
+        int[] tu0 = {R.drawable.leftmenu_home1, R.drawable.leftmenu_wifi1,
+                R.drawable.leftmenu_kuaitong1, R.drawable.leftmenu_jiaowu1,
+                R.drawable.leftmenu_library1, R.drawable.leftmenu_card1,
+                R.drawable.leftmenu_news1,R.drawable.leftmenu_about1,};
+        int[] tu1 = {R.drawable.leftmenu_home2, R.drawable.leftmenu_wifi2,
+                R.drawable.leftmenu_kuaitong2, R.drawable.leftmenu_jiaowu2,
+                R.drawable.leftmenu_library2, R.drawable.leftmenu_card2,
+                R.drawable.leftmenu_news2,R.drawable.leftmenu_about2,};
+        int i;
+        for (i = 0; i < myImageViews.length; i++) {
+            if (i == (a))
+                myImageViews[i].setBackgroundResource(tu1[i]);
+            else
+                myImageViews[i].setBackgroundResource(tu0[i]);
+        }
+    }
+}

@@ -6,7 +6,6 @@
 
 
 
-        <include layout="@layout/layout_menu" />
 
         <RelativeLayout
             android:layout_width="fill_parent"

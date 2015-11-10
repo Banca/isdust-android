@@ -113,7 +113,7 @@ public class LibraryActivity extends BaseMainActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_library, "图书馆",5);
+        INIT(R.layout.helper_library, "图书馆",4);
         mContext=this;
         mLibrary=new Library();
         mEditText=(EditText)findViewById(R.id.guancang_edittext);

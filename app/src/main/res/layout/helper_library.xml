@@ -5,7 +5,6 @@
                 android:focusableInTouchMode="true" >
 
 
-        <include layout="@layout/layout_menu" />
 
         <LinearLayout
             android:layout_width="fill_parent"

@@ -3,7 +3,6 @@
     android:layout_height="match_parent" >
 
 
-        <include layout="@layout/layout_menu" />
 
         <RelativeLayout
             android:layout_width="fill_parent"

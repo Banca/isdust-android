@@ -13,7 +13,7 @@ public class GoNetActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_gonet, "上网登录",2);
+        INIT(R.layout.helper_gonet, "上网登录",1);
     }
     public void onFormGoNetClick(View v) {
         //设置传递方向

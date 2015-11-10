@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#3D3F4F">
+
+
+
+    <ScrollView
+        android:id="@+id/leftmenu_scrollview"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/leftmenu_home"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_home1" />
+
+            <ImageView
+                android:id="@+id/leftmenu_cmcc"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_wifi1" />
+            <ImageView
+                android:id="@+id/leftmenu_jiaowu"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_jiaowu1" />
+            <ImageView
+                android:id="@+id/leftmenu_card"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_card1" />
+
+            <ImageView
+                android:id="@+id/leftmenu_kuaitong"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_kuaitong1" />
+
+
+
+            <ImageView
+                android:id="@+id/leftmenu_library"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_library1" />
+
+
+
+
+
+            <ImageView
+                android:id="@+id/leftmenu_news"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_news1" />
+            <ImageView
+                android:id="@+id/leftmenu_about"
+                android:layout_width="199dp"
+                android:layout_height="48dp"
+                android:background="@drawable/leftmenu_about1" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

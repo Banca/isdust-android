@@ -26,10 +26,7 @@ public class MainActivity extends BaseMainActivity_new {
 
 
 
-	public void onResume() {
-		super.onResume();
-		MobclickAgent.onResume(this);
-	}
+
 	public void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
@@ -46,7 +43,7 @@ public class MainActivity extends BaseMainActivity_new {
 			INIT(R.layout.activity_main, "首页");
 
 		}else {
-			INIT(R.layout.activity_main, "首页",1);
+			INIT(R.layout.activity_main, "首页",0);
 
 
 
@@ -61,6 +58,7 @@ public class MainActivity extends BaseMainActivity_new {
 		}
 
 	}
+
 	public void onFormMainClick(View v) {
 		Intent intent = new Intent();
 		switch (v.getId()) {

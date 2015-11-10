@@ -16,7 +16,7 @@ public class NewsActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_news, "校园资讯",7);
+        INIT(R.layout.helper_news, "校园资讯",6);
         mWebView=(WebView)findViewById(R.id.webView_news);
         WebSettings mwebSettings = mWebView.getSettings();
         mwebSettings.setJavaScriptEnabled(true);

@@ -122,7 +122,7 @@ public class CardActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_card, "校园卡",6);
+        INIT(R.layout.helper_card, "校园卡",5);
         mContext=this;
         getview();
 

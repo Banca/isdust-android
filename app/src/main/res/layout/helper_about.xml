@@ -3,10 +3,7 @@
     android:layout_height="match_parent" >
 
 
-
-    <include layout="@layout/subpage_title_bar"
-             android:id="@+id/include" />
-        <RelativeLayout
+    <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/color_page_white"
@@ -29,16 +26,18 @@
                               android:layout_below="@+id/imageView6"
                               android:layout_alignParentLeft="true"
                               android:layout_alignParentStart="true">
-                    <ImageView android:id="@+id/imageView2" android:layout_width="300dp"
+                    <ImageView android:id="@+id/imageView2" android:layout_width="wrap_content"
+                               android:layout_height="100dp"
+                               android:layout_gravity="left|top"
+                               android:src="@drawable/about_wzq"/>
+                    <ImageView android:id="@+id/imageView3" android:layout_width="wrap_content"
                                android:layout_height="90dp"
-                               android:src="@drawable/about_wzq" android:layout_gravity="left|top"/>
-                    <ImageView android:id="@+id/imageView3" android:layout_width="300dp"
-                               android:layout_height="90dp"
-                               android:src="@drawable/about_lhc" android:layout_gravity="left|top"/>
-                    <ImageView android:id="@+id/imageView4" android:layout_width="300dp"
+                               android:layout_gravity="left|top"
+                               android:src="@drawable/about_lhc"/>
+                    <ImageView android:id="@+id/imageView4" android:layout_width="wrap_content"
                                android:layout_height="90dp"
                                android:src="@drawable/about_qwk" android:layout_gravity="left|top"/>
-                    <ImageView android:id="@+id/imageView5" android:layout_width="300dp"
+                    <ImageView android:id="@+id/imageView5" android:layout_width="fill_parent"
                                android:layout_height="90dp"
                                android:src="@drawable/about_hy" android:layout_gravity="left|top"/>
 
