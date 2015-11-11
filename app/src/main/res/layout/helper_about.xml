@@ -6,44 +6,233 @@
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/color_page_white"
+            android:background="#f5f9fd"
             android:orientation="vertical" >
 
-            <include layout="@layout/subpage_title_bar" android:id="@+id/include7"/>
-            <ImageView android:id="@+id/imageView6" android:layout_width="match_parent"
-                       android:layout_height="wrap_content" android:adjustViewBounds="true"
-                       android:src="@drawable/about_background"
-                       android:layout_below="@+id/include7" android:layout_alignParentLeft="true"
-                       android:layout_alignParentStart="false"/>
-            <ScrollView android:id="@+id/scrollView" android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="false"
-                        android:layout_alignParentStart="false"
-                        android:layout_alignParentTop="false" android:layout_below="@+id/imageView6">
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical" android:gravity="center_horizontal"
-                              android:layout_below="@+id/imageView6"
-                              android:layout_alignParentLeft="true"
-                              android:layout_alignParentStart="true">
-                    <ImageView android:id="@+id/imageView2" android:layout_width="wrap_content"
-                               android:layout_height="100dp"
-                               android:layout_gravity="left|top"
-                               android:src="@drawable/about_wzq"/>
-                    <ImageView android:id="@+id/imageView3" android:layout_width="wrap_content"
-                               android:layout_height="90dp"
-                               android:layout_gravity="left|top"
-                               android:src="@drawable/about_lhc"/>
-                    <ImageView android:id="@+id/imageView4" android:layout_width="wrap_content"
-                               android:layout_height="90dp"
-                               android:src="@drawable/about_qwk" android:layout_gravity="left|top"/>
-                    <ImageView android:id="@+id/imageView5" android:layout_width="fill_parent"
-                               android:layout_height="90dp"
-                               android:src="@drawable/about_hy" android:layout_gravity="left|top"/>
+        <include layout="@layout/subpage_title_bar"
+            android:id="@+id/include7"/>
 
-                </LinearLayout>
-            </ScrollView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:background="#00A0E9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/include7"
+            android:id="@+id/relativeLayout2">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView6"
+                android:src="@drawable/main_cloud"
+                android:scaleType="matrix"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView7"
+                android:src="@drawable/bird"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="爱 山 科"
+                android:textSize="23dp"
+                android:textColor="#fff"
+                android:id="@+id/textView23"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="——静语计算机协会开发维护"
+                android:textColor="#fff"
+                android:id="@+id/textView24"
+                android:layout_below="@+id/textView23"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
+
+        <ScrollView android:id="@+id/scrollView" android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/relativeLayout2">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical" android:gravity="center_horizontal">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_below="@+id/scrollView"
+                    >
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/face_wzq"
+                        android:id="@+id/imageView2"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="WZQ"
+                        android:textSize="20dp"
+                        android:id="@+id/textView"
+                        android:layout_toRightOf="@+id/imageView2"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Coder/Developer"
+                        android:id="@+id/textView10"
+                        android:layout_below="@+id/textView"
+                        android:layout_alignLeft="@+id/textView"
+                        android:layout_alignStart="@+id/textView" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dddddd" />
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_below="@+id/scrollView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/face_lhc"
+                        android:id="@+id/imageView3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="LHC"
+                        android:textSize="20dp"
+                        android:id="@+id/textView17"
+                        android:layout_toRightOf="@+id/imageView3"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UI/UE Coder"
+                        android:id="@+id/textView18"
+                        android:layout_below="@+id/textView17"
+                        android:layout_alignLeft="@+id/textView17"
+                        android:layout_alignStart="@+id/textView17" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dddddd" />
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_below="@+id/scrollView"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/face_qwk"
+                        android:id="@+id/imageView4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="KevinQi"
+                        android:textSize="20dp"
+                        android:id="@+id/textView19"
+                        android:layout_toRightOf="@+id/imageView4"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Map Coder"
+                        android:id="@+id/textView20"
+                        android:layout_below="@+id/textView19"
+                        android:layout_alignLeft="@+id/textView19"
+                        android:layout_alignStart="@+id/textView19" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dddddd" />
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/face_hy"
+                        android:id="@+id/imageView5" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Banca"
+                        android:textSize="20dp"
+                        android:id="@+id/textView21"
+                        android:layout_toRightOf="@+id/imageView5"
+                        android:layout_alignParentTop="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UI Designer"
+                        android:id="@+id/textView22"
+                        android:layout_below="@+id/textView21"
+                        android:layout_alignLeft="@+id/textView21"
+                        android:layout_alignStart="@+id/textView21" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dddddd" />
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 
 </RelativeLayout>
