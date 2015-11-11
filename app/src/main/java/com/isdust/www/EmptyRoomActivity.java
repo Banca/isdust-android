@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.ScheduleInformation;
+import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -107,8 +108,8 @@ public class EmptyRoomActivity extends BaseSubPageActivity_new {
     private EmptyClassroom mKongzixishi;
 
     private List<Map<String, Object>> listdata = new ArrayList<Map<String, Object>>();	//列表框的数据
-    private ProgressDialog dialog;
-
+    //private ProgressDialog dialog;
+    IsdustDialog customRuningDialog;
     SimpleAdapter adapter;	//列表的适配器
     Context mContext;
     final android.os.Handler mHandler=new android.os.Handler(){
@@ -132,11 +133,11 @@ public class EmptyRoomActivity extends BaseSubPageActivity_new {
                         new int[] { R.id.textView_kongzixishi_location, R.id.textView_kongzixishi_zhoushu,
                                 R.id.textView_kongzixishi_xingqi,	R.id.textView_kongzixishi_jieci});
                 mListView.setAdapter(adapter);	//捆绑适配器
-                dialog.dismiss();// }
+                customRuningDialog.dismiss();// }
 
             }else if(msg.what==10){
 
-                dialog.dismiss();
+                customRuningDialog.dismiss();
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
 
@@ -189,6 +190,8 @@ public class EmptyRoomActivity extends BaseSubPageActivity_new {
         });
         mContext=this;
         xiancheng_first=false;
+        customRuningDialog = new IsdustDialog(mContext,
+                IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("空自习室查询");
         mButton_chaxun_kongzixishi=(Button)findViewById(R.id.button_chaxun_kongzixishi);
@@ -216,9 +219,11 @@ public class EmptyRoomActivity extends BaseSubPageActivity_new {
         xiancheng_zhoushu=zhoushu;
         xiancheng_xingqi=xingqi;
         xiancheng_jieci=jieci;
-        dialog = ProgressDialog.show(
-                mContext, "提示",
-                "正在获取空自习室……", true, true);// }
+        customRuningDialog.show();
+        customRuningDialog.setMessage("正在获取空自习室……");
+//        dialog = ProgressDialog.show(
+//                mContext, "提示",
+//                "正在获取空自习室……", true, true);// }
         executorService.execute(mRunnable_jiazaizixishi);
     }
     private String xingqizhuanhuan(int raw){

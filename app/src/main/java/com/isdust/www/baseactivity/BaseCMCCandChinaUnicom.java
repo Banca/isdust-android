@@ -44,17 +44,17 @@ public class BaseCMCCandChinaUnicom extends BaseSubPageActivity_new {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0){//未连接
-                imgbtn_state.setBackgroundResource(R.drawable.offline);//设置状态按钮
+                imgbtn_state.setBackgroundResource(R.drawable.cmcc_0);//设置状态按钮
                 customRuningDialog.hide();
             }
             if (msg.what == 1){//已连接,未登录
-                imgbtn_state.setBackgroundResource(R.drawable.online);//设置状态按钮
+                imgbtn_state.setBackgroundResource(R.drawable.cmcc_0);//设置状态按钮
                 Toast.makeText(BaseCMCCandChinaUnicom.this, "已连接CMCC，请点击一键登录", Toast.LENGTH_SHORT).show();
 
                 customRuningDialog.hide();
             }
             if (msg.what == 2){//登录成功
-                imgbtn_state.setBackgroundResource(R.drawable.online);
+                imgbtn_state.setBackgroundResource(R.drawable.cmcc_0);
                 customRuningDialog.hide();
                 Toast.makeText(BaseCMCCandChinaUnicom.this, "CMCC登录成功", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(BaseCMCCandChinaUnicom.this, xiancheng_result, Toast.LENGTH_SHORT).show();

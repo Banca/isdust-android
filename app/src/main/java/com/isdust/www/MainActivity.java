@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,6 +39,8 @@ public class MainActivity extends BaseMainActivity_new {
 		MobclickAgent.updateOnlineConfig(mContext);
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
+		System.out.println(Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID)
+		);
 
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");

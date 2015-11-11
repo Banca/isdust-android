@@ -29,6 +29,7 @@ public class NetworkCMCCLoginActivity extends BaseSubPageActivity_new {
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor mSharedPreferences_editor;
     Networklogin_CMCC mNetworklogin_CMCC;
+    boolean isdynaticpassword=false;
 
 
     //线程池
@@ -39,12 +40,12 @@ public class NetworkCMCCLoginActivity extends BaseSubPageActivity_new {
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             if (msg.what==0){//获取验证码失败
-                Toast.makeText(mContext,"验证码获取失败",Toast.LENGTH_SHORT);
+                Toast.makeText(mContext,xiancheng_status,Toast.LENGTH_SHORT).show();
                 return;
 
             }
             if (msg.what==1){//获取验证码成功
-                Toast.makeText(mContext,"动态密码已经发往手机号码",Toast.LENGTH_SHORT);
+                Toast.makeText(mContext,"动态密码已经发往手机号码",Toast.LENGTH_SHORT).show();
                 return;
 
 
@@ -64,6 +65,7 @@ public class NetworkCMCCLoginActivity extends BaseSubPageActivity_new {
 
 
             try {
+                isdustapp.getNetworklogin_CMCC().cmcc_init();
                 xiancheng_status=isdustapp.getNetworklogin_CMCC().cmcc_getyanzheng(xiancheng_user);
             } catch (IOException e) {
                 message.what=10;
@@ -112,6 +114,7 @@ public class NetworkCMCCLoginActivity extends BaseSubPageActivity_new {
                     Toast.makeText(mContext, "请输入您的手机号码", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                isdynaticpassword=true;
                 mExecutorService.execute(xiancheng_getdymaticpassword);
 
 
@@ -129,8 +132,11 @@ public class NetworkCMCCLoginActivity extends BaseSubPageActivity_new {
                 mSharedPreferences_editor.putString("network_cmcc_cmcc_user", xiancheng_user);
 
                     if (mCheckBox_savepassword.isChecked()) {    //记住密码
-                        mSharedPreferences_editor.putBoolean("network_cmcc_cmcc_keeppword", true);
-                        mSharedPreferences_editor.putString("network_cmcc_cmcc_password", xiancheng_password);
+                        if (isdynaticpassword == false) {
+                            mSharedPreferences_editor.putBoolean("network_cmcc_cmcc_keeppword", true);
+                            mSharedPreferences_editor.putString("network_cmcc_cmcc_password", xiancheng_password);
+                        }
+
                     } else {    //不记住密码
                         mSharedPreferences_editor.putBoolean("network_cmcc_cmcc_keeppword", false);
                         mSharedPreferences_editor.putString("network_cmcc_cmcc_password", "");
