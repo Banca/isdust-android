@@ -71,7 +71,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 Toast.makeText(mContext, "1层登录成功", Toast.LENGTH_SHORT).show();
                 message.what=1;
                 handler.sendMessage(message);
-                autologin();
+                mExecutorService.execute(xiancheng_autologin);
                 return;
 
 
@@ -159,6 +159,48 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 return;
             }
 
+
+        }
+    };
+    Runnable xiancheng_autologin=new Runnable() {
+        @Override
+        public void run() {
+            xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+            if (xiancheng_network_cmcc_condition==2){//登录了2层
+                Message mMessage=new Message();
+                mMessage.what=2;
+                handler.sendMessage(mMessage);
+                return;
+            }
+            if (xiancheng_network_cmcc_condition==1){//登录1层
+                if (xiancheng_cmcc_user.equals("")||xiancheng_cmcc_password.equals("")){
+                    Intent intent=new Intent();
+                    intent.setClass(mContext, NetworkCMCCLoginActivity.class);
+                    startActivityForResult(intent, type_chengshiredian);
+                    return;
+                }
+                mExecutorService.execute(xiancheng_runnable_cmcc_login);
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage("正在登录第二层...");
+                return;
+
+            }
+            if (xiancheng_network_cmcc_condition==0){//登录0层
+                if (xiancheng_chengshiredian_user.equals("")||xiancheng_chengshiredian_password.equals("")){
+                    Intent intent=new Intent();
+                    intent.setClass(mContext, NetworkPublicLoginActivity.class);
+                    intent.putExtra("type", type_chengshiredian);
+                    startActivityForResult(intent, type_chengshiredian);
+                    return;
+                }else {
+                    mExecutorService.execute(xiancheng_runnable_chengshiredian_login);
+                    customRuningDialog.show();    //打开等待框
+                    customRuningDialog.setMessage("正在登录第一层...");
+                    return;
+                }
+
+
+            }
 
         }
     };
@@ -263,7 +305,8 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
         xiancheng_cmcc_password=mSharedPreferences_cmcc.getString("network_cmcc_cmcc_password", "");
 
 
-        autologin();
+        //autologin();
+        mExecutorService.execute(xiancheng_autologin);
 
 
 

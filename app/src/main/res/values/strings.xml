@@ -40,4 +40,8 @@
 
 
     <string name="scan_text">将条码放入框内, 即可自动扫描</string>
+
+    <string name="umeng_isNewest">您使用的已经是最新版本。</string>
+    <string name="umeng_notWifi">没有连接wifi。</string>
+    <string name="umeng_timeout">请求超时。</string>
 </resources>
