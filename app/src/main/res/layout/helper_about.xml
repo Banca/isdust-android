@@ -9,7 +9,6 @@
             android:background="#f5f9fd"
             android:orientation="vertical" >
 
-<<<<<<< HEAD
         <include layout="@layout/subpage_title_bar"
             android:id="@+id/include7"/>
 
@@ -41,16 +40,17 @@
                 android:src="@drawable/bird"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="爱 山 科"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:textColor="#fff"
                 android:id="@+id/textView23"
-                android:layout_centerVertical="true"
+                android:layout_below="@+id/imageView7"
                 android:layout_centerHorizontal="true" />
 
             <TextView
@@ -63,50 +63,31 @@
                 android:layout_below="@+id/textView23"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
-=======
-            <include layout="@layout/subpage_title_bar" android:id="@+id/include7"/>
-            <ImageView android:id="@+id/imageView6" android:layout_width="match_parent"
-                       android:layout_height="wrap_content" android:adjustViewBounds="true"
-                       android:src="@drawable/about_background"
-                       android:layout_below="@+id/include7" android:layout_alignParentLeft="true"
-                       android:layout_alignParentStart="false"/>
-            <ScrollView android:id="@+id/scrollView" android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="false"
-                        android:layout_alignParentStart="false"
-                        android:layout_alignParentTop="false" android:layout_below="@+id/imageView6">
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical" android:gravity="center_horizontal"
-                              android:layout_below="@+id/imageView6"
-                              android:layout_alignParentLeft="true"
-                              android:layout_alignParentStart="true">
-                    <ImageView android:id="@+id/imageView2" android:layout_width="wrap_content"
-                               android:layout_height="100dp"
-                               android:layout_gravity="left|top"
-                               android:src="@drawable/about_wzq"/>
-                    <ImageView android:id="@+id/imageView3" android:layout_width="wrap_content"
-                               android:layout_height="90dp"
-                               android:layout_gravity="left|top"
-                               android:src="@drawable/about_lhc"/>
-                    <ImageView android:id="@+id/imageView4" android:layout_width="wrap_content"
-                               android:layout_height="90dp"
-                               android:src="@drawable/about_qwk" android:layout_gravity="left|top"/>
-                    <ImageView android:id="@+id/imageView5" android:layout_width="fill_parent"
-                               android:layout_height="90dp"
-                               android:src="@drawable/about_hy" android:layout_gravity="left|top"/>
 
-                </LinearLayout>
-            </ScrollView>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button_feedback" android:layout_alignBottom="@+id/imageView6"
-            android:layout_centerHorizontal="true"/>
->>>>>>> origin/leftmenu
+            <Button
+                android:id="@+id/button_update"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:background="@drawable/selector_transparent_button"
+                android:text="    检测更新    "
+                android:textSize="@dimen/abc_text_size_button_material"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/button_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_transparent_button"
+                android:text="    意见反馈    "
+                android:textSize="@dimen/abc_text_size_button_material"
+                android:layout_below="@+id/button_update"
+                android:layout_alignLeft="@+id/button_update"
+                android:layout_alignStart="@+id/button_update"
+                android:layout_alignRight="@+id/button_update"
+                android:layout_alignEnd="@+id/button_update" />
+        </RelativeLayout>
 
         <ScrollView android:id="@+id/scrollView" android:layout_width="match_parent"
                     android:layout_height="wrap_content"
