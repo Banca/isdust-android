@@ -218,10 +218,10 @@ public class CardActivity extends BaseMainActivity_new {
                 RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativelayout_network_public_card);
                 //mRelativeLayout_card.setVisibility(View.VISIBLE);
 //                btnlogin.setEnabled(true);
-                mImageButton_query.setEnabled(false);
-                mImageButton_changepwd.setEnabled(false);
-                mImageButton_loss.setEnabled(false);
-                mImageButton_logout.setEnabled(false);
+//                mImageButton_query.setEnabled(false);
+//                mImageButton_changepwd.setEnabled(false);
+//                mImageButton_loss.setEnabled(false);
+//                mImageButton_logout.setEnabled(false);
 //                btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_blue));
 
                 intent.setClass(mContext, Card_login.class);
@@ -261,15 +261,15 @@ public class CardActivity extends BaseMainActivity_new {
                         preferences_editor.putString("password", "");
                         preferences_editor.commit();
                         Intent intent=new Intent();
-                        mImageButton_query.setEnabled(false);
-                        mImageButton_changepwd.setEnabled(false);
-                        mImageButton_loss.setEnabled(false);
-                        mImageButton_logout.setEnabled(false);
+//                        mImageButton_query.setEnabled(false);
+//                        mImageButton_changepwd.setEnabled(false);
+//                        mImageButton_loss.setEnabled(false);
+//                        mImageButton_logout.setEnabled(false);
 //                btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_blue));
-                        mImageButton_query.setBackgroundResource(R.drawable.btn_purchhistory_gray);
-                        mImageButton_changepwd.setBackgroundResource(R.drawable.btn_changepwd_gray);
-                        mImageButton_loss.setBackgroundResource(R.drawable.btn_loss_gray);
-                        mImageButton_logout.setBackgroundResource(R.drawable.btn_logout_gray);
+//                        mImageButton_query.setBackgroundResource(R.drawable.btn_purchhistory_gray);
+//                        mImageButton_changepwd.setBackgroundResource(R.drawable.btn_changepwd_gray);
+//                        mImageButton_loss.setBackgroundResource(R.drawable.btn_loss_gray);
+//                        mImageButton_logout.setBackgroundResource(R.drawable.btn_logout_gray);
                         intent.setClass(mContext, Card_login.class);
                         startActivityForResult(intent, request_xiaoyuanka);
                         break;
