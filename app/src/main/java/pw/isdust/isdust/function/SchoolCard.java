@@ -78,7 +78,7 @@ public class SchoolCard {
         }
 
         //day_minus();
-
+        //ContextCompat.checkSelfPermission()
         //导入标准对比库
         myzm_biaozhuan = new Bitmap[10];
         for (int i = 0; i < 10; i++) {

@@ -150,7 +150,7 @@ public class EmptyRoomActivity extends BaseSubPageActivity_new {
         public void run() {
 
             //listdata=null;
-            mKongzixishi=new EmptyClassroom();
+            mKongzixishi=new EmptyClassroom(mContext);
             try {
                 xiancheng_Kebiaoxinxi = mKongzixishi.getEmptyClassroom(xiancheng_building, xiancheng_zhoushu, xiancheng_xingqi, xiancheng_jieci);
 

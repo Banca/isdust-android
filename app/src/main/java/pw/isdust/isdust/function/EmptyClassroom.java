@@ -1,11 +1,21 @@
 package pw.isdust.isdust.function;
 
+import android.content.Context;
+import android.provider.Settings;
+import android.util.Base64;
+
 import com.isdust.www.datatype.ScheduleInformation;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.spec.X509EncodedKeySpec;
+
+import javax.crypto.Cipher;
 
 import pw.isdust.isdust.Http;
 
@@ -13,11 +23,23 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/10/15.
  */
 public class EmptyClassroom {
+    String publickey="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0VjXgLkmH+BqDryOPCZn" +
+            "mLItfrGbhyk4sLLGYUZkgIprZ6iWQ9WAB+GXhmLcKIlMZKoEXhN7ReA59RTB1iKr" +
+            "A4VuVxu2CU1ZV7MJLwu3yVkymeUjRm/xm55SeteFc/NBxFdmJO/SnFic2VZJpXb7" +
+            "+vFiXsKr5Wc7N3L1YyQS16CNevSjhbTCRVPvX+8tqrFB8UJYUyrW9Y10yZ1fF3wF" +
+            "LqrT8/lKQXpc2PMLsgDgjAb3MEyGWC3i4iklUX/IekjtuYrnk1R0fDg8AWypuMp8" +
+            "N2jHOYE4kJjLmQtUnAFRg/TE3AysD8FVoCQ1fz6fhF08Zj4Lamfv3mBM/XC9hN7J" +
+            "cQIDAQAB";
     ScheduleInformation[] mScheduleInformations;
     JSONArray mJSONArray;
     Http mHttp;
-    public EmptyClassroom(){
+    Context mContext;
+    private static final int MAX_ENCRYPT_BLOCK = 400;
+    public static final String KEY_ALGORITHM = "RSA";
+
+    public EmptyClassroom(Context context){
         mHttp=new Http();
+        mContext=context;
     }
     public ScheduleInformation[] jiexi(String text){//将PHP返回的信息处理
         String zhuanhuan=convert(text);
@@ -42,8 +64,22 @@ public class EmptyClassroom {
 
     }
     public ScheduleInformation[] getEmptyClassroom(String building, int schooldate, int week, int jieci) throws IOException {//按教室获取整周课程表
+        String id= Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+        long time = System.currentTimeMillis()/1000;
+        String md5=id+"wzq123"+time;
+        md5=Networklogin_CMCC.md5(md5);
+        String submit_pre="{\"time\":"+time+",\"key\":\""+md5+"\",\"id\":\""+id+"\",\"building\":\""+building+"\",\"location\":\"\",\"zhoushu\":\""+schooldate+"\",\"xingqi\":\""+week+"\",\"jieci\":\""+jieci+"\",\"method\":4}";
+        String submit="";
+        try {
+            submit=RSACryptUtil.encryptByPublicKey_string(submit_pre,publickey);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //?method=4&building=&zhoushu=&xingqi=&jieci=
-        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+ schooldate +"&xingqi="+week+"&jieci="+jieci);
+        String text=mHttp.post_string("http://192.168.21.100/chaxun_rsa.php","data="+submit);
+
+//        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+ schooldate +"&xingqi="+week+"&jieci="+jieci);
         ScheduleInformation[]result=jiexi(text);
 
         return result;
@@ -68,5 +104,34 @@ public class EmptyClassroom {
 
         return sb.toString();
     }
+    public static byte[] encryptByPublicKey(byte[] data, String publicKey)
+            throws Exception {
 
+        byte[] keyBytes = Base64.decode(publicKey,1);
+        X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
+        Key publicK = keyFactory.generatePublic(x509KeySpec);
+        // 对数据加密
+        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        cipher.init(Cipher.ENCRYPT_MODE, publicK);
+        int inputLen = data.length;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int offSet = 0;
+        byte[] cache;
+        int i = 0;
+        // 对数据分段加密
+        while (inputLen - offSet > 0) {
+            if (inputLen - offSet > MAX_ENCRYPT_BLOCK) {
+                cache = cipher.doFinal(data, offSet, MAX_ENCRYPT_BLOCK);
+            } else {
+                cache = cipher.doFinal(data, offSet, inputLen - offSet);
+            }
+            out.write(cache, 0, cache.length);
+            i++;
+            offSet = i * MAX_ENCRYPT_BLOCK;
+        }
+        byte[] encryptedData = out.toByteArray();
+        out.close();
+        return encryptedData;
+    }
 }

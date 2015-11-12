@@ -42,6 +42,7 @@ public class MainActivity extends BaseMainActivity_new {
 		System.out.println(Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID)
 		);
 
+
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
 
