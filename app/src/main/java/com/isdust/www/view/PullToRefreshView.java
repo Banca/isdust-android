@@ -29,7 +29,7 @@ public class PullToRefreshView extends LinearLayout {
 	// pull state
 	private static final int PULL_UP_STATE = 0;
 	private static final int PULL_DOWN_STATE = 1;
-	private boolean enablePullTorefresh = true;
+	private boolean enablePullTorefresh = false;	//false为关闭上拉功能
 	private boolean enablePullLoadMoreDataStatus = true;
 	/**
 	 * last y

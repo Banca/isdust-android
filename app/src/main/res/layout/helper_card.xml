@@ -1,157 +1,168 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-                android:focusable="true"
-                android:focusableInTouchMode="true" >
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/color_page_white"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-
+        <include layout="@layout/layout_title_bar"
+            android:id="@+id/include" />
 
         <RelativeLayout
+            android:background="@drawable/card_head"
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:layout_below="@+id/include"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/relativelayout_network_public_card">
+
+
+            <TextView
+                android:id="@+id/textView_card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学号"
+                android:textSize="18dp"
+                android:textColor="@color/color_btn_text"
+                android:layout_marginTop="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="52dp"
+                android:layout_marginEnd="52dp" />
+
+            <TextView
+                android:id="@+id/textView_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名"
+                android:textSize="18dp"
+                android:textColor="@color/color_btn_text"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_alignTop="@+id/textView_card_number"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/textView_card_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="专业"
+                android:textSize="15dp"
+                android:textColor="@color/color_btn_text"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/textView_card_name"
+                android:layout_alignStart="@+id/textView_card_name" />
+
+            <TextView
+                android:id="@+id/textView_card_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥000.0"
+                android:textSize="20dp"
+                android:textColor="@color/color_btn_text"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/textView_card_number"
+                android:layout_alignEnd="@+id/textView_card_number"
+                android:layout_marginBottom="33dp" />
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/widget54"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/color_page_white"
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <include layout="@layout/layout_title_bar"
-                android:id="@+id/include" />
-
-            <RelativeLayout
-                android:background="@drawable/card_head"
-                android:layout_width="match_parent"
-                android:layout_height="205dp"
-                android:layout_below="@+id/include"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/relativelayout_network_public_card">
-
-
-                <TextView
-                    android:id="@+id/textView_card_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="学号"
-                    android:textSize="18dp"
-                    android:textColor="@color/color_btn_text"
-                    android:layout_marginTop="60dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="52dp"
-                    android:layout_marginEnd="52dp" />
-
-                <TextView
-                    android:id="@+id/textView_card_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="姓名"
-                    android:textSize="18dp"
-                    android:textColor="@color/color_btn_text"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_alignTop="@+id/textView_card_number"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:id="@+id/textView_card_class"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="专业"
-                    android:textSize="15dp"
-                    android:textColor="@color/color_btn_text"
-                    android:layout_centerVertical="true"
-                    android:layout_alignLeft="@+id/textView_card_name"
-                    android:layout_alignStart="@+id/textView_card_name" />
-
-                <TextView
-                    android:id="@+id/textView_card_balance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="￥000.0"
-                    android:textSize="20dp"
-                    android:textColor="@color/color_btn_text"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignRight="@+id/textView_card_number"
-                    android:layout_alignEnd="@+id/textView_card_number"
-                    android:layout_marginBottom="33dp" />
-            </RelativeLayout>
-            <ScrollView
-                android:id="@+id/widget54"
+            android:layout_marginTop="10dp"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_below="@+id/relativelayout_network_public_card">
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="10dp"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_below="@+id/relativelayout_network_public_card">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_below="@+id/relativelayout_network_public_card"
-                        android:layout_alignRight="@+id/relativelayout_network_public_card"
-                        android:layout_alignEnd="@+id/relativelayout_network_public_card"
-                        android:layout_alignTop="@+id/widget54"
-                        >
-                        <ImageButton
-                            android:id="@+id/FormCard_button_query"
-                            android:onClick="onFormCardClick"
-                            android:layout_width="145dp"
-                            android:layout_height="150dp"
-                            android:background="@drawable/btn_purchhistory_gray"
-                           />
-                        <ImageButton
-                            android:id="@+id/FormCard_button_changepwd"
-                            android:onClick="onFormCardClick"
-                            android:layout_width="145dp"
-                            android:layout_height="150dp"
-                            android:background="@drawable/btn_changepwd_gray"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true" />
-                    </RelativeLayout>
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    >
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_gravity="center_horizontal">
-                        <ImageButton
-                            android:id="@+id/FormCard_button_loss"
-                            android:onClick="onFormCardClick"
-                            android:layout_width="145dp"
-                            android:layout_height="150dp"
-                            android:background="@drawable/btn_loss_gray"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            />
-                        <ImageButton
-                            android:id="@+id/FormCard_button_logout"
-                            android:onClick="onFormCardClick"
-                            android:layout_width="145dp"
-                            android:layout_height="150dp"
-                            android:background="@drawable/btn_logout_gray"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true" />
+                    <Button
+                        android:id="@+id/FormCard_button_query"
+                        android:onClick="onFormCardClick"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_transparent_button"
+                        android:drawableTop="@drawable/card_pur"
+                        android:text="\n消费记录查询\n"
+                        android:textSize="@dimen/abc_text_size_button_material" />
 
-                    </RelativeLayout>
-
+                    <Button
+                        android:id="@+id/FormCard_button_changepwd"
+                        android:onClick="onFormCardClick"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_transparent_button"
+                        android:drawableTop="@drawable/card_changepwd"
+                        android:text="\n修改密码\n"
+                        android:textSize="@dimen/abc_text_size_button_material" />
                 </LinearLayout>
-            </ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="81dp">
 
+                    <Button
+                        android:id="@+id/FormCard_button_loss"
+                        android:onClick="onFormCardClick"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_transparent_button"
+                        android:drawableTop="@drawable/card_loss"
+                        android:text="\n挂失\n"
+                        android:textSize="@dimen/abc_text_size_button_material" />
 
-        </RelativeLayout>
+                    <Button
+                        android:id="@+id/FormCard_button_logout"
+                        android:onClick="onFormCardClick"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_transparent_button"
+                        android:drawableTop="@drawable/card_su"
+                        android:text="\n切换账号\n"
+                        android:textSize="@dimen/abc_text_size_button_material" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
-
+    </RelativeLayout>
 </RelativeLayout>

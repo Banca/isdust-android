@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,10 +30,10 @@ public class CardActivity extends BaseMainActivity_new {
 //    EditText mEditText_user;
 //    EditText mEditText_password ;
 //    CheckBox mCheckBox_keeppwd;
-    ImageButton mImageButton_query ;
-    ImageButton mImageButton_changepwd ;
-    ImageButton mImageButton_loss ;
-    ImageButton mImageButton_logout ;
+    Button mImageButton_query ;
+    Button mImageButton_changepwd ;
+    Button mImageButton_loss ;
+    Button mImageButton_logout ;
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor ;
     IsdustDialog customRuningDialog;
@@ -48,21 +49,20 @@ public class CardActivity extends BaseMainActivity_new {
 //                RelativeLayout mRelativeLayout_card=(RelativeLayout)findViewById(R.id.relativeLayout_card);
                 //mRelativeLayout_card.setVisibility(View.INVISIBLE);
 //                Button btnlogin = (Button) findViewById(R.id.FormCard_button_login);
-                ImageButton btnquery = (ImageButton) findViewById(R.id.FormCard_button_query);
-                ImageButton btnchangepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
-                ImageButton btnloss = (ImageButton) findViewById(R.id.FormCard_button_loss);
-                ImageButton btnlogout = (ImageButton) findViewById(R.id.FormCard_button_logout);
+                Button btnquery = (Button) findViewById(R.id.FormCard_button_query);
+                Button btnchangepwd = (Button) findViewById(R.id.FormCard_button_changepwd);
+                Button btnloss = (Button) findViewById(R.id.FormCard_button_loss);
+                Button btnlogout = (Button) findViewById(R.id.FormCard_button_logout);
 
-//                btnlogin.setEnabled(false);
                 btnquery.setEnabled(true);
                 btnchangepwd.setEnabled(true);
                 btnloss.setEnabled(true);
                 btnlogout.setEnabled(true);
 //                btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_gray));
-                btnquery.setBackgroundResource(R.drawable.btn_purchhistory);
-                btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd);
-                btnloss.setBackgroundResource(R.drawable.btn_loss);
-                btnlogout.setBackgroundResource(R.drawable.btn_logout);
+//                btnquery.setBackgroundResource(R.drawable.btn_purchhistory);
+//                btnchangepwd.setBackgroundResource(R.drawable.btn_changepwd);
+//                btnloss.setBackgroundResource(R.drawable.btn_loss);
+//                btnlogout.setBackgroundResource(R.drawable.btn_logout);
 
 
                 TextView textname = (TextView) findViewById(R.id.textView_card_name);
@@ -157,10 +157,10 @@ public class CardActivity extends BaseMainActivity_new {
 
     }
     public void getview(){
-        mImageButton_query = (ImageButton) findViewById(R.id.FormCard_button_query);
-        mImageButton_changepwd = (ImageButton) findViewById(R.id.FormCard_button_changepwd);
-        mImageButton_loss = (ImageButton) findViewById(R.id.FormCard_button_loss);
-        mImageButton_logout = (ImageButton) findViewById(R.id.FormCard_button_logout);
+        mImageButton_query = (Button) findViewById(R.id.FormCard_button_query);
+        mImageButton_changepwd = (Button) findViewById(R.id.FormCard_button_changepwd);
+        mImageButton_loss = (Button) findViewById(R.id.FormCard_button_loss);
+        mImageButton_logout = (Button) findViewById(R.id.FormCard_button_logout);
 
     }
     public void onFormCardClick(View v) {
@@ -223,10 +223,7 @@ public class CardActivity extends BaseMainActivity_new {
                 mImageButton_loss.setEnabled(false);
                 mImageButton_logout.setEnabled(false);
 //                btnlogin.setBackgroundColor(getResources().getColor(R.color.color_btn_blue));
-                mImageButton_query.setBackgroundResource(R.drawable.btn_purchhistory_gray);
-                mImageButton_changepwd.setBackgroundResource(R.drawable.btn_changepwd_gray);
-                mImageButton_loss.setBackgroundResource(R.drawable.btn_loss_gray);
-                mImageButton_logout.setBackgroundResource(R.drawable.btn_logout_gray);
+
                 intent.setClass(mContext, Card_login.class);
                 startActivityForResult(intent, request_xiaoyuanka);
                 break;

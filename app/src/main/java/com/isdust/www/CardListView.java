@@ -50,14 +50,6 @@ public class CardListView extends BaseSubPageActivity_new {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if (msg.what == 0){//登录成功
-				TextView textname = (TextView) findViewById(R.id.textView_card_name);
-				TextView textnum = (TextView) findViewById(R.id.textView_card_number);
-				TextView textclass = (TextView) findViewById(R.id.textView_card_class);
-				TextView textbala = (TextView) findViewById(R.id.textView_card_balance);
-				textname.setText( isdustapp.getUsercard().getStuName());
-				textnum.setText( isdustapp.getUsercard().getStuNumber());
-				textclass.setText( isdustapp.getUsercard().getStuClass());
-				textbala.setText("￥" +  isdustapp.getUsercard().getBalance()); //显示余额
 //				Toast.makeText(mContext, xiancheng_login_status, 1000).show();
 				executorService.execute(mRunnable_xiancheng_getdata);
 			}
@@ -79,15 +71,6 @@ public class CardListView extends BaseSubPageActivity_new {
 					map.put("bala","￥" + xiancheng_ph[i].getBala().replace("-",""));
 					listdata.add(map);}
 				if(xiancheng_bollean==false){
-
-					TextView textname = (TextView) findViewById(R.id.textView_card_name);
-					TextView textnum = (TextView) findViewById(R.id.textView_card_number);
-					TextView textclass = (TextView) findViewById(R.id.textView_card_class);
-					TextView textbala = (TextView) findViewById(R.id.textView_card_balance);
-					textname.setText( isdustapp.getUsercard().getStuName());
-					textnum.setText( isdustapp.getUsercard().getStuNumber());
-					textclass.setText( isdustapp.getUsercard().getStuClass());
-					textbala.setText("￥" +  isdustapp.getUsercard().getBalance()); //显示余额
 					xiancheng_bollean=true;
 					customRuningDialog.dismiss();
 
@@ -150,7 +133,7 @@ public class CardListView extends BaseSubPageActivity_new {
 
 
 
-		setContentView(R.layout.card_listview);
+		INIT(R.layout.card_listview,"消费记录");
 		mListView=(ListView)findViewById(R.id.card_lisitview_detail);
 		customRuningDialog = new IsdustDialog(mContext,
 				IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
