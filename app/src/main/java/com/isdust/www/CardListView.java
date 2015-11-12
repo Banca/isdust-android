@@ -1,6 +1,5 @@
 package com.isdust.www;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.PurchaseHistory;
+import com.isdust.www.view.IsdustDialog;
 import com.isdust.www.view.PullToRefreshView;
 import com.umeng.analytics.MobclickAgent;
 
@@ -29,13 +29,14 @@ import java.util.concurrent.Executors;
  */
 public class CardListView extends BaseSubPageActivity_new {
 	ListView mListView;
+	IsdustDialog customRuningDialog;
 
 	//线程池
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 	private PurchaseHistory[] xiancheng_ph;
 	private boolean xiancheng_bollean;
 	private MyApplication isdustapp;
-	private ProgressDialog dialog;
+//	private ProgressDialog dialog;
 
 
 	private Context mContext;
@@ -88,7 +89,7 @@ public class CardListView extends BaseSubPageActivity_new {
 					textclass.setText( isdustapp.getUsercard().getStuClass());
 					textbala.setText("￥" +  isdustapp.getUsercard().getBalance()); //显示余额
 					xiancheng_bollean=true;
-					dialog.dismiss();
+					customRuningDialog.dismiss();
 
 					adapter = new SimpleAdapter(mContext, listdata,
 						R.layout.card_item, new String[] { "name", "ima", "addr", "time", "bala"},
@@ -151,7 +152,8 @@ public class CardListView extends BaseSubPageActivity_new {
 
 		setContentView(R.layout.card_listview);
 		mListView=(ListView)findViewById(R.id.card_lisitview_detail);
-
+		customRuningDialog = new IsdustDialog(mContext,
+				IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
 		mPullToRefreshView = (PullToRefreshView)findViewById(R.id.main_pull_refresh_view);
         mPullToRefreshView.setOnHeaderRefreshListener(new PullToRefreshView.OnHeaderRefreshListener() {
 			@Override
@@ -179,11 +181,12 @@ public class CardListView extends BaseSubPageActivity_new {
 //		xiancheng_username = data.getString("un");
 //		xiancheng_password = data.getString("up");
 //		//校园卡
+		customRuningDialog.show();
+		customRuningDialog.setMessage("正在拉取您的消费纪录");
 
-
-		dialog = ProgressDialog.show(
-				mContext, "提示",
-				"正在拉取您的消费纪录", true, true);
+//		dialog = ProgressDialog.show(
+//				mContext, "提示",
+//				"正在拉取您的消费纪录", true, true);
 		executorService.execute(mRunnable_xiancheng_getdata);
 
 
