@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 
 import pw.isdust.isdust.function.Network_Kuaitong;
 import pw.isdust.isdust.function.Networklogin_CMCC;
+import pw.isdust.isdust.function.Networklogin_ChinaUnicom;
 import pw.isdust.isdust.function.SchoolCard;
 
 /**
@@ -22,17 +23,20 @@ public class MyApplication extends Application {
     private List<Book> mBooks;
     private Context mContext;
     private Networklogin_CMCC mNetworklogin_CMCC;
+    private Networklogin_ChinaUnicom mNetworklogin_ChinaUnicom;
     ExecutorService mExecutorService= Executors.newCachedThreadPool();
     Runnable xiancheng_init=new Runnable() {
         @Override
         public void run() {
-            usercard = new SchoolCard(mContext);
-            kuaitong=new Network_Kuaitong(mContext);
+
             mNetworklogin_CMCC=new Networklogin_CMCC();
+            mNetworklogin_ChinaUnicom=new Networklogin_ChinaUnicom();
         }
     };
     public void onCreate() {
         super.onCreate();
+
+
         mContext=this;
         mExecutorService.execute(xiancheng_init);
 
@@ -41,6 +45,10 @@ public class MyApplication extends Application {
     public Networklogin_CMCC getNetworklogin_CMCC(){
         return mNetworklogin_CMCC;
     };
+    public Networklogin_ChinaUnicom getNetworklogin_ChinaUnicom(){
+        return mNetworklogin_ChinaUnicom;
+    };
+
     public void setBooks(List<Book> Books){
         mBooks=Books;
     }
@@ -50,5 +58,11 @@ public class MyApplication extends Application {
     public SchoolCard getUsercard() {
         return usercard;
     }  //使usercard这种非序列化对象 全局可调
+    public void card_init(){
+        usercard = new SchoolCard(mContext);
+    }
+    public void kuaitong_init(){
+        kuaitong=new Network_Kuaitong(mContext);
+    }
 }
 

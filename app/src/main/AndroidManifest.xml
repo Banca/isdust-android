@@ -129,10 +129,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.GoNetChinaUnicomAcntActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name="com.isdust.www.Library_scan"
             android:screenOrientation="portrait" >
         </activity>

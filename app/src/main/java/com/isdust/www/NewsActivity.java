@@ -6,6 +6,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 /**
  * Created by Administrator on 2015/10/17.
@@ -25,8 +26,9 @@ public class NewsActivity extends BaseMainActivity_new {
         //设置支持缩放
         mwebSettings.setBuiltInZoomControls(true);
         //加载需要显示的网页
-
-        mWebView.loadUrl("http://bbs.isdust.com");
+//        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+        String news_website_address= OnlineConfigAgent.getInstance().getConfigParams(mContext, "news_website_address");
+        mWebView.loadUrl(news_website_address);
         //设置Web视图
         mWebView.setWebViewClient(new WebViewClient(){
             @Override

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -125,6 +124,7 @@ public class CardActivity extends BaseMainActivity_new {
         super.onCreate(savedInstanceState);
         INIT(R.layout.helper_card, "校园卡", 5);
         mContext=this;
+        isdustapp.card_init();
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
         getview();

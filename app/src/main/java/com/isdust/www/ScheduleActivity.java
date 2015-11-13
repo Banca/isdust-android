@@ -156,7 +156,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
             xianchengchi_saving_json="";
             Message mMessage=new Message();
             mMessage.what=3;
-            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+//            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
             String xuenian= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xuenian");
             String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
             for(int i=0;i<zhoushu;i++){

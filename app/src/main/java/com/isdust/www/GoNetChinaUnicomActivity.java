@@ -29,6 +29,7 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
     ExecutorService mExecutorService= Executors.newCachedThreadPool();
     String xiancheng_chinaunicom_user,xiancheng_chinaunicom_password;
     String xiancheng_chinaunicom_status;
+    String xiancheng_toastmessage;
     int xiancheng_network_type, xiancheng_network_chinauicom_condition;
 
     android.os.Handler mHandler=new android.os.Handler(){
@@ -42,7 +43,7 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
 
             }
             if (msg.what==1){//已连接,登录1层
-                mImageButton_state.setBackgroundResource(R.drawable.cmcc_1);//设置状态按钮
+                mImageButton_state.setBackgroundResource(R.drawable.cmcc_2);//设置状态按钮
                 return;
                 }
            if (msg.what==2){//登录成功
@@ -58,7 +59,14 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
 
             }
             if (msg.what==10){//网络超时
-
+                Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (msg.what == 11){//显示信息
+                customRuningDialog.dismiss();
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage(xiancheng_toastmessage);
+                return;
             }
         }
     };
@@ -83,8 +91,10 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
                     return;
                 }else {
                     mExecutorService.execute(xiancheng_runnable_chinauicom_login);
-                    customRuningDialog.show();    //打开等待框
-                    customRuningDialog.setMessage("正在登录第一层...");
+                    xiancheng_toastmessage="正在登录第一层...";
+                    Message mMessage=new Message();
+                    mMessage.what=11;
+                    mHandler.sendMessage(mMessage);
                     return;
                 }
 
@@ -100,7 +110,8 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
         public void run() {
             Message message=new Message();
             try {
-                xiancheng_chinaunicom_status=isdustapp.getNetworklogin_CMCC().login(xiancheng_chinaunicom_user, xiancheng_chinaunicom_password);
+//                isdustapp.getNetworklogin_ChinaUnicom().login()
+                xiancheng_chinaunicom_status=isdustapp.getNetworklogin_ChinaUnicom().login(xiancheng_chinaunicom_user, xiancheng_chinaunicom_password);
             } catch (Exception e) {
                 message.what=10;
                 mHandler.sendMessage(message);
@@ -142,7 +153,11 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
         xiancheng_chinaunicom_password=mSharedPreferences_chinaunicom.getString("network_ChinaUnicom_password", "");
 
 
-
+        xiancheng_toastmessage="正在初始化";
+        Message message=new Message();
+        message.what=11;
+        mHandler.sendMessage(message);
+        mExecutorService.execute(xiancheng_autologin);
     }
     public void isconnect(){
         xiancheng_network_type =mNetworkjudge.judgetype();

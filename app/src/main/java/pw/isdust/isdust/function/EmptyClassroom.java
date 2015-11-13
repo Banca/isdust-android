@@ -35,7 +35,7 @@ public class EmptyClassroom {
     public EmptyClassroom(Context context){
         mHttp=new Http();
         mContext=context;
-        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+//        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
         publickey=OnlineConfigAgent.getInstance().getConfigParams(mContext, "EmptyClassroom_publickey");
         publickey=publickey.replace("\r", "");
         publickey=publickey.replace("\n","");

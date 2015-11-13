@@ -6,9 +6,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 import java.util.Timer;
@@ -38,10 +40,16 @@ public class MainActivity extends BaseMainActivity_new {
 		MobclickAgent.updateOnlineConfig(mContext);
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
+
+		OnlineConfigAgent.getInstance().setDebugMode(true);
+		OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
 		//System.out.println(Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID)
 //		);
 
-
+		String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
+		if (!install.equals("true")){
+			Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
+		}
 
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
@@ -68,30 +76,42 @@ public class MainActivity extends BaseMainActivity_new {
 		switch (v.getId()) {
 			case R.id.btn_main_gonet:
 				intent.setClass(this, GoNetActivity.class);//上网登录
+				this.startActivity(intent);
+				finish();
 				break;
 			case R.id.btn_main_kuaitong:
 				intent.setClass(this, KuaiTongActivity.class);//快通查询
+				this.startActivity(intent);
+				finish();
 				break;
 			case R.id.btn_main_schedule:
 				intent.setClass(this, ScheduleActivity.class);//课程表
+				this.startActivity(intent);
 				break;
 			case R.id.btn_main_emptyroom:
 				intent.setClass(this, EmptyRoomActivity.class);//空自习室
+				this.startActivity(intent);
 				break;
 			case R.id.btn_main_library:
 				intent.setClass(this, LibraryActivity.class);//图书馆
+				this.startActivity(intent);
+				finish();
 				break;
 			case R.id.btn_main_card:
 				intent.setClass(this, CardActivity.class);//校园卡
+				this.startActivity(intent);
+				finish();
 				break;
 			case R.id.btn_main_news:
 				intent.setClass(this, NewsActivity.class);//咨询
+				this.startActivity(intent);
+				finish();
 				break;
 			case R.id.btn_main_about:
 				intent.setClass(this, AboutActivity.class);//关于
 				break;
 		}
-		this.startActivity(intent);
+
 
 	}
 

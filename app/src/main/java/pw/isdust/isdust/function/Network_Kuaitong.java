@@ -31,19 +31,22 @@ public class Network_Kuaitong {
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
         int status=mNetworkjudge.judgetype();
 
-        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+//        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+        String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
+        String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
         if(status==3||status==4){
 
-            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
-            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
             mHttp_waiwang.setProxy(address, Integer.valueOf(port));
 //            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
         }
-        String iskuaitong = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy_iskuaitong");
-        if (iskuaitong.equals("true")){
-            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
-            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+        String proxy_kuaitong_wechat = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy_kuaitong_wechat");
+        String proxy_kuaitong_epay= OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy_kuaitong_epay");
+        if (proxy_kuaitong_wechat.equals("true")){
+
             mHttp_direct.setProxy(address, Integer.valueOf(port));
+        }
+        if (proxy_kuaitong_epay.equals("true")){
+            mHttp_waiwang.setProxy(address, Integer.valueOf(port));
         }
 
         mHttp_waiwang.setTimeout(10);

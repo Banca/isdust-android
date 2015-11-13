@@ -356,8 +356,8 @@ public class KuaiTongActivity extends BaseMainActivity_new {
         MobclickAgent.onEvent(this, "network_kuaitong");
         mContext=this;
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_kuaitong, "快通有线",2);
-
+        INIT(R.layout.helper_kuaitong, "快通有线", 2);
+        isdustapp.kuaitong_init();
         //实例化SharedPreferences对象
         preferences_data_kuaitong = mContext.getSharedPreferences("KuaiTongData", Activity.MODE_PRIVATE);
         preferences_data_schoolcard = getSharedPreferences("CardData", Activity.MODE_PRIVATE);

@@ -31,7 +31,6 @@ public class SelectCoursePlatform {
         Networkjudge mNetworkjudge=new Networkjudge(context);
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
             String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
 

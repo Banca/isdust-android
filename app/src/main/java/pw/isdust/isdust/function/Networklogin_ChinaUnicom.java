@@ -14,7 +14,7 @@ public class Networklogin_ChinaUnicom {
     String xiaxian;
     Http mHttp;
 
-    public String login(String user,String password,String user2,String password2) throws IOException {
+    public String login(String user,String password) throws IOException {
         String submit="DDDDD="+user+"&upass="+Networklogin_CMCC.encodepassword(password)+"&R1=0&R2=1&para=00&0MKKey=123456";
         String html= mHttp.post_string("http://10.249.255.253/", submit, "gb2312");
         if(html.contains("登录成功窗")){
