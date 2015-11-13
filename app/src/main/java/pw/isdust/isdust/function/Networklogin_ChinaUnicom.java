@@ -9,6 +9,7 @@ import pw.isdust.isdust.Http;
  */
 public class Networklogin_ChinaUnicom {
     public Networklogin_ChinaUnicom(){
+        mHttp=new Http();
 
     }
     String xiaxian;

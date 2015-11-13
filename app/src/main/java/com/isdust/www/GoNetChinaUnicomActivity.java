@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -38,18 +40,22 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
             super.handleMessage(msg);
             Message message=new Message();
             if (msg.what==0){//已连接,登录0层
+                customRuningDialog.dismiss();
                 mImageButton_state.setBackgroundResource(R.drawable.cmcc_0);//设置状态按钮
                 return;
 
             }
             if (msg.what==1){//已连接,登录1层
+                customRuningDialog.dismiss();
                 mImageButton_state.setBackgroundResource(R.drawable.cmcc_2);//设置状态按钮
                 return;
                 }
            if (msg.what==2){//登录成功
                Toast.makeText(mContext,"登录成功",Toast.LENGTH_SHORT).show();
+               customRuningDialog.dismiss();
                message.what=1;
                mHandler.sendMessage(message);
+
 
                 }
             if (msg.what==3){//登录失败，密码错误
@@ -59,6 +65,7 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
 
             }
             if (msg.what==10){//网络超时
+                customRuningDialog.dismiss();
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -68,6 +75,11 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
                 customRuningDialog.setMessage(xiancheng_toastmessage);
                 return;
             }
+            if (msg.what==12){//网络信号不好
+                customRuningDialog.dismiss();
+                Toast.makeText(mContext, "网络信号不好，请找一个信号好的地方", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
     };
 
@@ -75,7 +87,13 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
         @Override
         public void run() {
             Message messgae=new Message();
-            xiancheng_network_chinauicom_condition =mNetworkjudge.chinaunicom_judge();
+            try {
+                xiancheng_network_chinauicom_condition =mNetworkjudge.chinaunicom_judge();
+            } catch (IOException e) {
+                messgae.what=12;
+                mHandler.sendMessage(messgae);
+                return;
+            }
             if (xiancheng_network_chinauicom_condition==1){//登录1层
                 messgae.what=1;
                 mHandler.sendMessage(messgae);
@@ -167,6 +185,92 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
         }
     }
 
+    public void onBtnClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_state:
+                Message message;
+
+                try {
+                    xiancheng_network_chinauicom_condition =mNetworkjudge.chinaunicom_judge();
+                } catch (IOException e) {
+                    message=new Message();
+                    message.what=0;
+                    mHandler.sendMessage(message);
+                    return;
+                }
+
+                if (xiancheng_network_chinauicom_condition== 1){
+                    try {
+                        isdustapp.getNetworklogin_ChinaUnicom().logout();
+                    } catch (IOException e) {
+                         message=new Message();
+                        message.what=10;
+                        mHandler.sendMessage(message);
+                        return;
+                    }
+                }
+
+                message=new Message();
+                message.what=0;
+                mHandler.sendMessage(message);
+                mSharedPreferences_chinaunicom.edit().putString("network_ChinaUnicom_user", "");
+                mSharedPreferences_chinaunicom.edit().putString("network_ChinaUnicom_password", "");
+                mSharedPreferences_chinaunicom.edit().commit();
+                Intent intent=new Intent();
+                intent.setClass(mContext, NetworkPublicLoginActivity.class);
+                intent.putExtra("type", type_chinaunicom);
+                startActivityForResult(intent, type_chinaunicom);
+                //点击状态按钮设置用户名密码
+//                Intent intent=new Intent();
+//                intent.setClass(this, anct_cls);
+//                if (anct_cls.equals(NetworkPublicLoginActivity.class))
+//                    startActivityForResult(intent, NetworkPublicLoginActivity.RESULT_CODE);
+//                else if (anct_cls.equals(GoNetChinaUnicomAcntActivity.class))
+//                    startActivityForResult(intent, GoNetChinaUnicomAcntActivity.RESULT_CODE);
+                break;
+            case R.id.btn_quicklogin:  //一键登录
+                try {
+                    xiancheng_network_chinauicom_condition =mNetworkjudge.chinaunicom_judge();
+                } catch (IOException e) {
+                    message=new Message();
+                    message.what=12;
+                    mHandler.sendMessage(message);
+                    return;
+                }
+                if (xiancheng_network_chinauicom_condition==1){
+                    Toast.makeText(this, "您已登录，请不要重复登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                xiancheng_toastmessage="正在初始化";
+                message=new Message();
+                message.what=11;
+                mHandler.sendMessage(message);
+
+
+                mExecutorService.execute(xiancheng_autologin);
+                break;
+            case R.id.btn_quicklogout:
+
+                    try {
+                        isdustapp.getNetworklogin_ChinaUnicom().logout();
+                    } catch (IOException e) {
+                        message=new Message();
+                        message.what=10;
+                        mHandler.sendMessage(message);
+                        return;
+                    }
+                    Toast.makeText(this, "下线成功", Toast.LENGTH_SHORT).show();
+                    message=new Message();
+                    message.what=0;
+                    mHandler.sendMessage(message);
+                break;
+
+
+
+
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //注意分清楚 requestCode和resultCode，后者是setResult里设置的
@@ -176,8 +280,8 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
                 switch (resultCode){
                     case RESULT_OK:
                         Bundle bundle = data.getExtras();
-                        xiancheng_chinaunicom_user=bundle.getString("network_ChinaUnicom_user");
-                        xiancheng_chinaunicom_password=bundle.getString("network_ChinaUnicom_password");
+                        xiancheng_chinaunicom_user=bundle.getString("ChinaUnicom_user");
+                        xiancheng_chinaunicom_password=bundle.getString("ChinaUnicom_password");
 
 
                         mExecutorService.execute(xiancheng_runnable_chinauicom_login);

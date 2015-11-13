@@ -109,6 +109,7 @@ public class MainActivity extends BaseMainActivity_new {
 				break;
 			case R.id.btn_main_about:
 				intent.setClass(this, AboutActivity.class);//关于
+				this.startActivity(intent);
 				break;
 		}
 

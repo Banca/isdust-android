@@ -35,7 +35,7 @@ public class Networkjudge {
         else if (ssid.contains("CMCC")){
             return 1;
         }
-        else if (ssid.contains("Chinaunicom")){
+        else if (ssid.contains("ChinaUnicom")){
             return 2;
         }
 
@@ -76,13 +76,11 @@ public class Networkjudge {
         return false;
     }
 
-    public int chinaunicom_judge(){
+    public int chinaunicom_judge() throws IOException {
         String text= null;
-        try {
+
             text = mHttp.get_string("http://10.249.255.253/","gb2312");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         if (text.contains("已使用时间")){
             return 1;
         }
