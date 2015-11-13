@@ -83,7 +83,7 @@ public class Networkjudge {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (text.contains("注销")){
+        if (text.contains("已使用时间")){
             return 1;
         }
         return 0;//0.没有登录1.登录一层

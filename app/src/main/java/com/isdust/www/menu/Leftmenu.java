@@ -112,11 +112,13 @@ public class Leftmenu {
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, MainActivity.class);
                     intent.putExtra("menu", 0);
-                    thisActivity.startActivity(intent);
-                    if (type != 0)
+
+                    if (type != 0){
+                        thisActivity.startActivity(intent);
                         thisActivity.finish();
-                    else
-                        menu.toggle();
+                    }
+                    else{
+                        menu.toggle();}
                 }
                 return true;
             }
@@ -131,11 +133,13 @@ public class Leftmenu {
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, GoNetActivity.class);
                     intent.putExtra("menu", 1);
-                    thisActivity.startActivity(intent);
-                    if (type != 1)
+
+                    if (type != 1){
+                        thisActivity.startActivity(intent);
                         thisActivity.finish();
-                    else
-                        menu.toggle();
+                    }
+                    else{
+                        menu.toggle();}
                 }
                 return true;
             }
@@ -149,11 +153,13 @@ public class Leftmenu {
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, KuaiTongActivity.class);
-                    thisActivity.startActivity(intent);
-                    if (type != 2)
+
+                    if (type != 2){
+                        thisActivity.startActivity(intent);
                         thisActivity.finish();
-                    else
-                        menu.toggle();
+                    }
+                    else{
+                        menu.toggle();}
                 }
                 return true;
             }
@@ -167,11 +173,13 @@ public class Leftmenu {
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
                     intent.setClass(thisActivity, JiaowuActivity.class);
-                    thisActivity.startActivity(intent);
-                    if (type != 3)
-                        thisActivity.finish();
-                    else
+
+                    if (type != 3){
+                        thisActivity.startActivity(intent);
+                        thisActivity.finish();}
+                    else{
                         menu.toggle();
+                    }
                 }
                 return true;
             }
@@ -183,15 +191,14 @@ public class Leftmenu {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     leftmenu_ui(4);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Intent intent = new Intent();
+                    intent.setClass(thisActivity, LibraryActivity.class);
                     if (type != 4) {
-                        Intent intent = new Intent();
-                        intent.setClass(thisActivity, LibraryActivity.class);
                             thisActivity.startActivity(intent);
                             thisActivity.finish();
-
-
-                    } else
+                    } else{
                         menu.toggle();
+                    }
                 }
                 return true;
             }
@@ -203,9 +210,9 @@ public class Leftmenu {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     leftmenu_ui(5);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Intent intent = new Intent();
+                    intent.setClass(thisActivity, CardActivity.class);
                     if (type != 5) {
-                        Intent intent = new Intent();
-                        intent.setClass(thisActivity, CardActivity.class);
                         thisActivity.startActivity(intent);
                         thisActivity.finish();
                     } else

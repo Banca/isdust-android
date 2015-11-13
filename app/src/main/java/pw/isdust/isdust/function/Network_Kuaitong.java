@@ -2,6 +2,8 @@ package pw.isdust.isdust.function;
 
 import android.content.Context;
 
+import com.umeng.onlineconfig.OnlineConfigAgent;
+
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -27,26 +29,23 @@ public class Network_Kuaitong {
         mContext = context;
 
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
-//        mHttp_waiwang.setProxy("139.129.133.235", 1999);
         int status=mNetworkjudge.judgetype();
-//        if(status==3){
-//            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
-//        }else if(mNetworkjudge.judgetype()==4){
-//            if (mNetworkjudge.neiwaiwang_judge()==1){
-//                mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
-//            }
-//        }
 
+        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
         if(status==3||status==4){
-            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
+
+            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
+            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            mHttp_waiwang.setProxy(address, Integer.valueOf(port));
+//            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
+        }
+        String iskuaitong = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy_iskuaitong");
+        if (iskuaitong.equals("true")){
+            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
+            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            mHttp_direct.setProxy(address, Integer.valueOf(port));
         }
 
-
-        mHttp_direct.setProxy("proxy1.isdust.com", 1999);
-//        if (status==1||status==2){
-//            mHttp_direct.setProxy("139.129.133.235", 1999);
-//
-//        }
         mHttp_waiwang.setTimeout(10);
     }
     public String loginKuaitong(String user,String password) throws IOException {

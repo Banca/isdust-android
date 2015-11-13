@@ -5,6 +5,7 @@ import android.provider.Settings;
 import android.util.Base64;
 
 import com.isdust.www.datatype.ScheduleInformation;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,13 +24,7 @@ import pw.isdust.isdust.Http;
  * Created by wzq on 15/10/15.
  */
 public class EmptyClassroom {
-    String publickey="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0VjXgLkmH+BqDryOPCZn" +
-            "mLItfrGbhyk4sLLGYUZkgIprZ6iWQ9WAB+GXhmLcKIlMZKoEXhN7ReA59RTB1iKr" +
-            "A4VuVxu2CU1ZV7MJLwu3yVkymeUjRm/xm55SeteFc/NBxFdmJO/SnFic2VZJpXb7" +
-            "+vFiXsKr5Wc7N3L1YyQS16CNevSjhbTCRVPvX+8tqrFB8UJYUyrW9Y10yZ1fF3wF" +
-            "LqrT8/lKQXpc2PMLsgDgjAb3MEyGWC3i4iklUX/IekjtuYrnk1R0fDg8AWypuMp8" +
-            "N2jHOYE4kJjLmQtUnAFRg/TE3AysD8FVoCQ1fz6fhF08Zj4Lamfv3mBM/XC9hN7J" +
-            "cQIDAQAB";
+    String publickey="";
     ScheduleInformation[] mScheduleInformations;
     JSONArray mJSONArray;
     Http mHttp;
@@ -40,6 +35,11 @@ public class EmptyClassroom {
     public EmptyClassroom(Context context){
         mHttp=new Http();
         mContext=context;
+        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+        publickey=OnlineConfigAgent.getInstance().getConfigParams(mContext, "EmptyClassroom_publickey");
+        publickey=publickey.replace("\r", "");
+        publickey=publickey.replace("\n","");
+        System.out.println(publickey);
     }
     public ScheduleInformation[] jiexi(String text){//将PHP返回的信息处理
         String zhuanhuan=convert(text);

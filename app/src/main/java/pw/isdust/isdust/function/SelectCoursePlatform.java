@@ -3,6 +3,7 @@ package pw.isdust.isdust.function;
 import android.content.Context;
 
 import com.isdust.www.datatype.Kebiao;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,13 +23,19 @@ import pw.isdust.isdust.Http;
  */
 public class SelectCoursePlatform {
     Http mHttp;
+    Context mContext;
     public SelectCoursePlatform(Context context){
+        mContext=context;
         mHttp=new Http();
         mHttp.newcookie();
         Networkjudge mNetworkjudge=new Networkjudge(context);
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            mHttp.setProxy("proxy1.isdust.com", 1999);
+            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
+            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+
+            mHttp.setProxy(address, Integer.valueOf(port));
         }
 
 //        if(mNetworkjudge.judgetype()==3){

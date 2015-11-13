@@ -33,4 +33,5 @@ dependencies {
     compile files('libs/com.umeng.fb.5.4.0.jar')
     //    compile 'com.umeng:fb:5.4.0'
     compile files('libs/bouncycastle.jar')
+    compile files('libs/umeng-onlineconfig_v1.0.0.jar')
 }

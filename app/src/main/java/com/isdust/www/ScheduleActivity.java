@@ -30,6 +30,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.Kebiao;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -155,9 +156,12 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
             xianchengchi_saving_json="";
             Message mMessage=new Message();
             mMessage.what=3;
+            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+            String xuenian= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xuenian");
+            String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
             for(int i=0;i<zhoushu;i++){
                 try {
-                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"","2015-2016","1"));
+                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"",xuenian,xueqi));
                 } catch (Exception e) {
                     mMessage.what = 10;
                     mHandler.sendMessage(mMessage);;
@@ -171,14 +175,6 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
             xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
             xianchengchi_saving_json=xianchengchi_saving_json.replace("[,","[");
             xianchengchi_saving_json=xianchengchi_saving_json.replace(",]","]");
-            try {
-                JSONArray m=new JSONArray(xianchengchi_saving_json);
-
-                System.out.println(xianchengchi_saving_json);
-            }catch (Exception e){
-
-            }
-
             mHandler.sendMessage(mMessage);
             return;
         }

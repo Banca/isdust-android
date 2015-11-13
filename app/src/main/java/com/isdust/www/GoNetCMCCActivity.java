@@ -37,6 +37,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
     String xiancheng_chengshiredian_user,xiancheng_chengshiredian_password;
     String xiancheng_cmcc_user,xiancheng_cmcc_password;
     String xiancheng_chengshiredian_status,xiancheng_cmcc_status;
+    String xiancheng_toastmessage;
     int xiancheng_network_type, xiancheng_network_cmcc_condition;
     final android.os.Handler handler = new android.os.Handler() {
         @Override
@@ -158,7 +159,11 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            if (msg.what == 11){//显示信息
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage(xiancheng_toastmessage);
+                return;
+            }
 
         }
     };
@@ -166,6 +171,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
         @Override
         public void run() {
             xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+
             if (xiancheng_network_cmcc_condition==2){//登录了2层
                 Message mMessage=new Message();
                 mMessage.what=2;
@@ -180,8 +186,11 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                     return;
                 }
                 mExecutorService.execute(xiancheng_runnable_cmcc_login);
-                customRuningDialog.show();    //打开等待框
-                customRuningDialog.setMessage("正在登录第二层...");
+//                customRuningDialog.show();    //打开等待框
+                xiancheng_toastmessage="正在登录第二层...";
+                Message mMessage=new Message();
+                mMessage.what=11;
+                handler.sendMessage(mMessage);
                 return;
 
             }
@@ -194,8 +203,11 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                     return;
                 }else {
                     mExecutorService.execute(xiancheng_runnable_chengshiredian_login);
-                    customRuningDialog.show();    //打开等待框
-                    customRuningDialog.setMessage("正在登录第一层...");
+//                    customRuningDialog.show();    //打开等待框
+                       xiancheng_toastmessage="正在登录第一层...";
+                    Message mMessage=new Message();
+                    mMessage.what=11;
+                    handler.sendMessage(mMessage);
                     return;
                 }
 
@@ -403,7 +415,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 }
 
 
-                autologin();
+                mExecutorService.execute(xiancheng_autologin);
                 break;
             case R.id.btn_quicklogout:
                 if (isdustapp.getNetworklogin_CMCC().logout_cmcc()){
@@ -437,7 +449,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
             finish();
         }
     }
-    public void autologin(){
+    public void autologinf(){
         xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
         if (xiancheng_network_cmcc_condition==2){//登录了2层
             Message mMessage=new Message();

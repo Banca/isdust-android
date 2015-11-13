@@ -3,12 +3,11 @@ package pw.isdust.isdust.function;
 import java.io.IOException;
 
 import pw.isdust.isdust.Http;
-import pw.isdust.isdust.function.baseclass.BaseNetworklogin;
 
 /**
  * Created by wzq on 15/10/17.
  */
-public class Networklogin_ChinaUnicom extends BaseNetworklogin {
+public class Networklogin_ChinaUnicom {
     public Networklogin_ChinaUnicom(){
 
     }
@@ -25,6 +24,12 @@ public class Networklogin_ChinaUnicom extends BaseNetworklogin {
             return "密码错误";
         }
         return "";
+    }
+    public void logout() throws IOException {
+        mHttp.get_string("http://10.249.255.253/F.htm");
+
+
+
     }
 
 }
