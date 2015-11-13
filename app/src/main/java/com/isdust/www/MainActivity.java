@@ -41,7 +41,7 @@ public class MainActivity extends BaseMainActivity_new {
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
 
-		OnlineConfigAgent.getInstance().setDebugMode(true);
+		//OnlineConfigAgent.getInstance().setDebugMode(true);
 		OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
 		//System.out.println(Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID)
 //		);

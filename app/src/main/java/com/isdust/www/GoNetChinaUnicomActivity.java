@@ -59,10 +59,21 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity_new {
 
                 }
             if (msg.what==3){//登录失败，密码错误
+                Toast.makeText(mContext,xiancheng_chinaunicom_status,Toast.LENGTH_SHORT).show();
+                customRuningDialog.dismiss();
+                mSharedPreferences_chinaunicom.edit().putString("network_ChinaUnicom_password", "");
+                mSharedPreferences_chinaunicom.edit().commit();
+                Intent intent=new Intent();
+                intent.setClass(mContext, NetworkPublicLoginActivity.class);
+                intent.putExtra("type", type_chinaunicom);
+                startActivityForResult(intent, type_chinaunicom);
+                return;
 
             }
             if (msg.what==4){//登录失败，未知错误
-
+                Toast.makeText(mContext,xiancheng_chinaunicom_status,Toast.LENGTH_SHORT).show();
+                customRuningDialog.dismiss();
+                return;
             }
             if (msg.what==10){//网络超时
                 customRuningDialog.dismiss();

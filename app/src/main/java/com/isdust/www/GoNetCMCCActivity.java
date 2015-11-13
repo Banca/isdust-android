@@ -46,18 +46,23 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
             Message message=new Message();
             if (msg.what == 0){//已连接,登录0层
                 mImageButton_state.setBackgroundResource(R.drawable.cmcc_0);//设置状态按钮
+                customRuningDialog.dismiss();
                 //customRuningDialog.hide();
                 return;
             }
             if (msg.what == 1){//已连接,登录1层
 
                 mImageButton_state.setBackgroundResource(R.drawable.cmcc_1);//设置状态按钮
+
+
                 //Toast.makeText(BaseCMCCandChinaUnicom.this, "已连接CMCC，请点击一键登录", Toast.LENGTH_SHORT).show();
                 return;
                 //customRuningDialog.hide();
             }
             if (msg.what == 2){//已连接，登录2层
                 mImageButton_state.setBackgroundResource(R.drawable.cmcc_2);//设置状态按钮
+                customRuningDialog.dismiss();
+
                 return;
                 // imgbtn_state.setBackgroundResource(R.drawable.online);
                 //customRuningDialog.hide();
@@ -183,7 +188,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 if (xiancheng_cmcc_user.equals("")||xiancheng_cmcc_password.equals("")){
                     Intent intent=new Intent();
                     intent.setClass(mContext, NetworkCMCCLoginActivity.class);
-                    startActivityForResult(intent, type_chengshiredian);
+                    startActivityForResult(intent, type_cmcc);
                     return;
                 }
                 mExecutorService.execute(xiancheng_runnable_cmcc_login);
