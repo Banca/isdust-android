@@ -41,13 +41,11 @@ public class Networkjudge {
 
         return 4;//0.无网络1.CMCC2.CHINAUNICOME3.纯数据4.其它WIFI
     }
-   public int cmcc_judge(){
+   public int cmcc_judge() throws IOException {
        String text= null;
-       try {
+
            text = mHttp.get_string("http://172.16.0.86/","gb2312");
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
+
        if (text.contains("已使用时间")){
            try {
                text= mHttp.get_string("http://baidu.com");

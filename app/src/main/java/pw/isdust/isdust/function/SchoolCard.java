@@ -189,6 +189,7 @@ public class SchoolCard {
         mHttp.newcookie();
 
         importimage(mHttp.get_image("http://192.168.100.126/getpasswdPhoto.action"));
+
         mHttp.get_image("http://192.168.100.126/getCheckpic.action?rand=6520.280869641985");
         String mpassword=zhuanhuan(password);
         String result= mHttp.post_string("http://192.168.100.126/loginstudent.action", "name=" + user + "&userType=1&passwd=" + mpassword + "&loginType=2&rand=6520&imageField.x=39&imageField.y=10");
@@ -205,11 +206,6 @@ public class SchoolCard {
                 mmatcher.end();
                 i=i+1;
             }
-
-
-
-
-
             mpattern = Pattern.compile("<td class=\"neiwen\">([-]*?[0-9]*.[0-9]*)元\\（卡余额\\）([-]*?[0-9]*.[0-9]*)元\\(当前过渡余额\\)([-]*?[0-9]*.[0-9]*)元\\(上次过渡余额\\)</td>");
             mmatcher = mpattern.matcher(result);
             yue=new String[3];

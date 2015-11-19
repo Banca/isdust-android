@@ -51,7 +51,7 @@ public class SelectCoursePlatform {
         text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx", "gb2312");
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
         __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
-        String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+pwd+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
+        String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+URLEncoder.encode(pwd)+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
         text_web=mHttp.post_string_noturlencode("http://192.168.100.136/default_ysdx.aspx", submit);
         if (text_web.contains("<script>window.open('xs_main.aspx?xh=2")){
             String url_login_zhengfang=Networklogin_CMCC.zhongjian(text_web,"<script>window.open('","','_parent');</script>",0);

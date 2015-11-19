@@ -170,13 +170,24 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 customRuningDialog.setMessage(xiancheng_toastmessage);
                 return;
             }
-
+            if (msg.what==12){//网络信号不好
+                customRuningDialog.dismiss();
+                Toast.makeText(mContext, "网络信号不好，请找一个信号好的地方", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
     };
     Runnable xiancheng_autologin=new Runnable() {
         @Override
         public void run() {
-            xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+            try {
+                xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+            } catch (IOException e) {
+                Message message =new Message();
+                message.what=12;
+                handler.sendMessage(message);
+                return;
+            }
 
             if (xiancheng_network_cmcc_condition==2){//登录了2层
                 Message mMessage=new Message();
@@ -274,8 +285,14 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
                 handler.sendMessage(message);
                 return;
             }
-            if (mNetworkjudge.cmcc_judge()==2){
-                message.what=4;//2层登录成功
+            try {
+                if (mNetworkjudge.cmcc_judge()==2){
+                    message.what=4;//2层登录成功
+                    handler.sendMessage(message);
+                    return;
+                }
+            } catch (IOException e) {
+                message.what=12;//网络信号不好
                 handler.sendMessage(message);
                 return;
             }
@@ -372,7 +389,13 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
             case R.id.btn_state:
                 Message message;
 
-                xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+                try {
+                    xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+                } catch (IOException e) {
+                    message=new Message();
+                    message.what=12;//信号不好
+                    handler.sendMessage(message);
+                }
 
                 if (xiancheng_network_cmcc_condition==2){
                     isdustapp.getNetworklogin_CMCC().logout_cmcc();
@@ -403,7 +426,13 @@ public class GoNetCMCCActivity extends BaseSubPageActivity_new {
 //                    startActivityForResult(intent, GoNetChinaUnicomAcntActivity.RESULT_CODE);
                 break;
             case R.id.btn_quicklogin:  //一键登录
-                xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+                try {
+                    xiancheng_network_cmcc_condition =mNetworkjudge.cmcc_judge();
+                } catch (IOException e) {
+                    message=new Message();
+                    message.what=12;
+                    handler.sendMessage(message);
+                }
                 if (xiancheng_network_cmcc_condition==2){
                     Toast.makeText(this, "您已登录，请不要重复登录", Toast.LENGTH_SHORT).show();
                     return;
