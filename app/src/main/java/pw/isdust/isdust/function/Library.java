@@ -1,6 +1,9 @@
 package pw.isdust.isdust.function;
 
+import android.content.Context;
+
 import com.isdust.www.datatype.Book;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,10 +32,25 @@ import pw.isdust.isdust.Http;
  */
 public class Library {
     Http mHttp;
+    Context mContext;
     String [] mPersonalInformation;
-    public Library(){
+    public Library(Context context){
         mHttp=new Http();
-    }
+        mContext = context;
+        Networkjudge mNetworkjudge=new Networkjudge(mContext);
+//        if(mNetworkjudge.judgetype()==3){
+//            mHttp.setProxy("proxy1.isdust.com", 1999);
+//        }else if(mNetworkjudge.judgetype()==4){
+//            if (mNetworkjudge.neiwaiwang_judge()==1){
+//                mHttp.setProxy("proxy1.isdust.com", 1999);
+//            }
+//        }
+        int status=mNetworkjudge.judgetype();
+        if(status==3||status==4){
+            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
+            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            mHttp.setProxy(address, Integer.valueOf(port));
+    }}
     public String login(String user,String password) throws IOException {
         String msubmit="rdid="+user+"&rdPasswd="+md5(password)+"&returnUrl=";
         String text= mHttp.post_string("http://interlib.sdust.edu.cn/opac/reader/doLogin",msubmit);

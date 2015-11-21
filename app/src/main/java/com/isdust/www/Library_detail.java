@@ -34,7 +34,7 @@ public class Library_detail extends BaseSubPageActivity_new {
             //mListView.setEnabled(false);
             mContext=this;
 
-            mLibrary=new Library();
+            mLibrary=new Library(this);
             String bookrecnos=getIntent().getExtras().getString("bookrecnos");
             try {
                 mguancang =mLibrary.getguancang(bookrecnos);
