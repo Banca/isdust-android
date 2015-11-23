@@ -14,6 +14,7 @@ import com.isdust.www.GoNetActivity;
 import com.isdust.www.JiaowuActivity;
 import com.isdust.www.KuaiTongActivity;
 import com.isdust.www.LibraryActivity;
+import com.isdust.www.LifeActivity;
 import com.isdust.www.MainActivity;
 import com.isdust.www.NewsActivity;
 import com.isdust.www.R;
@@ -102,6 +103,9 @@ public class Leftmenu {
                 .findViewById(R.id.leftmenu_news);
         ImageView ImageView_about = (ImageView) thisActivity
                 .findViewById(R.id.leftmenu_about);
+        ImageView ImageView_life = (ImageView) thisActivity
+                .findViewById(R.id.leftmenu_life);
+
 
         ImageView_home.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -259,6 +263,28 @@ public class Leftmenu {
                 return true;
             }
         });
+
+
+
+        ImageView_life.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    leftmenu_ui(8);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Intent intent = new Intent();
+                    intent.setClass(thisActivity, LifeActivity.class);
+
+                    if (type != 8){
+                        thisActivity.startActivity(intent);
+                        thisActivity.finish();}
+                    else{
+                        menu.toggle();
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     public static int dip2px(Context context, float dipValue) {
@@ -277,17 +303,20 @@ public class Leftmenu {
                 (ImageView) thisActivity.findViewById(R.id.leftmenu_library),
                 (ImageView) thisActivity.findViewById(R.id.leftmenu_card),
                 (ImageView) thisActivity.findViewById(R.id.leftmenu_news),
-                (ImageView) thisActivity.findViewById(R.id.leftmenu_about),};
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_about),
+                (ImageView) thisActivity.findViewById(R.id.leftmenu_life),};
 
 
         int[] tu0 = {R.drawable.leftmenu_home1, R.drawable.leftmenu_wifi1,
                 R.drawable.leftmenu_kuaitong1, R.drawable.leftmenu_jiaowu1,
                 R.drawable.leftmenu_library1, R.drawable.leftmenu_card1,
-                R.drawable.leftmenu_news1,R.drawable.leftmenu_about1,};
+                R.drawable.leftmenu_news1,R.drawable.leftmenu_about1,
+                R.drawable.leftmenu_life1};
         int[] tu1 = {R.drawable.leftmenu_home2, R.drawable.leftmenu_wifi2,
                 R.drawable.leftmenu_kuaitong2, R.drawable.leftmenu_jiaowu2,
                 R.drawable.leftmenu_library2, R.drawable.leftmenu_card2,
-                R.drawable.leftmenu_news2,R.drawable.leftmenu_about2,};
+                R.drawable.leftmenu_news2,R.drawable.leftmenu_about2,
+                R.drawable.leftmenu_life2};
         int i;
         for (i = 0; i < myImageViews.length; i++) {
             if (i == (a))
