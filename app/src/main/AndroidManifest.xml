@@ -152,6 +152,10 @@
             android:name="com.isdust.www.NetworkCMCCLoginActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.isdust.www.LifeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" >
