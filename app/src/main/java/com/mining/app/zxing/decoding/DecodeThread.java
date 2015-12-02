@@ -19,7 +19,7 @@ package com.mining.app.zxing.decoding;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.isdust.www.Library_scan;
+import com.isdust.www.Library_guancang_scan;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
@@ -35,12 +35,12 @@ import java.util.concurrent.CountDownLatch;
 final class DecodeThread extends Thread {
 
     public static final String BARCODE_BITMAP = "barcode_bitmap";
-    private final Library_scan activity;
+    private final Library_guancang_scan activity;
     private final Hashtable<DecodeHintType, Object> hints;
     private final CountDownLatch handlerInitLatch;
     private Handler handler;
 
-    DecodeThread(Library_scan activity,
+    DecodeThread(Library_guancang_scan activity,
                  Vector<BarcodeFormat> decodeFormats, String characterSet,
                  ResultPointCallback resultPointCallback) {
 

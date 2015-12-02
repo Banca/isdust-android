@@ -98,7 +98,7 @@ public class LibraryActivity extends BaseMainActivity_new {
             isdustapp.setBooks(mBooks);
             Intent intent = new Intent();
 
-            intent.setClass(mContext,Library_result.class);
+            intent.setClass(mContext,Library_guancang_result.class);
             startActivity(intent);
             return;
          }else if (msg.what == 10){
@@ -123,7 +123,7 @@ public class LibraryActivity extends BaseMainActivity_new {
             public void onClick(View view) {
 
                 Intent intent = new Intent();
-                intent.setClass(mContext, Library_scan.class);
+                intent.setClass(mContext, Library_guancang_scan.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(intent, 1);
             }

@@ -63,11 +63,11 @@
         </activity>
 
         <activity
-            android:name="com.isdust.www.EmptyRoomActivity"
+            android:name=".Jiaowu_EmptyRoom"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.ScheduleActivity"
+            android:name=".Jiaowu_Schedule_main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -84,7 +84,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.JiaowuActivity"
+            android:name=".Jiaowu_index"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -129,19 +129,19 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.Library_scan"
+            android:name=".Library_guancang_scan"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.isdust.www.Library_result"
+            android:name=".Library_guancang_result"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.isdust.www.Library_detail"
+            android:name=".Library_guancang_detail"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.isdust.www.Schedule_login"
+            android:name=".Jiaowu_Schedule_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -154,6 +154,10 @@
         </activity>
         <activity
             android:name="com.isdust.www.LifeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.isdust.www.Jiaowu_chengjichaxun_main"
             android:screenOrientation="portrait" >
         </activity>
         <service

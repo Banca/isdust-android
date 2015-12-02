@@ -16,6 +16,8 @@ import com.umeng.update.UmengUpdateAgent;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pw.isdust.isdust.function.SelectCoursePlatform;
+
 
 public class MainActivity extends BaseMainActivity_new {
 	protected MyApplication isdustapp;
@@ -50,6 +52,13 @@ public class MainActivity extends BaseMainActivity_new {
 		if (!install.equals("true")){
 			Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 		}
+		SelectCoursePlatform a=new SelectCoursePlatform(this);
+//		try {
+//			a.login_zhengfang("201401061406","abc123");
+//			a.chengji_chaxun("2014-2015","1");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
@@ -85,11 +94,11 @@ public class MainActivity extends BaseMainActivity_new {
 				finish();
 				break;
 			case R.id.btn_main_schedule:
-				intent.setClass(this, ScheduleActivity.class);//课程表
+				intent.setClass(this, Jiaowu_Schedule_main.class);//课程表
 				this.startActivity(intent);
 				break;
 			case R.id.btn_main_emptyroom:
-				intent.setClass(this, EmptyRoomActivity.class);//空自习室
+				intent.setClass(this, Jiaowu_EmptyRoom.class);//空自习室
 				this.startActivity(intent);
 				break;
 			case R.id.btn_main_library:

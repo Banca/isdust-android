@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
+要设置android:orientation="vertical"属性
+否则,显示不正确-->
+
+<RelativeLayout
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/include"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:id="@+id/relativelayout_network_public_card">
+
+
+    <include layout="@layout/subpage_title_bar"
+             android:id="@+id/include2"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" android:layout_below="@+id/textView9">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     课   程   "
+            android:id="@+id/textView2"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#FFB3B3B3" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     学   分   "
+            android:id="@+id/textView4"
+            android:textSize="18sp" />
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#FFB3B3B3" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     绩   点   "
+            android:id="@+id/textView5"
+            android:textSize="18sp" />
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#FFB3B3B3" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     成   绩   "
+            android:id="@+id/textView6"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview_emptyroom"
+        android:background="@color/color_list_white"
+        android:cacheColorHint="#00000000"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="学年："
+        android:layout_below="@+id/include2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_xuenian"
+        android:layout_width="100dip"
+        android:layout_height="30dip"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        >
+
+        <TextView
+            android:id="@+id/textView_chengji_xuenian"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:background="@drawable/btn_selector_pop"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="J1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="学期："
+        android:textSize="20sp"
+        android:layout_below="@+id/textView3"
+
+
+        android:layout_alignRight="@+id/textView3"
+        android:layout_marginTop="10dp"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_xueqi"
+        android:layout_width="70dip"
+        android:layout_height="30dip"
+        android:layout_alignBottom="@+id/textView9"
+        android:layout_toRightOf="@+id/textView9">
+
+        <TextView
+            android:id="@+id/textView_chengji_xueqi"
+            android:layout_width="70dip"
+            android:layout_height="30dip"
+            android:background="@drawable/btn_selector_pop"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_xingqi"
+        android:layout_width="80dip"
+        android:layout_height="30dip"
+        >
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询"
+        android:id="@+id/button_chegnji_chaxun"
+        android:layout_alignBottom="@+id/relativeLayout_xueqi"
+        android:layout_toRightOf="@+id/relativeLayout_xuenian"
+        android:layout_toEndOf="@+id/relativeLayout_xuenian" android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"/>
+
+
+</RelativeLayout>

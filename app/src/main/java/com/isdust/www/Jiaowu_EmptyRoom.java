@@ -39,7 +39,7 @@ import pw.isdust.isdust.function.SchoolDate;
 /**
  * Created by wzq on 15/10/16.
  */
-public class EmptyRoomActivity extends BaseSubPageActivity_new {
+public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 
     ListView mListView;
 

@@ -19,7 +19,7 @@ import pw.isdust.isdust.function.Library;
 /**
  * Created by wzq on 15/11/1.
  */
-public class Library_detail extends BaseSubPageActivity_new {
+public class Library_guancang_detail extends BaseSubPageActivity_new {
     Library mLibrary;
     List<String[]> mguancang;
     SimpleAdapter madapter;

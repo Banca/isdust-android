@@ -55,7 +55,7 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class ScheduleActivity extends BaseSubPageActivity_new {
+public class Jiaowu_Schedule_main extends BaseSubPageActivity_new {
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
     //实例化SharedPreferences对象
@@ -134,6 +134,14 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
                 return;
             }
             if(xianchengchi_login_status.contains("登录成功")){
+                try {
+                    mXuankepingtai.zhengfang_tiaozhuan_xuankepingtai();
+                } catch (IOException e) {
+                    Message mMessage=new Message();
+                    mMessage.what = 10;
+                    mHandler.sendMessage(mMessage);;
+                    return;
+                }
                 Message mMessage=new Message();
                 mMessage.what=0;
                 mHandler.sendMessage(mMessage);
@@ -161,7 +169,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
             String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
             for(int i=0;i<zhoushu;i++){
                 try {
-                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.chaxun((i+1)+"",xuenian,xueqi));
+                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
                 } catch (Exception e) {
                     mMessage.what = 10;
                     mHandler.sendMessage(mMessage);;
@@ -205,7 +213,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
 
                 Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                intent.setClass(mContext, Schedule_login.class);
+                intent.setClass(mContext, Jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
 
 
@@ -258,7 +266,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
             String password_save=preferences_data.getString("password", "");
             if (user_save.equals("") || password_save.equals("")){
                 Intent intent = new Intent();
-                intent.setClass(mContext, Schedule_login.class);
+                intent.setClass(mContext, Jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
                 return;
                 }else{
@@ -290,7 +298,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
     public void bangding(String zhoushu){//public void bangding(String xiaoli,String xuenian,String xueqi){
 //        xiaohuiquanbu();
 //        int color=0;
-//        Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
+//        Kebiao c[]=mXuankepingtai.kebiao_chaxun(xiaoli + "", xuenian, xueqi);
 //        int xingqi,jieci;
 //        for (int i=0;i<c.length;i++){
 //            String temp[]=c[i].kecheng.split("<br>");
@@ -316,7 +324,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
             }
         }
         len=mList_kebiao.size();
-        //Kebiao c[]=mXuankepingtai.chaxun(xiaoli + "", xuenian, xueqi);
+        //Kebiao c[]=mXuankepingtai.kebiao_chaxun(xiaoli + "", xuenian, xueqi);
         int xingqi,jieci;
         for (int i=0;i<len;i++){
             String temp[]=mList_kebiao.get(i).kecheng.split("<br>");
@@ -671,7 +679,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
                 if (user_save.equals("") || password_save.equals("")){
 
                     Intent intent = new Intent();
-                    intent.setClass(mContext, Schedule_login.class);
+                    intent.setClass(mContext, Jiaowu_Schedule_login.class);
                     startActivityForResult(intent, 1);
                     return;
 
@@ -692,7 +700,7 @@ public class ScheduleActivity extends BaseSubPageActivity_new {
                 preferences_editor.putString("password", "");
                 writeToFile("schedule.dat","");
                 Intent intent = new Intent();
-                intent.setClass(mContext,Schedule_login.class);
+                intent.setClass(mContext,Jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
 
             }

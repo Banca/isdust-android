@@ -21,12 +21,12 @@ public class LifeActivity extends BaseMainActivity_new {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.life_button_dianfei:
-                intent.setClass(this,EmptyRoomActivity.class);
+                intent.setClass(this,Jiaowu_EmptyRoom.class);
                 //启动activity
                 this.startActivity(intent);
                 break;
             case R.id.life_button_map:
-                intent.setClass(this,ScheduleActivity.class);
+                intent.setClass(this,Jiaowu_Schedule_main.class);
                 //启动activity
                 this.startActivity(intent);
                 break;

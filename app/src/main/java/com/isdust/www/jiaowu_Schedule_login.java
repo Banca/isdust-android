@@ -14,7 +14,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 /**
  * Created by wzq on 15/11/2.
  */
-public class Schedule_login extends BaseSubPageActivity_new {
+public class Jiaowu_Schedule_login extends BaseSubPageActivity_new {
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;
@@ -53,7 +53,7 @@ public class Schedule_login extends BaseSubPageActivity_new {
                 bundle.putString("username", user);
                 bundle.putString("password", password);
                 intent.putExtras(bundle);
-                Schedule_login.this.setResult(RESULT_OK,intent);
+                Jiaowu_Schedule_login.this.setResult(RESULT_OK,intent);
 //                intent.setClass(mContext, ScheduleActivity.class);
 //                startActivity(intent);
                 finish();

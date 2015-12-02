@@ -24,6 +24,9 @@ import pw.isdust.isdust.Http;
 public class SelectCoursePlatform {
     Http mHttp;
     Context mContext;
+    String mtext_zhengfang;
+    String url_chengji;
+    String url_xuanke;
     public SelectCoursePlatform(Context context){
         mContext=context;
         mHttp=new Http();
@@ -46,27 +49,34 @@ public class SelectCoursePlatform {
 //        }
 //        mHttp.setProxy("219.146.243.3", 2000);
     }
+    public void zhengfang_tiaozhuan_xuankepingtai() throws IOException {
+
+        mtext_zhengfang=mHttp.get_string(url_xuanke, "gb2312");
+        url_xuanke=Networklogin_CMCC.zhongjian(mtext_zhengfang, "<a target=\"_top\" href=\"", "\">如果您的浏览器没有跳转，请点这里</a>", 0);
+        mtext_zhengfang=mHttp.get_string(url_xuanke);
+    }
     public String login_zhengfang(String user, String pwd) throws IOException {
         String text_web;
         text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx", "gb2312");
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
         __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
         String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+URLEncoder.encode(pwd)+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
-        text_web=mHttp.post_string_noturlencode("http://192.168.100.136/default_ysdx.aspx", submit);
-        if (text_web.contains("<script>window.open('xs_main.aspx?xh=2")){
-            String url_login_zhengfang=Networklogin_CMCC.zhongjian(text_web,"<script>window.open('","','_parent');</script>",0);
+        mtext_zhengfang=mHttp.post_string_noturlencode("http://192.168.100.136/default_ysdx.aspx", submit);
+        if (mtext_zhengfang.contains("<script>window.open('xs_main.aspx?xh=2")){
+            String url_login_zhengfang=Networklogin_CMCC.zhongjian(mtext_zhengfang,"<script>window.open('","','_parent');</script>",0);
             url_login_zhengfang="http://192.168.100.136/"+url_login_zhengfang;
-            text_web=mHttp.get_string(url_login_zhengfang,"gb2312");
-            String url_login_xuanke=Networklogin_CMCC.zhongjian(text_web,"信息员意见反馈</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('激活选课平台帐户');",0);
-            url_login_xuanke="http://192.168.100.136/"+url_login_xuanke;
-            text_web=mHttp.get_string(url_login_xuanke, "gb2312");
-            url_login_xuanke=Networklogin_CMCC.zhongjian(text_web, "<a target=\"_top\" href=\"", "\">如果您的浏览器没有跳转，请点这里</a>", 0);
-            text_web=mHttp.get_string(url_login_xuanke);
+            mtext_zhengfang=mHttp.get_string(url_login_zhengfang, "gb2312");
+            url_xuanke=Networklogin_CMCC.zhongjian(mtext_zhengfang, "信息员意见反馈</a></li><li><a href=\"", "\" target='zhuti' onclick=\"GetMc('激活选课平台帐户');", 0);
+            url_xuanke="http://192.168.100.136/"+url_xuanke;
+            url_chengji=Networklogin_CMCC.zhongjian(mtext_zhengfang,"学生个人课表</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('个人成绩查询');\">",0);
+            url_chengji="http://192.168.100.136/"+url_chengji;
+
+
             return "登录成功";
-        }if (text_web.contains("密码错误")){
+        }if (mtext_zhengfang.contains("密码错误")){
             return "密码错误";
 
-        }if (text_web.contains("用户名不存在")){
+        }if (mtext_zhengfang.contains("用户名不存在")){
             return "用户名不存在";
 
         }
@@ -91,7 +101,38 @@ public class SelectCoursePlatform {
 
         return "";
     }
-    public Kebiao[] chaxun(String zhou,String xn,String xq) throws IOException {
+    public List<String []> chengji_chaxun(String xuenian,String xueqi) throws IOException {
+
+        String text=mHttp.get_string(url_chengji);
+        String __VIEWSTATE= Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
+        __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
+        String submit="__VIEWSTATE="+__VIEWSTATE+"&ddlXN="+xuenian+"&ddlXQ="+xueqi+"&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8" ;
+        text=mHttp.post_string_noturlencode(url_chengji, submit);
+        return chengji_chaxun_fenxi(text);
+
+
+
+
+    }
+    public List<String []> chengji_chaxun_fenxi(String text){
+        Pattern mpattern = Pattern.compile("<tr[\\s\\S]*?>[\\s\\S]*?<td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td>[\\S\\s]*?</tr>");
+        Matcher mmatcher = mpattern.matcher(text);
+        List<String []> mchengji =new ArrayList<String []>();
+        mmatcher.find();//过滤第一组无用数据
+        String [] temp;
+        while (mmatcher.find()){
+            temp=new String[15];
+            for (int i=0;i<15;i++){
+                temp[i]=mmatcher.group(i+1);
+                temp[i]=temp[i].replace(" ", "");
+                temp[i]=temp[i].replace("&nbsp;","");
+            }
+            mchengji.add(temp);
+        }
+        return mchengji;
+
+    }
+    public Kebiao[] kebiao_chaxun(String zhou, String xn, String xq) throws IOException {
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
         text_web=text_web.replace(" rowspan=\"2\" ","");

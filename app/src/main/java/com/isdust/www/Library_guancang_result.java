@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by wzq on 15/11/1.
  */
-public class Library_result extends BaseSubPageActivity_new {
+public class Library_guancang_result extends BaseSubPageActivity_new {
 
     ListView mListView;
     Context mContext;
@@ -46,7 +46,7 @@ public class Library_result extends BaseSubPageActivity_new {
                     String bookrecnos=mTextView_library_bookrecnos.getText().toString().replace("书本编号：","");
                     Intent intent=new Intent();
                     intent.putExtra("bookrecnos", bookrecnos);
-                    intent.setClass(mContext, Library_detail.class);
+                    intent.setClass(mContext, Library_guancang_detail.class);
                     startActivity(intent);
                 }catch (Exception e){
                     System.out.println(e);
