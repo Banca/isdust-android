@@ -175,7 +175,7 @@ public class CardActivity extends BaseMainActivity_new {
         //设置传递方向
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.button_network_public_login:	//登陆按钮
+            case R.id.button_library_login:	//登陆按钮
 //                //实例化SharedPreferences对象
 //                SharedPreferences mySharedPreferences= getSharedPreferences("CardData",	Activity.MODE_PRIVATE);
 //                //实例化SharedPreferences.Editor对象

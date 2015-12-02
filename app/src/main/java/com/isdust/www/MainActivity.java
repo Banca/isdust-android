@@ -13,10 +13,11 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 import com.umeng.update.UmengUpdateAgent;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pw.isdust.isdust.function.SelectCoursePlatform;
+import pw.isdust.isdust.function.Library;
 
 
 public class MainActivity extends BaseMainActivity_new {
@@ -52,7 +53,15 @@ public class MainActivity extends BaseMainActivity_new {
 		if (!install.equals("true")){
 			Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 		}
-		SelectCoursePlatform a=new SelectCoursePlatform(this);
+
+		Library library=new Library(mContext);
+		try {
+			library.login("1501060225","1501060225");
+			library.get_borrwingdetail();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		SelectCoursePlatform a=new SelectCoursePlatform(this);
 //		try {
 //			a.login_zhengfang("201401061406","abc123");
 //			a.chengji_chaxun("2014-2015","1");
@@ -94,7 +103,7 @@ public class MainActivity extends BaseMainActivity_new {
 				finish();
 				break;
 			case R.id.btn_main_schedule:
-				intent.setClass(this, Jiaowu_Schedule_main.class);//课程表
+				intent.setClass(this, jiaowu_Schedule_main.class);//课程表
 				this.startActivity(intent);
 				break;
 			case R.id.btn_main_emptyroom:
@@ -102,7 +111,7 @@ public class MainActivity extends BaseMainActivity_new {
 				this.startActivity(intent);
 				break;
 			case R.id.btn_main_library:
-				intent.setClass(this, LibraryActivity.class);//图书馆
+				intent.setClass(this, Library_guancang_main.class);//图书馆
 				this.startActivity(intent);
 				finish();
 				break;

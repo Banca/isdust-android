@@ -55,7 +55,7 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
 /**
  * Created by Administrator on 2015/10/16.
  */
-public class Jiaowu_Schedule_main extends BaseSubPageActivity_new {
+public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
     //实例化SharedPreferences对象
@@ -213,7 +213,7 @@ public class Jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
                 Toast.makeText(mContext,xianchengchi_login_status,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                intent.setClass(mContext, Jiaowu_Schedule_login.class);
+                intent.setClass(mContext, jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
 
 
@@ -266,7 +266,7 @@ public class Jiaowu_Schedule_main extends BaseSubPageActivity_new {
             String password_save=preferences_data.getString("password", "");
             if (user_save.equals("") || password_save.equals("")){
                 Intent intent = new Intent();
-                intent.setClass(mContext, Jiaowu_Schedule_login.class);
+                intent.setClass(mContext, jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
                 return;
                 }else{
@@ -679,7 +679,7 @@ public class Jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 if (user_save.equals("") || password_save.equals("")){
 
                     Intent intent = new Intent();
-                    intent.setClass(mContext, Jiaowu_Schedule_login.class);
+                    intent.setClass(mContext, jiaowu_Schedule_login.class);
                     startActivityForResult(intent, 1);
                     return;
 
@@ -700,7 +700,7 @@ public class Jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 preferences_editor.putString("password", "");
                 writeToFile("schedule.dat","");
                 Intent intent = new Intent();
-                intent.setClass(mContext,Jiaowu_Schedule_login.class);
+                intent.setClass(mContext,jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
 
             }

@@ -1,7 +1,6 @@
 package com.isdust.www;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.onlineconfig.OnlineConfigAgent;
-import com.umeng.onlineconfig.UmengOnlineConfigureListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +31,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import pw.isdust.isdust.function.EmptyClassroom;
 import pw.isdust.isdust.function.SelectCoursePlatform;
 
 /**
@@ -154,7 +151,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
 
                 Toast.makeText(mContext, xianchengchi_login_status, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                intent.setClass(mContext, Jiaowu_Schedule_login.class);
+                intent.setClass(mContext, jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
 
 
@@ -253,7 +250,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
         if (user_save.equals("") || password_save.equals("")){
 
             Intent intent = new Intent();
-            intent.setClass(mContext, Jiaowu_Schedule_login.class);
+            intent.setClass(mContext, jiaowu_Schedule_login.class);
             startActivityForResult(intent, 1);
             return;
         }else{

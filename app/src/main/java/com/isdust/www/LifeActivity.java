@@ -26,7 +26,7 @@ public class LifeActivity extends BaseMainActivity_new {
                 this.startActivity(intent);
                 break;
             case R.id.life_button_map:
-                intent.setClass(this,Jiaowu_Schedule_main.class);
+                intent.setClass(this,jiaowu_Schedule_main.class);
                 //启动activity
                 this.startActivity(intent);
                 break;

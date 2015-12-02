@@ -67,7 +67,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".Jiaowu_Schedule_main"
+            android:name=".jiaowu_Schedule_main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -88,7 +88,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.isdust.www.LibraryActivity"
+            android:name=".Library_guancang_main"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -141,7 +141,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Jiaowu_Schedule_login"
+            android:name=".jiaowu_Schedule_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -154,6 +154,10 @@
         </activity>
         <activity
             android:name="com.isdust.www.LifeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.isdust.www.Library_index"
             android:screenOrientation="portrait" >
         </activity>
         <activity

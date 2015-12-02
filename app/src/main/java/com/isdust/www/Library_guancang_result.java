@@ -32,7 +32,7 @@ public class Library_guancang_result extends BaseSubPageActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.activity_library_result, "查询结果");
+        INIT(R.layout.activity_library_guancang_result, "查询结果");
         MobclickAgent.onEvent(this, "Library_guancang");
 
         mListView=(ListView)findViewById(R.id.listview_library_result);
@@ -75,7 +75,7 @@ public class Library_guancang_result extends BaseSubPageActivity_new {
         }
 
         madapter = new SimpleAdapter(mContext, listdata,
-                R.layout.activity_library_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
+                R.layout.activity_library_guancang_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
                 new int[] { R.id.TextView_library_title, R.id.TextView_library_author,
                         R.id.TextView_library_bookrecnos,	R.id.TextView_library_suoshuhao});
         mListView.setAdapter(madapter);	//捆绑适配器}

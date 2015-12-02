@@ -29,7 +29,7 @@ public class Library_guancang_detail extends BaseSubPageActivity_new {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            INIT(R.layout.activity_library_detail, "馆藏信息");
+            INIT(R.layout.activity_library_guancang_detail, "馆藏信息");
             mListView=(ListView)findViewById(R.id.listview_library_detail);
             //mListView.setEnabled(false);
             mContext=this;
@@ -60,17 +60,12 @@ public class Library_guancang_detail extends BaseSubPageActivity_new {
 
         }
         madapter = new SimpleAdapter(mContext, listdata,
-                R.layout.activity_library_detail_item, new String[] { "suoshuhao", "tiaomahao", "guancangzhuangtai", "guancangdi","huanshushijian"},
+                R.layout.activity_library_guancang_detail_item, new String[] { "suoshuhao", "tiaomahao", "guancangzhuangtai", "guancangdi","huanshushijian"},
                 new int[] { R.id.textView_library_detail_suoshuhao, R.id.textView_library_detail_tiaomahao,
                         R.id.textView_library_detail_guancangzhuangtai,	R.id.textView_library_detail_guancangdi,R.id.textView_library_detail_huanshushijian});
 
         mListView.setAdapter(madapter);	//捆绑适配器}
 
-//        madapter = new SimpleAdapter(mContext, listdata,
-//                R.layout.activity_library_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
-//                new int[] { R.id.TextView_library_title, R.id.TextView_library_author,
-//                        R.id.TextView_library_bookrecnos,	R.id.TextView_library_suoshuhao});
-//        setListAdapter(madapter);	//捆绑适配器}
 
     }
 

@@ -1,93 +1,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:focusable="true"
-                android:focusableInTouchMode="true" >
+                android:layout_height="match_parent" >
 
 
 
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:id="@+id/RelativeLayout_schedule">
+
+        <include layout="@layout/layout_title_bar"
+                 android:id="@+id/include2" />
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/color_page_white"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/color_btn_white"
+            android:orientation="vertical"
+            android:layout_below="@+id/include2">
+            <Button
+                android:id="@+id/library_button_guancang"
+                android:onClick="onFormJiaowuClick"
+                android:text="  馆藏查询"
+                android:gravity="center_vertical|left"
+                android:textSize="18sp"
+                android:background="@drawable/selector_item_button"
+                android:drawableLeft="@drawable/item_schedule"
+                android:drawableRight="@drawable/arrow"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" />
 
-            <include layout="@layout/layout_title_bar"
-                android:id="@+id/include4"/>
-            <ScrollView
-                android:id="@+id/scrollView1"
+            <View
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_height="3px"
+                android:background="@color/color_page_white" />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                        <ImageView
-                            android:id="@+id/guancang_head"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/guancang_head"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginLeft="13dp"
-                            android:layout_marginRight="13dp"
-                            />
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="13dp"
-                            >
-                            <ImageView
-                                android:id="@+id/guancang_edittext_left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:onClick="scan"
-                                android:src="@drawable/guancang_edittext1" />
+            <Button
+                android:id="@+id/library_button_personel"
+                android:onClick="onFormJiaowuClick"
+                android:text="  借书查询(可续借)"
+                android:gravity="center_vertical|left"
+                android:textSize="18sp"
+                android:background="@drawable/selector_item_button"
+                android:drawableLeft="@drawable/item_emptyroom"
+                android:drawableRight="@drawable/arrow"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="3px"
+                android:background="@color/color_page_white" />
 
 
-                            <EditText
-                                android:id="@+id/guancang_edittext"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/guancang_edittext2"
-                                android:ems="20"
-                                android:inputType="text"
-                                android:layout_toRightOf="@+id/guancang_edittext_left"
-                                android:layout_toEndOf="@+id/guancang_edittext_left">
 
-                            </EditText>
-
-                            <ImageView
-                                android:id="@+id/guancang_scan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:onClick="scan"
-                                android:src="@drawable/guancang_scan"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_alignParentEnd="true" />
-                        </RelativeLayout>
-                        <ImageView
-                            android:id="@+id/guancang_search"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="13dp"
-                            android:layout_marginRight="13dp"
-                            android:onClick="search"
-                            android:src="@drawable/guancang_search"
-                            />
-
-                        <ImageView
-                            android:id="@+id/guancang_head2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginLeft="13dp"
-                            android:layout_marginRight="13dp"
-                            android:src="@drawable/guancang_head2"
-                            />
-                </LinearLayout>
-            </ScrollView>
         </LinearLayout>
+
+    </RelativeLayout>
+
 </RelativeLayout>

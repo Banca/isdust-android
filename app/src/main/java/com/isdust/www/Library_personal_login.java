@@ -12,9 +12,9 @@ import android.widget.EditText;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
- * Created by wzq on 15/11/2.
+ * Created by wzq on 15/11/4.
  */
-public class jiaowu_Schedule_login extends BaseSubPageActivity_new {
+public class Library_personal_login extends BaseSubPageActivity_new {
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;
@@ -22,10 +22,10 @@ public class jiaowu_Schedule_login extends BaseSubPageActivity_new {
     Button mButton_login;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.activity_schedule_login,"正方教务平台登录");
+        INIT(R.layout.activity_library_personal_login,"图书馆登录");
         mContext=this;
         //实例化SharedPreferences对象
-        preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
+        preferences_data = mContext.getSharedPreferences("LibraryData", Activity.MODE_PRIVATE);
         //实例化SharedPreferences.Editor对象
         preferences_editor = preferences_data.edit();
 
