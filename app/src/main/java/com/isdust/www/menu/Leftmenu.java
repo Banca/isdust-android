@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import com.isdust.www.AboutActivity;
 import com.isdust.www.CardActivity;
 import com.isdust.www.GoNetActivity;
-import com.isdust.www.JiaowuActivity;
+import com.isdust.www.Jiaowu_index;
 import com.isdust.www.KuaiTongActivity;
-import com.isdust.www.LibraryActivity;
+import com.isdust.www.Library_index;
 import com.isdust.www.LifeActivity;
 import com.isdust.www.MainActivity;
 import com.isdust.www.NewsActivity;
@@ -176,7 +176,7 @@ public class Leftmenu {
                     leftmenu_ui(3);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
-                    intent.setClass(thisActivity, JiaowuActivity.class);
+                    intent.setClass(thisActivity, Jiaowu_index.class);
 
                     if (type != 3){
                         thisActivity.startActivity(intent);
@@ -196,7 +196,7 @@ public class Leftmenu {
                     leftmenu_ui(4);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Intent intent = new Intent();
-                    intent.setClass(thisActivity, LibraryActivity.class);
+                    intent.setClass(thisActivity, Library_index.class);
                     if (type != 4) {
                             thisActivity.startActivity(intent);
                             thisActivity.finish();

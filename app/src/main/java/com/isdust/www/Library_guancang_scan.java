@@ -25,7 +25,7 @@ import java.util.Vector;
 /**
  * Created by wzq on 15/10/28.
  */
-public class Library_scan extends Activity implements SurfaceHolder.Callback {
+public class Library_guancang_scan extends Activity implements SurfaceHolder.Callback {
     /**
      * 处理扫描结果
      *
@@ -108,7 +108,7 @@ public class Library_scan extends Activity implements SurfaceHolder.Callback {
      */
     private void onResultHandler(String resultString) {
         if (TextUtils.isEmpty(resultString)) {
-            Toast.makeText(Library_scan.this, "Scan failed!",
+            Toast.makeText(Library_guancang_scan.this, "Scan failed!",
                     Toast.LENGTH_SHORT).show();
             return;
         }
@@ -117,7 +117,7 @@ public class Library_scan extends Activity implements SurfaceHolder.Callback {
         bundle.putString("result", resultString);
         resultIntent.putExtras(bundle);
         this.setResult(RESULT_OK, resultIntent);
-        Library_scan.this.finish();
+        Library_guancang_scan.this.finish();
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {

@@ -66,10 +66,10 @@ public class NetworkPublicLoginActivity extends BaseSubPageActivity_new {//åŸŽå¸
     }
 
     private void getview() {
-        mEditText_chengshiredian_user = (EditText) findViewById(R.id.EditText_network_public_login_user);
-        mEditText_chengshiredian_password = (EditText) findViewById(R.id.EditText_network_public_login_password);
-        mButton_ok = (Button) findViewById(R.id.button_network_public_login);
-        mCheckBox_savepassword = (CheckBox) findViewById(R.id.checkbox_network_public_savepassword);
+        mEditText_chengshiredian_user = (EditText) findViewById(R.id.EditText_library_login_user);
+        mEditText_chengshiredian_password = (EditText) findViewById(R.id.EditText_library_login_password);
+        mButton_ok = (Button) findViewById(R.id.button_library_login);
+        mCheckBox_savepassword = (CheckBox) findViewById(R.id.checkbox_library_savepassword);
         mButton_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

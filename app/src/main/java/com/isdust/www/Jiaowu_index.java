@@ -7,30 +7,33 @@ import android.view.View;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 /**
- * Created by wzq on 15/11/23.
+ * Created by Administrator on 2015/10/17.
  */
-public class LifeActivity extends BaseMainActivity_new {
-
+public class Jiaowu_index extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_life, "生活服务",8);
+        INIT(R.layout.helper_jiaowu, "教务查询",3);
     }
     public void onFormJiaowuClick(View v) {
         //设置传递方向
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.life_button_dianfei:
+            case R.id.FormJiaowu_button_emptyroom:
                 intent.setClass(this,Jiaowu_EmptyRoom.class);
                 //启动activity
                 this.startActivity(intent);
                 break;
-            case R.id.life_button_map:
+            case R.id.FormJiaowu_button_schedule:
                 intent.setClass(this,jiaowu_Schedule_main.class);
                 //启动activity
                 this.startActivity(intent);
                 break;
-
+            case R.id.FormJiaowu_button_chengjichaxun:
+                intent.setClass(this,Jiaowu_chengjichaxun_main.class);
+                //启动activity
+                this.startActivity(intent);
+                break;
 
 
         }

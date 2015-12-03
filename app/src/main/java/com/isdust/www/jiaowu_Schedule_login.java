@@ -14,7 +14,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 /**
  * Created by wzq on 15/11/2.
  */
-public class Schedule_login extends BaseSubPageActivity_new {
+public class jiaowu_Schedule_login extends BaseSubPageActivity_new {
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;
@@ -53,7 +53,7 @@ public class Schedule_login extends BaseSubPageActivity_new {
                 bundle.putString("username", user);
                 bundle.putString("password", password);
                 intent.putExtras(bundle);
-                Schedule_login.this.setResult(RESULT_OK,intent);
+                jiaowu_Schedule_login.this.setResult(RESULT_OK,intent);
 //                intent.setClass(mContext, ScheduleActivity.class);
 //                startActivity(intent);
                 finish();
@@ -63,10 +63,10 @@ public class Schedule_login extends BaseSubPageActivity_new {
 
     }
     private void getview(){
-        mEditText_user=(EditText)findViewById(R.id.EditText_network_public_login_user);
-        mEditText_password=(EditText)findViewById(R.id.EditText_network_public_login_password);
-        mCheckBox_savepwd=(CheckBox)findViewById(R.id.checkbox_network_public_savepassword);
-        mButton_login=(Button)findViewById(R.id.button_network_public_login);
+        mEditText_user=(EditText)findViewById(R.id.EditText_library_login_user);
+        mEditText_password=(EditText)findViewById(R.id.EditText_library_login_password);
+        mCheckBox_savepwd=(CheckBox)findViewById(R.id.checkbox_library_savepassword);
+        mButton_login=(Button)findViewById(R.id.button_library_login);
 
     }
     private void getLocalData() {

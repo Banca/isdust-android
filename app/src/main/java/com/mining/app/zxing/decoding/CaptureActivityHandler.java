@@ -25,7 +25,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.isdust.www.Library_scan;
+import com.isdust.www.Library_guancang_scan;
 import com.isdust.www.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -43,11 +43,11 @@ public final class CaptureActivityHandler extends Handler {
     private static final String TAG = CaptureActivityHandler.class
             .getSimpleName();
 
-    private final Library_scan activity;
+    private final Library_guancang_scan activity;
     private final DecodeThread decodeThread;
     private State state;
 
-    public CaptureActivityHandler(Library_scan activity,
+    public CaptureActivityHandler(Library_guancang_scan activity,
                                   Vector<BarcodeFormat> decodeFormats, String characterSet) {
         this.activity = activity;
         decodeThread = new DecodeThread(activity, decodeFormats, characterSet,

@@ -7,25 +7,28 @@ import android.view.View;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 /**
- * Created by Administrator on 2015/10/17.
+ * Created by wzq on 15/12/2.
  */
-public class JiaowuActivity extends BaseMainActivity_new {
+public class Library_index extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_jiaowu, "教务查询",3);
+        INIT(R.layout.helper_library, "图书馆",4);
+
+
     }
     public void onFormJiaowuClick(View v) {
         //设置传递方向
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.FormJiaowu_button_emptyroom:
-                intent.setClass(this,EmptyRoomActivity.class);
+            case R.id.library_button_guancang:
+                intent.setClass(this,Library_guancang_main.class);
                 //启动activity
                 this.startActivity(intent);
                 break;
-            case R.id.FormJiaowu_button_schedule:
-                intent.setClass(this,ScheduleActivity.class);
+            case R.id.library_button_personel:
+                intent.setClass(this,jiaowu_Schedule_main.class);
                 //启动activity
                 this.startActivity(intent);
                 break;
