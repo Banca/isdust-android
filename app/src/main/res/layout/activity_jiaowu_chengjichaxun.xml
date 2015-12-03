@@ -27,14 +27,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
+        android:weightSum="4"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" android:layout_below="@+id/textView9">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView9">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="     课   程   "
+            android:layout_weight="1.9"
+            android:text="课   程"
+            android:gravity="center"
             android:id="@+id/textView2"
             android:textSize="18sp" />
 
@@ -46,8 +49,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="     学   分   "
+            android:layout_weight="0.7"
+            android:text="学   分"
+            android:gravity="center"
             android:id="@+id/textView4"
             android:textSize="18sp" />
         <View
@@ -57,8 +61,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="     绩   点   "
+            android:layout_weight="0.7"
+            android:text="绩   点"
+            android:gravity="center"
             android:id="@+id/textView5"
             android:textSize="18sp" />
         <View
@@ -68,8 +73,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="     成   绩   "
+            android:layout_weight="0.7"
+            android:text="成   绩"
+            android:gravity="center"
             android:id="@+id/textView6"
             android:textSize="18sp" />
     </LinearLayout>
@@ -165,12 +171,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_ok_button"
+        android:layout_margin="5dp"
         android:text="查询"
+        android:textColor="#fff"
         android:id="@+id/button_chegnji_chaxun"
         android:layout_alignBottom="@+id/relativeLayout_xueqi"
+        android:layout_alignTop="@+id/relativeLayout_xuenian"
         android:layout_toRightOf="@+id/relativeLayout_xuenian"
-        android:layout_toEndOf="@+id/relativeLayout_xuenian" android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"/>
+        android:layout_toLeftOf="@+id/button_chegnji_logout"
+        android:layout_toStartOf="@+id/button_chegnji_logout" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_ok_button"
+        android:layout_marginRight="5dp"
+        android:text="注销"
+        android:textColor="#fff"
+        android:id="@+id/button_chegnji_logout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/button_chegnji_chaxun"
+        android:layout_alignBottom="@+id/button_chegnji_chaxun" />
 
 
 </RelativeLayout>

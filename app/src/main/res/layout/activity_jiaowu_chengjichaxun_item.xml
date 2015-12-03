@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
     android:layout_marginTop="40dp"
+    android:weightSum="4"
     android:orientation="horizontal"
 
     >
@@ -12,8 +13,9 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="1.9"
         android:text="大学英语"
+        android:gravity="center"
         android:id="@+id/textView_chengji_subject"
         android:textSize="18sp" />
 
@@ -25,8 +27,9 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:text="1"
+        android:gravity="center"
         android:id="@+id/textView_chengji_xuefen"
         android:textSize="18sp" />
     <View
@@ -36,8 +39,9 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:text="5.0"
+        android:gravity="center"
         android:id="@+id/textView_chengji_jidian"
         android:textSize="18sp" />
     <View
@@ -47,8 +51,9 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:text="第一、二节"
+        android:gravity="center"
         android:id="@+id/textView_chengji_chengji"
         android:textSize="18sp" />
 </LinearLayout>

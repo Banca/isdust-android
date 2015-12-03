@@ -143,11 +143,19 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_ok_button"
                 android:text="重新加载课表"
+                android:textColor="#fff"
                 android:id="@+id/button_update"
-                android:layout_below="@+id/include2" android:layout_toRightOf="@+id/rl_topbar"
-                android:layout_toEndOf="@+id/rl_topbar"/>
+                android:layout_below="@+id/include2"
+                android:layout_toRightOf="@+id/rl_topbar"
+                android:layout_toLeftOf="@+id/button_logout"
+                android:layout_toStartOf="@+id/button_logout"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_alignBottom="@+id/rl_topbar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,9 +164,19 @@
                 android:id="@+id/textView16"
                 android:layout_marginTop="60dp"
                 android:layout_marginLeft="20dp"/>
-            <Button android:layout_width="wrap_content" android:layout_height="40dp"
-                    android:text="注销" android:id="@+id/button_logout"
-                    android:layout_marginTop="50dp" android:layout_marginLeft="270dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/selector_ok_button"
+                android:text="注销"
+                android:textColor="#fff"
+                android:id="@+id/button_logout"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@+id/button_update"
+                android:layout_alignTop="@+id/button_update" />
 
         </RelativeLayout>
 

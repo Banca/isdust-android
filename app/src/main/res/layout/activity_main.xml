@@ -204,6 +204,18 @@
                             android:drawableTop="@drawable/main_news"
                             android:text="\n校园资讯\n"
                             android:textSize="@dimen/abc_text_size_button_material" />
+                        <Button
+                            android:id="@+id/btn_main_nononono"
+                            android:visibility="invisible"
+                            android:onClick="onFormMainClick"
+                            android:layout_margin="3dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_transparent_button"
+                            android:drawableTop="@drawable/main_news"
+                            android:text="\n校园资讯\n"
+                            android:textSize="@dimen/abc_text_size_button_material" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>

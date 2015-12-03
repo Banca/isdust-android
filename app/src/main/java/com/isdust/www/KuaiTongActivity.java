@@ -115,9 +115,9 @@ public class KuaiTongActivity extends BaseMainActivity_new {
                     return;
 
                 }else{
-                    mExecutorService.execute(xiancheng_smartcard_login);
-                    customRuningDialog.show();    //打开等待框
-                    customRuningDialog.setMessage("正在登录校园卡...");
+//                    mExecutorService.execute(xiancheng_smartcard_login);
+//                    customRuningDialog.show();    //打开等待框
+//                    customRuningDialog.setMessage("正在登录校园卡...");
                 }
 
             }

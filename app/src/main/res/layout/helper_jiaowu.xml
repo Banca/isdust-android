@@ -69,7 +69,7 @@
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="3px"
-                    android:background="@color/color_page_white" android:visibility="invisible"/>
+                    android:background="@color/color_page_white" />
             </LinearLayout>
 
         </RelativeLayout>

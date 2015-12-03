@@ -228,7 +228,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_ok_button"
         android:text="查询"
+        android:textColor="#fff"
         android:id="@+id/button_chaxun_kongzixishi"
         android:layout_marginRight="35dp"
         android:layout_marginEnd="35dp"

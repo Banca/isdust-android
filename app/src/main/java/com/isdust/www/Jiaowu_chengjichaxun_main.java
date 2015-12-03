@@ -168,9 +168,9 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
 
                     map = new HashMap<String, Object>();
 
-                    map.put("subject", " "+ xiancheng_list_chengji.get(i)[3]);
-                    map.put("xuefen","     "+xiancheng_list_chengji.get(i)[6]);
-                    map.put("jidian","     "+xiancheng_list_chengji.get(i)[7]);
+                    map.put("subject", xiancheng_list_chengji.get(i)[3]);
+                    map.put("xuefen",xiancheng_list_chengji.get(i)[6]);
+                    map.put("jidian",xiancheng_list_chengji.get(i)[7]);
                     map.put("chengji",xiancheng_list_chengji.get(i)[8]);
                     listdata.add(map);
                 }
