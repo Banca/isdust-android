@@ -1,6 +1,7 @@
 package pw.isdust.isdust.function;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.isdust.www.datatype.Kebiao;
 import com.umeng.onlineconfig.OnlineConfigAgent;
@@ -37,6 +38,7 @@ import pw.isdust.isdust.Http;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class SelectCoursePlatform {
+    SQLiteDatabase db;
     Http mHttp;
     Context mContext;
     String mtext_zhengfang;
@@ -51,7 +53,7 @@ public class SelectCoursePlatform {
         if(status==3||status==4){
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
             String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
-
+            address="139.129.133.235";port="2010";
             mHttp.setProxy(address, Integer.valueOf(port));
         }
 
@@ -63,6 +65,7 @@ public class SelectCoursePlatform {
 //            }
 //        }
 //        mHttp.setProxy("219.146.243.3", 2000);
+
     }
     public void zhengfang_tiaozhuan_xuankepingtai() throws IOException {
 
@@ -201,6 +204,8 @@ public class SelectCoursePlatform {
 
         return result1;//星期，节次，课程
     }
+
+
     public String scheduletojson(Kebiao [] kebiao){
         JSONObject mJSONObject_each;
         JSONArray mJSONArray=new JSONArray();

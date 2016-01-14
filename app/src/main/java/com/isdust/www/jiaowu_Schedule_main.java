@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -32,16 +34,7 @@ import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,7 +68,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     SharedPreferences.Editor preferences_editor;
     //实例化SharedPreferences对象
 
-
+    SQLiteDatabase db;
 
 
 
@@ -131,10 +124,10 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     String xianchengchi_password;
     String xianchengchi_login_status;
     double xianchengchi_percent;
-    String xianchengchi_saving_json;
+    //String xianchengchi_saving_json;
     ProgressDialog xianchengchi_ProgressDialog;
     private ExecutorService executorService = Executors.newCachedThreadPool();
-    Kebiao [] mKebiao_all;
+    //Kebiao [] mKebiao_all;
 
     Runnable mRunnable_login=new Runnable(){
         @Override
@@ -176,15 +169,18 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         @Override
         public void run() {
             int zhoushu=22;
-            xianchengchi_saving_json="";
+            //xianchengchi_saving_json="";
             Message mMessage=new Message();
             mMessage.what=3;
 //            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
             String xuenian= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xuenian");
             String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
+            xuenian="2015-2016";xueqi="1";//debug
             for(int i=0;i<zhoushu;i++){
                 try {
-                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
+//                    db.execSQL("INSERT INTO person VALUES (NULL, ?, ?,?,?)", new Object[]{person.name, person.age});
+                    sql_import(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
+//                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
                 } catch (Exception e) {
                     mMessage.what = 10;
                     mHandler.sendMessage(mMessage);;
@@ -193,11 +189,11 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 xianchengchi_percent=((double)(i+1)/(double)zhoushu)*100;
                 xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
             }
-            xianchengchi_saving_json=xianchengchi_saving_json.replace("][",",");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace("[,","[");
-            xianchengchi_saving_json=xianchengchi_saving_json.replace(",]","]");
+//            xianchengchi_saving_json=xianchengchi_saving_json.replace("][",",");
+//            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
+//            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
+//            xianchengchi_saving_json=xianchengchi_saving_json.replace("[,","[");
+//            xianchengchi_saving_json=xianchengchi_saving_json.replace(",]","]");
             mHandler.sendMessage(mMessage);
             return;
         }
@@ -241,10 +237,10 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             }
             if (msg.what==3){//下载完成
                 xianchengchi_ProgressDialog.dismiss();
-                writeToFile("schedule.dat",xianchengchi_saving_json);
-                String kebiao_json=readFromFile("schedule.dat");
+//                writeToFile("schedule.dat",xianchengchi_saving_json);
+//                String kebiao_json=readFromFile("schedule.dat");
                 initParam();
-                getScheduleFromJson(kebiao_json);
+//                getScheduleFromJson(kebiao_json);
                 xianshidangqian();
                 mButton_update.setClickable(true);
                 return;
@@ -269,14 +265,17 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);
 
+        db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
+
+
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText("课表查询");
         init_button();//初始化按钮⌛事件
         init_biaoge();//初始化表格
 
-        String kebiao_json=readFromFile("schedule.dat");
+//        String kebiao_json=readFromFile("schedule.dat");
 //        writeToFile("schedule.dat","");
-        if(kebiao_json==""){
+        if(sql_getcount()==0){
             String user_save=preferences_data.getString("username", "");
             String password_save=preferences_data.getString("password", "");
             if (user_save.equals("") || password_save.equals("")){
@@ -295,7 +294,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
 //        Kebiao mkebiao_all=
         initParam();
-        getScheduleFromJson(kebiao_json);
+//        getScheduleFromJson(kebiao_json);
         xianshidangqian();
 
 
@@ -331,14 +330,37 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         xiaohuiquanbu();//销毁所有已经生成对课表
         int color=0;
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
-        int len=mKebiao_all.length;
-        for (int i=0;i<len;i++){
-            if (mKebiao_all[i].zhoushu.equals(zhoushu)){
-                mList_kebiao.add(mKebiao_all[i]);
 
-            }
+
+
+//        int len=mKebiao_all.length;
+//        for (int i=0;i<len;i++){
+//            if (mKebiao_all[i].zhoushu.equals(zhoushu)){
+//                mList_kebiao.add(mKebiao_all[i]);
+//
+//            }
+//        }
+        Kebiao mkebiao_temp;
+//try {
+//    Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE `zhoushu`=?", new String[]{zhoushu});
+//}catch (Exception e){
+//    System.out.println(e);
+//}
+        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE `zhoushu`=?", new String[]{zhoushu});
+
+
+        while (mCursor.moveToNext()) {
+            mkebiao_temp=new Kebiao();
+            mkebiao_temp.zhoushu=mCursor.getInt(mCursor.getColumnIndex("zhoushu"))+"";
+            mkebiao_temp.xingqi=mCursor.getInt(mCursor.getColumnIndex("xingqi"))+"";
+            mkebiao_temp.jieci=mCursor.getInt(mCursor.getColumnIndex("jieci"))+"";
+            mkebiao_temp.kecheng=mCursor.getString(mCursor.getColumnIndex("kecheng"))+"";
+            mList_kebiao.add(mkebiao_temp);
         }
-        len=mList_kebiao.size();
+
+
+
+        int len=mList_kebiao.size();
         //Kebiao c[]=mXuankepingtai.kebiao_chaxun(xiaoli + "", xuenian, xueqi);
         int xingqi,jieci;
         for (int i=0;i<len;i++){
@@ -539,72 +561,72 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
-
-    public void writeToFile(String file, String data) {
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(file, Context.MODE_PRIVATE));
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
-
-
-    public String readFromFile(String filename) {
-
-        String ret = "";
-
-        try {
-            InputStream inputStream = openFileInput(filename);
-
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-
-        return ret;
-    }
-    public void getScheduleFromJson(String  kebiao_json){
-        try {
-            JSONArray mJSONArray=new JSONArray(kebiao_json);
-            int len=mJSONArray.length();
-            mKebiao_all=new Kebiao[len];
-            JSONObject obj;
-            Kebiao kebiao_temp;
-            for (int i=0;i<len;i++){
-                obj=mJSONArray.getJSONObject(i);
-                kebiao_temp=new Kebiao();
-                kebiao_temp.zhoushu=obj.getString("zhoushu");
-                kebiao_temp.xingqi=obj.getString("xingqi");
-                kebiao_temp.jieci=obj.getString("jieci");
-                kebiao_temp.kecheng=obj.getString("kecheng");
-                mKebiao_all[i]=kebiao_temp;
-            }
-            System.out.println("");
-        } catch (JSONException e) {
-            e.printStackTrace();
-            writeToFile("schedule.dat", "");
-        }
+//
+//    public void writeToFile(String file, String data) {
+//        try {
+//            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(file, Context.MODE_PRIVATE));
+//            outputStreamWriter.write(data);
+//            outputStreamWriter.close();
+//        }
+//        catch (IOException e) {
+//            Log.e("Exception", "File write failed: " + e.toString());
+//        }
+//    }
 
 
-    }
+//    public String readFromFile(String filename) {
+//
+//        String ret = "";
+//
+//        try {
+//            InputStream inputStream = openFileInput(filename);
+//
+//            if ( inputStream != null ) {
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                String receiveString = "";
+//                StringBuilder stringBuilder = new StringBuilder();
+//
+//                while ( (receiveString = bufferedReader.readLine()) != null ) {
+//                    stringBuilder.append(receiveString);
+//                }
+//
+//                inputStream.close();
+//                ret = stringBuilder.toString();
+//            }
+//        }
+//        catch (FileNotFoundException e) {
+//            Log.e("login activity", "File not found: " + e.toString());
+//        } catch (IOException e) {
+//            Log.e("login activity", "Can not read file: " + e.toString());
+//        }
+//
+//        return ret;
+//    }
+//    public void getScheduleFromJson(String  kebiao_json){
+//        try {
+//            JSONArray mJSONArray=new JSONArray(kebiao_json);
+//            int len=mJSONArray.length();
+//            mKebiao_all=new Kebiao[len];
+//            JSONObject obj;
+//            Kebiao kebiao_temp;
+//            for (int i=0;i<len;i++){
+//                obj=mJSONArray.getJSONObject(i);
+//                kebiao_temp=new Kebiao();
+//                kebiao_temp.zhoushu=obj.getString("zhoushu");
+//                kebiao_temp.xingqi=obj.getString("xingqi");
+//                kebiao_temp.jieci=obj.getString("jieci");
+//                kebiao_temp.kecheng=obj.getString("kecheng");
+//                mKebiao_all[i]=kebiao_temp;
+//            }
+//            System.out.println("");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//            writeToFile("schedule.dat", "");
+//        }
+//
+//
+//    }
 
     public void init_biaoge(){
         empty = (TextView) this.findViewById(R.id.test_empty);
@@ -688,7 +710,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             @Override
             public void onClick(View view) {
                 mButton_update.setClickable(false);
-                writeToFile("schedule.dat","");
+                sql_drop();
+                sql_create();
                 String user_save=preferences_data.getString("username", "");
                 String password_save=preferences_data.getString("password", "");
                 if (user_save.equals("") || password_save.equals("")){
@@ -713,7 +736,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             @Override
             public void onClick(View view) {
                 preferences_editor.putString("password", "");
-                writeToFile("schedule.dat","");
+                sql_drop();
+                sql_create();
                 Intent intent = new Intent();
                 intent.setClass(mContext,jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
@@ -746,5 +770,30 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 }
                 break;
         }
+    }
+    public void sql_import(Kebiao [] kebiao){
+        int len=kebiao.length;
+        for (int i=0;i<len;i++){
+            db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(kebiao[i].zhoushu), Integer.valueOf(kebiao[i].xingqi),Integer.valueOf(kebiao[i].jieci),kebiao[i].kecheng});
+        }
+    }
+    public void sql_drop(){
+        db.execSQL("DROP TABLE IF EXISTS schedule");
+    }
+    public void sql_create(){
+        db.execSQL("CREATE TABLE schedule (_id INTEGER PRIMARY KEY AUTOINCREMENT, zhoushu SMALLINT, xingqi SMALLINT, jieci SMALLINT, kecheng VARCHAR)");  //写数据库
+    }
+    public int sql_getcount(){
+        Cursor mCursor;
+    try {
+        mCursor = db.rawQuery("select count(*) from schedule", new String[]{});
+        mCursor.moveToNext();
+    }catch (Exception e){
+        sql_create();
+
+}
+        mCursor = db.rawQuery("select count(*) from schedule", new String[]{});
+        mCursor.moveToNext();
+        return mCursor.getInt(0);
     }
 }
