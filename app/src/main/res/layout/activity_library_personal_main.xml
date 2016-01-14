@@ -1,7 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
 
-</LinearLayout>
+<!-- 这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
+要设置android:orientation="vertical"属性
+否则,显示不正确-->
+
+<RelativeLayout
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/include"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:id="@+id/relativelayout_network_public_card">
+
+
+    <include layout="@layout/subpage_title_bar"
+             android:id="@+id/include2"
+        />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_xueqi"
+        android:layout_width="70dip"
+        android:layout_height="30dip"
+        >
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_xingqi"
+        android:layout_width="80dip"
+        android:layout_height="30dip"
+        >
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_ok_button"
+        android:text="一键续借"
+        android:textColor="#fff"
+        android:id="@+id/button_library_renewall"
+        android:layout_below="@+id/include2" android:layout_toRightOf="@+id/relativeLayout_xingqi"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp" android:layout_marginTop="15dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_ok_button"
+        android:text="注销"
+        android:textColor="#fff"
+        android:id="@+id/button_library_logout"
+        android:layout_alignTop="@+id/button_library_renewall"
+        android:layout_toRightOf="@+id/button_library_renewall"
+        android:layout_toEndOf="@+id/button_library_renewall" android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"/>
+    <ListView android:id="@+id/listView_mybook" android:background="@color/color_list_white"
+              android:cacheColorHint="#00000000" android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:layout_below="@+id/button_library_renewall"
+              android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+              android:layout_marginTop="20dp"/>
+
+
+</RelativeLayout>

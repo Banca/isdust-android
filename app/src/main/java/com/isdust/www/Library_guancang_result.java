@@ -91,7 +91,7 @@ public class Library_guancang_result extends BaseSubPageActivity_new {
 
         madapter = new SimpleAdapter(mContext, listdata,
                 R.layout.activity_library_guancang_result_item, new String[] { "title", "author", "bookrecnos", "suoshuhao"},
-                new int[] { R.id.TextView_library_title, R.id.TextView_library_author,
+                new int[] { R.id.TextView_library_title, R.id.TextView_library_id,
                         R.id.TextView_library_bookrecnos,	R.id.TextView_library_suoshuhao});
         mListView.setAdapter(madapter);	//捆绑适配器}
 

@@ -141,6 +141,14 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+        android:name=".Library_personal_main"
+        android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Library_personal_login"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".jiaowu_Schedule_login"
             android:screenOrientation="portrait" >
         </activity>

@@ -43,7 +43,7 @@ public class Library_index extends BaseMainActivity_new {
                 this.startActivity(intent);
                 break;
             case R.id.library_button_personel:
-                intent.setClass(this,jiaowu_Schedule_main.class);
+                intent.setClass(this,Library_personal_main.class);
                 //启动activity
                 this.startActivity(intent);
                 break;

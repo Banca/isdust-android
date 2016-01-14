@@ -91,7 +91,7 @@ public class CardListView extends BaseSubPageActivity_new {
 					adapter = new SimpleAdapter(mContext, listdata,
 						R.layout.card_item, new String[] { "name", "ima", "addr", "time", "bala"},
 						new int[] { R.id.TextView_library_title, R.id.iv_gridview_item,
-								R.id.TextView_library_author,	R.id.TextView_library_bookrecnos,R.id.tv_gridview_item_bala});
+								R.id.TextView_library_id,	R.id.TextView_library_bookrecnos,R.id.tv_gridview_item_bala});
 
 						mListView.setAdapter(adapter);	//捆绑适配器}
 

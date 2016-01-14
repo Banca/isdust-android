@@ -173,9 +173,10 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
 
             }
             if (msg.what==2){//查询成功
+                customRuningDialog.dismiss();
                 listdata.clear();//清空列表
                 if (xiancheng_list_chengji.size()==0){
-                    Toast.makeText(mContext,"没有记录",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext,"没有记录,成绩可能还没有出来",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 for (int i=0;i< xiancheng_list_chengji.size();i++){
@@ -241,7 +242,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule);
+        //setContentView(R.layout.activity_schedule);
         INIT(R.layout.activity_jiaowu_chengjichaxun, "成绩查询");
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         preferences_editor = preferences_data.edit();

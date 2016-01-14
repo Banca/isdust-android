@@ -68,7 +68,7 @@ public class Library_personal_login extends BaseSubPageActivity_new {
                 bundle.putString("username", user);
                 bundle.putString("password", password);
                 intent.putExtras(bundle);
-//                jiaowu_Schedule_login.this.setResult(RESULT_OK,intent);
+                Library_personal_login.this.setResult(RESULT_OK, intent);
 //                intent.setClass(mContext, ScheduleActivity.class);
 //                startActivity(intent);
                 finish();

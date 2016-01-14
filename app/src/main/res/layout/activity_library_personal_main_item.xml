@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/color_list_white">
+
+    <TextView
+        android:id="@+id/TextView_library_title"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="安卓开发"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:layout_alignTop="@+id/iv_gridview_item"
+        android:layout_toRightOf="@+id/iv_gridview_item"
+        android:layout_toEndOf="@+id/iv_gridview_item" />
+
+    <ImageView
+        android:id="@+id/iv_gridview_item"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_card_mark"
+        />
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="条码号"
+        android:textSize="15dp"
+        android:textColor="#555555"
+        android:layout_marginLeft="40dp" android:layout_marginTop="40dp"/>
+
+    <TextView android:id="@+id/textView_library_id" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="5317289"
+              android:textSize="15dp" android:textColor="#555555"
+              android:layout_marginTop="40dp" android:layout_marginLeft="270dp"/>
+    <TextView android:id="@+id/textView_library_borrowdate" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="2016-01-05"
+              android:textSize="15dp" android:textColor="#555555"
+              android:layout_below="@+id/textView_library_id" android:layout_alignLeft="@+id/textView_library_id"
+              android:layout_alignStart="@+id/textView_library_id"/>
+    <TextView
+        android:id="@+id/textView_library_returndate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2016-04-04"
+        android:textSize="15dp"
+        android:textColor="#555555"
+        android:layout_alignLeft="@+id/textView_library_borrowdate"
+        android:layout_alignStart="@+id/textView_library_borrowdate" android:layout_below="@+id/textView_library_borrowdate"/>
+
+    <TextView android:id="@+id/textView26" android:layout_gravity="center_horizontal"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="借出日期" android:textSize="15dp" android:textColor="#555555"
+              android:layout_below="@+id/textView50"
+              android:layout_alignLeft="@+id/textView50"
+        />
+    <TextView android:id="@+id/textView28" android:layout_gravity="center_horizontal"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="应还日期" android:textSize="15dp" android:textColor="#555555"
+              android:layout_below="@+id/textView26" android:layout_alignLeft="@+id/textView26"
+              android:layout_alignStart="@+id/textView26"/>
+
+</RelativeLayout>
