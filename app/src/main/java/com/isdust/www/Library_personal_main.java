@@ -71,7 +71,13 @@ public class Library_personal_main extends BaseSubPageActivity_new {
     Runnable mRunnable_login=new Runnable() {
         @Override
         public void run() {
-            mlibrary=new Library(mContext);
+           try {
+               mlibrary=new Library(mContext);
+           }catch (Exception e){
+               System.out.println(e);
+
+           }
+
             Message msg=new Message();
             String status;
             try {

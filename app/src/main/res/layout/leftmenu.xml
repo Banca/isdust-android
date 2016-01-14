@@ -57,7 +57,7 @@
                 android:id="@+id/leftmenu_life"
                 android:layout_width="199dp"
                 android:layout_height="48dp"
-                android:background="@drawable/leftmenu_library1" />
+                android:background="@drawable/leftmenu_life1" />
 
 
 

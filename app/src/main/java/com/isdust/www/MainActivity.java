@@ -13,11 +13,8 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 import com.umeng.update.UmengUpdateAgent;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import pw.isdust.isdust.function.Library;
 
 
 public class MainActivity extends BaseMainActivity_new {
@@ -54,13 +51,13 @@ public class MainActivity extends BaseMainActivity_new {
 			Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 		}
 
-		Library library=new Library(mContext);
-		try {
-			library.login("1501060225","1501060225");
-			library.get_borrwingdetail();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		Library library=new Library(mContext);
+//		try {
+//			library.login("1501060225","1501060225");
+//			library.get_borrwingdetail();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 //		SelectCoursePlatform a=new SelectCoursePlatform(this);
 //		try {
 //			a.login_zhengfang("201401061406","abc123");
