@@ -139,14 +139,22 @@ public class WheelView extends View {
         
         public void onScroll(int distance) {
             doScroll(distance);
-            
-            int height = getHeight();
+//			if (Math.abs(scrollingOffset) > WheelScroller.MIN_DELTA_FOR_SCROLLING) {
+//				scroller.scroll(scrollingOffset, 0);
+//				return;
+//			}
+			//scroller.stopScrolling();
+
+			int height = getHeight();
             if (scrollingOffset > height) {
                 scrollingOffset = height;
                 scroller.stopScrolling();
+				notifyScrollingListenersAboutEnd();
+//				scroller.scroll(scrollingOffset, 0);
             } else if (scrollingOffset < -height) {
                 scrollingOffset = -height;
                 scroller.stopScrolling();
+//				scroller.scroll(scrollingOffset, 0);
             }
         }
         
@@ -162,7 +170,9 @@ public class WheelView extends View {
 
         public void onJustify() {
             if (Math.abs(scrollingOffset) > WheelScroller.MIN_DELTA_FOR_SCROLLING) {
-                scroller.scroll(scrollingOffset, 0);
+				System.out.println(scrollingOffset);
+
+				scroller.scroll(scrollingOffset, 0);
             }
         }
     };
