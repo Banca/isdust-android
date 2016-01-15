@@ -157,6 +157,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.isdust.www.jiaowu_schedule_add"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.isdust.www.NetworkCMCCLoginActivity"
             android:screenOrientation="portrait" >
         </activity>

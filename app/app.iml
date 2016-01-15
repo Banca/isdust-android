@@ -104,5 +104,6 @@
     <orderEntry type="library" exported="" name="umeng-onlineconfig_v1.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.0" level="project" />
     <orderEntry type="module" module-name="slidingmenu_library" exported="" />
+    <orderEntry type="module" module-name="wheel" exported="" />
   </component>
 </module>

@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+    <include layout="@layout/subpage_title_bar"
+             android:id="@+id/include" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="课程名称："
+        android:id="@+id/textView27"
+        android:layout_below="@+id/include" android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge" android:text="老师："
+              android:id="@+id/textView29"
+              android:layout_above="@+id/textView30" android:layout_toLeftOf="@+id/editText"
+              android:layout_toStartOf="@+id/editText"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge" android:text="周数："
+              android:id="@+id/textView30"
+              android:layout_below="@+id/editText2" android:layout_toLeftOf="@+id/editText2"
+              android:layout_toStartOf="@+id/editText2" android:layout_marginTop="20dp"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge" android:text="节数："
+              android:id="@+id/textView32"
+              android:layout_below="@+id/textView30" android:layout_alignLeft="@+id/textView30"
+              android:layout_alignStart="@+id/textView30" android:layout_marginTop="20dp"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge" android:text="地点："
+              android:id="@+id/textView31"
+              android:layout_below="@+id/textView32" android:layout_alignRight="@+id/textView32"
+              android:layout_alignEnd="@+id/textView32" android:layout_marginTop="10dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText" android:layout_below="@+id/include"
+        android:layout_toRightOf="@+id/textView27" android:layout_toEndOf="@+id/textView27"
+        android:paddingLeft="200dp"/>
+    <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/editText2"
+              android:paddingLeft="200dp"
+              android:layout_below="@+id/editText" android:layout_toRightOf="@+id/textView29"
+              android:layout_toEndOf="@+id/textView29"/>
+    <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/editText3" android:paddingLeft="200dp"
+              android:layout_alignTop="@+id/textView31" android:layout_toRightOf="@+id/textView31"
+              android:layout_toEndOf="@+id/textView31"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择周数"
+        android:id="@+id/button_schedule_zhoushu" android:layout_below="@+id/textView29"
+        android:layout_toRightOf="@+id/textView29" android:layout_toEndOf="@+id/textView29"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="选择节数" android:id="@+id/button_schedule_jieshu"
+            android:layout_below="@+id/button_schedule_zhoushu" android:layout_toRightOf="@+id/textView32"
+            android:layout_toEndOf="@+id/textView32"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:id="@+id/button4"
+        android:layout_below="@+id/editText3" android:layout_alignRight="@+id/button_schedule_jieshu"
+        android:layout_alignEnd="@+id/button_schedule_jieshu"/>
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="horizontal"
+              android:gravity="center" >
+
+    <kankan.wheel.widget.WheelView
+        android:id="@+id/hours"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:paddingRight="5sp" />
+
+    <kankan.wheel.widget.WheelView
+        android:id="@+id/minutes"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5sp" />
+</LinearLayout>

@@ -72,7 +72,9 @@ public class MainActivity extends BaseMainActivity_new {
 		}else {
 			INIT(R.layout.activity_main, "首页",0);
 
-
+			Intent intent = new Intent();
+			intent.setClass(this, jiaowu_schedule_add.class);//课程表
+			this.startActivity(intent);
 
 //			ishadopended = true;
 //			LayoutInflater inflate = LayoutInflater.from(this);
