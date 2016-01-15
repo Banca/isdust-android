@@ -739,7 +739,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 sql_drop();
                 sql_create();
                 Intent intent = new Intent();
-                intent.setClass(mContext,jiaowu_Schedule_login.class);
+                intent.setClass(mContext, jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
 
             }
@@ -796,4 +796,12 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         mCursor.moveToNext();
         return mCursor.getInt(0);
     }
+    public void sql_course_add(String zhoushu,String xingqi,String jieci,String kecheng){
+        db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(zhoushu), Integer.valueOf(xingqi), Integer.valueOf(jieci), kecheng});
+
+    }
+    public String kecheng_generate(String subject,String location){
+        return subject+"<br><br><br>"+location;
+    }
+
 }

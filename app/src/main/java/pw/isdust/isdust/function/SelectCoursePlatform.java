@@ -6,10 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.isdust.www.datatype.Kebiao;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -206,28 +202,28 @@ public class SelectCoursePlatform {
     }
 
 
-    public String scheduletojson(Kebiao [] kebiao){
-        JSONObject mJSONObject_each;
-        JSONArray mJSONArray=new JSONArray();
-        int len=kebiao.length;
-        for (int i=0;i<len;i++){
-            try {
-                mJSONObject_each=new JSONObject();
-                mJSONObject_each.put("zhoushu",kebiao[i].zhoushu);
-                mJSONObject_each.put("xingqi",kebiao[i].xingqi);
-                mJSONObject_each.put("jieci",kebiao[i].jieci);
-                mJSONObject_each.put("kecheng",kebiao[i].kecheng);
-                mJSONArray.put(mJSONObject_each);
-                ;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-        String result=mJSONArray.toString();
-        return result;
-        //System.out.println(result);
-
-    }
+//    public String scheduletojson(Kebiao [] kebiao){
+//        JSONObject mJSONObject_each;
+//        JSONArray mJSONArray=new JSONArray();
+//        int len=kebiao.length;
+//        for (int i=0;i<len;i++){
+//            try {
+//                mJSONObject_each=new JSONObject();
+//                mJSONObject_each.put("zhoushu",kebiao[i].zhoushu);
+//                mJSONObject_each.put("xingqi",kebiao[i].xingqi);
+//                mJSONObject_each.put("jieci",kebiao[i].jieci);
+//                mJSONObject_each.put("kecheng",kebiao[i].kecheng);
+//                mJSONArray.put(mJSONObject_each);
+//                ;
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        String result=mJSONArray.toString();
+//        return result;
+//        //System.out.println(result);
+//
+//    }
 
 }
