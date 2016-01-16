@@ -311,8 +311,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
     }
     public void xianshidangqian(){
-        mTextView_zhoushu.setText(SchoolDate.get_xiaoli() + "");
-        bangding(SchoolDate.get_xiaoli() + "");
+        mTextView_zhoushu.setText(SchoolDate.get_xiaoli(mContext) + "");
+        bangding(SchoolDate.get_xiaoli(mContext) + "");
 
     }
     public void bangding(String zhoushu){//public void bangding(String xiaoli,String xuenian,String xueqi){
