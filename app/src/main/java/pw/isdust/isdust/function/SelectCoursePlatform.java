@@ -49,7 +49,7 @@ public class SelectCoursePlatform {
         if(status==3||status==4){
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
             String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
-            address="139.129.133.235";port="2010";
+//            address="139.129.133.235";port="2010";
             mHttp.setProxy(address, Integer.valueOf(port));
         }
 
@@ -168,6 +168,7 @@ public class SelectCoursePlatform {
                     Kebiao mkebiao_linshi=new Kebiao();
                     mkebiao_linshi.jieci= (i+1)+"";
                     mkebiao_linshi.xingqi= (j+1)+"";
+                    string_linshi=string_linshi.replace("<b class=\"newCourse\">","").replace("</b>","");
                     mkebiao_linshi.kecheng=string_linshi;
                     mkebiao.add(mkebiao_linshi);
                 }

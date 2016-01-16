@@ -181,7 +181,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 //            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
             String xuenian= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xuenian");
             String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
-            xuenian="2015-2016";xueqi="1";//debug
+//            xuenian="2015-2016";xueqi="1";//debug
             for(int i=0;i<zhoushu;i++){
                 try {
 //                    db.execSQL("INSERT INTO person VALUES (NULL, ?, ?,?,?)", new Object[]{person.name, person.age});
