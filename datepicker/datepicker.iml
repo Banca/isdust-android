@@ -3,7 +3,11 @@
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
+<<<<<<< HEAD:datepicker/datepicker.iml
         <option name="GRADLE_PROJECT_PATH" value=":datepicker" />
+=======
+        <option name="GRADLE_PROJECT_PATH" value=":wheel" />
+>>>>>>> origin/master:wheel/wheel.iml
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -87,7 +91,11 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
+<<<<<<< HEAD:datepicker/datepicker.iml
     <orderEntry type="jdk" jdkName="Android API 23 Platform (1)" jdkType="Android SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
+>>>>>>> origin/master:wheel/wheel.iml
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
