@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.datepicker.DatePickerDailog;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
@@ -23,7 +24,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 public class jiaowu_schedule_add extends BaseSubPageActivity_new {
     int zhoushu [];
     int zhoushu_type[];//0为未选，1为已选，0-2分别对应单周，双周，全选
-    int xingqi,jieci;
+    int xingqi=0,jieci=0;
     SQLiteDatabase db;
 //    Calendar dateandtime;
 
@@ -368,15 +369,31 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
                 String content_teacher=mEditText_teacher.getText().toString();
                 String content_location=mEditText_location.getText().toString();
 
+                if(content_kecheng==""){
+                    Toast.makeText(mContext,"请输入课程内容",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (xingqi==0||jieci==0){
+                    Toast.makeText(mContext,"请选择节次时间",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
                 String kecheng_time=Jiaowu_EmptyRoom.xingqizhuanhuan(xingqi)+Jiaowu_EmptyRoom.jiecizhuanhuan(jieci);
                 String kecheng_detail=kecheng_generate(content_kecheng,kecheng_time,content_teacher,content_location);
-
+                int flag=0;
                 for(int i=1;i<=20;i++){
                     if(zhoushu[i]==1){
+                        flag=1;
                         sql_course_add(i+"",xingqi+"",jieci+"",kecheng_detail);
                     }
                 }
+                if (flag==0){
+                    Toast.makeText(mContext,"请选择周数",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(mContext,"课程添加成功",Toast.LENGTH_SHORT).show();
+
                 Intent intent=new Intent();
 
                 jiaowu_schedule_add.this.setResult(RESULT_OK,intent);
