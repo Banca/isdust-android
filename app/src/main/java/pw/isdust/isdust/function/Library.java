@@ -91,9 +91,9 @@ public class Library {
         return "账号或密码错误";
 
     }
-    public String get_name(){
-        return mPersonalInformation[1];
-    }
+//    public String get_name(){
+//        return mPersonalInformation[1];
+//    }
     public String getStuName() {
         return mPersonalInformation[1];
     }   //读者姓名

@@ -61,7 +61,7 @@
                     android:layout_toRightOf="@+id/image_kuaitong_state">
 
                     <TextView
-                        android:id="@+id/text_kuaitong_user"
+                        android:id="@+id/text_library_usercard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -70,7 +70,7 @@
                         android:textColor="#fff"
                         />
                     <TextView
-                        android:id="@+id/text_kuaitong_userstate"
+                        android:id="@+id/text_library_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -79,7 +79,7 @@
                         android:textColor="#fff"
                         />
                     <TextView
-                        android:id="@+id/text_kuaitong_package"
+                        android:id="@+id/text_library_userstate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

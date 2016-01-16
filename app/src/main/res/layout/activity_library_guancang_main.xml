@@ -12,8 +12,8 @@
         android:background="@color/color_page_white"
         android:orientation="vertical" >
 
-        <include layout="@layout/layout_title_bar"
-                 android:id="@+id/include4"/>
+        <include layout="@layout/subpage_title_bar"
+                 android:id="@+id/include2"/>
         <ScrollView
             android:id="@+id/scrollView1"
             android:layout_width="fill_parent"
