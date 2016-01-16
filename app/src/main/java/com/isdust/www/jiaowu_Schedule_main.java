@@ -77,6 +77,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
     Button mButton_update;
     Button mButton_logout;
+    Button mButton_add;
 
     // 工具栏
     private RelativeLayout rlTopBar;
@@ -706,6 +707,16 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     public void init_button(){
         mButton_update=(Button)findViewById(R.id.button_update);
         mButton_logout=(Button)findViewById(R.id.button_logout);
+        mButton_add=(Button)findViewById(R.id.button_schedule_add);
+        mButton_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(mContext, jiaowu_schedule_add.class);
+                startActivityForResult(intent, 2);
+
+            }
+        });
         mButton_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -769,6 +780,22 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
                 }
                 break;
+            case 2:
+                if (resultCode == RESULT_OK) {
+                    String zhoushu=mTextView_zhoushu.getText().toString();
+                    bangding(zhoushu);
+                    break;
+
+
+
+                }
+                if (resultCode == RESULT_CANCELED) {
+
+                    break;
+
+                }
+                break;
+
         }
     }
     public void sql_import(Kebiao [] kebiao){
@@ -800,8 +827,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(zhoushu), Integer.valueOf(xingqi), Integer.valueOf(jieci), kecheng});
 
     }
-    public String kecheng_generate(String subject,String location){
-        return subject+"<br><br><br>"+location;
+    public String kecheng_generate(String subject,String time,String teacher,String location){
+        return subject+"<br>"+time+"<br>"+teacher+"<br>"+location;
     }
 
 }

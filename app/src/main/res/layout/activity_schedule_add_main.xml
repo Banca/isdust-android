@@ -14,13 +14,13 @@
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceLarge" android:text="老师："
               android:id="@+id/textView29"
-              android:layout_above="@+id/textView30" android:layout_toLeftOf="@+id/editText"
-              android:layout_toStartOf="@+id/editText"/>
+              android:layout_above="@+id/textView30" android:layout_toLeftOf="@+id/editText_schedule_kecheng"
+              android:layout_toStartOf="@+id/editText_schedule_kecheng"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceLarge" android:text="周数："
               android:id="@+id/textView30"
-              android:layout_below="@+id/editText2" android:layout_toLeftOf="@+id/editText2"
-              android:layout_toStartOf="@+id/editText2" android:layout_marginTop="20dp"/>
+              android:layout_below="@+id/editText_schedule_teacher" android:layout_toLeftOf="@+id/editText_schedule_teacher"
+              android:layout_toStartOf="@+id/editText_schedule_teacher" android:layout_marginTop="20dp"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceLarge" android:text="节数："
               android:id="@+id/textView32"
@@ -34,16 +34,16 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText" android:layout_below="@+id/include"
+        android:id="@+id/editText_schedule_kecheng" android:layout_below="@+id/include"
         android:layout_toRightOf="@+id/textView27" android:layout_toEndOf="@+id/textView27"
         android:paddingLeft="200dp"/>
     <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/editText2"
+              android:id="@+id/editText_schedule_teacher"
               android:paddingLeft="200dp"
-              android:layout_below="@+id/editText" android:layout_toRightOf="@+id/textView29"
+              android:layout_below="@+id/editText_schedule_kecheng" android:layout_toRightOf="@+id/textView29"
               android:layout_toEndOf="@+id/textView29"/>
     <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/editText3" android:paddingLeft="200dp"
+              android:id="@+id/editText_schedule_location" android:paddingLeft="200dp"
               android:layout_alignTop="@+id/textView31" android:layout_toRightOf="@+id/textView31"
               android:layout_toEndOf="@+id/textView31"/>
     <Button
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="确定"
-        android:id="@+id/button4"
-        android:layout_below="@+id/editText3" android:layout_alignRight="@+id/button_schedule_jieshu"
+        android:id="@+id/button_schedule_ok"
+        android:layout_below="@+id/editText_schedule_location" android:layout_alignRight="@+id/button_schedule_jieshu"
         android:layout_alignEnd="@+id/button_schedule_jieshu"/>
 </RelativeLayout>
