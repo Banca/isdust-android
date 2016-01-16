@@ -94,6 +94,15 @@ public class Library {
     public String get_name(){
         return mPersonalInformation[1];
     }
+    public String getStuName() {
+        return mPersonalInformation[1];
+    }   //读者姓名
+    public String getStuID() {
+        return mPersonalInformation[0];
+    }   //读者证号
+    public String getState() {
+        return mPersonalInformation[2];
+    }   //证状态
     public String [] [] get_borrwingdetail() throws IOException {
         String text=mHttp.get_string("http://interlib.sdust.edu.cn/opac/loan/renewList");
         Pattern mPattern=Pattern.compile("<td width=\"40\"><input type=\"checkbox\" name=\"barcodeList\" value=\"([0-9]*?)\" />[\\s\\S]*?target=\"_blank\">([\\S\\s]*?)</a></td>[\\S\\s]*?<td width=\"100\">([0-9]{4}-[0-9]{2}-[0-9]{2})[\\S\\s]*?<td width=\"100\">([0-9]{4}-[0-9]{2}-[0-9]{2})");

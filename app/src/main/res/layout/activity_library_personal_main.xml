@@ -110,6 +110,7 @@
                     android:background="@drawable/selector_transparent_button"
                     android:drawableLeft="@drawable/kt_state_err"
                     android:text="一键续借"
+                    android:textSize="15sp"
                     android:textColor="#000"
                     android:id="@+id/button_library_renewall"
                      />
@@ -125,6 +126,7 @@
                     android:background="@drawable/selector_transparent_button"
                     android:drawableLeft="@drawable/kt_state_err"
                     android:text="切换用户"
+                    android:textSize="15sp"
                     android:textColor="#000"
                     android:id="@+id/button_library_logout"
                      />
