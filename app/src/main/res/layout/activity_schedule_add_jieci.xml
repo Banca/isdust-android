@@ -3,17 +3,17 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="horizontal"
-              android:gravity="center" >
+              android:gravity="center" android:background="#f5f6f7">
 
     <kankan.wheel.widget.WheelView
-        android:id="@+id/hours"
+        android:id="@+id/scroll_xingqi"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
-        android:paddingRight="5sp" />
+        android:paddingRight="5sp" android:background="#f5f6f7"/>
 
     <kankan.wheel.widget.WheelView
-        android:id="@+id/minutes"
+        android:id="@+id/scroll_jieci"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
-        android:paddingLeft="5sp" />
+        android:paddingLeft="5sp" android:background="#f5f6f7"/>
 </LinearLayout>

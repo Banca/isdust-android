@@ -8,20 +8,17 @@ should evaluate whether these are still needed in your project and if
 so manually move them:
 
 * .DS_Store
-* default.properties
+* ic_launcher-web.png
+* proguard-project.txt
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => wheel/src/main/AndroidManifest.xml
-* res/ => wheel/src/main/res/
-* src/ => wheel/src/main/java/
-* src/.DS_Store => wheel/src/main/resources/.DS_Store
-* src/kankan/.DS_Store => wheel/src/main/resources/kankan/.DS_Store
-* src/kankan/wheel/.DS_Store => wheel/src/main/resources/kankan/wheel/.DS_Store
-* src/kankan/wheel/widget/.DS_Store => wheel/src/main/resources/kankan/wheel/widget/.DS_Store
+* AndroidManifest.xml => datepicker/src/main/AndroidManifest.xml
+* res/ => datepicker/src/main/res/
+* src/ => datepicker/src/main/java/
 
 Next Steps:
 -----------

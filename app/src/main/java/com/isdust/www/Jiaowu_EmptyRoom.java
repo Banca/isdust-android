@@ -241,7 +241,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 //                "正在获取空自习室……", true, true);// }
         executorService.execute(mRunnable_jiazaizixishi);
     }
-    private String xingqizhuanhuan(int raw){
+    public static  String xingqizhuanhuan(int raw){
         switch (raw){
             case 1:return "星期一";
             case 2:return "星期二";
@@ -255,7 +255,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
         return "error_xingqizhuanhuan";
     }
 
-    private int xingqizhuanhuan(String raw){
+    public static  int xingqizhuanhuan(String raw){
         switch (raw){
             case "星期一":return 1;
             case "星期二":return 2;
@@ -270,7 +270,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
     }
 
 
-    private String jiecizhuanhuan(int raw){
+    public static String jiecizhuanhuan(int raw){
         switch (raw){
             case 1:return "第一、二节";
             case 2:return "第三、四节";
@@ -282,7 +282,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
         return "error_jiecizhuanhuan";
     }
 
-    private int jiecizhuanhuan(String raw){
+    public static int jiecizhuanhuan(String raw){
         switch (raw){
             case "第一、二节":return 1;
             case "第三、四节":return 2;

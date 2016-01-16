@@ -1,19 +1,16 @@
 package com.isdust.www;
 
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.datepicker.DatePickerDailog;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
-
-import kankan.wheel.widget.WheelView;
-import kankan.wheel.widget.adapters.NumericWheelAdapter;
 
 /**
  * Created by wzq on 16/1/15.
@@ -22,7 +19,8 @@ import kankan.wheel.widget.adapters.NumericWheelAdapter;
 public class jiaowu_schedule_add extends BaseSubPageActivity_new {
     int zhoushu [];
     int zhoushu_type[];//0为未选，1为已选，0-2分别对应单周，双周，全选
-
+    int xingqi,jieci;
+//    Calendar dateandtime;
 
 
     @Override
@@ -34,7 +32,7 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
         zhoushu_type=new int[3];
 
 
-        Button mbutton_select_zhoushu=(Button)findViewById(R.id.button_schedule_zhoushu);
+        final Button mbutton_select_zhoushu=(Button)findViewById(R.id.button_schedule_zhoushu);
 
         mbutton_select_zhoushu.setOnClickListener(new View.OnClickListener() {
 
@@ -308,6 +306,14 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
+                                String a="";
+                                for(int i=1;i<=20;i++){
+                                    if(zhoushu[i]==1){
+                                    a=a+","+i;}
+
+
+                                }
+                                mbutton_select_zhoushu.setText(a);
 //							String paynum = numEditText.getText().toString();
 
 
@@ -316,50 +322,36 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
             }
 
         });
-        Timepick(mContext,1,1);
+
+        final Button mbutton_schedule_zhoushu=(Button)findViewById(R.id.button_schedule_jieshu);
+        mbutton_schedule_zhoushu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDailog dp = new DatePickerDailog(mContext,
+                        new DatePickerDailog.DatePickerListner() {
+
+                            @Override
+                            public void OnDoneButton(Dialog datedialog,int return_xingqi,int return_jieci) {
+                                datedialog.dismiss();
+
+                                xingqi = return_xingqi;
+                                jieci = return_jieci;
+                                mbutton_schedule_zhoushu.setText(Jiaowu_EmptyRoom.xingqizhuanhuan(xingqi)+"，"+Jiaowu_EmptyRoom.jiecizhuanhuan(jieci));
+                                System.out.println("xingqi" + return_xingqi);
+                            }
+
+                            @Override
+                            public void OnCancelButton(Dialog datedialog) {
+                                // TODO Auto-generated method stub
+                                datedialog.dismiss();
+                            }
+                        });
+                dp.show();
+            }
+        });
+
 
 
     }
-    private void Timepick(Context cons, int curHours, int curMinutes) {
-        LayoutInflater inf = LayoutInflater.from(cons);
-        //layout of alert box contains
-        View view = inf.inflate(R.layout.activity_schedule_add_jieci, null);
-        //hours wheel
-        final WheelView hours = (WheelView) view.findViewById(R.id.hours);
-        hours.setViewAdapter(new NumericWheelAdapter(cons, 0, 23));
-
-        hours.setCyclic(false);
-
-        //minute wheel
-        final WheelView mins = (WheelView) view.findViewById(R.id.minutes);
-        mins.setViewAdapter(new NumericWheelAdapter(cons, 0, 59));
-        mins.setCyclic(false);
-
-        new AlertDialog.Builder(cons)
-                .setMessage("Select Time")
-                .setView(view)
-                .setPositiveButton("Set", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        //write code of lines, whatever want to with value of this timepicker
-                        //hour value= hours.getCurrentItem();
-                        //minute value = mins.getCurrentItem();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        return;
-                    }
-                }).create().show();
-
-        // set time
-
-        hours.setCurrentItem(curHours);
-        mins.setCurrentItem(curMinutes);
-}}
+   }
 
