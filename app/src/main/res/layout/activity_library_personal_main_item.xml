@@ -33,12 +33,18 @@
         android:text="条码号"
         android:textSize="15dp"
         android:textColor="#555555"
-        android:layout_marginLeft="40dp" android:layout_marginTop="40dp"/>
+        android:layout_below="@+id/TextView_library_title"
+        android:layout_toRightOf="@+id/iv_gridview_item"
+        android:layout_toEndOf="@+id/iv_gridview_item" />
 
     <TextView android:id="@+id/textView_library_id" android:layout_width="wrap_content"
               android:layout_height="wrap_content" android:text="5317289"
               android:textSize="15dp" android:textColor="#555555"
-              android:layout_marginTop="40dp" android:layout_marginLeft="270dp"/>
+        android:layout_below="@+id/TextView_library_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="54dp"
+        android:layout_marginEnd="54dp" />
     <TextView android:id="@+id/textView_library_borrowdate" android:layout_width="wrap_content"
               android:layout_height="wrap_content" android:text="2016-01-05"
               android:textSize="15dp" android:textColor="#555555"
