@@ -671,7 +671,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 
         Date mDate = new Date();
         int hours = mDate.getHours();
-        zhoushu= SchoolDate.get_xiaoli();
+        zhoushu= SchoolDate.get_xiaoli(mContext);
         jieci=SchoolDate.get_jieci(hours);
         xingqi=SchoolDate.gei_xingqi();
         if (hours>21){

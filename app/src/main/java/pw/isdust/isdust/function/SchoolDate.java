@@ -1,5 +1,9 @@
 package pw.isdust.isdust.function;
 
+import android.content.Context;
+
+import com.umeng.onlineconfig.OnlineConfigAgent;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,16 +28,21 @@ import java.util.Date;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class SchoolDate {
-    public static int get_xiaoli(){
+    public static int get_xiaoli(Context mContext){
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ParsePosition mParsePosition = new ParsePosition(0);
-        Date d1 = (Date) mSimpleDateFormat.parse("2015-09-07 00:00:00", mParsePosition);
+        String schooldate= OnlineConfigAgent.getInstance().getConfigParams(mContext, "school_date");
+
+        Date d1 = (Date) mSimpleDateFormat.parse(schooldate, mParsePosition);
 
         //用现在距离1970年的时间间隔new Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔
 
         long time = new Date().getTime() - d1.getTime();// 得出的时间间隔是毫秒
         long day=time/(1000*3600*24);
         int xiaoli=(int)day/7+1;
+        if (xiaoli<1){
+            return 1;
+        }
         return xiaoli;
     }
     public static int gei_xingqi(){

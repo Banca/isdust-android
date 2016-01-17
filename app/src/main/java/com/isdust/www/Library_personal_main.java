@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
@@ -47,7 +48,9 @@ public class Library_personal_main extends BaseSubPageActivity_new {
     ListView mListView;
     Button mButton_renew;
     Button mButton_logout;
-
+    TextView mTextView_usercard;
+    TextView mTextView_username;
+    TextView mTextView_userstate;
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
 
@@ -151,6 +154,10 @@ public class Library_personal_main extends BaseSubPageActivity_new {
             super.handleMessage(msg);
             if (msg.what==0){//登录成功
                 mxianchengchi_login_status=1;
+                mTextView_usercard.setText("学号:"+mlibrary.getStuID());
+                mTextView_username.setText("姓名:"+mlibrary.getStuName());
+                mTextView_userstate.setText("状态:"+mlibrary.getState());
+
                 customRuningDialog.dismiss();
                 Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                 mExecutorService.execute(mRunnable_detail);
@@ -229,6 +236,9 @@ public class Library_personal_main extends BaseSubPageActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_personal_main, "图书馆个人中心");
+       mTextView_usercard=(TextView)findViewById(R.id.text_library_usercard);
+         mTextView_username=(TextView)findViewById(R.id.text_library_username);
+         mTextView_userstate=(TextView)findViewById(R.id.text_library_userstate);
         init();
         login();
 

@@ -1,8 +1,10 @@
 package com.isdust.www;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -64,6 +66,9 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
+    int zhoushu;
+
+
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
     //实例化SharedPreferences对象
@@ -72,7 +77,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
 
 
-    List<TextView> mTextView=new ArrayList<TextView>();
+    List<Object> mTextView=new ArrayList<Object>();
     SelectCoursePlatform mXuankepingtai;
 
     Button mButton_update;
@@ -176,7 +181,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 //            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
             String xuenian= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xuenian");
             String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
-            xuenian="2015-2016";xueqi="1";//debug
+//            xuenian="2015-2016";xueqi="1";//debug
             for(int i=0;i<zhoushu;i++){
                 try {
 //                    db.execSQL("INSERT INTO person VALUES (NULL, ?, ?,?,?)", new Object[]{person.name, person.age});
@@ -306,11 +311,13 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
     }
     public void xianshidangqian(){
-        mTextView_zhoushu.setText(SchoolDate.get_xiaoli() + "");
-        bangding(SchoolDate.get_xiaoli() + "");
+        mTextView_zhoushu.setText(SchoolDate.get_xiaoli(mContext) + "");
+        bangding(SchoolDate.get_xiaoli(mContext) + "");
 
     }
     public void bangding(String zhoushu){//public void bangding(String xiaoli,String xuenian,String xueqi){
+            this.zhoushu=Integer.valueOf(zhoushu) ;
+
 //        xiaohuiquanbu();
 //        int color=0;
 //        Kebiao c[]=mXuankepingtai.kebiao_chaxun(xiaoli + "", xuenian, xueqi);
@@ -392,7 +399,14 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         // 添加课程信息
         final TextView courseInfo = new TextView(this);
         final String mraw=raw;
-        mTextView.add(courseInfo);
+        List<Object> temp=new ArrayList<Object>();
+        temp.add(courseInfo);
+        temp.add(zhoushu);
+        temp.add(xingqi);
+        temp.add(jieci);
+
+        //temp.add()
+        mTextView.add(temp);
         //courseInfo.setVisibility(View.GONE);
         courseInfo.setText(neirong);//"软件工程\n@302"
         //该textview的高度根据其节数的跨度来设置
@@ -405,6 +419,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         // 偏移由这节课是星期几决定
         rlp.addRule(RelativeLayout.RIGHT_OF, xingqi);
         //字体剧中
+       // courseInfo.setTransitionName(xingqi+","+jieci+"");
         courseInfo.setGravity(Gravity.CENTER);
         // 设置一种背景
         courseInfo.setBackgroundResource(background[color]);
@@ -413,46 +428,44 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         courseInfo.setTextColor(Color.WHITE);
         //设置不透明度
         courseInfo.getBackground().setAlpha(255);
+
         course_table_layout.addView(courseInfo);
         initParam();
         courseInfo.setOnClickListener(new View.OnClickListener() {
-            PopupWindow mPopupWindow;
             @Override
             public void onClick(View view) {
-
-
-                int[] background = {R.drawable.course_info_blue, R.drawable.course_info_green,
-                        R.drawable.course_info_red, R.drawable.course_info_bluegreen,
-                        R.drawable.course_info_yellow,R.drawable.course_info_orange,R.drawable.course_info_purple};
-
                 view = getLayoutInflater().inflate(R.layout.activity_schedule_pop, null);
-                //view.setBackgroundResource(R.drawable.course_info_blue);
                 TextView mTextView_detail=(TextView)view.findViewById(R.id.textView_schedule_detail);
                 String temp=mraw.replace("<br>", "\n");
                 mTextView_detail.setText(temp);
-                mTextView_detail.setBackgroundResource(background[color]);
-                mPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.FILL_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                mTextView_detail.setGravity(Gravity.CENTER);
+                new AlertDialog.Builder(mContext)
+                        .setTitle("课程详情")
+                        .setView(view)
+                        .setIcon(R.mipmap.isdust)
+                        .setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                for (int j = 0; j < mTextView.size(); j++) {
+                                    List<Object> temp = (List<Object>) mTextView.get(j);
+                                    TextView mVieww = (TextView) temp.get(0);
+                                    if (mVieww.equals(courseInfo)) {
+//                                        int a=(int)temp.get(1);
+//                                        int b=(int)temp.get(2);
+                                        sql_course_delete((int)temp.get(1),(int)temp.get(2),(int)temp.get(3));
+                                        bangding(zhoushu + "");
 
 
 
+                                    }
 
-                ColorDrawable cd = new ColorDrawable(-0000);
-                mPopupWindow.setBackgroundDrawable(cd);
-                mPopupWindow.setAnimationStyle(R.style.PopupAnimation);
-                mPopupWindow.update();
-                mPopupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-                mPopupWindow.setTouchable(true); // 设置popupwindow可点击
-                mPopupWindow.setOutsideTouchable(true); // 设置popupwindow外部可点击
-                mPopupWindow.setFocusable(true); // 获取焦点
-                mPopupWindow.showAtLocation(view,Gravity.CENTER,0,0);
 
-//                mPopupWindow.showAsDropDown(findViewById(R.id.include2));
-                ;
-                System.out.println(mraw);
-//                View mview=findViewById(R.id.include2);
-//                mview.setBackgroundResource(R.drawable.course_info_blue);
-//                pop.showAsDropDown(mview);
+                                }
+
+
+                            }
+                        })
+                        .setPositiveButton("关闭", null).show();
 
             }
         });
@@ -460,7 +473,9 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     public void xiaohuiquanbu(){
         int len=mTextView.size();
         for (int i=0;i<len;i++){
-            mTextView.get(i).setVisibility(View.INVISIBLE);
+            List<Object> temp=(List<Object>)mTextView.get(i);
+            TextView mTextView= (TextView)temp.get(0);
+            mTextView.setVisibility(View.INVISIBLE);
         }
         mTextView.clear();
 
@@ -782,8 +797,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 break;
             case 2:
                 if (resultCode == RESULT_OK) {
-                    String zhoushu=mTextView_zhoushu.getText().toString();
-                    bangding(zhoushu);
+//                    String zhoushu=mTextView_zhoushu.getText().toString();
+                    bangding(zhoushu+"");
                     break;
 
 
@@ -825,6 +840,16 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     }
     public void sql_course_add(String zhoushu,String xingqi,String jieci,String kecheng){
         db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(zhoushu), Integer.valueOf(xingqi), Integer.valueOf(jieci), kecheng});
+
+    }
+
+    public void sql_course_delete(int zhoushu,int xingqi,int jieci){
+        try {
+            db.execSQL("DELETE FROM schedule WHERE zhoushu=? and xingqi=? and jieci=?", new Object[]{(zhoushu), (xingqi), (jieci)});
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
 
     }
     public String kecheng_generate(String subject,String time,String teacher,String location){

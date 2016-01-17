@@ -1,5 +1,6 @@
 package com.isdust.www;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,9 +48,11 @@ public class MainActivity extends BaseMainActivity_new {
 //		);
 
 		String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
+
 		if (!install.equals("true")){
 			Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 		}
+		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 
 //		Library library=new Library(mContext);
 //		try {
@@ -71,6 +74,24 @@ public class MainActivity extends BaseMainActivity_new {
 
 		}else {
 			INIT(R.layout.activity_main, "首页",0);
+
+		if (!braoadcast.equals("null")&&!braoadcast.equals("")){
+			TextView a=new TextView(this);
+				a.setText(braoadcast);
+			a.setTextSize(20);
+			//a.setGravity(Gravity.CENTER);
+			new AlertDialog.Builder(mContext)
+					.setTitle("公告")
+					.setView(a)
+					.setIcon(R.mipmap.isdust)
+					.setPositiveButton("确定", null).show();
+
+
+//				Toast.makeText(mContext,braoadcast,Toast.LENGTH_SHORT).show();
+			}
+
+
+
 
 //			Intent intent = new Intent();
 //			intent.setClass(this, jiaowu_schedule_add.class);//课程表
