@@ -2,6 +2,7 @@ package com.isdust.www;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.isdust.www.datatype.Book;
 
@@ -75,10 +76,20 @@ public class MyApplication extends Application {
         return usercard;
     }  //使usercard这种非序列化对象 全局可调
     public void card_init(){
-        usercard = new SchoolCard(mContext);
+        try {
+            usercard = new SchoolCard(mContext);
+        } catch (Exception e) {
+            Toast.makeText(mContext,"在线参数获取失败，请保证网络正常的情况下重启app",Toast.LENGTH_SHORT);
+            return;
+        }
     }
     public void kuaitong_init(){
-        kuaitong=new Network_Kuaitong(mContext);
+        try {
+            kuaitong=new Network_Kuaitong(mContext);
+        } catch (Exception e) {
+            Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT);
+            return;
+        }
     }
 }
 

@@ -47,11 +47,15 @@ public class EmptyClassroom {
     private static final int MAX_ENCRYPT_BLOCK = 400;
     public static final String KEY_ALGORITHM = "RSA";
 
-    public EmptyClassroom(Context context){
+    public EmptyClassroom(Context context) throws Exception {
         mHttp=new Http();
         mContext=context;
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
         publickey=OnlineConfigAgent.getInstance().getConfigParams(mContext, "EmptyClassroom_publickey");
+        if (publickey==""){
+            Exception e=new Exception("OnlineConfigFail");
+            throw e;
+        }
         publickey=publickey.replace("\r", "");
         publickey=publickey.replace("\n","");
         System.out.println(publickey);

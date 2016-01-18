@@ -49,7 +49,11 @@ public class Library_guancang_detail extends BaseSubPageActivity_new {
             //mListView.setEnabled(false);
             mContext=this;
 
-            mLibrary=new Library(this);
+            try {
+                mLibrary=new Library(this);
+            } catch (Exception e) {
+                Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+            }
             String bookrecnos=getIntent().getExtras().getString("bookrecnos");
             try {
                 mguancang =mLibrary.getguancang(bookrecnos);

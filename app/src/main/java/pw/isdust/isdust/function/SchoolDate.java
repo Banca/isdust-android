@@ -28,11 +28,14 @@ import java.util.Date;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class SchoolDate {
-    public static int get_xiaoli(Context mContext){
+    public static int get_xiaoli(Context mContext) throws Exception {
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ParsePosition mParsePosition = new ParsePosition(0);
         String schooldate= OnlineConfigAgent.getInstance().getConfigParams(mContext, "school_date");
-
+        if (schooldate==""){
+            Exception e=new Exception("OnlineConfigFail");
+            throw e;
+        }
         Date d1 = (Date) mSimpleDateFormat.parse(schooldate, mParsePosition);
 
         //用现在距离1970年的时间间隔new Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔

@@ -49,7 +49,7 @@ public class Library {
     Http mHttp;
     Context mContext;
     String [] mPersonalInformation;
-    public Library(Context context){
+    public Library(Context context) throws Exception {
         mHttp=new Http();
         mContext = context;
         Networkjudge mNetworkjudge=new Networkjudge(mContext);
@@ -64,6 +64,10 @@ public class Library {
         if(status==3||status==4){
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
             String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            if (address==""){
+                Exception e=new Exception("OnlineConfigFail");
+                throw e;
+            }
             mHttp.setProxy(address, Integer.valueOf(port));
     }}
     public String login(String user,String password) throws IOException {

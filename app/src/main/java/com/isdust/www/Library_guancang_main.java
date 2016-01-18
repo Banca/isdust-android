@@ -130,7 +130,12 @@ public class Library_guancang_main extends BaseSubPageActivity_new {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_guancang_main, "图书馆");
         mContext=this;
-        mLibrary=new Library(this);
+        try {
+            mLibrary=new Library(this);
+        } catch (Exception e) {
+            Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+
+        }
         mEditText=(EditText)findViewById(R.id.guancang_edittext);
         mImageView_library=(ImageView)findViewById(R.id.guancang_scan);
         mImageView_library.setOnClickListener(new View.OnClickListener() {

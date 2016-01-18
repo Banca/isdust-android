@@ -40,7 +40,7 @@ public class SelectCoursePlatform {
     String mtext_zhengfang;
     String url_chengji;
     String url_xuanke;
-    public SelectCoursePlatform(Context context){
+    public SelectCoursePlatform(Context context) throws Exception {
         mContext=context;
         mHttp=new Http();
         mHttp.newcookie();
@@ -49,6 +49,9 @@ public class SelectCoursePlatform {
         if(status==3||status==4){
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
             String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            if (address==""){
+                Exception e=new Exception("OnlineConfigFail");
+                throw e;}
 //            address="139.129.133.235";port="2010";
             mHttp.setProxy(address, Integer.valueOf(port));
         }

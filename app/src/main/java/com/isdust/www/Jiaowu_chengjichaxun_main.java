@@ -115,7 +115,14 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
     Runnable mRunnable_login=new Runnable(){
         @Override
         public void run() {
-            mXuankepingtai=new SelectCoursePlatform(mContext);
+            try {
+                mXuankepingtai=new SelectCoursePlatform(mContext);
+            } catch (Exception e) {
+                Message mMessage=new Message();
+                mMessage.what = 11;
+                mHandler.sendMessage(mMessage);;
+                return;
+            }
             try {
                 xianchengchi_login_status=mXuankepingtai.login_zhengfang(xianchengchi_user, xianchengchi_password);
             } catch (IOException e) {
@@ -205,6 +212,11 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
                 customRuningDialog.dismiss();
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
+            if (msg.what == 11){//网络超时
+                customRuningDialog.dismiss();
+                Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+            }
+
         }
     };
 

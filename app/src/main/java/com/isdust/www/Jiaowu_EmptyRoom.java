@@ -155,6 +155,10 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
                 customRuningDialog.dismiss();
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
+            if (msg.what == 11){//网络超时
+                customRuningDialog.dismiss();
+                Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+            }
 
 
         }
@@ -165,7 +169,13 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
         public void run() {
 
             //listdata=null;
-            mKongzixishi=new EmptyClassroom(mContext);
+            try {
+                mKongzixishi=new EmptyClassroom(mContext);
+            } catch (Exception e) {
+                Message message=new Message();
+                message.what=11;
+                mHandler.sendMessage(message);
+            return;}
             try {
                 xiancheng_Kebiaoxinxi = mKongzixishi.getEmptyClassroom(xiancheng_building, xiancheng_zhoushu, xiancheng_xingqi, xiancheng_jieci);
 
@@ -678,7 +688,14 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 
         Date mDate = new Date();
         int hours = mDate.getHours();
-        zhoushu= SchoolDate.get_xiaoli(mContext);
+        try {
+            zhoushu= SchoolDate.get_xiaoli(mContext);
+        } catch (Exception e) {
+            Message message=new Message();
+            message.what=11;
+            mHandler.sendMessage(message);
+            return;
+        }
         jieci=SchoolDate.get_jieci(hours);
         xingqi=SchoolDate.gei_xingqi();
         if (hours>21){

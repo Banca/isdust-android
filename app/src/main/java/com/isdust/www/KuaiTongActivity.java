@@ -205,6 +205,10 @@ public class KuaiTongActivity extends BaseMainActivity_new {
 
 
             }
+            if (msg.what == 11){//网络超时
+                customRuningDialog.dismiss();
+                Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+            }
         }
     };
     Runnable xiancheng_login=new Runnable() {
@@ -250,7 +254,14 @@ public class KuaiTongActivity extends BaseMainActivity_new {
         @Override
         public void run() {
             Message mMessage=new Message();
-            obj_kuaitong = new Network_Kuaitong(mContext);
+            try {
+                obj_kuaitong = new Network_Kuaitong(mContext);
+            } catch (Exception e) {
+                mMessage=new Message();
+                mMessage.what = 10;
+                mHandler.sendMessage(mMessage);;
+                return;
+            }
             mMessage.what=-1;
             mHandler.sendMessage(mMessage);
 
