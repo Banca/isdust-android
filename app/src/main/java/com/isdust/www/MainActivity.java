@@ -44,9 +44,6 @@ public class MainActivity extends BaseMainActivity_new {
 
 		OnlineConfigAgent.getInstance().setDebugMode(true);
 		OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-		//System.out.println(Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID)
-//		);
-
 		String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
 
 		if (!install.equals("true")){
@@ -54,20 +51,6 @@ public class MainActivity extends BaseMainActivity_new {
 		}
 		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 
-//		Library library=new Library(mContext);
-//		try {
-//			library.login("1501060225","1501060225");
-//			library.get_borrwingdetail();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		SelectCoursePlatform a=new SelectCoursePlatform(this);
-//		try {
-//			a.login_zhengfang("201401061406","abc123");
-//			a.chengji_chaxun("2014-2015","1");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 
 		if (ishadopended == true) {    //程序已经启动
 			INIT(R.layout.activity_main, "首页");
@@ -87,16 +70,7 @@ public class MainActivity extends BaseMainActivity_new {
 					.setPositiveButton("确定", null).show();
 
 
-//				Toast.makeText(mContext,braoadcast,Toast.LENGTH_SHORT).show();
 			}
-
-
-
-
-//			Intent intent = new Intent();
-//			intent.setClass(this, jiaowu_schedule_add.class);//课程表
-//			this.startActivity(intent);
-
 //			ishadopended = true;
 //			LayoutInflater inflate = LayoutInflater.from(this);
 //			form_welcome = inflate.inflate(R.layout.welcome,null);

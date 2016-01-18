@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.Book;
 import com.isdust.www.view.IsdustDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -129,6 +130,8 @@ public class Library_guancang_main extends BaseSubPageActivity_new {
 
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_guancang_main, "图书馆");
+        MobclickAgent.onEvent(this, "library_guancang");
+
         mContext=this;
         try {
             mLibrary=new Library(this);

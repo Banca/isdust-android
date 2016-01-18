@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -192,7 +193,7 @@ public class Library_personal_main extends BaseSubPageActivity_new {
                         mxiancheng_borrowdetail[i][1]=mxiancheng_borrowdetail[i][1].substring(0,28)+"...";
                     }
                     map.put("title",mxiancheng_borrowdetail[i][1]);
-                    map.put("ima",R.drawable.ic_card_mark);
+                    map.put("ima",R.drawable.item_borrows);
                     map.put("bookid",mxiancheng_borrowdetail[i][0]);
                     map.put("borrowdate",mxiancheng_borrowdetail[i][2]);
                     map.put("returndate",mxiancheng_borrowdetail[i][3]);
@@ -236,7 +237,9 @@ public class Library_personal_main extends BaseSubPageActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_personal_main, "图书馆个人中心");
-       mTextView_usercard=(TextView)findViewById(R.id.text_library_usercard);
+        MobclickAgent.onEvent(this, "library_personal");
+
+        mTextView_usercard=(TextView)findViewById(R.id.text_library_usercard);
          mTextView_username=(TextView)findViewById(R.id.text_library_username);
          mTextView_userstate=(TextView)findViewById(R.id.text_library_userstate);
         init();

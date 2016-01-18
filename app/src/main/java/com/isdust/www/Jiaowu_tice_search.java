@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import pw.isdust.isdust.function.Networklogin_CMCC;
@@ -25,7 +26,7 @@ public class Jiaowu_tice_search extends BaseSubPageActivity_new {
         INIT(R.layout.activity_jiaowu_tice_search, "体质健康测试成绩查询");
         mEditText_name=(EditText)findViewById(R.id.edittext_tice_name);
         mEditText_xuehao=(EditText)findViewById(R.id.edittext_tice_xuehao);
-
+        MobclickAgent.onEvent(this, "jiaowu_tice");
         mButton_search=(Button)findViewById(R.id.Jiaowu_tice_search);
         publickey= OnlineConfigAgent.getInstance().getConfigParams(mContext, "tice_publickey");
         publickey=publickey.replace("\r", "");
@@ -42,7 +43,7 @@ public class Jiaowu_tice_search extends BaseSubPageActivity_new {
                 intent.putExtra("address",address);
                 intent.setClass(mContext,Jiaowu_tice_view.class);
                 startActivity(intent);
-                System.out.println(address);
+//                System.out.println(address);
 
             }
         });

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
@@ -256,6 +257,8 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_schedule);
         INIT(R.layout.activity_jiaowu_chengjichaxun, "成绩查询");
+        MobclickAgent.onEvent(this, "jiaowu_chengjichaxun");
+
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         preferences_editor = preferences_data.edit();
         customRuningDialog = new IsdustDialog(mContext,

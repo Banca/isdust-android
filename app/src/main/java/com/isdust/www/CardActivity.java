@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.view.IsdustDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -144,6 +145,7 @@ public class CardActivity extends BaseMainActivity_new {
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
         getview();
+        MobclickAgent.onEvent(this, "schoolcard_main");
 
         mImageButton_query.setEnabled(false);
         mImageButton_changepwd.setEnabled(false);
