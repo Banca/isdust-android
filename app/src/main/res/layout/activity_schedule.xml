@@ -182,10 +182,10 @@
                 android:layout_height="wrap_content"
                 android:text="添加课程"
                 android:id="@+id/button_schedule_add"
-                android:background="#00"
+                android:background="#00ffffff"
                 android:layout_alignParentTop="true" android:layout_alignRight="@+id/button_logout"
                 android:layout_alignEnd="@+id/button_logout" android:textColor="#fff"
-                android:textSize="13dp"/>
+                android:textSize="15dp"/>
 
         </RelativeLayout>
 

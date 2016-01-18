@@ -340,7 +340,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
     }
 
-    public void addcourse(int xingqi,int jieci,String neirong,final int color,String raw){
+    public void addcourse(int xingqi,int jieci, final String neirong,final int color,String raw){
 
 
 
@@ -394,6 +394,13 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 String temp=mraw.replace("<br>", "\n");
                 mTextView_detail.setText(temp);
                 mTextView_detail.setGravity(Gravity.CENTER);
+                mTextView_detail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setClipboard(mContext,neirong);
+                        Toast.makeText(mContext, "课程信息已复制到剪切板", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 new AlertDialog.Builder(mContext)
                         .setTitle("课程详情")
                         .setView(view)
@@ -743,6 +750,16 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     }
     public String kecheng_generate(String subject,String time,String teacher,String location){
         return subject+"<br>"+time+"<br>"+teacher+"<br>"+location;
+    }
+    private void setClipboard(Context context,String text) {
+        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        } else {
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
+            clipboard.setPrimaryClip(clip);
+        }
     }
 
 }

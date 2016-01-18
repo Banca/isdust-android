@@ -199,7 +199,8 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
                 String mzhoushu=getMapValue(map,"zhoushu").replace(" ", "");
                 String mxingqi=getMapValue(map, "xingqi").replace(" ", "");
                 String mjieci=getMapValue(map,"jieci").replace(" ", "");
-                setClipboard(mContext,mlocation+"      "+mzhoushu+"      "+mxingqi+"      "+mjieci);
+                String neirong="地点:"+mlocation+",周次:"+mzhoushu+",星期:"+mxingqi+",节次:"+mjieci;
+                setClipboard(mContext,neirong);
                 Toast.makeText(mContext, "信息已复制到剪切板", Toast.LENGTH_SHORT).show();
             }
         });
@@ -345,9 +346,15 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 
 
         mList_zhoushu = new ArrayList<Map<String, String>>();
+        int flag=0;
 
         for (int i = 1; i < 22;i++) {
             HashMap<String, String> mapTemp = new HashMap<String, String>();
+            if (flag==0){
+                flag=1;
+                mapTemp.put("zhoushu", "");
+                continue;
+            }
             mapTemp.put("zhoushu", (i+1)+"");
             mList_zhoushu.add(mapTemp);
         }

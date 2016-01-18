@@ -28,7 +28,7 @@
                 android:gravity="center_vertical|left"
                 android:textSize="18sp"
                 android:background="@drawable/selector_item_button"
-                android:drawableLeft="@drawable/item_schedule"
+                android:drawableLeft="@drawable/item_library_storage"
                 android:drawableRight="@drawable/arrow"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent" />
@@ -41,7 +41,7 @@
             <Button
                 android:id="@+id/library_button_personel"
                 android:onClick="onFormJiaowuClick"
-                android:text="  借书查询(可续借)"
+                android:text="  个人中心"
                 android:gravity="center_vertical|left"
                 android:textSize="18sp"
                 android:background="@drawable/selector_item_button"

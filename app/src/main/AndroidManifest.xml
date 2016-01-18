@@ -165,10 +165,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.isdust.www.LifeActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.isdust.www.Library_index"
             android:screenOrientation="portrait" >
         </activity>
