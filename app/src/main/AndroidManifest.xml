@@ -172,6 +172,14 @@
             android:name="com.isdust.www.Jiaowu_chengjichaxun_main"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.isdust.www.Jiaowu_tice_search"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.isdust.www.Jiaowu_tice_view"
+            android:screenOrientation="portrait" >
+        </activity>
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" >
