@@ -314,13 +314,23 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
                                 String a="";
+                                int flag=0;
                                 for(int i=1;i<=20;i++){
                                     if(zhoushu[i]==1){
+                                        if(flag==0){
+                                            flag=1;
+                                            a=a+i;
+                                            continue;
+
+                                        }
                                     a=a+","+i;}
 
 
                                 }
                                 mbutton_select_zhoushu.setText(a);
+                                if (flag==0){
+                                    mbutton_select_zhoushu.setText("选择上课周数");
+                                }
 //							String paynum = numEditText.getText().toString();
 
 

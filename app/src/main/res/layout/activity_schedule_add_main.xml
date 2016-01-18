@@ -6,66 +6,102 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_page_white"
+        android:background="#FFFFFF"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/include">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="课程名称："
             android:id="@+id/textView27"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="true" android:textColor="#2F2F2F"
+            android:layout_below="@+id/view5"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="老师："
             android:id="@+id/textView29"
-            android:layout_below="@+id/textView27"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="45dp"
-            android:layout_alignRight="@+id/textView30"
-            android:layout_alignEnd="@+id/textView30"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textColor="#2F2F2F"
+            android:layout_below="@+id/view"
+            android:layout_toLeftOf="@+id/editText_schedule_teacher"
+            android:layout_toStartOf="@+id/editText_schedule_teacher"
+            android:layout_marginTop="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#FFB3B3B3" android:layout_below="@+id/textView27"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:id="@+id/view" android:layout_marginTop="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#FFB3B3B3" android:layout_below="@+id/textView30"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:id="@+id/view3" android:layout_marginTop="10dp"/>
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFB3B3B3" android:layout_below="@+id/textView32"
+        android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+        android:id="@+id/view2" android:layout_marginTop="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#FFB3B3B3" android:layout_below="@+id/textView31"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:id="@+id/view4" android:layout_marginTop="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="周数："
             android:id="@+id/textView30"
-            android:layout_below="@+id/editText_schedule_teacher"
-            android:layout_toLeftOf="@+id/editText_schedule_teacher"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="45dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textColor="#2F2F2F" android:layout_below="@+id/view1"
+            android:layout_alignLeft="@+id/textView29" android:layout_alignStart="@+id/textView29"
+            android:layout_marginTop="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#FFB3B3B3"
+            android:id="@+id/view1"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" android:layout_below="@+id/textView29"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#648EB5"
+            android:id="@+id/view5"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" android:layout_below="@+id/textView34"/>
+
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="节数："
             android:id="@+id/textView32"
-            android:layout_below="@+id/textView30"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/view3"
+            android:layout_marginTop="10dp"
             android:layout_alignLeft="@+id/textView30"
-            android:layout_alignStart="@+id/textView30" />
+            android:layout_alignStart="@+id/textView30" android:textColor="#2F2F2F"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="地点："
             android:id="@+id/textView31"
-            android:layout_below="@+id/button_schedule_jieshu"
+            android:layout_below="@+id/view2"
             android:layout_toLeftOf="@+id/button_schedule_jieshu"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_alignLeft="@+id/textView32"
-            android:layout_alignStart="@+id/textView32" />
+            android:layout_alignStart="@+id/textView32" android:textColor="#2F2F2F"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +112,9 @@
             android:layout_toRightOf="@+id/textView27"
             android:layout_alignBottom="@+id/textView27"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:textColorHint="#FDA32B"
+            android:layout_alignParentEnd="true" android:hint="(未填写)" android:textColor="#666666"
+            />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,7 +125,9 @@
             android:layout_alignStart="@+id/editText_schedule_kecheng"
             android:layout_alignBottom="@+id/textView29"
             android:layout_alignRight="@+id/editText_schedule_kecheng"
-            android:layout_alignEnd="@+id/editText_schedule_kecheng" />
+            android:textColorHint="#FDA32B"
+            android:hint="(未填写)"
+            android:textColor="#666666"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,46 +136,53 @@
             android:layout_alignTop="@+id/textView31"
             android:layout_toRightOf="@+id/textView31"
             android:layout_alignBottom="@+id/textView31"
+            android:textColorHint="#FDA32B"
             android:layout_alignRight="@+id/button_schedule_ok"
-            android:layout_alignEnd="@+id/button_schedule_ok" />
+            android:layout_alignEnd="@+id/button_schedule_ok" android:hint="(未填写)"
+            android:textColor="#666666"/>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/color_btn_white"
-            android:text="选择周数"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#FFFFFF"
+            android:text="选择上课周数"
             android:id="@+id/button_schedule_zhoushu"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="1dp"
             android:layout_toRightOf="@+id/textView30"
-            android:layout_alignRight="@+id/editText_schedule_teacher"
-            android:layout_alignEnd="@+id/editText_schedule_teacher"
-            android:layout_above="@+id/button_schedule_jieshu"
-            android:layout_below="@+id/editText_schedule_teacher" />
+            android:layout_below="@+id/view1" android:textSize="15dp"
+            android:gravity="left|center_vertical"
+
+            android:layout_alignBottom="@+id/view3" android:layout_marginBottom="1dp"
+            android:textColor="#666666"/>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_btn_white"
-            android:text="选择节数"
+            android:background="#FFFFFF"
+            android:text="选择上课节数"
             android:id="@+id/button_schedule_jieshu"
-            android:layout_alignTop="@+id/textView32"
-            android:layout_alignBottom="@+id/textView32"
-            android:layout_alignRight="@+id/button_schedule_zhoushu"
-            android:layout_alignEnd="@+id/button_schedule_zhoushu"
-            android:layout_toRightOf="@+id/textView30"
-            android:layout_toEndOf="@+id/textView30" />
+            android:textSize="15dp"
+            android:gravity="left|center_vertical"
+
+            android:layout_below="@+id/view3" android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/textView32"
+            android:layout_alignBottom="@+id/view2" android:layout_marginBottom="1dp"
+            android:textColor="#666666"/>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="确定"
             android:textColor="#fff"
             android:background="@drawable/selector_ok_button"
             android:id="@+id/button_schedule_ok"
             android:layout_marginLeft="45dp"
-            android:layout_below="@+id/editText_schedule_location"
-            android:layout_alignRight="@+id/button_schedule_jieshu"
-            android:layout_alignEnd="@+id/button_schedule_jieshu"
             android:layout_marginTop="30dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true" android:layout_below="@+id/view4"
+            android:layout_marginRight="45dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="课程内容"
+                  android:id="@+id/textView34"
+                  android:textColor="#538ABC"
+                  android:textSize="15dp" android:layout_alignParentTop="true"
+                  android:layout_alignStart="@+id/textView27" android:layout_marginTop="14dp"/>
     </RelativeLayout>
 </RelativeLayout>

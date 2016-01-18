@@ -180,10 +180,12 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="添加课程"
                 android:id="@+id/button_schedule_add"
-                android:layout_alignParentTop="true" android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"/>
+                android:background="#00"
+                android:layout_alignParentTop="true" android:layout_alignRight="@+id/button_logout"
+                android:layout_alignEnd="@+id/button_logout" android:textColor="#fff"
+                android:textSize="13dp"/>
 
         </RelativeLayout>
 
