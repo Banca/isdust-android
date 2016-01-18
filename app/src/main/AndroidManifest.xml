@@ -190,7 +190,7 @@
         </activity>
 
         <meta-data android:value="5632aefc67e58eef5d001100" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="Jingyu-all" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="isdust_public_1.3" android:name="UMENG_CHANNEL"/>
 
     </application>
 
