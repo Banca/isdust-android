@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.Book;
 import com.isdust.www.view.IsdustDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -129,8 +130,15 @@ public class Library_guancang_main extends BaseSubPageActivity_new {
 
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_guancang_main, "图书馆");
+        MobclickAgent.onEvent(this, "library_guancang");
+
         mContext=this;
-        mLibrary=new Library(this);
+        try {
+            mLibrary=new Library(this);
+        } catch (Exception e) {
+            Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+
+        }
         mEditText=(EditText)findViewById(R.id.guancang_edittext);
         mImageView_library=(ImageView)findViewById(R.id.guancang_scan);
         mImageView_library.setOnClickListener(new View.OnClickListener() {

@@ -24,7 +24,8 @@ import com.isdust.www.baseactivity.BaseMainActivity_new;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class Library_index extends BaseMainActivity_new {
+public class
+        Library_index extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

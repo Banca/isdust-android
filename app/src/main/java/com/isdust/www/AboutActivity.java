@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.model.UserInfo;
 import com.umeng.update.UmengUpdateAgent;
@@ -47,6 +48,8 @@ public class AboutActivity extends BaseSubPageActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        MobclickAgent.onEvent(this, "About");
+
 
         INIT(R.layout.helper_about, "关于我们");
         Button mButton_feedback=(Button)findViewById(R.id.button_feedback);

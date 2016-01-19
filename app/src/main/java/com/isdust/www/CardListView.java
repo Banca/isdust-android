@@ -141,7 +141,7 @@ public class CardListView extends BaseSubPageActivity_new {
 		xiancheng_bollean = false;
 
 
-		MobclickAgent.onEvent(this, "schoolcard_record");
+		MobclickAgent.onEvent(this, "schoolcard_xiaofeirecord");
 
 
 

@@ -26,7 +26,14 @@ public class BaseMainActivity_new extends Activity {
     SlidingMenu menu;
     Activity thisActivity;
     int mtype;
-
+    protected void INIT(int pageid) {
+        isdustapp = (MyApplication) this.getApplication();
+        setContentView(pageid);
+        mContext = this;
+        thisActivity = this;
+        mLeftmenu = new Leftmenu(thisActivity, mtype);
+        menu = mLeftmenu.menu;
+    }   //初始化
     protected void INIT(int pageid,String title,int type) {
         isdustapp = (MyApplication) this.getApplication();
         setContentView(pageid);

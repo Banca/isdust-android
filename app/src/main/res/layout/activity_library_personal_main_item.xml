@@ -23,7 +23,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_card_mark"
+        android:src="@drawable/item_borrows"
         />
     <TextView
         android:id="@+id/textView50"

@@ -37,7 +37,7 @@ public class Network_Kuaitong {
 
     private Context mContext;
 
-    public Network_Kuaitong(Context context){
+    public Network_Kuaitong(Context context) throws Exception {
         mHttp_waiwang =new Http();
         mHttp_direct=new Http();
         mHttp_waiwang.setTimeout(3);
@@ -49,6 +49,9 @@ public class Network_Kuaitong {
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
         String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
         String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+        if (address==""){
+            Exception e=new Exception("OnlineConfigFail");
+            throw e;}
         if(status==3||status==4){
 
             mHttp_waiwang.setProxy(address, Integer.valueOf(port));

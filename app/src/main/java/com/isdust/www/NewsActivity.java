@@ -6,6 +6,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
 /**
@@ -32,7 +33,9 @@ public class NewsActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_news, "校园资讯",6);
+        INIT(R.layout.helper_news, "校园资讯", 6);
+        MobclickAgent.onEvent(this, "News");
+
         mWebView=(WebView)findViewById(R.id.webView_news);
         WebSettings mwebSettings = mWebView.getSettings();
         mwebSettings.setJavaScriptEnabled(true);
@@ -43,6 +46,7 @@ public class NewsActivity extends BaseMainActivity_new {
         //加载需要显示的网页
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
         String news_website_address= OnlineConfigAgent.getInstance().getConfigParams(mContext, "news_website_address");
+        //news_website_address="http://isdust.com/tice/chaxun.php?name=%E5%88%98%E4%B8%BD%E5%A8%87&xuehao=201201031216";
         mWebView.loadUrl(news_website_address);
         //设置Web视图
         mWebView.setWebViewClient(new WebViewClient(){

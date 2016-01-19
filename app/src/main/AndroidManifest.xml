@@ -165,15 +165,19 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.isdust.www.LifeActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.isdust.www.Library_index"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.isdust.www.Jiaowu_chengjichaxun_main"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.isdust.www.Jiaowu_tice_search"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.isdust.www.Jiaowu_tice_view"
             android:screenOrientation="portrait" >
         </activity>
         <service
@@ -186,7 +190,7 @@
         </activity>
 
         <meta-data android:value="5632aefc67e58eef5d001100" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="Jingyu-all" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="isdust_public_1.3" android:name="UMENG_CHANNEL"/>
 
     </application>
 

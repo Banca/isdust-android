@@ -155,6 +155,10 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
                 customRuningDialog.dismiss();
                 Toast.makeText(mContext, "网络访问超时，请重试", Toast.LENGTH_SHORT).show();
             }
+            if (msg.what == 11){//网络超时
+                customRuningDialog.dismiss();
+                Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT).show();
+            }
 
 
         }
@@ -165,7 +169,13 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
         public void run() {
 
             //listdata=null;
-            mKongzixishi=new EmptyClassroom(mContext);
+            try {
+                mKongzixishi=new EmptyClassroom(mContext);
+            } catch (Exception e) {
+                Message message=new Message();
+                message.what=11;
+                mHandler.sendMessage(message);
+            return;}
             try {
                 xiancheng_Kebiaoxinxi = mKongzixishi.getEmptyClassroom(xiancheng_building, xiancheng_zhoushu, xiancheng_xingqi, xiancheng_jieci);
 
@@ -199,7 +209,8 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
                 String mzhoushu=getMapValue(map,"zhoushu").replace(" ", "");
                 String mxingqi=getMapValue(map, "xingqi").replace(" ", "");
                 String mjieci=getMapValue(map,"jieci").replace(" ", "");
-                setClipboard(mContext,mlocation+"      "+mzhoushu+"      "+mxingqi+"      "+mjieci);
+                String neirong="地点:"+mlocation+",周次:"+mzhoushu+",星期:"+mxingqi+",节次:"+mjieci;
+                setClipboard(mContext,neirong);
                 Toast.makeText(mContext, "信息已复制到剪切板", Toast.LENGTH_SHORT).show();
             }
         });
@@ -345,9 +356,15 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 
 
         mList_zhoushu = new ArrayList<Map<String, String>>();
+        int flag=0;
 
         for (int i = 1; i < 22;i++) {
             HashMap<String, String> mapTemp = new HashMap<String, String>();
+            if (flag==0){
+                flag=1;
+                mapTemp.put("zhoushu", "");
+                continue;
+            }
             mapTemp.put("zhoushu", (i+1)+"");
             mList_zhoushu.add(mapTemp);
         }
@@ -671,7 +688,14 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
 
         Date mDate = new Date();
         int hours = mDate.getHours();
-        zhoushu= SchoolDate.get_xiaoli(mContext);
+        try {
+            zhoushu= SchoolDate.get_xiaoli(mContext);
+        } catch (Exception e) {
+            Message message=new Message();
+            message.what=11;
+            mHandler.sendMessage(message);
+            return;
+        }
         jieci=SchoolDate.get_jieci(hours);
         xingqi=SchoolDate.gei_xingqi();
         if (hours>21){

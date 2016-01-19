@@ -49,7 +49,11 @@ public class Jiaowu_index extends BaseMainActivity_new {
                 //启动activity
                 this.startActivity(intent);
                 break;
-
+            case R.id.FormJiaowu_button_ticechaxun:
+                intent.setClass(this,Jiaowu_tice_search.class);
+                //启动activity
+                this.startActivity(intent);
+                break;
 
         }
     }
