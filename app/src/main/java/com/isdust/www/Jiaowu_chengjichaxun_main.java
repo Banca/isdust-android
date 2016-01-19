@@ -58,6 +58,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
 
     //按钮
     private Button mButton_chengji_chaxun;
+    private Button mButton_chengji_logout;
 
 
     // 工具栏
@@ -107,6 +108,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
     String xianchengchi_user;
     String xianchengchi_password;
     String xianchengchi_login_status;
+    int xiancheng_state=0;
     List<String []> xiancheng_list_chengji;
     String xiancheng_xueqi;
     String xiancheng_xuenian;
@@ -155,6 +157,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
             super.handleMessage(msg);
             if (msg.what==0){//登录成功
                 customRuningDialog.dismiss();    //打开等待框
+                xiancheng_state=1;
 
 //                xianchengchi_ProgressDialog = new ProgressDialog(mContext);
 //                xianchengchi_ProgressDialog.setMessage("正在下载课程表到本地");
@@ -166,6 +169,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
                 return;
             }
             if (msg.what==1){//登录失败
+                xiancheng_state=0;
                 customRuningDialog.dismiss();
                 preferences_editor.putBoolean("keeppwd", false);
                 preferences_editor.putString("password", "");
@@ -266,16 +270,40 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
         initParam();
         mListView=(ListView)findViewById(R.id.listview_emptyroom);
         mButton_chengji_chaxun=(Button)findViewById(R.id.button_chegnji_chaxun);
+        mButton_chengji_logout=(Button)findViewById(R.id.button_chegnji_logout);
+
         mButton_chengji_chaxun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mString_xuenian= mTextView_xuenian.getText().toString();
-                String mString_xueqi= mTextView_xueqi.getText().toString();
+                if (xiancheng_state == 1) {
+                    String mString_xuenian = mTextView_xuenian.getText().toString();
+                    String mString_xueqi = mTextView_xueqi.getText().toString();
 
-                cha(mString_xuenian,mString_xueqi);
+                    cha(mString_xuenian, mString_xueqi);
+                } else {
+                    Toast.makeText(mContext, "您还没有登陆", Toast.LENGTH_SHORT).show();
+                    autologin();
+
+                }
             }
         });
+        mButton_chengji_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                preferences_editor.putBoolean("keeppwd", false);
+                preferences_editor.putString("password", "");
+                preferences_editor.commit();
+                //Toast.makeText(mContext,"test",Toast.LENGTH_SHORT).show();
 
+                autologin();
+
+            }
+        });
+        autologin();
+
+
+    }
+    void autologin(){
         String user_save=preferences_data.getString("username", "");
         String password_save=preferences_data.getString("password", "");
         if (user_save.equals("") || password_save.equals("")){

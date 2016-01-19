@@ -111,6 +111,7 @@
                     android:text="一键续借"
                     android:textSize="15sp"
                     android:textColor="#000"
+                    android:drawableLeft="@drawable/library_personal_renew"
                     android:id="@+id/button_library_renewall"
                      />
 
@@ -126,6 +127,8 @@
                     android:text="切换用户"
                     android:textSize="15sp"
                     android:textColor="#000"
+                    android:drawableLeft="@drawable/library_personal_change"
+
                     android:id="@+id/button_library_logout"
                      />
 
