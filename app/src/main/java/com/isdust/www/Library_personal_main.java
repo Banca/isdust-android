@@ -175,7 +175,7 @@ public class Library_personal_main extends BaseSubPageActivity_new {
 
                 Toast.makeText(mContext, "登陆失败，密码错误", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                intent.setClass(mContext, jiaowu_Schedule_login.class);
+                intent.setClass(mContext, Library_personal_login.class);
                 startActivityForResult(intent, 1);
 
             }

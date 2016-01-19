@@ -103,7 +103,7 @@ public class MainActivity extends BaseMainActivity_new {
 				this.startActivity(intent);
 				break;
 			case R.id.btn_main_library:
-				intent.setClass(this, Library_guancang_main.class);//图书馆
+				intent.setClass(this, Library_index.class);//图书馆
 				this.startActivity(intent);
 				finish();
 				break;

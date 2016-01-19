@@ -73,7 +73,7 @@ public class Library {
     public String login(String user,String password) throws IOException {
         String msubmit="rdid="+user+"&rdPasswd="+md5(password)+"&returnUrl=";
         String text= mHttp.post_string("http://interlib.sdust.edu.cn/opac/reader/doLogin",msubmit);
-        if (text.contains("读者姓名")){
+        if (!text.contains("用户名或密码错误!")){
             Pattern mPattern=Pattern.compile("<font class=\"space_font\">([\\S\\s]*?)</font>");
             Matcher mMatcher=mPattern.matcher(text);
             List<String> array_temp=new ArrayList<String>();
