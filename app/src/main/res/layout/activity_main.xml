@@ -158,7 +158,17 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="2" >
-
+                        <Button
+                            android:id="@+id/btn_main_card"
+                            android:onClick="onFormMainClick"
+                            android:layout_margin="3dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_transparent_button"
+                            android:drawableTop="@drawable/main_card"
+                            android:text="\n校园卡\n"
+                            android:textSize="@dimen/abc_text_size_button_material" />
                         <Button
                             android:id="@+id/btn_main_library"
                             android:onClick="onFormMainClick"
@@ -171,17 +181,7 @@
                             android:text="\n图书馆\n"
                             android:textSize="@dimen/abc_text_size_button_material" />
 
-                        <Button
-                            android:id="@+id/btn_main_card"
-                            android:onClick="onFormMainClick"
-                            android:layout_margin="3dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/selector_transparent_button"
-                            android:drawableTop="@drawable/main_card"
-                            android:text="\n校园卡\n"
-                            android:textSize="@dimen/abc_text_size_button_material" />
+
 
                     </LinearLayout>
                     <LinearLayout
@@ -192,21 +192,19 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignLeft="@+id/widget54"
                         android:layout_alignStart="@+id/widget54">
-
                         <Button
-                            android:id="@+id/btn_main_news"
+                            android:id="@+id/btn_main_score"
                             android:onClick="onFormMainClick"
                             android:layout_margin="3dp"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:background="@drawable/selector_transparent_button"
-                            android:drawableTop="@drawable/main_news"
-                            android:text="\n校园资讯\n"
+                            android:drawableTop="@drawable/main_score"
+                            android:text="\n成绩查询\n"
                             android:textSize="@dimen/abc_text_size_button_material" />
                         <Button
-                            android:id="@+id/btn_main_nononono"
-                            android:visibility="invisible"
+                            android:id="@+id/btn_main_news"
                             android:onClick="onFormMainClick"
                             android:layout_margin="3dp"
                             android:layout_width="0dp"
