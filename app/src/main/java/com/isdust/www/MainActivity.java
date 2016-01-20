@@ -121,6 +121,10 @@ public class MainActivity extends BaseMainActivity_new {
 				intent.setClass(this, AboutActivity.class);//关于
 				this.startActivity(intent);
 				break;
+			case R.id.btn_main_score:
+				intent.setClass(this, Jiaowu_chengjichaxun_main.class);//查询成绩
+				this.startActivity(intent);
+				break;
 		}
 
 
@@ -138,8 +142,24 @@ public class MainActivity extends BaseMainActivity_new {
 //                	   float alp = form_welcome.getAlpha();
 					//System.out.println(alp);
 //                	   if (alp < 0.015) {
-					INIT(R.layout.activity_main,"首页",0);
-					timer_wel.cancel();		//销毁 timer_wel
+					timer_wel.cancel();
+					INIT(R.layout.activity_main, "首页",0);
+					String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
+					String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
+					if (!install.equals("true")){
+						Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
+					}
+					if (!braoadcast.equals("null")&&!braoadcast.equals("")){
+						TextView a=new TextView(mContext);
+						a.setText(braoadcast);
+						a.setTextSize(20);
+						new AlertDialog.Builder(mContext)
+								.setTitle("公告")
+								.setView(a)
+								.setIcon(R.mipmap.isdust)
+								.setPositiveButton("确定", null).show();
+					}
+						//销毁 timer_wel
 //                	   }
 //                	   else {
 //                		   form_welcome.setAlpha((float) (alp - 0.01));	//修改欢迎页面的透明度

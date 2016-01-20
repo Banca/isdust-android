@@ -59,6 +59,7 @@ public class Jiaowu_tice_search extends BaseSubPageActivity_new {
         }
         submit=submit.replace("==","");
         String address="http://tice.isdust.com/chaxun.php?data="+submit.replace("+","%2B")+"&verification="+Networklogin_CMCC.md5(submit+"qsfdwewc"+time)+"&time="+time;
+        System.out.println(address);
         return address;
     }
 

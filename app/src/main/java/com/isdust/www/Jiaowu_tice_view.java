@@ -28,6 +28,7 @@ public class Jiaowu_tice_view extends BaseSubPageActivity_new {
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
         Intent intent=this.getIntent();
         String address=intent.getExtras().getString("address");
+        mWebView.getSettings().setDefaultTextEncodingName("gbk");
         //String news_website_address= OnlineConfigAgent.getInstance().getConfigParams(mContext, "news_website_address");
         //news_website_address="http://isdust.com/tice/chaxun.php?name=%E5%88%98%E4%B8%BD%E5%A8%87&xuehao=201201031216";
         mWebView.loadUrl(address);
