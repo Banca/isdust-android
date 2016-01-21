@@ -298,6 +298,7 @@ public class Library_personal_main extends BaseSubPageActivity_new {
                     mxiancheng_password = "";
                     preferences_editor.putString("password", "");
                     preferences_editor.commit();
+                    listdata.clear();
                     login();
 
                 }

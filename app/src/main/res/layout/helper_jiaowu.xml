@@ -73,7 +73,7 @@
                 <Button
                     android:id="@+id/FormJiaowu_button_ticechaxun"
                     android:onClick="onFormJiaowuClick"
-                    android:text="  体侧查询"
+                    android:text="  体测查询"
                     android:gravity="center_vertical|left"
                     android:textSize="18sp"
                     android:background="@drawable/selector_item_button"

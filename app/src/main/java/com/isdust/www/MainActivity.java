@@ -21,6 +21,7 @@ import java.util.TimerTask;
 public class MainActivity extends BaseMainActivity_new {
 	protected MyApplication isdustapp;
 	static boolean ishadopended = false;
+	static boolean broadcast=false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
 	private View form_welcome;
@@ -54,16 +55,16 @@ public class MainActivity extends BaseMainActivity_new {
 			if (!install.equals("true")){
 				Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 			}
-			if (!braoadcast.equals("null")&&!braoadcast.equals("")){
-				TextView a=new TextView(this);
-				a.setText(braoadcast);
-				a.setTextSize(20);
-				new AlertDialog.Builder(mContext)
-						.setTitle("公告")
-						.setView(a)
-						.setIcon(R.mipmap.isdust)
-						.setPositiveButton("确定", null).show();
-			}
+//			if (!braoadcast.equals("null")&&!braoadcast.equals("")){
+//				TextView a=new TextView(this);
+//				a.setText(braoadcast);
+//				a.setTextSize(20);
+//				new AlertDialog.Builder(mContext)
+//						.setTitle("公告")
+//						.setView(a)
+//						.setIcon(R.mipmap.isdust)
+//						.setPositiveButton("确定", null).show();
+//			}
 
 		}else {
 
@@ -150,7 +151,9 @@ public class MainActivity extends BaseMainActivity_new {
 						Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 					}
 					if (!braoadcast.equals("null")&&!braoadcast.equals("")){
+						if (broadcast==false){
 						TextView a=new TextView(mContext);
+							broadcast=true;
 						a.setText(braoadcast);
 						a.setTextSize(20);
 						new AlertDialog.Builder(mContext)
@@ -158,7 +161,7 @@ public class MainActivity extends BaseMainActivity_new {
 								.setView(a)
 								.setIcon(R.mipmap.isdust)
 								.setPositiveButton("确定", null).show();
-					}
+					}}
 						//销毁 timer_wel
 //                	   }
 //                	   else {
