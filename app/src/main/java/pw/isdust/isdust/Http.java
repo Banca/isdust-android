@@ -164,7 +164,7 @@ public class Http {
 
 
         //开始提交
-        Request request = new Request.Builder().url(url).post(mformBody).header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36").build();
+        Request request = new Request.Builder().url(url).post(mformBody).header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36").build();
 
 
         Response response_1;

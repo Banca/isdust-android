@@ -52,6 +52,7 @@ public class SelectCoursePlatform {
         Random random = new Random();
         int s = random.nextInt(address_config.length)%(address_config.length+1)-1;
         address_zhengfang=address_config[s];
+//        Toast.makeText(context,address_zhengfang,Toast.LENGTH_SHORT).show();
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
@@ -70,7 +71,7 @@ public class SelectCoursePlatform {
 //                mHttp.setProxy("proxy1.isdust.com", 1999);
 //            }
 //        }
-//        mHttp.setProxy("219.146.243.3", 2000);
+        //mHttp.setProxy("219.146.243.3", 2000);
 
     }
     public void zhengfang_tiaozhuan_xuankepingtai() throws IOException {
@@ -126,6 +127,7 @@ public class SelectCoursePlatform {
         return "";
     }
     public List<String []> chengji_chaxun(String xuenian,String xueqi) throws IOException {
+        mHttp.setTimeout(120);
 
         String text=mHttp.get_string(url_chengji);
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
