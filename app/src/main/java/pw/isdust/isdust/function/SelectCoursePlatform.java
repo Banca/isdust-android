@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,11 +41,17 @@ public class SelectCoursePlatform {
     String mtext_zhengfang;
     String url_chengji;
     String url_xuanke;
+    String address_zhengfang;
     public SelectCoursePlatform(Context context) throws Exception {
         mContext=context;
         mHttp=new Http();
         mHttp.newcookie();
+        String address_config [];
         Networkjudge mNetworkjudge=new Networkjudge(context);
+        address_config=OnlineConfigAgent.getInstance().getConfigParams(mContext, "address_zhengfang").split("\n");
+        Random random = new Random();
+        int s = random.nextInt(address_config.length)%(address_config.length+1)-1;
+        address_zhengfang=address_config[s];
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
             String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
@@ -74,19 +81,19 @@ public class SelectCoursePlatform {
     }
     public String login_zhengfang(String user, String pwd) throws IOException {
         String text_web;
-        text_web= mHttp.get_string("http://192.168.100.136/default_ysdx.aspx", "gb2312");
+        text_web= mHttp.get_string("http://"+address_zhengfang+"/default_ysdx.aspx", "gb2312");
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
         __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
         String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+URLEncoder.encode(pwd)+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
-        mtext_zhengfang=mHttp.post_string_noturlencode("http://192.168.100.136/default_ysdx.aspx", submit);
+        mtext_zhengfang=mHttp.post_string_noturlencode("http://"+address_zhengfang+"/default_ysdx.aspx", submit);
         if (mtext_zhengfang.contains("<script>window.open('xs_main.aspx?xh=2")){
             String url_login_zhengfang=Networklogin_CMCC.zhongjian(mtext_zhengfang,"<script>window.open('","','_parent');</script>",0);
-            url_login_zhengfang="http://192.168.100.136/"+url_login_zhengfang;
+            url_login_zhengfang="http://"+address_zhengfang+"/"+url_login_zhengfang;
             mtext_zhengfang=mHttp.get_string(url_login_zhengfang, "gb2312");
             url_xuanke=Networklogin_CMCC.zhongjian(mtext_zhengfang, "信息员意见反馈</a></li><li><a href=\"", "\" target='zhuti' onclick=\"GetMc('激活选课平台帐户');", 0);
-            url_xuanke="http://192.168.100.136/"+url_xuanke;
+            url_xuanke="http://"+address_zhengfang+"/"+url_xuanke;
             url_chengji=Networklogin_CMCC.zhongjian(mtext_zhengfang,"学生个人课表</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('个人成绩查询');\">",0);
-            url_chengji="http://192.168.100.136/"+url_chengji;
+            url_chengji="http://"+address_zhengfang+"/"+url_chengji;
 
 
             return "登录成功";
