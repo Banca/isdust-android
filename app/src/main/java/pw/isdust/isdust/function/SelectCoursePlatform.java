@@ -42,6 +42,7 @@ public class SelectCoursePlatform {
     String url_chengji;
     String url_xuanke;
     String address_zhengfang;
+    String method;
     public SelectCoursePlatform(Context context) throws Exception {
         mContext=context;
         mHttp=new Http();
@@ -49,8 +50,9 @@ public class SelectCoursePlatform {
         String address_config [];
         Networkjudge mNetworkjudge=new Networkjudge(context);
         address_config=OnlineConfigAgent.getInstance().getConfigParams(mContext, "address_zhengfang").split("\n");
+        method=OnlineConfigAgent.getInstance().getConfigParams(mContext, "jiaowu_chengji_method");
         Random random = new Random();
-        int s = random.nextInt(address_config.length)%(address_config.length+1)-1;
+        int s = random.nextInt(address_config.length)%(address_config.length+1);
         address_zhengfang=address_config[s];
 //        Toast.makeText(context,address_zhengfang,Toast.LENGTH_SHORT).show();
         int status=mNetworkjudge.judgetype();
@@ -86,7 +88,7 @@ public class SelectCoursePlatform {
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
         __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
         String submit="__VIEWSTATE="+__VIEWSTATE+"&TextBox1="+user+"&TextBox2="+URLEncoder.encode(pwd)+"&RadioButtonList1=%D1%A7%C9%FA&Button1=++%B5%C7%C2%BC++" ;
-        mtext_zhengfang=mHttp.post_string_noturlencode("http://"+address_zhengfang+"/default_ysdx.aspx", submit);
+        mtext_zhengfang=mHttp.post_string_noturlencode("http://" + address_zhengfang + "/default_ysdx.aspx", submit);
         if (mtext_zhengfang.contains("<script>window.open('xs_main.aspx?xh=2")){
             String url_login_zhengfang=Networklogin_CMCC.zhongjian(mtext_zhengfang,"<script>window.open('","','_parent');</script>",0);
             url_login_zhengfang="http://"+address_zhengfang+"/"+url_login_zhengfang;
@@ -127,20 +129,30 @@ public class SelectCoursePlatform {
         return "";
     }
     public List<String []> chengji_chaxun(String xuenian,String xueqi) throws IOException {
-        mHttp.setTimeout(120);
-
+        mHttp.setTimeout(600);
+        if (method.equals("zhengfang")){
         String text=mHttp.get_string(url_chengji);
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
         __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
         String submit="__VIEWSTATE="+__VIEWSTATE+"&ddlXN="+xuenian+"&ddlXQ="+xueqi+"&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8" ;
         text=mHttp.post_string_noturlencode(url_chengji, submit);
-        return chengji_chaxun_fenxi(text);
+        return chengji_chaxun_fenxi_zhengfang(text);}
+        if (method.equals("xuanke")){
+            zhengfang_tiaozhuan_xuankepingtai();
+            String text=mHttp.get_string("http://192.168.109.142/Home/About");
+            text=text.replace("class=\"selected\"","");
+//            String __VIEWSTATE= Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
+//            __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
+//            String submit="__VIEWSTATE="+__VIEWSTATE+"&ddlXN="+xuenian+"&ddlXQ="+xueqi+"&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8" ;
+//            text=mHttp.post_string_noturlencode(url_chengji, submit);
+            return chengji_chaxun_fenxi_xuanke(text);}
+        return null;
 
 
 
 
     }
-    public List<String []> chengji_chaxun_fenxi(String text){
+    public List<String []> chengji_chaxun_fenxi_zhengfang(String text){
         Pattern mpattern = Pattern.compile("<tr[\\s\\S]*?>[\\s\\S]*?<td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td><td>([\\s\\S]*?)</td>[\\S\\s]*?</tr>");
         Matcher mmatcher = mpattern.matcher(text);
         List<String []> mchengji =new ArrayList<String []>();
@@ -153,6 +165,28 @@ public class SelectCoursePlatform {
                 temp[i]=temp[i].replace(" ", "");
                 temp[i]=temp[i].replace("&nbsp;","");
             }
+            mchengji.add(temp);
+        }
+        return mchengji;
+
+    }
+    public List<String []> chengji_chaxun_fenxi_xuanke(String text){
+        Pattern mpattern = Pattern.compile("<tr>[\\S\\s]*?<td>([\\S\\s]*?)</td>[\\S\\s]*?<td>([\\S\\s]*?)</td>[\\S\\s]*?<td>([\\S\\s]*?)</td>[\\S\\s]*?<td>([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?</tr>");
+        Matcher mmatcher = mpattern.matcher(text);
+        List<String []> mchengji =new ArrayList<String []>();
+        //mmatcher.find();//过滤第一组无用数据
+        String [] temp;
+        while (mmatcher.find()){
+            temp=new String[15];
+            temp[3]=mmatcher.group(3);
+            temp[1]=mmatcher.group(2);
+            temp[6]=mmatcher.group(4);
+            temp[8]=mmatcher.group(5);
+//            for (int i=0;i<15;i++){
+//                temp[i]=mmatcher.group(i+1);
+//                temp[i]=temp[i].replace(" ", "");
+//                temp[i]=temp[i].replace("&nbsp;","");
+//            }
             mchengji.add(temp);
         }
         return mchengji;
