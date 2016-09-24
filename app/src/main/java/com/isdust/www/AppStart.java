@@ -14,13 +14,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 import com.umeng.update.UmengUpdateAgent;
 
-/**
- * 应用启动界面
- * 
- * @author FireAnt（http://my.oschina.net/LittleDY）
- * @created 2014年12月22日 上午11:51:56
- * 
- */
+
 public class AppStart extends BaseMainActivity_new {
 
     static boolean broadcast=false;
