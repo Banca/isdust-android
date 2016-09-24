@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -51,13 +52,21 @@ public class TabActivity extends android.app.TabActivity {
     private void init(){
         //逐个按钮添加特效
         for(int i=0;i<mTabWidget.getChildCount();i++){
-            //换字体颜色
+            TextView textView = (TextView)mTabWidget.getChildAt(i).findViewById(android.R.id.title);
+            textView.setTextSize(14);
+            textView.setPadding(0, 3, 0, 0);
+            ImageView image = (ImageView)mTabWidget.getChildAt(i).findViewById(android.R.id.icon);
+
+            image.getLayoutParams().height = 30;//通过给它的属性赋值的方法可以解决问题
+            image.getLayoutParams().width = 30;
+
+        /*    //换字体颜色
             TextView tv = (TextView)
                     mTabWidget.getChildAt(i).findViewById(android.R.id.title);
             tv.setTextColor(Color.rgb(255, 255, 255));
             //设置背景图
             mTabWidget.getChildAt(i).setBackgroundResource(
-                    R.drawable.card);
+                    R.drawable.bottom_main);*/
         }
     }
 

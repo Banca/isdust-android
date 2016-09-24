@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.isdust.www.Spinner.spinner;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
@@ -25,6 +26,7 @@ public class MainActivity extends BaseMainActivity_new {
 	static boolean broadcast=false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
+	private spinner mSpinner;
 //	private View form_welcome;
 	//private MyApplication isdustapp1;
 
@@ -40,7 +42,10 @@ public class MainActivity extends BaseMainActivity_new {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext=this;
+		mSpinner = new spinner(this);
+
 		INIT(R.layout.act1, "首页",0);
+		mSpinner.init();
 		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 		TextView info = (TextView)findViewById(R.id.notification);
 		info.setText(braoadcast);
@@ -204,5 +209,17 @@ public class MainActivity extends BaseMainActivity_new {
 	};*/
 	public void addqq(View v){
 		joinQQGroup("EpMF_C2Na71cIhD2-BB80Vzy20xpLJ9o");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		mSpinner.onStart();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		mSpinner.onStop();
 	}
 }

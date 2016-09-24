@@ -85,4 +85,12 @@
         <item name="android:layout_weight">1.0</item>
         <item name="android:button">@null</item>
     </style>
+    <style name="spiner_indicator">
+        <item name="android:layout_width">5dip</item>
+        <item name="android:layout_height">5dip</item>
+        <item name="android:layout_marginLeft">2dip</item>
+        <item name="android:layout_marginRight">2dip</item>
+        <item name="android:background">@drawable/k2</item>
+
+    </style>
 </resources>
