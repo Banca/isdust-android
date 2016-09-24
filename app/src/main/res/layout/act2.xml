@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="校园卡"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:layout_marginTop="5dip"
         android:layout_marginLeft="7dip"
         />
@@ -60,14 +60,17 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:background="@drawable/card"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            />
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:id="@+id/imageView" />
+
         <LinearLayout
+            android:layout_marginTop="5dip"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -78,8 +81,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="一卡通"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <TextView
+                android:textSize="12sp"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="教务"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:layout_marginLeft="7dip"
         android:layout_marginTop="5dip"
         />
@@ -114,15 +118,18 @@
         android:onClick="onFormMainClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="5dip"
             android:background="@drawable/menu_schedule"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            />
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:id="@+id/imageView8" />
+
         <LinearLayout
+            android:layout_marginTop="7dip"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -133,8 +140,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="课程表"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <TextView
+                android:textSize="12sp"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,15 +167,18 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="5dip"
             android:background="@drawable/menu_mark"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            />
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:id="@+id/imageView9" />
+
         <LinearLayout
+            android:layout_marginTop="7dip"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -178,8 +189,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="成绩查询"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <TextView
+                android:textSize="12sp"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -204,14 +216,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="5dip"
             android:background="@drawable/menu_classroom"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
             />
         <LinearLayout
+            android:layout_marginTop="7dip"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -222,8 +235,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="空教室查询"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <TextView
+                android:textSize="12sp"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -240,7 +254,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="图书馆"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:layout_marginTop="5dip"
         />
 
@@ -254,14 +268,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="5dip"
             android:background="@drawable/menu_library"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
             />
         <LinearLayout
+            android:layout_marginTop="7dip"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -272,8 +287,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="馆藏查询"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <TextView
+                android:textSize="12sp"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -299,14 +315,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="5dip"
             android:background="@drawable/menu_person"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
             />
         <LinearLayout
+            android:layout_marginTop="7dip"
             android:layout_marginLeft="5dip"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -317,8 +334,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="个人中心"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
             <TextView
+                android:textSize="12sp"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
