@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:id="@+id/RelativeLayout_schedule">
 
-        <include layout="@layout/layout_title_bar"
+        <include layout="@layout/subpage_title_bar"
                  android:id="@+id/include2" />
         <LinearLayout
             android:layout_width="fill_parent"

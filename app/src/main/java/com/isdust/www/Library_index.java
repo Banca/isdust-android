@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**
  * Created by Wang Ziqiang on 15/12/2.
@@ -25,12 +26,12 @@ import com.isdust.www.baseactivity.BaseMainActivity_new;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class
-        Library_index extends BaseMainActivity_new {
+        Library_index extends BaseSubPageActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_library, "图书馆",4);
+        INIT(R.layout.helper_library, "图书馆");
 
 
     }

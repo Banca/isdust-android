@@ -2,6 +2,7 @@ package com.isdust.www;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -137,7 +138,18 @@ public class MainActivity extends BaseMainActivity_new {
 
 
 	}
-
+	public boolean joinQQGroup(String key) {
+		Intent intent = new Intent();
+		intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key));
+		// 此Flag可根据具体产品需要自定义，如设置，则在加群界面按返回，返回手Q主界面，不设置，按返回会返回到呼起产品界面    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+		try {
+			startActivity(intent);
+			return true;
+		} catch (Exception e) {
+			// 未安装手Q或安装的版本不支持
+			return false;
+		}
+	}
 /*
 
 	final Handler handler_wel = new Handler(){
@@ -190,4 +202,7 @@ public class MainActivity extends BaseMainActivity_new {
 			handler_wel.sendMessage(message);
 		}
 	};*/
+	public void addqq(View v){
+		joinQQGroup("EpMF_C2Na71cIhD2-BB80Vzy20xpLJ9o");
+	}
 }
