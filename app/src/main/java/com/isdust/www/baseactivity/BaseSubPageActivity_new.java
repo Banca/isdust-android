@@ -32,5 +32,4 @@ public class BaseSubPageActivity_new extends SwipeBackActivity {
                 getSwipeBackLayout().scrollToFinishActivity();
                 break;
         }
-    }
-}
+}}
