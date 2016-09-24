@@ -1,5 +1,6 @@
 package com.isdust.www;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,8 +8,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.umeng.analytics.MobclickAgent;
@@ -40,7 +43,9 @@ public class MainActivity extends BaseMainActivity_new {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext=this;
+
 		INIT(R.layout.act1, "首页",0);
+
 		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 		TextView info = (TextView)findViewById(R.id.notification);
 		info.setText(braoadcast);
