@@ -19,6 +19,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
@@ -400,8 +401,8 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
                         mPopupWindow_xuenian = new PopupWindow(mView_xuenian, mTextView_xuenian.getWidth(),
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                        ColorDrawable cd = new ColorDrawable(-0000);
-                        mPopupWindow_xuenian.setBackgroundDrawable(cd);
+                  //      ColorDrawable cd = new ColorDrawable(-0000);
+                    //    mPopupWindow_xuenian.setBackgroundDrawable(cd);
                         mPopupWindow_xuenian.setAnimationStyle(R.style.PopupAnimation);
                         mPopupWindow_xuenian.update();
                         mPopupWindow_xuenian.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
@@ -464,8 +465,8 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
                         mPopupWindow_xueqi = new PopupWindow(mView_xueqi, mTextView_xueqi.getWidth(),
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                        ColorDrawable cd = new ColorDrawable(-0000);
-                        mPopupWindow_xueqi.setBackgroundDrawable(cd);
+                      //  ColorDrawable cd = new ColorDrawable(-0000);
+                       // mPopupWindow_xueqi.setBackgroundDrawable(cd);
                         mPopupWindow_xueqi.setAnimationStyle(R.style.PopupAnimation);
                         mPopupWindow_xueqi.update();
                         mPopupWindow_xueqi.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);

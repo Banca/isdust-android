@@ -5,6 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/bg_title_bar"
+        android:gravity="center_vertical"
+        android:id="@+id/relativeLayout">
+
+        <!--ImageView
+            android:onClick="onTitleBarClick"
+            android:id="@+id/title_bar_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3.0dip"
+            android:layout_marginRight="3.0dip"
+            android:layout_marginTop="3.0dip"
+            android:gravity="center"
+            android:src="@drawable/ic_top_bar_category" /-->
+
+        <TextView
+            android:id="@+id/title_bar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingLeft="75.0dip"
+            android:paddingRight="75.0dip"
+            android:singleLine="true"
+            android:text="Title"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 
 
     <TextView
@@ -20,6 +54,8 @@
 
     <LinearLayout
         android:background="#FFFFFF"
+        android:id="@+id/btn_main_card"
+        android:onClick="onFormMainClick"
         android:layout_marginTop="10dip"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -74,6 +110,8 @@
         android:background="#FFFFFF"
         android:layout_marginTop="10dip"
         android:orientation="horizontal"
+        android:id="@+id/btn_main_schedule"
+        android:onClick="onFormMainClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -116,6 +154,8 @@
         android:layout_height="1dip"></LinearLayout>
     <LinearLayout
         android:background="#FFFFFF"
+        android:id="@+id/btn_main_score"
+        android:onClick="onFormMainClick"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -159,6 +199,8 @@
     <LinearLayout
         android:background="#FFFFFF"
         android:orientation="horizontal"
+        android:id="@+id/btn_main_emptyroom"
+        android:onClick="onFormMainClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -207,6 +249,8 @@
         android:background="#FFFFFF"
         android:layout_marginTop="10dip"
         android:orientation="horizontal"
+        android:id="@+id/btn_main_guancang_library"
+        android:onClick="onFormMainClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -250,6 +294,8 @@
     <LinearLayout
         android:background="#FFFFFF"
         android:orientation="horizontal"
+        android:id="@+id/btn_main_personal"
+        android:onClick="onFormMainClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

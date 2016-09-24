@@ -20,8 +20,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_toRightOf="@id/title_bar_menu_btn"
+
         android:background="@drawable/ic_top_divider" />
+<!--    android:layout_toRightOf="@id/title_bar_menu_btn"-->
     <TextView
         android:id="@+id/title_bar_name"
         android:layout_width="wrap_content"

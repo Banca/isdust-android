@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
@@ -40,7 +41,7 @@ import java.util.Map;
  */
 @SuppressLint("ClickableViewAccessibility")
 
-public class AboutActivity extends BaseSubPageActivity_new {
+public class AboutActivity extends BaseMainActivity_new {
 
     Activity thisActivity = this;
 
@@ -51,7 +52,7 @@ public class AboutActivity extends BaseSubPageActivity_new {
         MobclickAgent.onEvent(this, "About");
 
 
-        INIT(R.layout.helper_about, "关于我们");
+        INIT(R.layout.helper_about, "关于我们",8);
         Button mButton_feedback=(Button)findViewById(R.id.button_feedback);
         Button mButton_update=(Button)findViewById(R.id.button_update);
         mButton_feedback.setOnClickListener(new View.OnClickListener() {

@@ -24,8 +24,8 @@ public class MainActivity extends BaseMainActivity_new {
 	static boolean broadcast=false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
-	private View form_welcome;
-	private MyApplication isdustapp1;
+//	private View form_welcome;
+	//private MyApplication isdustapp1;
 
 
 
@@ -33,12 +33,18 @@ public class MainActivity extends BaseMainActivity_new {
 
 	public void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);
+		//MobclickAgent.onPause(this);
 	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext=this;
+		INIT(R.layout.act1, "首页",0);
+		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
+		TextView info = (TextView)findViewById(R.id.notification);
+		info.setText(braoadcast);
+	/*
+
 		MobclickAgent.updateOnlineConfig(mContext);
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
@@ -50,8 +56,8 @@ public class MainActivity extends BaseMainActivity_new {
 
 
 		if (ishadopended == true) {    //程序已经启动
-			INIT(R.layout.activity_main, "首页",0);
-			String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
+			INIT(R.layout.act1, "首页",0);
+			//String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 			if (!install.equals("true")){
 				Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
 			}
@@ -68,7 +74,7 @@ public class MainActivity extends BaseMainActivity_new {
 
 		}else {
 
-			INIT(R.layout.welcome);
+			//INIT(R.layout.welcome);
 			ishadopended = true;
 			timer_wel = new Timer();
 			timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
@@ -76,7 +82,7 @@ public class MainActivity extends BaseMainActivity_new {
 		}
 
 
-
+*/
 
 		}
 
@@ -88,12 +94,12 @@ public class MainActivity extends BaseMainActivity_new {
 			case R.id.btn_main_gonet:
 				intent.setClass(this, GoNetActivity.class);//上网登录
 				this.startActivity(intent);
-				finish();
+				//finish();
 				break;
 			case R.id.btn_main_kuaitong:
 				intent.setClass(this, KuaiTongActivity.class);//快通查询
 				this.startActivity(intent);
-				finish();
+				//finish();
 				break;
 			case R.id.btn_main_schedule:
 				intent.setClass(this, jiaowu_Schedule_main.class);//课程表
@@ -106,14 +112,14 @@ public class MainActivity extends BaseMainActivity_new {
 			case R.id.btn_main_library:
 				intent.setClass(this, Library_index.class);//图书馆
 				this.startActivity(intent);
-				finish();
+				//finish();
 				break;
 			case R.id.btn_main_card:
 				intent.setClass(this, CardActivity.class);//校园卡
 				this.startActivity(intent);
-				finish();
+			//	finish();
 				break;
-			case R.id.btn_main_news:
+/*			case R.id.btn_main_news:
 				intent.setClass(this, NewsActivity.class);//咨询
 				this.startActivity(intent);
 				finish();
@@ -121,9 +127,10 @@ public class MainActivity extends BaseMainActivity_new {
 			case R.id.btn_main_about:
 				intent.setClass(this, AboutActivity.class);//关于
 				this.startActivity(intent);
-				break;
+				break;*/
 			case R.id.btn_main_score:
 				intent.setClass(this, Jiaowu_chengjichaxun_main.class);//查询成绩
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				this.startActivity(intent);
 				break;
 		}
@@ -131,7 +138,7 @@ public class MainActivity extends BaseMainActivity_new {
 
 	}
 
-
+/*
 
 	final Handler handler_wel = new Handler(){
 		public void handleMessage(Message msg){
@@ -144,7 +151,7 @@ public class MainActivity extends BaseMainActivity_new {
 					//System.out.println(alp);
 //                	   if (alp < 0.015) {
 					timer_wel.cancel();
-					INIT(R.layout.activity_main, "首页",0);
+					INIT(R.layout.act1, "首页",0);
 					String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 					String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
 					if (!install.equals("true")){
@@ -182,5 +189,5 @@ public class MainActivity extends BaseMainActivity_new {
 				message.what = 2 ;		// Change Transparency's command
 			handler_wel.sendMessage(message);
 		}
-	};
+	};*/
 }

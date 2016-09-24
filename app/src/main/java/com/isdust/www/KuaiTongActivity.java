@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -48,7 +49,7 @@ import pw.isdust.isdust.function.Network_Kuaitong;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class KuaiTongActivity extends BaseMainActivity_new {
+public class KuaiTongActivity extends BaseSubPageActivity_new {
     private SharedPreferences preferences_data_kuaitong,preferences_data_schoolcard;
     private SharedPreferences.Editor preferences_editor_kuaitong,preferences_editor_schoolcard;
     final int request_kuaitong=1,request_xiaoyuanka=2;
@@ -383,7 +384,7 @@ public class KuaiTongActivity extends BaseMainActivity_new {
         MobclickAgent.onEvent(this, "network_kuaitong");
         mContext=this;
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_kuaitong, "快通有线", 2);
+        INIT(R.layout.helper_kuaitong, "快通有线");
         isdustapp.kuaitong_init();
         MobclickAgent.onEvent(this, "network_kuaitong_main");
 

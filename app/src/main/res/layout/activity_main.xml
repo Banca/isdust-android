@@ -17,7 +17,7 @@
                         android:gravity="center_vertical"
                         android:id="@+id/relativeLayout">
 
-            <ImageView
+            <!--ImageView
                 android:onClick="onTitleBarClick"
                 android:id="@+id/title_bar_menu_btn"
                 android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
                 android:layout_marginRight="3.0dip"
                 android:layout_marginTop="3.0dip"
                 android:gravity="center"
-                android:src="@drawable/ic_top_bar_category" />
+                android:src="@drawable/ic_top_bar_category" /-->
 
             <TextView
                 android:id="@+id/title_bar_name"
@@ -64,14 +64,14 @@
                 android:layout_alignParentStart="true"
                 android:id="@+id/linearLayout4">
 
-                <Button
+                <!--Button
                     android:id="@+id/btn_main_about"
                     android:onClick="onFormMainClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:background="@drawable/main_about"
-                    />
+                    /-->
             </LinearLayout>
 
             <ScrollView
@@ -203,6 +203,7 @@
                             android:drawableTop="@drawable/main_score"
                             android:text="\n成绩查询\n"
                             android:textSize="@dimen/abc_text_size_button_material" />
+<!--
                         <Button
                             android:id="@+id/btn_main_news"
                             android:onClick="onFormMainClick"
@@ -214,6 +215,7 @@
                             android:drawableTop="@drawable/main_news"
                             android:text="\n校园资讯\n"
                             android:textSize="@dimen/abc_text_size_button_material" />
+-->
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>

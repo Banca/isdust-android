@@ -5,7 +5,7 @@
     android:background="@drawable/bg_title_bar"
     android:gravity="center_vertical" >
 
-    <ImageView
+    <!--ImageView
         android:onClick="onTitleBarClick"
         android:id="@+id/title_bar_menu_btn"
         android:layout_width="wrap_content"
@@ -15,13 +15,14 @@
         android:layout_marginRight="3.0dip"
         android:layout_marginTop="3.0dip"
         android:gravity="center"
-        android:src="@drawable/ic_top_bar_category" />
+        android:src="@drawable/ic_top_bar_category" /-->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_toRightOf="@id/title_bar_menu_btn"
+
         android:background="@drawable/ic_top_divider" />
+   <!-- android:layout_toRightOf="@id/title_bar_menu_btn"-->
 
     <TextView
         android:id="@+id/title_bar_name"

@@ -10,7 +10,7 @@
             android:background="@color/color_view_white"
             android:orientation="vertical"
             android:gravity="center">
-            <include layout="@layout/layout_title_bar" />
+            <include layout="@layout/subpage_title_bar" />
 
             <ScrollView
                 android:id="@+id/widget54"

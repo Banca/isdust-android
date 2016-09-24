@@ -9,7 +9,7 @@
             android:background="#f5f9fd"
             android:orientation="vertical" >
 
-        <include layout="@layout/subpage_title_bar"
+        <include layout="@layout/subpage_title_bar2"
             android:id="@+id/include7"/>
 
         <RelativeLayout

@@ -4,8 +4,41 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ecebf1"
-    tools:context="jingyu.sdust.isdust.MainActivity">
+    android:background="#ecebf1">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/bg_title_bar"
+        android:gravity="center_vertical"
+        android:id="@+id/relativeLayout">
+
+        <!--ImageView
+            android:onClick="onTitleBarClick"
+            android:id="@+id/title_bar_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3.0dip"
+            android:layout_marginRight="3.0dip"
+            android:layout_marginTop="3.0dip"
+            android:gravity="center"
+            android:src="@drawable/ic_top_bar_category" /-->
+
+        <TextView
+            android:id="@+id/title_bar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingLeft="75.0dip"
+            android:paddingRight="75.0dip"
+            android:singleLine="true"
+            android:text="Title"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 
 
     <ImageView
@@ -27,6 +60,8 @@
             android:background="#f6f6f6"
             android:padding="2dip"
             android:layout_weight="1"
+            android:onClick="onFormMainClick"
+            android:id="@+id/btn_main_card"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -47,8 +82,10 @@
 
         <LinearLayout
             android:layout_weight="1"
+            android:id="@+id/btn_main_schedule"
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:onClick="onFormMainClick"
             android:layout_height="wrap_content">
             <ImageView
                 android:padding="2dip"
@@ -71,6 +108,8 @@
             android:background="#f6f6f6"
             android:layout_weight="1"
             android:orientation="vertical"
+            android:id="@+id/btn_main_score"
+            android:onClick="onFormMainClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
@@ -91,7 +130,9 @@
 
         <LinearLayout
             android:layout_weight="1"
+            android:id="@+id/btn_main_emptyroom"
             android:orientation="vertical"
+            android:onClick="onFormMainClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
@@ -113,7 +154,9 @@
         <LinearLayout
             android:background="#f6f6f6"
             android:layout_weight="1"
+            android:id="@+id/btn_main_library"
             android:orientation="vertical"
+            android:onClick="onFormMainClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
@@ -135,6 +178,8 @@
         <LinearLayout
             android:layout_weight="1"
             android:orientation="vertical"
+            android:id="@+id/btn_main_kuaitong"
+            android:onClick="onFormMainClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
@@ -186,12 +231,13 @@
                 android:text="系统公告"
                 android:textSize="20sp"/>
             <TextView
+                android:id="@+id/notification"
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
                 android:textSize="12sp"
-                android:text="系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题系统问题"/>
+                android:text="系统公告"/>
 
         </LinearLayout>
 
