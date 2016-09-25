@@ -52,7 +52,7 @@ public class AboutActivity extends BaseMainActivity_new {
         MobclickAgent.onEvent(this, "About");
 
 
-        INIT(R.layout.helper_about, "关于我们",8);
+        INIT(R.layout.helper_about, "关于我们",0);
         Button mButton_feedback=(Button)findViewById(R.id.button_feedback);
         Button mButton_update=(Button)findViewById(R.id.button_update);
         mButton_feedback.setOnClickListener(new View.OnClickListener() {

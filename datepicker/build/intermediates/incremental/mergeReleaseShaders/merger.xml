@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\Gitbage\new3\isdust_android\datepicker\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\Gitbage\new3\isdust_android\datepicker\src\release\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\git\isdust_bak\isdust_android\datepicker\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\git\isdust_bak\isdust_android\datepicker\src\release\shaders"/></dataSet></merger>

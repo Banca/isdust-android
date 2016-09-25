@@ -31,20 +31,24 @@ public class KeCheng {
             e.printStackTrace();
         }
     }
-    private String getCourse(){
-        StringBuilder stringBuilder=new StringBuilder();
+    private String getCourse() {
+        StringBuilder stringBuilder = new StringBuilder();
         String messege;
-        String sql="select * from schedule where zhoushu = ? and xingqi = ?";
+        String sql = "select * from schedule where zhoushu = ? and xingqi = ?";
         Cursor cursor;
-        cursor = db.rawQuery(sql,new String[]{(String.valueOf(zhoushu)),String.valueOf(xingqi)});
-        jieshu=cursor.getCount();
-        while(cursor.moveToNext()){
-            messege = cursor.getString(cursor.getColumnIndex("kecheng"));
-            String[] list = messege.split("<br>");
-            String s = init(list[1]);
-            stringBuilder.append(s+"     "+list[3]+"          ").append(list[0]).append("\n");
+        try {
+            cursor = db.rawQuery(sql, new String[]{(String.valueOf(zhoushu)), String.valueOf(xingqi)});
+            jieshu = cursor.getCount();
+            while (cursor.moveToNext()) {
+                messege = cursor.getString(cursor.getColumnIndex("kecheng"));
+                String[] list = messege.split("<br>");
+                String s = init(list[1]);
+                stringBuilder.append(s + "     " + list[3] + "          ").append(list[0]).append("\n");
+            }
+            cursor.close();
+        }catch (Exception e) {
+                e.printStackTrace();
         }
-        cursor.close();
         return stringBuilder.toString();
     }
 

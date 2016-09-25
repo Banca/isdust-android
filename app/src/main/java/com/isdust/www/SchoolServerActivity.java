@@ -12,7 +12,7 @@ public class SchoolServerActivity extends BaseMainActivity_new {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.act2,"校园资讯",7);
+        INIT(R.layout.act2,"校园服务",0);
     }
     public void onFormMainClick(View v) {
         Intent intent = new Intent();
