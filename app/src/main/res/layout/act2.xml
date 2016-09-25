@@ -1,4 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50.0dip"
+    android:background="@drawable/bg_title_bar"
+    android:gravity="center_vertical"
+    android:id="@+id/relativeLayout">
+
+    <!--ImageView
+        android:onClick="onTitleBarClick"
+        android:id="@+id/title_bar_menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="3.0dip"
+        android:layout_marginRight="3.0dip"
+        android:layout_marginTop="3.0dip"
+        android:gravity="center"
+        android:src="@drawable/ic_top_bar_category" /-->
+
+    <TextView
+        android:id="@+id/title_bar_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingLeft="75.0dip"
+        android:paddingRight="75.0dip"
+        android:singleLine="true"
+        android:text="Title"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</RelativeLayout>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,40 +52,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="50.0dip"
-        android:background="@drawable/bg_title_bar"
-        android:gravity="center_vertical"
-        android:id="@+id/relativeLayout">
 
-        <!--ImageView
-            android:onClick="onTitleBarClick"
-            android:id="@+id/title_bar_menu_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="3.0dip"
-            android:layout_marginRight="3.0dip"
-            android:layout_marginTop="3.0dip"
-            android:gravity="center"
-            android:src="@drawable/ic_top_bar_category" /-->
-
-        <TextView
-            android:id="@+id/title_bar_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:paddingLeft="75.0dip"
-            android:paddingRight="75.0dip"
-            android:singleLine="true"
-            android:text="Title"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
 
 
     <TextView
@@ -354,128 +362,10 @@
 
 
 </LinearLayout>
-    <LinearLayout
-        android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:id="@+id/btn_main_personal"
-        android:onClick="onFormMainClick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_marginBottom="8dip"
-            android:background="@drawable/menu_person"
-            android:layout_marginTop="10dip"
-            android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            />
-        <LinearLayout
-            android:layout_marginLeft="5dip"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="5dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="个人中心"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_marginRight="15dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dip"
-                android:text="提供书本续借，还书日期查询"></TextView>
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:id="@+id/btn_main_personal"
-        android:onClick="onFormMainClick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_marginBottom="8dip"
-            android:background="@drawable/menu_person"
-            android:layout_marginTop="10dip"
-            android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            />
-        <LinearLayout
-            android:layout_marginLeft="5dip"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="5dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="个人中心"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_marginRight="15dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dip"
-                android:text="提供书本续借，还书日期查询"></TextView>
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:background="#FFFFFF"
-        android:orientation="horizontal"
-        android:id="@+id/btn_main_personal"
-        android:onClick="onFormMainClick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_marginBottom="8dip"
-            android:background="@drawable/menu_person"
-            android:layout_marginTop="10dip"
-            android:layout_marginLeft="10dip"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            />
-        <LinearLayout
-            android:layout_marginLeft="5dip"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="5dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="个人中心"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_marginRight="15dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dip"
-                android:text="提供书本续借，还书日期查询"></TextView>
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-
 </LinearLayout>
 </ScrollView>
 
-
+</LinearLayout>
 
 
 
