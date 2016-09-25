@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    android:overScrollMode="never">
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -73,6 +79,8 @@
 
                 <View
                     android:id="@+id/dot_0"
+                    android:layout_width="wrap_content" />
+<<<<<<< HEAD
                     android:layout_width="5dip"
                     android:layout_height="5dip"
                     android:layout_marginLeft="2dip"
@@ -107,6 +115,22 @@
                     android:layout_marginLeft="2dip"
                     android:layout_marginRight="2dip"
                     android:background="@drawable/k1"/>
+=======
+                   style="@style/spiner_indicator"/>
+
+                <View
+                    android:id="@+id/dot_1"
+                    style="@style/spiner_indicator"/>
+                <View
+                    android:id="@+id/dot_2"
+                    style="@style/spiner_indicator"/>
+                <View
+                    android:id="@+id/dot_3"
+                    style="@style/spiner_indicator"/>
+                <View
+                    android:id="@+id/dot_4"
+                    style="@style/spiner_indicator"/>
+>>>>>>> 1db5d75
 
             </LinearLayout>
         </LinearLayout>
@@ -355,10 +379,6 @@
     </LinearLayout>
 
 </LinearLayout>
-    <Button
-        android:onClick="addqq"
-        android:text="adqq"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
+</ScrollView>
