@@ -1,29 +1,27 @@
 package com.isdust.www;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-<<<<<<< HEAD
-
-=======
 import com.isdust.www.Spinner.spinner;
->>>>>>> 1db5d75
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.umeng.analytics.MobclickAgent;
+import com.isdust.www.tab.KeCheng;
 import com.umeng.onlineconfig.OnlineConfigAgent;
-import com.umeng.update.UmengUpdateAgent;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Timer;
-import java.util.TimerTask;
+
+import pw.isdust.isdust.function.SchoolDate;
 
 
 public class MainActivity extends BaseMainActivity_new {
@@ -33,6 +31,10 @@ public class MainActivity extends BaseMainActivity_new {
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
 	private spinner mSpinner;
+	private SQLiteDatabase db;
+	private KeCheng kecheng;
+	private TextView kc;
+    private String kechengInfo;
 //	private View form_welcome;
 	//private MyApplication isdustapp1;
 
@@ -48,19 +50,27 @@ public class MainActivity extends BaseMainActivity_new {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext=this;
-<<<<<<< HEAD
+
 
 		INIT(R.layout.act1, "首页",0);
 
-=======
-		mSpinner = new spinner(this);
+        //开启数据库获取数据
+		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
+        kecheng=new KeCheng(db,this);
+        kechengInfo=kecheng.getKecheng();
+        db.close();
 
-		INIT(R.layout.act1, "首页",0);
+        kc = (TextView)findViewById(R.id.kecheng);
+        kc.setText(kechengInfo);
+
+
+        mSpinner = new spinner(this);
 		mSpinner.init();
->>>>>>> 1db5d75
+
 		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 		TextView info = (TextView)findViewById(R.id.notification);
 		info.setText(braoadcast);
+
 	/*
 
 		MobclickAgent.updateOnlineConfig(mContext);
@@ -234,4 +244,5 @@ public class MainActivity extends BaseMainActivity_new {
 		super.onStop();
 		mSpinner.onStop();
 	}
+
 }

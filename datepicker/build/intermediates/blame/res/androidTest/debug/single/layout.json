@@ -2,5 +2,9 @@
     {
         "merged": "D:\\git\\isdust\\isdust_android\\datepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_main.xml",
         "source": "D:\\git\\isdust\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_main.xml",
+        "source": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
     }
 ]

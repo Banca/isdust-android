@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -36,7 +37,10 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -305,6 +309,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
         initParam();
         xianshidangqian();
+
     }
     public void xianshidangqian(){
         try {
@@ -780,5 +785,6 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             clipboard.setPrimaryClip(clip);
         }
     }
+
 
 }
