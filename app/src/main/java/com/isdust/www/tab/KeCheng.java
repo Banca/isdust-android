@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import pw.isdust.isdust.function.SchoolDate;
 
 /**
@@ -37,11 +41,62 @@ public class KeCheng {
         while(cursor.moveToNext()){
             messege = cursor.getString(cursor.getColumnIndex("kecheng"));
             String[] list = messege.split("<br>");
-            stringBuilder.append(list[0]).append(":").append(list[3]).append("\n");
+            String s = init(list[1]);
+            stringBuilder.append(s+"     "+list[3]+"          ").append(list[0]).append("\n");
         }
         cursor.close();
         return stringBuilder.toString();
     }
+
+    private String init(String s)
+    {
+        String jie = "";
+        for(int i = 0 ; i < s.length() ; i++)
+        {
+            if(s.charAt(i)>='1'  && s.charAt(i) <= '9'  )
+            {
+                if(s.charAt(i)=='9')
+                    jie = "9-10";
+                else
+                    jie = jie.substring(0,0)+s.charAt(i) +'-' + (char)((int)s.charAt(i)+1);
+                break;
+            }
+        }
+        return jie;
+    }
+
+
+/*    public List getCourse_end(){
+        List l = new ArrayList();
+        //StringBuilder stringBuilder=new StringBuilder();
+        String messege;
+        String sql="select * from schedule where zhoushu = ? and xingqi = ?";
+        Cursor cursor;
+        cursor = db.rawQuery(sql,new String[]{(String.valueOf(zhoushu)),String.valueOf(xingqi)});
+        jieshu=cursor.getCount();
+        while(cursor.moveToNext()){
+            messege = cursor.getString(cursor.getColumnIndex("kecheng"));
+            String[] list = messege.split("<br>");
+            //ArrayList<String> list1 = messege.split("<br>");
+            //stringBuilder.append(list[0]).append(":").append(list[3]).append("\n");
+            String jie = "";
+            for(int i = 0 ; i < list[1].length() ; i++)
+            {
+                if(list[1].charAt(i)>='1'  && list[1].charAt(i) <= '9'  )
+                {
+                    if(list[1].charAt(i)=='9')
+                        jie = "9-10";
+                    else
+                       jie = jie.substring(0,0)+list[1].charAt(i) +'-' + (char)((int)list[1].charAt(i)+1);
+                    break;
+                }
+            }
+            l.add(jie+list[0]+list[3]);
+        }
+        cursor.close();
+        return l;
+    }*/
+
     public String getKecheng(){
         StringBuilder kecheng_info= new StringBuilder();
         kecheng_info.append("今天").append(weekDays[xingqi-1]).append(" ");

@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.isdust.www.Spinner.spinner;
@@ -17,8 +21,10 @@ import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.tab.KeCheng;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 
 import pw.isdust.isdust.function.SchoolDate;
@@ -35,6 +41,7 @@ public class MainActivity extends BaseMainActivity_new {
 	private KeCheng kecheng;
 	private TextView kc;
     private String kechengInfo;
+	private ListView listview;
 //	private View form_welcome;
 	//private MyApplication isdustapp1;
 
@@ -58,11 +65,13 @@ public class MainActivity extends BaseMainActivity_new {
 		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
         kecheng=new KeCheng(db,this);
         kechengInfo=kecheng.getKecheng();
-        db.close();
+        //db.close();
 
         kc = (TextView)findViewById(R.id.kecheng);
         kc.setText(kechengInfo);
 
+		/*listview = (ListView) findViewById(R.id.kechenglist);
+		listview.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,getData()));*/
 
         mSpinner = new spinner(this);
 		mSpinner.init();
@@ -113,6 +122,15 @@ public class MainActivity extends BaseMainActivity_new {
 */
 
 		}
+/*	private List<String> getData(){
+
+		List<String> data = new ArrayList<String>();
+		kecheng=new KeCheng(db,this);
+		data=kecheng.getCourse_end();
+		db.close();
+		return data;
+	}*/
+
 
 
 

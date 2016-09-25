@@ -93,4 +93,12 @@
         <item name="android:background">@drawable/k2</item>
 
     </style>
+    <style name = "schu_list">
+        <item name="android:layout_width">5dip</item>
+        <item name="android:layout_height">5dip</item>
+        <item name="android:layout_marginLeft">2dip</item>
+        <item name="android:layout_marginRight">2dip</item>
+        <item name="android:background">#125156</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
