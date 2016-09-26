@@ -43,7 +43,7 @@ public class KeCheng {
                 messege = cursor.getString(cursor.getColumnIndex("kecheng"));
                 String[] list = messege.split("<br>");
                 String s = init(list[1]);
-                stringBuilder.append(s + "     " + list[3] + "          ").append(list[0]).append("\n");
+                stringBuilder.append(s + "     " + list[3] + "         ").append(list[0]).append("\n");
             }
             cursor.close();
         }catch (Exception e) {
