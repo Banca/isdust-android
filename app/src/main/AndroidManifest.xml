@@ -52,7 +52,7 @@
         </activity>
         <activity
             android:name=".tab.TabActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
@@ -162,7 +162,8 @@
             android:name="UMENG_CHANNEL"
             android:value="isdust_public_1.3" />
 
-        <activity android:name=".SchoolServerActivity"></activity>
+        <activity android:name=".SchoolServerActivity" />
+        <activity android:name=".RecycleView.RecycleViewAdapter"></activity>
     </application>
 
 </manifest>

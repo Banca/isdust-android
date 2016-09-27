@@ -14,7 +14,7 @@ import com.isdust.www.baseactivity.BaseModule;
 public class CardModule extends BaseModule {
 
 
-    public CardModule(int image_id, int name, int desc, int catagory) {
+    private CardModule(int image_id, int name, int desc, int catagory) {
         super(image_id, name, desc, catagory);
     }
 

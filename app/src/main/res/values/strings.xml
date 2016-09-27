@@ -67,9 +67,6 @@
     <string name="library_personal_info">提供书本续借，还书日期查询</string>
 
 
-
-
-
     <string name="net_catgory">网络服务</string>
 
     <string name="kuaitong_name">快通服务</string>
@@ -77,7 +74,6 @@
 
     <string name="wifi_name">无线登录</string>
     <string name="wifi_info">提供CMCC以及ChinaUnicom快捷登录服务</string>
-
 
 
     <string name="scan_text">将条码放入框内, 即可自动扫描</string>

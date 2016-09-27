@@ -8,7 +8,7 @@ import com.isdust.www.R;
 import com.isdust.www.baseactivity.BaseModule;
 
 /**
- * Card的模型
+ * 快通的模型
  * Created by zor on 2016/9/27.
  */
 
@@ -20,7 +20,7 @@ public class KuaiTongModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final KuaiTongModule INSTANCE = new KuaiTongModule(R.drawable.card,R.string.schoolcard_name,R.string.schoolcard_info,R.string.schoolcard_catgory);
+        private static final KuaiTongModule INSTANCE = new KuaiTongModule(R.drawable.main_kuaitong,R.string.kuaitong_name,R.string.kuaitong_info,R.string.net_catgory);
     }
 
     public static final KuaiTongModule getInstance() {

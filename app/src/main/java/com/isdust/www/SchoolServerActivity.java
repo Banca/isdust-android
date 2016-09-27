@@ -2,78 +2,123 @@ package com.isdust.www;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.isdust.www.Card.CardActivity;
 import com.isdust.www.Card.CardModule;
+import com.isdust.www.KuaiTong.KuaiTongModule;
+import com.isdust.www.RecycleView.RecycleViewAdapter;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.baseactivity.BaseModule;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SchoolServerActivity extends BaseMainActivity_new {
 
     private CardModule cardModule;
+    private RecyclerView rcv;
+    GridLayoutManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.act2,"校园服务",0);
-        cardModule = CardModule.getInstance();
-        ImageView imageView = (ImageView)findViewById(R.id.imageView);
-        imageView.setBackgroundResource(cardModule.getImage_id());
-        TextView textView = (TextView)findViewById(R.id.Sc_text_name);
-        TextView textView2 = (TextView)findViewById(R.id.Sc_text_info);
-        textView.setText(cardModule.getName());
-        textView2.setText(cardModule.getDesc());
+       // setContentView(R.layout.activity_recycle);
+        rcv = (RecyclerView) findViewById(R.id.rcv);
+        manager = new GridLayoutManager(this, 1);
+        // 设置布局管理一条数据占用几行，如果是头布局则头布局自己占用一行
+      /*  manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int postion) {
+                if (postion == 0) {
+                    return 2;
+                } else {
+                    return 1;
+                }
+            }
+        });*/
+        rcv.setLayoutManager(manager);
+        List<BaseModule>list=new ArrayList<>();
+        list.add(CardModule.getInstance());
+        list.add(KuaiTongModule.getInstance());
+
+        RecycleViewAdapter adapter = new RecycleViewAdapter(this,list);
+
+
+        rcv.setAdapter(adapter);
+
+
+
+
+
+
+
+
+
+
+
+//
+//        cardModule = CardModule.getInstance();
+//        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+//        imageView.setBackgroundResource(cardModule.getImage_id());
+//        TextView textView = (TextView)findViewById(R.id.Sc_text_name);
+//        TextView textView2 = (TextView)findViewById(R.id.Sc_text_info);
+//        textView.setText(cardModule.getName());
+//        textView2.setText(cardModule.getDesc());
 
     }
-    public void onFormMainClick(View v) {
-        Intent intent = new Intent();
-        switch (v.getId()) {
-            case R.id.btn_main_gonet:
-                intent.setClass(this, GoNetActivity.class);//上网登录
-                this.startActivity(intent);
-                //finish();
-                break;
-            case R.id.btn_main_personal:
-                intent.setClass(this, Library_personal_main.class);//快通查询
-                this.startActivity(intent);
-                break;
-            case R.id.btn_main_schedule:
-                intent.setClass(this, jiaowu_Schedule_main.class);//课程表
-                this.startActivity(intent);
-              //  finish();
-                break;
-            case R.id.btn_main_emptyroom:
-                intent.setClass(this, Jiaowu_EmptyRoom.class);//空自习室
-                this.startActivity(intent);
-               // finish();
-                break;
-            case R.id.btn_main_guancang_library:
-                intent.setClass(this, Library_guancang_main.class);//图书馆
-                this.startActivity(intent);
-              //  finish();
-                break;
-            case R.id.btn_main_card:
-                cardModule.lunchActivity(this);
-               /* intent.setClass(this, CardActivity.class);//校园卡
-                this.startActivity(intent);*/
-              //  finish();
-                break;
-/*			case R.id.btn_main_news:
-				intent.setClass(this, NewsActivity.class);//咨询
-				this.startActivity(intent);
-				finish();
-				break;
-			case R.id.btn_main_about:
-				intent.setClass(this, AboutActivity.class);//关于
-				this.startActivity(intent);
-				break;*/
-            case R.id.btn_main_score:
-                intent.setClass(this, Jiaowu_chengjichaxun_main.class);//查询成绩
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                this.startActivity(intent);
-              //  finish();
-                break;
-        }
-    }
+//    public void onFormMainClick(View v) {
+//        Intent intent = new Intent();
+//        switch (v.getId()) {
+//            case R.id.btn_main_gonet:
+//                intent.setClass(this, GoNetActivity.class);//上网登录
+//                this.startActivity(intent);
+//                //finish();
+//                break;
+//            case R.id.btn_main_personal:
+//                intent.setClass(this, Library_personal_main.class);//快通查询
+//                this.startActivity(intent);
+//                break;
+//            case R.id.btn_main_schedule:
+//                intent.setClass(this, jiaowu_Schedule_main.class);//课程表
+//                this.startActivity(intent);
+//              //  finish();
+//                break;
+//            case R.id.btn_main_emptyroom:
+//                intent.setClass(this, Jiaowu_EmptyRoom.class);//空自习室
+//                this.startActivity(intent);
+//               // finish();
+//                break;
+//            case R.id.btn_main_guancang_library:
+//                intent.setClass(this, Library_guancang_main.class);//图书馆
+//                this.startActivity(intent);
+//              //  finish();
+//                break;
+//            case R.id.btn_main_card:
+//                cardModule.lunchActivity(this);
+//               /* intent.setClass(this, CardActivity.class);//校园卡
+//                this.startActivity(intent);*/
+//              //  finish();
+//                break;
+///*			case R.id.btn_main_news:
+//				intent.setClass(this, NewsActivity.class);//咨询
+//				this.startActivity(intent);
+//				finish();
+//				break;
+//			case R.id.btn_main_about:
+//				intent.setClass(this, AboutActivity.class);//关于
+//				this.startActivity(intent);
+//				break;*/
+//            case R.id.btn_main_score:
+//                intent.setClass(this, Jiaowu_chengjichaxun_main.class);//查询成绩
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                this.startActivity(intent);
+//              //  finish();
+//                break;
+//        }
+//    }
 }
