@@ -57,7 +57,7 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CardListView"
+            android:name=".Card.CardListView"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Jiaowu_EmptyRoom"
@@ -66,10 +66,10 @@
             android:name=".jiaowu_Schedule_main"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CardChangePwdActivity"
+            android:name=".Card.CardChangePwdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CardLossActivity"
+            android:name=".Card.CardLossActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".GoNetActivity"
@@ -81,7 +81,7 @@
             android:name=".Library_guancang_main"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CardActivity"
+            android:name=".Card.CardActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NewsActivity"
@@ -93,10 +93,10 @@
             android:name=".NetworkPublicLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".KuaiTongAcntActivity"
+            android:name=".KuaiTong.KuaiTongAcntActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".KuaiTongInfoActivity"
+            android:name=".KuaiTong.KuaiTongInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".GoNetCMCCActivity"
@@ -105,7 +105,7 @@
             android:name=".GoNetChinaUnicomActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".KuaiTongActivity"
+            android:name=".KuaiTong.KuaiTongActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Library_guancang_scan"
@@ -126,7 +126,7 @@
             android:name=".jiaowu_Schedule_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Card_login"
+            android:name=".Card.Card_login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jiaowu_schedule_add"

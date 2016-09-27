@@ -2,32 +2,21 @@ package com.isdust.www;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.isdust.www.Card.CardActivity;
+import com.isdust.www.KuaiTong.KuaiTongActivity;
 import com.isdust.www.Spinner.spinner;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.tab.KeCheng;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Timer;
-
-import pw.isdust.isdust.function.SchoolDate;
 
 
 public class MainActivity extends BaseMainActivity_new {

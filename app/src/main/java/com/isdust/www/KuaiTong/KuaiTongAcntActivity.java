@@ -1,4 +1,4 @@
-package com.isdust.www;
+package com.isdust.www.KuaiTong;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.isdust.www.R;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**

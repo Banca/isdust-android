@@ -1,18 +1,30 @@
 package com.isdust.www;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.isdust.www.Card.CardActivity;
+import com.isdust.www.Card.CardModule;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 public class SchoolServerActivity extends BaseMainActivity_new {
 
+    private CardModule cardModule;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.act2,"校园服务",0);
+        cardModule = CardModule.getInstance();
+        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+        imageView.setBackgroundResource(cardModule.getImage_id());
+        TextView textView = (TextView)findViewById(R.id.Sc_text_name);
+        TextView textView2 = (TextView)findViewById(R.id.Sc_text_info);
+        textView.setText(cardModule.getName());
+        textView2.setText(cardModule.getDesc());
+
     }
     public void onFormMainClick(View v) {
         Intent intent = new Intent();
@@ -42,8 +54,9 @@ public class SchoolServerActivity extends BaseMainActivity_new {
               //  finish();
                 break;
             case R.id.btn_main_card:
-                intent.setClass(this, CardActivity.class);//校园卡
-                this.startActivity(intent);
+                cardModule.lunchActivity(this);
+               /* intent.setClass(this, CardActivity.class);//校园卡
+                this.startActivity(intent);*/
               //  finish();
                 break;
 /*			case R.id.btn_main_news:

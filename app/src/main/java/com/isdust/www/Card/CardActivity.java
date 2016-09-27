@@ -1,4 +1,4 @@
-package com.isdust.www;
+package com.isdust.www.Card;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.R;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;

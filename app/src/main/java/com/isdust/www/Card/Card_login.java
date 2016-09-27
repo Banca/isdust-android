@@ -1,4 +1,4 @@
-package com.isdust.www;
+package com.isdust.www.Card;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.isdust.www.R;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 
 /**

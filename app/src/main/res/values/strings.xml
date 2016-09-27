@@ -39,6 +39,47 @@
     <string name="sun">周日</string>
 
 
+    <string name="schoolcard_catgory">校园卡</string>
+
+    <string name="schoolcard_name">一卡通</string>
+    <string name="schoolcard_info">提供校园一卡通余额查询，消费情况查询，以及挂失与修改密码服务</string>
+
+
+    <string name="Jiaowu_catgory">教务</string>
+
+    <string name="schedule_name">课程表</string>
+    <string name="schedule_info">提供课程表查看，课程表下载，还能自定义课表</string>
+
+    <string name="mark_name">成绩查询</string>
+    <string name="mark_info">提供所有考试成绩查询，GPA查询</string>
+
+
+    <string name="classroom_name">空教室查询</string>
+    <string name="classroomk_info">提供指定时间内的空教室信息查询服务</string>
+
+    <string name="library_catagory">图书馆</string>
+
+    <string name="library_search_name">馆藏查询</string>
+    <string name="library_search_info">提供图书馆馆藏状态查询，书本位置查询</string>
+
+
+    <string name="library_personal_name">个人中心</string>
+    <string name="library_personal_info">提供书本续借，还书日期查询</string>
+
+
+
+
+
+    <string name="net_catgory">网络服务</string>
+
+    <string name="kuaitong_name">快通服务</string>
+    <string name="kuaitong_info">提供快通流量查询，套餐修改，开停机以及充值服务</string>
+
+    <string name="wifi_name">无线登录</string>
+    <string name="wifi_info">提供CMCC以及ChinaUnicom快捷登录服务</string>
+
+
+
     <string name="scan_text">将条码放入框内, 即可自动扫描</string>
 
     <string name="umeng_isNewest">您使用的已经是最新版本。</string>

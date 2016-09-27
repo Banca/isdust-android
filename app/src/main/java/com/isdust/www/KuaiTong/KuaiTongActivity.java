@@ -1,4 +1,4 @@
-package com.isdust.www;
+package com.isdust.www.KuaiTong;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +19,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.Card.Card_login;
+import com.isdust.www.R;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
