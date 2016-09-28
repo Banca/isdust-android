@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.isdust.www.Card.CardActivity;
 import com.isdust.www.Card.CardModule;
 import com.isdust.www.KuaiTong.KuaiTongModule;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
