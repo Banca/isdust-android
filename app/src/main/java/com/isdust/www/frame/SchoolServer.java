@@ -1,4 +1,4 @@
-package com.isdust.www;
+package com.isdust.www.frame;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -6,6 +6,7 @@ import android.widget.ExpandableListView;
 
 import com.isdust.www.Module.*;
 
+import com.isdust.www.R;
 import com.isdust.www.RecycleView.MyAdapter;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 
@@ -15,7 +16,7 @@ import com.isdust.www.baseactivity.BaseMainActivity_new;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchoolServerActivity extends BaseMainActivity_new {
+public class SchoolServer extends BaseMainActivity_new {
 
     private CardModule cardModule;
     private ExpandableListView rcv;
