@@ -26,7 +26,6 @@ public class SchoolServerActivity extends BaseMainActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.act2, "校园服务", 0);
-        // setContentView(R.layout.activity_recycle);
         rcv = (ExpandableListView) findViewById(R.id.list);
 //        manager = new GridLayoutManager(this, 1);
         // 设置布局管理一条数据占用几行，如果是头布局则头布局自己占用一行
@@ -65,24 +64,10 @@ public class SchoolServerActivity extends BaseMainActivity_new {
         list.add(library);
         list.add(net);
         listAdapter = new MyAdapter(this, list);
+        rcv.setGroupIndicator(null);
+        rcv.setDividerHeight(0);
         rcv.setAdapter(listAdapter);
         expandAll();
-
-//        RecycleViewAdapter adapter = new RecycleViewAdapter(this, list);
-//
-//
-//        rcv.setAdapter(adapter);
-
-
-//
-//        cardModule = CardModule.getInstance();
-//        ImageView imageView = (ImageView)findViewById(R.id.imageView);
-//        imageView.setBackgroundResource(cardModule.getImage_id());
-//        TextView textView = (TextView)findViewById(R.id.Sc_text_name);
-//        TextView textView2 = (TextView)findViewById(R.id.Sc_text_info);
-//        textView.setText(cardModule.getName());
-//        textView2.setText(cardModule.getDesc());
-
     }
     private void expandAll() {
         int count = listAdapter.getGroupCount();

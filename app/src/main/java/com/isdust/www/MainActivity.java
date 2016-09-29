@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.isdust.www.RecycleView.RecycleViewAdapter;
 import com.isdust.www.Spinner.spinner;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.tab.KeCheng;
@@ -28,7 +30,9 @@ public class MainActivity extends BaseMainActivity_new {
 	private KeCheng kecheng;
 	private TextView kc;
     private String kechengInfo;
-	private ListView listview;
+	private RecycleViewAdapter adapter;
+	private GridLayoutManager manager;
+
 //	private View form_welcome;
 	//private MyApplication isdustapp1;
 
@@ -52,7 +56,12 @@ public class MainActivity extends BaseMainActivity_new {
 		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
         kecheng=new KeCheng(db,this);
         kechengInfo=kecheng.getKecheng();
-        //db.close();
+        db.close();
+
+		manager = new GridLayoutManager(this, 6);
+       	//rcv.setLayoutManager(manager);
+
+
 
         kc = (TextView)findViewById(R.id.kecheng);
         kc.setText(kechengInfo);
