@@ -9,7 +9,6 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.tab.TabActivity;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 import com.umeng.update.UmengUpdateAgent;
@@ -78,7 +77,7 @@ public class AppStart extends BaseMainActivity_new {
      * 跳转到...
      */
     private void redirectTo() {
-        Intent intent = new Intent(this, TabActivity.class);
+        Intent intent = new Intent(this, AboutActivity.TabActivity.class);
         startActivity(intent);
         finish();
     }

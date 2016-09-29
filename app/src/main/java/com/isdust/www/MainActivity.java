@@ -6,14 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.isdust.www.RecycleView.RecycleViewAdapter;
-import com.isdust.www.Spinner.spinner;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.tab.KeCheng;
+import com.isdust.www.Module.KeCheng;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.util.Timer;
@@ -25,13 +24,14 @@ public class MainActivity extends BaseMainActivity_new {
 	static boolean broadcast=false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
-	private spinner mSpinner;
+	//private spinner mSpinner;
 	private SQLiteDatabase db;
 	private KeCheng kecheng;
 	private TextView kc;
     private String kechengInfo;
 	private RecycleViewAdapter adapter;
 	private GridLayoutManager manager;
+	private RecyclerView rcv;
 
 //	private View form_welcome;
 	//private MyApplication isdustapp1;
@@ -51,6 +51,7 @@ public class MainActivity extends BaseMainActivity_new {
 
 
 		INIT(R.layout.act1, "首页",0);
+		rcv = (RecyclerView)findViewById(R.id.module);
 
         //开启数据库获取数据
 		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
@@ -59,7 +60,7 @@ public class MainActivity extends BaseMainActivity_new {
         db.close();
 
 		manager = new GridLayoutManager(this, 6);
-       	//rcv.setLayoutManager(manager);
+       	rcv.setLayoutManager(manager);
 
 
 
@@ -69,8 +70,8 @@ public class MainActivity extends BaseMainActivity_new {
 		/*listview = (ListView) findViewById(R.id.kechenglist);
 		listview.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,getData()));*/
 
-        mSpinner = new spinner(this);
-		mSpinner.init();
+        //mSpinner = new spinner(this);
+		//mSpinner.init();
 
 		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
 		TextView info = (TextView)findViewById(R.id.notification);
@@ -250,13 +251,13 @@ public class MainActivity extends BaseMainActivity_new {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		mSpinner.onStart();
+		//mSpinner.onStart();
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		mSpinner.onStop();
+		//mSpinner.onStop();
 	}
 
 }

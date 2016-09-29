@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.isdust.www.Module.Catagory;
 import com.isdust.www.R;
 import com.isdust.www.Module.BaseModule;
+import com.isdust.www.frame.SchoolServer;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class MyAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.deptList = deptList;
     }
+
+
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {

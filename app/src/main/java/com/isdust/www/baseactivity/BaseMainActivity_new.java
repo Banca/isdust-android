@@ -2,18 +2,13 @@ package com.isdust.www.baseactivity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.MainActivity;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
-import com.isdust.www.menu.Leftmenu;
-import com.isdust.www.tab.TabActivity;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.umeng.analytics.MobclickAgent;
 
 /**

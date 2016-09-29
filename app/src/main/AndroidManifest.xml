@@ -51,12 +51,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".tab.TabActivity"
-            android:theme="@style/AppThemeNotTranslucent"
-            android:screenOrientation="portrait" />
+            android:name=".AboutActivity$TabActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNotTranslucent" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CardListView"
             android:screenOrientation="portrait" />
@@ -163,8 +163,7 @@
             android:name="UMENG_CHANNEL"
             android:value="isdust_public_1.3" />
 
-        <activity android:name=".SchoolServerActivity" />
-        <activity android:name=".RecycleView.RecycleViewAdapter"></activity>
+        <activity android:name=".RecycleView.RecycleViewAdapter" />
     </application>
 
 </manifest>

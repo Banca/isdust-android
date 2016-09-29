@@ -4,8 +4,18 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.isdust.www.Module.CardModule;
+import com.isdust.www.Module.Catagory;
+import com.isdust.www.Module.KuaiTongModule;
+import com.isdust.www.Module.WlanModule;
+import com.isdust.www.Module.jiaowu_ClassroomModule;
+import com.isdust.www.Module.jiaowu_MarkModule;
+import com.isdust.www.Module.jiaowu_ScheduleModule;
+import com.isdust.www.Module.library_PersonalModule;
+import com.isdust.www.Module.library_SearchModule;
 import com.isdust.www.datatype.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -37,6 +47,7 @@ import pw.isdust.isdust.function.SchoolCard;
 public class MyApplication extends Application {
     private SchoolCard usercard;
     private Network_Kuaitong kuaitong;
+    public List<Catagory> list = new ArrayList<>();
     private List<Book> mBooks;
     private Context mContext;
     private Networklogin_CMCC mNetworklogin_CMCC;
@@ -56,6 +67,7 @@ public class MyApplication extends Application {
 
         mContext=this;
         mExecutorService.execute(xiancheng_init);
+        initSchoolServer();
 
 
     }
@@ -90,6 +102,29 @@ public class MyApplication extends Application {
             Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT);
             return;
         }
+    }
+    private void initSchoolServer(){
+        Catagory card = new Catagory(R.string.schoolcard_catgory);
+        card.addItem(CardModule.getInstance());
+
+        Catagory jiaowu = new Catagory(R.string.Jiaowu_catgory);
+        jiaowu.addItem(jiaowu_MarkModule.getInstance());
+        jiaowu.addItem(jiaowu_ClassroomModule.getInstance());
+        jiaowu.addItem(jiaowu_ScheduleModule.getInstance());
+
+        Catagory library = new Catagory(R.string.library_catagory);
+        library.addItem(library_SearchModule.getInstance());
+        library.addItem(library_PersonalModule.getInstance());
+
+        Catagory net = new Catagory(R.string.net_catgory);
+        net.addItem(KuaiTongModule.getInstance());
+        net.addItem(WlanModule.getInstance());
+
+
+        list.add(card);
+        list.add(jiaowu);
+        list.add(library);
+        list.add(net);
     }
 }
 

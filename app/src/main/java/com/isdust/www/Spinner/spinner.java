@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class spinner{
 
     private ViewPager mViewPaper;
+    private View v;
     private List<ImageView> images;
     private List<View> dots;
     private int currentItem;
@@ -45,13 +46,14 @@ public class spinner{
     private ScheduledExecutorService scheduledExecutorService;
 
 
-    public spinner(Activity activity){
+    public spinner(Activity activity, View v){
         thisActivity=activity;
+        this.v=v;
     }
 
     public void init() {
 
-        mViewPaper = (ViewPager) thisActivity.findViewById(R.id.vp);
+        mViewPaper = (ViewPager) v.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
@@ -62,13 +64,13 @@ public class spinner{
         }
         //显示的小点
         dots = new ArrayList<View>();
-        dots.add(thisActivity.findViewById(R.id.dot_0));
-        dots.add(thisActivity.findViewById(R.id.dot_1));
-        dots.add(thisActivity.findViewById(R.id.dot_2));
-        dots.add(thisActivity.findViewById(R.id.dot_3));
-        dots.add(thisActivity.findViewById(R.id.dot_4));
+        dots.add(v.findViewById(R.id.dot_0));
+        dots.add(v.findViewById(R.id.dot_1));
+        dots.add(v.findViewById(R.id.dot_2));
+        dots.add(v.findViewById(R.id.dot_3));
+        dots.add(v.findViewById(R.id.dot_4));
 
-        title = (TextView) thisActivity.findViewById(R.id.title);
+        title = (TextView) v.findViewById(R.id.title);
         title.setText(titles[0]);
 
         adapter = new ViewPagerAdapter();

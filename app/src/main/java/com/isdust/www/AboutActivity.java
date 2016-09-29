@@ -2,14 +2,24 @@ package com.isdust.www;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.frame.About;
+import com.isdust.www.frame.Main;
+import com.isdust.www.frame.SchoolServer;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.model.UserInfo;
@@ -106,4 +116,86 @@ public class AboutActivity extends BaseMainActivity_new {
     }
 
 
+    public static class TabActivity extends FragmentActivity {
+
+        private RadioGroup navGroup;
+        private long exitTime = 0;
+        String tabs[] = {"Tab1", "Tab2", "Tab3"};
+        TextView[] textViews=new TextView[3];
+
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_tab);
+            initView();
+        }
+
+        private void initView() {
+            navGroup = (RadioGroup) findViewById(R.id.frames);
+            textViews[0]=(TextView)findViewById(R.id.fram1);
+            textViews[1]=(TextView)findViewById(R.id.fram2);
+            textViews[2]=(TextView)findViewById(R.id.fram3);
+            navGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    switch (checkedId) {
+                        case R.id.fram1:
+                            switchFragmentSupport(R.id.content, tabs[0]);
+                            break;
+                        case R.id.fram2:
+                            switchFragmentSupport(R.id.content, tabs[1]);
+                            break;
+                        case R.id.fram3:
+                            switchFragmentSupport(R.id.content, tabs[2]);
+                            break;
+                    }
+                }
+            });
+            RadioButton btn = (RadioButton) navGroup.getChildAt(0);
+            btn.toggle();
+        }
+
+        private void switchFragmentSupport(int containId, String tag) {
+            //获取FramegrameManager管理器
+            FragmentManager manager = getFragmentManager();
+            //根据标签查找是否已存在对应的frame对象
+            Fragment destFrament = manager.findFragmentByTag(tag);
+            //如果不存在则初始化
+            if (destFrament == null) {
+                if (tag.equals(tabs[0])) {
+                    destFrament = new Main(TabActivity.this);
+                }
+                if (tag.equals(tabs[1])) {
+                    destFrament = new SchoolServer(TabActivity.this);
+                }
+                if (tag.equals(tabs[2])) {
+                    destFrament = new About(TabActivity.this);
+                }
+            }
+            //获取FramegramentTransaction事务对象
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(containId, destFrament, tag);
+            ft.commit();
+        }
+
+        @Override
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+                if ((System.currentTimeMillis() - exitTime) > 1000)  //System.currentTimeMillis()无论何时调用，肯定大于2000
+                {
+                    Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    finish();
+                    System.exit(0);
+                }
+                return true;
+            }
+            return super.onKeyDown(keyCode, event);
+        }
+
+
+    }
 }

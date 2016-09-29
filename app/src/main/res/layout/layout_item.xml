@@ -12,7 +12,6 @@
 
         <ImageView
             android:layout_marginBottom="5dip"
-            android:background="@drawable/menu_schedule"
             android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
             android:layout_width="40dip"
@@ -31,7 +30,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="课程表"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/info"
@@ -39,8 +37,7 @@
                 android:layout_marginRight="15dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dip"
-                android:text="提供课程表查看，课程表下载，还能自定义课表"/>
+                android:layout_marginBottom="10dip"/>
 
         </LinearLayout>
 

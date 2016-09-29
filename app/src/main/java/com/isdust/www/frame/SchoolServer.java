@@ -1,50 +1,74 @@
 package com.isdust.www.frame;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
-import com.isdust.www.Module.*;
-
+import com.isdust.www.Module.CardModule;
+import com.isdust.www.Module.Catagory;
+import com.isdust.www.Module.KuaiTongModule;
+import com.isdust.www.Module.WlanModule;
+import com.isdust.www.Module.jiaowu_ClassroomModule;
+import com.isdust.www.Module.jiaowu_MarkModule;
+import com.isdust.www.Module.jiaowu_ScheduleModule;
+import com.isdust.www.Module.library_PersonalModule;
+import com.isdust.www.Module.library_SearchModule;
+import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 import com.isdust.www.RecycleView.MyAdapter;
-import com.isdust.www.baseactivity.BaseMainActivity_new;
-
-
-
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchoolServer extends BaseMainActivity_new {
+@SuppressLint("ValidFragment")
+public class SchoolServer extends Fragment {
 
     private CardModule cardModule;
     private ExpandableListView rcv;
     GridLayoutManager manager;
+    List<Catagory>list = new ArrayList<>();
+    View v;
     MyAdapter listAdapter;
+    protected MyApplication isdustapp;
+    private Activity thisActivity;
 
+    public SchoolServer(Activity activity){
+        thisActivity = activity;
+        isdustapp=new MyApplication();
+    }
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        INIT(R.layout.act2, "校园服务", 0);
-        rcv = (ExpandableListView) findViewById(R.id.list);
-//        manager = new GridLayoutManager(this, 1);
-        // 设置布局管理一条数据占用几行，如果是头布局则头布局自己占用一行
-      /*  manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int postion) {
-                if (postion == 0) {
-                    return 2;
-                } else {
-                    return 1;
-                }
-            }
-        });*/
-//        rcv.setLayoutManager(manager);
-
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.act2, null);
+        TextView textView = (TextView)v.findViewById(R.id.title_bar_name);
+        textView.setText("校园服务");
+        rcv = (ExpandableListView) v.findViewById(R.id.list);
+        initSchoolServer();
+        listAdapter = new MyAdapter(thisActivity, list);
+        rcv.setGroupIndicator(null);
+        rcv.setDividerHeight(0);
+        rcv.setAdapter(listAdapter);
+        expandAll();
+        return v;
+    }
+    private void expandAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            rcv.expandGroup(i);
+        }
+    }
+    private void initSchoolServer(){
         Catagory card = new Catagory(R.string.schoolcard_catgory);
-        card.addItem(cardModule.getInstance());
+        card.addItem(CardModule.getInstance());
 
         Catagory jiaowu = new Catagory(R.string.Jiaowu_catgory);
         jiaowu.addItem(jiaowu_MarkModule.getInstance());
@@ -59,22 +83,11 @@ public class SchoolServer extends BaseMainActivity_new {
         net.addItem(KuaiTongModule.getInstance());
         net.addItem(WlanModule.getInstance());
 
-        List<Catagory> list = new ArrayList<>();
+
         list.add(card);
         list.add(jiaowu);
         list.add(library);
         list.add(net);
-        listAdapter = new MyAdapter(this, list);
-        rcv.setGroupIndicator(null);
-        rcv.setDividerHeight(0);
-        rcv.setAdapter(listAdapter);
-        expandAll();
-    }
-    private void expandAll() {
-        int count = listAdapter.getGroupCount();
-        for (int i = 0; i < count; i++) {
-            rcv.expandGroup(i);
-        }
     }
 
 }
