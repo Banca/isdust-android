@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AboutActivity$TabActivity"
+            android:name=".TabActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNotTranslucent" />
         <activity

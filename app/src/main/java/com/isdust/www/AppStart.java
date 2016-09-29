@@ -77,7 +77,7 @@ public class AppStart extends BaseMainActivity_new {
      * 跳转到...
      */
     private void redirectTo() {
-        Intent intent = new Intent(this, AboutActivity.TabActivity.class);
+        Intent intent = new Intent(this, TabActivity.class);
         startActivity(intent);
         finish();
     }
