@@ -1,4 +1,4 @@
-package com.isdust.www.KuaiTong;
+package com.isdust.www;
 
 import android.app.Activity;
 import android.content.Intent;

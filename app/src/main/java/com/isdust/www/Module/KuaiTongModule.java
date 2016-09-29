@@ -1,11 +1,10 @@
-package com.isdust.www.KuaiTong;
+package com.isdust.www.Module;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
-import com.isdust.www.Card.CardActivity;
+import com.isdust.www.KuaiTongActivity;
 import com.isdust.www.R;
-import com.isdust.www.baseactivity.BaseModule;
 
 /**
  * 快通的模型
@@ -28,7 +27,7 @@ public class KuaiTongModule extends BaseModule {
     }
 
     @Override
-    public void lunchActivity(Activity activity) {
+    public void lunchActivity(Context activity) {
         activity.startActivity(new Intent(activity,KuaiTongActivity.class));
     }
 }

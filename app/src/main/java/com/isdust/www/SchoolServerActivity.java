@@ -1,19 +1,16 @@
 package com.isdust.www;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ExpandableListView;
 
-import com.isdust.www.Card.CardActivity;
-import com.isdust.www.Card.CardModule;
-import com.isdust.www.KuaiTong.KuaiTongModule;
-import com.isdust.www.RecycleView.RecycleViewAdapter;
+import com.isdust.www.Module.*;
+
+import com.isdust.www.RecycleView.MyAdapter;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.baseactivity.BaseModule;
+
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +18,17 @@ import java.util.List;
 public class SchoolServerActivity extends BaseMainActivity_new {
 
     private CardModule cardModule;
-    private RecyclerView rcv;
+    private ExpandableListView rcv;
     GridLayoutManager manager;
+    MyAdapter listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.act2,"校园服务",0);
-       // setContentView(R.layout.activity_recycle);
-        rcv = (RecyclerView) findViewById(R.id.rcv);
-        manager = new GridLayoutManager(this, 1);
+        INIT(R.layout.act2, "校园服务", 0);
+        // setContentView(R.layout.activity_recycle);
+        rcv = (ExpandableListView) findViewById(R.id.list);
+//        manager = new GridLayoutManager(this, 1);
         // 设置布局管理一条数据占用几行，如果是头布局则头布局自己占用一行
       /*  manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -41,24 +40,38 @@ public class SchoolServerActivity extends BaseMainActivity_new {
                 }
             }
         });*/
-        rcv.setLayoutManager(manager);
-        List<BaseModule>list=new ArrayList<>();
-        list.add(CardModule.getInstance());
-        list.add(KuaiTongModule.getInstance());
-
-        RecycleViewAdapter adapter = new RecycleViewAdapter(this,list);
+//        rcv.setLayoutManager(manager);
 
 
-        rcv.setAdapter(adapter);
+        Catagory card = new Catagory(R.string.schoolcard_catgory);
+        card.addItem(cardModule.getInstance());
 
+        Catagory jiaowu = new Catagory(R.string.Jiaowu_catgory);
+        jiaowu.addItem(jiaowu_MarkModule.getInstance());
+        jiaowu.addItem(jiaowu_ClassroomModule.getInstance());
+        jiaowu.addItem(jiaowu_ScheduleModule.getInstance());
 
+        Catagory library = new Catagory(R.string.library_catagory);
+        library.addItem(library_SearchModule.getInstance());
+        library.addItem(library_PersonalModule.getInstance());
 
+        Catagory net = new Catagory(R.string.net_catgory);
+        net.addItem(KuaiTongModule.getInstance());
+        net.addItem(WlanModule.getInstance());
 
+        List<Catagory> list = new ArrayList<>();
+        list.add(card);
+        list.add(jiaowu);
+        list.add(library);
+        list.add(net);
+        listAdapter = new MyAdapter(this, list);
+        rcv.setAdapter(listAdapter);
+        expandAll();
 
-
-
-
-
+//        RecycleViewAdapter adapter = new RecycleViewAdapter(this, list);
+//
+//
+//        rcv.setAdapter(adapter);
 
 
 //
@@ -71,4 +84,11 @@ public class SchoolServerActivity extends BaseMainActivity_new {
 //        textView2.setText(cardModule.getDesc());
 
     }
+    private void expandAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            rcv.expandGroup(i);
+        }
+    }
+
 }

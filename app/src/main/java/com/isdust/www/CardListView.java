@@ -1,4 +1,4 @@
-package com.isdust.www.Card;
+package com.isdust.www;
 
 import android.content.Context;
 import android.os.Bundle;

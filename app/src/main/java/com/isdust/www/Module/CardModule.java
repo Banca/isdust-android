@@ -1,10 +1,10 @@
-package com.isdust.www.Card;
+package com.isdust.www.Module;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
+import com.isdust.www.CardActivity;
 import com.isdust.www.R;
-import com.isdust.www.baseactivity.BaseModule;
 
 /**
  * Card的模型
@@ -27,7 +27,7 @@ public class CardModule extends BaseModule {
     }
 
     @Override
-    public void lunchActivity(Activity activity) {
-        activity.startActivity(new Intent(activity,CardActivity.class));
+    public void lunchActivity(Context mContext) {
+        mContext.startActivity(new Intent(mContext,CardActivity.class));
     }
 }

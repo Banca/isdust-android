@@ -1,4 +1,4 @@
-package com.isdust.www.Card;
+package com.isdust.www;
 
 import android.os.Bundle;
 import android.os.Message;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.R;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.umeng.analytics.MobclickAgent;
 

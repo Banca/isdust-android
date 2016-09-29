@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.isdust.www.Card.CardActivity;
-import com.isdust.www.KuaiTong.KuaiTongActivity;
 import com.isdust.www.Spinner.spinner;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.tab.KeCheng;

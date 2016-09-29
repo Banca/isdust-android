@@ -1,6 +1,7 @@
-package com.isdust.www.baseactivity;
+package com.isdust.www.Module;
 
 import android.app.Activity;
+import android.content.Context;
 
 /**
  * Created by zor on 2016/9/27.
@@ -37,6 +38,6 @@ public abstract class BaseModule {
     public int getDesc() {
         return desc;
     }
-    public abstract void lunchActivity(Activity activity);
+    public abstract void lunchActivity(Context mContext);
 
 }

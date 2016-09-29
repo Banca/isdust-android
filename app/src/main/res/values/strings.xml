@@ -55,7 +55,7 @@
 
 
     <string name="classroom_name">空教室查询</string>
-    <string name="classroomk_info">提供指定时间内的空教室信息查询服务</string>
+    <string name="classroom_info">提供指定时间内的空教室信息查询服务</string>
 
     <string name="library_catagory">图书馆</string>
 

@@ -1,4 +1,4 @@
-package com.isdust.www.Card;
+package com.isdust.www;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

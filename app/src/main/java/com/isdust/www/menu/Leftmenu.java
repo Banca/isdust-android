@@ -9,10 +9,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.isdust.www.AboutActivity;
-import com.isdust.www.Card.CardActivity;
+import com.isdust.www.CardActivity;
 import com.isdust.www.GoNetActivity;
 import com.isdust.www.Jiaowu_index;
-import com.isdust.www.KuaiTong.KuaiTongActivity;
+import com.isdust.www.KuaiTongActivity;
 import com.isdust.www.Library_index;
 import com.isdust.www.MainActivity;
 import com.isdust.www.NewsActivity;
