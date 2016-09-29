@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
+<<<<<<< HEAD
     <item android:state_checked="true"
         android:drawable="@drawable/item_service_back">
     </item>
     <item
+=======
+    <item android:state_selected="true"
+        android:drawable="@drawable/item_service_back">
+    </item>
+    <item android:state_selected="false"
+>>>>>>> 2ccc5998cf9bcd2a0c83213a583997aba28a7f53
         android:drawable="@drawable/item_service">
     </item>
 </selector>
