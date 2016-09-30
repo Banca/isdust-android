@@ -33,15 +33,15 @@ public class spinner{
             R.drawable.guancang_head2,
             R.drawable.guancang_head2
     };
-    //存放图片的标题
-    private String[]  titles = new String[]{
-            "巩俐不低俗，我就不能低俗",
-            "扑树又回来啦！再唱经典老歌引万人大合唱",
-            "揭秘北京电影如何升级",
-            "乐视网TV版大派送",
-            "热血屌丝的反杀"
-    };
-    private TextView title;
+//    //存放图片的标题
+//    private String[]  titles = new String[]{
+//            "巩俐不低俗，我就不能低俗",
+//            "扑树又回来啦！再唱经典老歌引万人大合唱",
+//            "揭秘北京电影如何升级",
+//            "乐视网TV版大派送",
+//            "热血屌丝的反杀"
+//    };
+//    private TextView title;
     private ViewPagerAdapter adapter;
     private ScheduledExecutorService scheduledExecutorService;
 
@@ -70,8 +70,8 @@ public class spinner{
         dots.add(v.findViewById(R.id.dot_3));
         dots.add(v.findViewById(R.id.dot_4));
 
-        title = (TextView) v.findViewById(R.id.title);
-        title.setText(titles[0]);
+//        title = (TextView) v.findViewById(R.id.title);
+//        title.setText(titles[0]);
 
         adapter = new ViewPagerAdapter();
         mViewPaper.setAdapter(adapter);
@@ -81,7 +81,7 @@ public class spinner{
 
             @Override
             public void onPageSelected(int position) {
-                title.setText(titles[position]);
+//                title.setText(titles[position]);
                 dots.get(position).setBackgroundResource(R.drawable.k);
                 dots.get(oldPosition).setBackgroundResource(R.drawable.k2);
 

@@ -18,8 +18,6 @@ public class BaseMainActivity_new extends Activity {
     protected MyApplication isdustapp;	//通过app调全局变量
     protected Context mContext;
     private long exitTime = 0;
-   // public  Leftmenu mLeftmenu;
-   // SlidingMenu menu;
     Activity thisActivity;
     int mtype;
 
@@ -28,8 +26,6 @@ public class BaseMainActivity_new extends Activity {
         setContentView(pageid);
         mContext = this;
         thisActivity = this;
-        //mLeftmenu = new Leftmenu(thisActivity, mtype);
-       // menu = mLeftmenu.menu;
     }   //初始化
     protected void INIT(int pageid,String title,int type) {
         isdustapp = (MyApplication) this.getApplication();
@@ -39,16 +35,12 @@ public class BaseMainActivity_new extends Activity {
         mtype=type;
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText(title);	//修改页面标题
-        //mLeftmenu = new Leftmenu(thisActivity, mtype);
-        //menu = mLeftmenu.menu;
     }   //初始化
 
 
     @Override
     public void onResume() {
         super.onResume();
-        //mLeftmenu.leftmenu_ui(mtype);
-
         MobclickAgent.onResume(this);
     }
     public void onTitleBarClick(View v) {

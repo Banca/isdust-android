@@ -35,10 +35,6 @@ public class Main extends Fragment {
     private TextView info;
     private RecyclerView rcv;
     protected MyApplication isdustapp;
-    static boolean ishadopended = false;
-    static boolean broadcast=false;
-    private Timer timer_wel = null;
-    private boolean bool_wel = false;
     private spinner mSpinner;
     private SQLiteDatabase db;
     private KeCheng kecheng;
@@ -67,7 +63,6 @@ public class Main extends Fragment {
         kc.setText(kechengInfo);
         info.setText(brodcast);
         title.setText("首页");
-       // dongtai();
         return v;
     }
     void initView(){
@@ -94,14 +89,6 @@ public class Main extends Fragment {
 
     }
 
-    void dongtai(){
-        RecyclerView rcv = (RecyclerView)v.findViewById(R.id.module);
-        GridLayoutManager manager = new GridLayoutManager(mContext, 6);
-        rcv.setLayoutManager(manager);
-        initData();
-        RecycleViewAdapter adapter = new RecycleViewAdapter(mContext,list);
-        rcv.setAdapter(adapter);
-    }
     @Override
     public void onStart() {
         super.onStart();

@@ -9,6 +9,5 @@
         android:text="教务"
         android:textSize="15sp"
         android:layout_marginLeft="7dip"
-        android:layout_marginTop="5dip"
         />
 </LinearLayout>

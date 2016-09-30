@@ -12,60 +12,31 @@
         android:layout_height="0dp"
         android:layout_weight="1.0" />
 
+    <View
+        android:background="@color/color_btn_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
     <RadioGroup
         android:id="@+id/frames"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_weight="0.0"
         android:background="#fff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingTop="5dp">
-
         <RadioButton
             android:id="@+id/fram1"
-            android:drawableTop="@drawable/bottom_main"
             style="@style/tab_item_style"
-            android:text="首页" />
-
+            android:text="首页"/>
         <RadioButton
             android:id="@+id/fram2"
-            android:drawableTop="@drawable/bottom_service"
             style="@style/tab_item_style"
             android:text="校园服务" />
-
         <RadioButton
             android:id="@+id/fram3"
-            android:drawableTop="@drawable/bottom_about"
             style="@style/tab_item_style"
             android:text="关于" />
-
-
     </RadioGroup>
 
-</LinearLayout><!--<?xml version="1.0" encoding="utf-8"?>-->
-
-    <!--<TabHost xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@android:id/tabhost" android:layout_width="fill_parent"--><!--android:layout_height="fill_parent">-->
-
-    <!--<LinearLayout android:orientation="vertical"--><!--android:layout_width="fill_parent" android:layout_height="fill_parent">-->
-
-
-    <!--<FrameLayout--><!--android:id="@android:id/tabcontent"--><!--android:layout_width="fill_parent"--><!--android:layout_height="0dip"--><!--android:layout_weight="1"/>--><!--<TabWidget android:id="@android:id/tabs"--><!--android:layout_alignParentTop="true"--><!--android:layout_width="fill_parent"--><!--android:layout_height="55dp"--><!--android:background="#fff" />--><!--<FrameLayout android:layout_height="0dp" android:layout_width="match_parent" android:layout_weight="1.0" android:id="@+id/content"/>-->
-
-
-    <!--<RadioGroup android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0.0" android:id="@+id/frames" android:paddingTop="5dp" android:gravity="center_vertical" android:background="#f4d6e2f1">-->
-
-    <!--<RadioButton android:id="@+id/fram1" android:text="首页"  style="@style/tab_item_style"/>-->
-
-    <!--<RadioButton android:id="@+id/fram2" android:text="新闻"  style="@style/tab_item_style"/>-->
-
-    <!--<RadioButton android:id="@+id/fram3" android:text="组图"  style="@style/tab_item_style"/>-->
-
-    <!--<RadioButton android:id="@+id/fram4" android:text="更多"  style="@style/tab_item_style"/>-->
-
-    <!--</RadioGroup>-->
-
-
-    <!--</LinearLayout>-->
-
-    <!--</TabHost>-->
+</LinearLayout>

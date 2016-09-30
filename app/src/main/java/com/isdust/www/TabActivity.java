@@ -3,6 +3,7 @@ package com.isdust.www;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
@@ -20,8 +21,6 @@ public class TabActivity extends FragmentActivity {
     private RadioGroup navGroup;
     private long exitTime = 0;
     String tabs[] = {"Tab1", "Tab2", "Tab3"};
-    TextView[] textViews=new TextView[3];
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +31,22 @@ public class TabActivity extends FragmentActivity {
 
     private void initView() {
         navGroup = (RadioGroup) findViewById(R.id.frames);
-        textViews[0]=(TextView)findViewById(R.id.fram1);
-        textViews[1]=(TextView)findViewById(R.id.fram2);
-        textViews[2]=(TextView)findViewById(R.id.fram3);
+        RadioButton rbWeiHui = (RadioButton) findViewById(R.id.fram1);
+        RadioButton rbAdd = (RadioButton) findViewById(R.id.fram2);
+        RadioButton rbMine = (RadioButton) findViewById(R.id.fram3);
+        //定义底部标签图片大小
+        Drawable drawableWeiHui = getResources().getDrawable(R.drawable.bottom_main);
+        drawableWeiHui.setBounds(0, 0, 60, 60);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        rbWeiHui.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
+
+        Drawable drawableAdd = getResources().getDrawable(R.drawable.bottom_service);
+        drawableAdd.setBounds(0, 0, 60, 60);
+        rbAdd.setCompoundDrawables(null,drawableAdd, null, null);
+
+        Drawable drawableRight = getResources().getDrawable(R.drawable.bottom_about);
+        drawableRight.setBounds(0, 0, 60, 60);
+        rbMine.setCompoundDrawables(null, drawableRight, null, null);
+
         navGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

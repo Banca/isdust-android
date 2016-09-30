@@ -12,19 +12,6 @@
         android:background="@drawable/bg_title_bar"
         android:gravity="center_vertical"
         android:id="@+id/relativeLayout">
-
-        <!--ImageView
-            android:onClick="onTitleBarClick"
-            android:id="@+id/title_bar_menu_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="3.0dip"
-            android:layout_marginRight="3.0dip"
-            android:layout_marginTop="3.0dip"
-            android:gravity="center"
-            android:src="@drawable/ic_top_bar_category" /-->
-
         <TextView
             android:id="@+id/title_bar_name"
             android:layout_width="wrap_content"
@@ -45,7 +32,6 @@
     <ScrollView
         android:fillViewport="true"
         android:background="#ecebf1"
-        android:layout_marginBottom="1dip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
@@ -72,16 +58,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dip"
                 android:layout_gravity="bottom"
-                android:background="#33000000"
                 android:gravity="center"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="图片标题"
-                    android:textColor="@android:color/white" />
+                <!--<TextView-->
+                    <!--android:id="@+id/title"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="图片标题"-->
+                    <!--android:textColor="@android:color/white" />-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -91,7 +76,9 @@
 
                     <View
                         android:id="@+id/dot_0"
-                        style="@style/spiner_indicator" />
+                        style="@style/spiner_indicator"
+                        android:background="@drawable/k"
+                        />
                     <View
                         android:id="@+id/dot_1"
                         style="@style/spiner_indicator" />
@@ -116,7 +103,7 @@
                 android:overScrollMode="never"
                 android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"/>
+                android:layout_height="70dp"/>
         </LinearLayout>
 
 
@@ -282,7 +269,7 @@
 
         <LinearLayout
             android:background="#FFFFFF"
-            android:layout_marginTop="18dip"
+            android:layout_marginTop="5dip"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -321,7 +308,7 @@
 
         <LinearLayout
             android:background="#FFFFFF"
-            android:layout_marginTop="18dip"
+            android:layout_marginTop="5dip"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

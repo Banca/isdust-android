@@ -47,7 +47,7 @@ public class KeCheng {
             }
             cursor.close();
         }catch (Exception e) {
-                e.printStackTrace();
+               return "请登录课表查询";
         }
         return stringBuilder.toString();
     }
