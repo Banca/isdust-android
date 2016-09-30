@@ -274,7 +274,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         MobclickAgent.onEvent(this, "jiaowu_schedule");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule);
+        INIT(R.layout.activity_schedule,"课表查询");
+        //setContentView(R.layout.activity_schedule);
         mContext=this;
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         //实例化SharedPreferences.Editor对象
@@ -285,8 +286,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
 
 
-        TextView title_name = (TextView) findViewById(R.id.title_bar_name);
-        title_name.setText("课表查询");
+//        TextView title_name = (TextView) findViewById(R.id.title_bar_name);
+//        title_name.setText("课表查询");
         init_button();//初始化按钮⌛事件
         init_biaoge();//初始化表格
 

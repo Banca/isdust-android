@@ -1,140 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <!-- 这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
-    要设置android:orientation="vertical"属性
-    否则,显示不正确-->
+<!-- 这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
+要设置android:orientation="vertical"属性
+否则,显示不正确-->
 
-    <RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativelayout_network_public_card"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_below="@+id/include"
     android:focusable="true"
-    android:focusableInTouchMode="true"
+    android:focusableInTouchMode="true">
 
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/include2"
+        layout="@layout/subpage_title_bar" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/include"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativelayout_network_public_card">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="210dp"
+        android:orientation="horizontal">
 
-
-        <include layout="@layout/subpage_title_bar"
-             android:id="@+id/include2"
-        />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="210dp">
+            android:layout_weight="1"
+            android:text="     地   点   "
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="     地   点   "
-                android:id="@+id/textView2"
-                android:textSize="18sp" />
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#FFB3B3B3" />
 
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="#FFB3B3B3" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     周   次   "
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="     周   次   "
-                android:id="@+id/textView4"
-                android:textSize="18sp" />
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="#FFB3B3B3" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="     星   期   "
-                android:id="@+id/textView5"
-                android:textSize="18sp" />
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="#FFB3B3B3" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="     节   次   "
-                android:id="@+id/textView6"
-                android:textSize="18sp" />
-        </LinearLayout>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#FFB3B3B3" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     星   期   "
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#FFB3B3B3" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="     节   次   "
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listview_emptyroom"
-        android:background="@color/color_list_white"
-        android:cacheColorHint="#00000000"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout"
+        android:background="@color/color_list_white"
+        android:cacheColorHint="#00000000" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="教学楼："
-        android:layout_below="@+id/include2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_below="@+id/include2"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="60dp"
-        android:textSize="20sp"
-        android:layout_marginLeft="15dp"/>
+        android:text="教学楼："
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout_building"
         android:layout_width="70dip"
         android:layout_height="30dip"
-        android:layout_toRightOf="@+id/textView3"
+
         android:layout_alignBottom="@+id/textView3"
-   >
+        android:layout_toRightOf="@+id/textView3">
 
         <TextView
+            android:layout_marginTop="8dp"
             android:id="@+id/textView_building"
             android:layout_width="70dip"
             android:layout_height="30dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:background="@drawable/btn_selector_pop"
             android:clickable="true"
             android:gravity="center"
             android:text="J1"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="周次："
-        android:textSize="20sp"
-        android:layout_below="@+id/textView3"
-
-
         android:layout_alignRight="@+id/textView3"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="10dp"
+        android:text="周次："
+
+
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout_zhoushu"
@@ -152,33 +156,32 @@
             android:gravity="center"
             android:text="1"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="星期："
-        android:textSize="20sp"
-        android:layout_below="@+id/textView9"
-        android:layout_alignRight="@+id/textView3"
         android:layout_alignEnd="@+id/textView3"
-        android:layout_marginTop="10dp"/>
+        android:layout_alignRight="@+id/textView3"
+        android:layout_below="@+id/textView9"
+        android:layout_marginTop="10dp"
+        android:text="星期："
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="节次："
-        android:id="@+id/textView8"
-        android:layout_alignParentBottom="false"
-        android:textSize="20sp"
-        android:layout_below="@+id/textView7"
         android:layout_alignLeft="@+id/textView7"
-        android:layout_marginTop="10dp"/>
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="10dp"
+        android:text="节次："
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout_xingqi"
@@ -191,15 +194,15 @@
             android:id="@+id/textView_xingqi"
             android:layout_width="80dip"
             android:layout_height="30dip"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
             android:background="@drawable/btn_selector_pop"
             android:clickable="true"
             android:gravity="center"
             android:text="星期一"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="true"/>
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -207,36 +210,36 @@
         android:layout_width="110dip"
         android:layout_height="30dip"
         android:layout_alignTop="@+id/textView8"
-        android:layout_toRightOf="@+id/textView8"
-        android:layout_toEndOf="@+id/textView3">
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_toRightOf="@+id/textView8">
 
         <TextView
             android:id="@+id/textView_jieci"
             android:layout_width="110dip"
             android:layout_height="30dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:background="@drawable/btn_selector_pop"
             android:clickable="true"
             android:gravity="center"
             android:text="第一、二节"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <Button
+        android:id="@+id/button_chaxun_kongzixishi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/relativeLayout_xingqi"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
         android:background="@drawable/selector_ok_button"
         android:text="查询"
-        android:textColor="#fff"
-        android:id="@+id/button_chaxun_kongzixishi"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_alignBottom="@+id/relativeLayout_xingqi"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:textColor="#fff" />
 
 
 </RelativeLayout>

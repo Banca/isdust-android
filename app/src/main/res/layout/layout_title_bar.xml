@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="50.0dip"
-    android:background="@drawable/bg_title_bar"
+    android:layout_height="60.0dip"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:background="@color/color_btn_blue"
     android:gravity="center_vertical" >
 
-    <!--ImageView
-        android:onClick="onTitleBarClick"
-        android:id="@+id/title_bar_menu_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="3.0dip"
-        android:layout_marginRight="3.0dip"
-        android:layout_marginTop="3.0dip"
-        android:gravity="center"
-        android:src="@drawable/ic_top_bar_category" /-->
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-
-        android:background="@drawable/ic_top_divider" />
-   <!-- android:layout_toRightOf="@id/title_bar_menu_btn"-->
-
     <TextView
+        android:layout_gravity="center_horizontal"
         android:id="@+id/title_bar_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:ellipsize="end"
-        android:gravity="center"
-        android:paddingLeft="75.0dip"
-        android:paddingRight="75.0dip"
         android:singleLine="true"
+        android:layout_marginBottom="-10dip"
         android:text="Title"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
-</RelativeLayout>
+</LinearLayout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60.0dip"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
+    <!--android:background="@color/color_btn_blue">-->
+
+    <!--&lt;!&ndash;ImageView-->
+        <!--android:onClick="onTitleBarClick"-->
+        <!--android:id="@+id/title_bar_menu_btn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="3.0dip"-->
+        <!--android:layout_marginRight="3.0dip"-->
+        <!--android:layout_marginTop="3.0dip"-->
+        <!--android:gravity="center"-->
+        <!--android:src="@drawable/ic_top_bar_category" /&ndash;&gt;-->
+
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="@drawable/ic_top_divider" />-->
+   <!--&lt;!&ndash; android:layout_toRightOf="@id/title_bar_menu_btn"&ndash;&gt;-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/title_bar_name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:ellipsize="end"-->
+        <!--android:gravity="center|bottom"-->
+        <!--android:paddingLeft="75.0dip"-->
+        <!--android:paddingRight="75.0dip"-->
+        <!--android:singleLine="true"-->
+        <!--android:text="Title"-->
+        <!--android:layout_marginTop="10dip"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:textSize="18sp" />-->
+
+<!--</RelativeLayout>-->

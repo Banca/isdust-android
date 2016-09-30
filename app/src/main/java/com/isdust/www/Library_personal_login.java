@@ -93,17 +93,5 @@ public class Library_personal_login extends BaseSubPageActivity_new {
         mEditText_password.setText(pwd);
         keeppwd = preferences_data.getBoolean("keeppwd", true);
         mCheckBox_savepwd.setChecked(keeppwd);
-
-
     }   //读取本地数据
-    @Override
-    public void onTitleBarClick(View v) {
-        switch (v.getId()) {
-            case R.id.title_bar_back_btn:
-                this.setResult(RESULT_CANCELED);
-
-                finish();
-                break;
-        }
-    }
 }

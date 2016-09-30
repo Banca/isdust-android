@@ -320,7 +320,7 @@ public class Library_personal_main extends BaseSubPageActivity_new {
                     break;
                 }
                 if (resultCode == RESULT_CANCELED) {
-                    finish();
+                   // finish();
                     break;
 
                 }

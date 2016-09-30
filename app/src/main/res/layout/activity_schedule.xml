@@ -129,6 +129,7 @@
 
 
                 <TextView
+                    android:layout_marginTop="8dp"
                     android:id="@+id/TextView_zhoushu"
                     android:layout_width="70dip"
                     android:layout_height="30dip"
@@ -178,6 +179,7 @@
                 android:layout_alignBottom="@+id/button_update"
                 android:layout_alignTop="@+id/button_update" />
             <Button
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="添加课程"

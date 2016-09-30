@@ -198,7 +198,8 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
         MobclickAgent.onEvent(this, "jiaowu_Emptyroom");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emptyroom_listview);
+        INIT(R.layout.activity_emptyroom_listview,"空自习室查询");
+        //setContentView(R.layout.activity_emptyroom_listview);
         mListView=(ListView)findViewById(R.id.listview_emptyroom);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -2,8 +2,11 @@ package com.isdust.www.baseactivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,14 @@ public class BaseMainActivity_new extends Activity {
         setContentView(pageid);
         mContext = this;
         thisActivity = this;
+        //透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }   //初始化
     protected void INIT(int pageid,String title,int type) {
         isdustapp = (MyApplication) this.getApplication();
@@ -35,6 +46,14 @@ public class BaseMainActivity_new extends Activity {
         mtype=type;
         TextView title_name = (TextView) findViewById(R.id.title_bar_name);
         title_name.setText(title);	//修改页面标题
+        //透明状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            // Translucent status bar
+            window.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }   //初始化
 
 

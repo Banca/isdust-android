@@ -3,16 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#ecebf1">
+
+
+    <!--<include layout="@layout/layout_title_bar"/>-->
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="50.0dip"
-        android:background="@drawable/bg_title_bar"
+        android:layout_height="60.0dip"
+        android:background="@color/color_btn_blue"
         android:gravity="center_vertical"
         android:id="@+id/relativeLayout">
         <TextView
+            android:layout_marginTop="12dp"
             android:id="@+id/title_bar_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +35,6 @@
 
     <ScrollView
         android:fillViewport="true"
-        android:background="#ecebf1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
@@ -105,162 +108,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"/>
         </LinearLayout>
-
-
-        <!--<LinearLayout-->
-            <!--android:layout_weight="0"-->
-            <!--android:layout_marginLeft="5dip"-->
-            <!--android:layout_marginRight="5dip"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<LinearLayout-->
-                <!--android:background="#f6f6f6"-->
-                <!--android:padding="2dip"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="onFormMainClick"-->
-                <!--android:id="@+id/btn_main_card"-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<ImageView-->
-                    <!--android:src="@drawable/card"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="46dip"-->
-                    <!--android:id="@+id/imageView10" />-->
-
-                <!--<TextView-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="10sp"-->
-                    <!--android:text="一卡通"/>-->
-
-            <!--</LinearLayout>-->
-
-
-
-            <!--<LinearLayout-->
-                <!--android:layout_weight="1"-->
-                <!--android:id="@+id/btn_main_schedule"-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:onClick="onFormMainClick"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:padding="2dip"-->
-                    <!--android:src="@drawable/menu_schedule"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="50dip" />-->
-                <!--<TextView-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="10sp"-->
-                    <!--android:text="课程表"/>-->
-
-            <!--</LinearLayout>-->
-
-
-
-
-            <!--<LinearLayout-->
-                <!--android:background="#f6f6f6"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="vertical"-->
-                <!--android:id="@+id/btn_main_score"-->
-                <!--android:onClick="onFormMainClick"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:padding="2dip"-->
-                    <!--android:src="@drawable/menu_mark"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="50dip" />-->
-                <!--<TextView-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="10sp"-->
-                    <!--android:text="成绩查询"/>-->
-
-            <!--</LinearLayout>-->
-
-
-
-            <!--<LinearLayout-->
-                <!--android:layout_weight="1"-->
-                <!--android:id="@+id/btn_main_emptyroom"-->
-                <!--android:orientation="vertical"-->
-                <!--android:onClick="onFormMainClick"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:padding="2dip"-->
-                    <!--android:src="@drawable/menu_classroom"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="50dip" />-->
-                <!--<TextView-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="10sp"-->
-                    <!--android:text="空教室查询"/>-->
-
-            <!--</LinearLayout>-->
-
-
-
-            <!--<LinearLayout-->
-                <!--android:background="#f6f6f6"-->
-                <!--android:layout_weight="1"-->
-                <!--android:id="@+id/btn_main_library"-->
-                <!--android:orientation="vertical"-->
-                <!--android:onClick="onFormMainClick"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:padding="2dip"-->
-                    <!--android:src="@drawable/menu_library"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="50dip" />-->
-                <!--<TextView-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="10sp"-->
-                    <!--android:text="馆藏查询"/>-->
-
-            <!--</LinearLayout>-->
-
-
-
-            <!--<LinearLayout-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="vertical"-->
-                <!--android:id="@+id/btn_main_kuaitong"-->
-                <!--android:onClick="onFormMainClick"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:padding="2dip"-->
-                    <!--android:src="@drawable/menu_person"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="50dip" />-->
-                <!--<TextView-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="10sp"-->
-                    <!--android:text="个人中心"/>-->
-
-            <!--</LinearLayout>-->
-
-
-        <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_weight="5"
         android:orientation="vertical"
@@ -311,6 +158,7 @@
             android:layout_marginTop="5dip"
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content">
             <ImageView
                 android:background="@drawable/menu_schedule"

@@ -44,7 +44,7 @@ public class CardActivity extends BaseSubPageActivity_new {
     final int request_xiaoyuanka=2,request_changgepassword=3;
     Context mContext;
 //    EditText mEditText_user;
-//    EditText mEditText_password ;
+//    EditText mEditText_password;
 //    CheckBox mCheckBox_keeppwd;
     Button mImageButton_query ;
     Button mImageButton_changepwd ;
