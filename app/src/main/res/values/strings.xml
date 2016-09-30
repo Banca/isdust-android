@@ -39,7 +39,10 @@
     <string name="sun">周日</string>
 
 
+    <string name="manage_module">模块管理</string>
+
     <string name="schoolcard_catgory">校园卡</string>
+
 
     <string name="schoolcard_name">一卡通</string>
     <string name="schoolcard_info">提供校园一卡通余额查询，消费情况查询，以及挂失与修改密码服务</string>

@@ -3,32 +3,55 @@ package com.isdust.www;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.isdust.www.Module.BaseModule;
+import com.isdust.www.Module.CardModule;
+import com.isdust.www.Module.Catagory;
+import com.isdust.www.Module.KuaiTongModule;
+import com.isdust.www.Module.ManageModule;
+import com.isdust.www.Module.WlanModule;
+import com.isdust.www.Module.jiaowu_ClassroomModule;
+import com.isdust.www.Module.jiaowu_MarkModule;
+import com.isdust.www.Module.jiaowu_ScheduleModule;
+import com.isdust.www.Module.library_PersonalModule;
+import com.isdust.www.Module.library_SearchModule;
+import com.isdust.www.Utils.ConfigHelper;
+import com.isdust.www.Utils.SerializableList;
 import com.isdust.www.frame.About;
 import com.isdust.www.frame.Main;
 import com.isdust.www.frame.SchoolServer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TabActivity extends FragmentActivity {
 
     private RadioGroup navGroup;
     private long exitTime = 0;
+    private List<BaseModule> modules = new SerializableList<>();
+    private List<Catagory> catagories = new ArrayList<>();
+    protected MyApplication isdustapp;
+
+
     String tabs[] = {"Tab1", "Tab2", "Tab3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+        isdustapp= (MyApplication) getApplication();
         //透明状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
@@ -37,7 +60,10 @@ public class TabActivity extends FragmentActivity {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+       // ConfigHelper.saveObject(this,"modules",modules);
         initView();
+        initMoudleData();
+        initSchoolServer();
     }
 
     private void initView() {
@@ -117,6 +143,37 @@ public class TabActivity extends FragmentActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+    private void initMoudleData(){
+        modules=(List<BaseModule>) ConfigHelper.readObject(this,"modules");
+        if(modules.size()<=0) {
+            modules.add(CardModule.getInstance());
+            modules.add(jiaowu_ClassroomModule.getInstance());
+            modules.add(jiaowu_MarkModule.getInstance());
+            modules.add(jiaowu_ScheduleModule.getInstance());
+            modules.add(KuaiTongModule.getInstance());
+            modules.add(ManageModule.getInstance());
+        }
+        isdustapp.setList(modules);
+    }
+    private void initSchoolServer(){
+        Catagory card = new Catagory(R.string.schoolcard_catgory);
+        card.addItem(CardModule.getInstance());
 
+        Catagory jiaowu = new Catagory(R.string.Jiaowu_catgory);
+        jiaowu.addItem(jiaowu_MarkModule.getInstance());
+        jiaowu.addItem(jiaowu_ClassroomModule.getInstance());
+        jiaowu.addItem(jiaowu_ScheduleModule.getInstance());
 
+        Catagory library = new Catagory(R.string.library_catagory);
+        library.addItem(library_SearchModule.getInstance());
+        library.addItem(library_PersonalModule.getInstance());
+        Catagory net = new Catagory(R.string.net_catgory);
+        net.addItem(KuaiTongModule.getInstance());
+        net.addItem(WlanModule.getInstance());
+        catagories.add(card);
+        catagories.add(jiaowu);
+        catagories.add(net);
+        catagories.add(library);
+        isdustapp.setCatagorys(catagories);
+    }
 }

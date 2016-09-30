@@ -46,9 +46,9 @@ public class Main extends Fragment {
     private Activity mContext;
     private String brodcast;
     private TextView title;
-    private List<BaseModule>list = new ArrayList<>();
     public Main(Activity activity){
         this.mContext=activity;
+        isdustapp= (MyApplication) mContext.getApplication();
     }
     @Nullable
     @Override
@@ -57,7 +57,7 @@ public class Main extends Fragment {
         initView();
         initData();
         manager = new GridLayoutManager(mContext, 6);
-        adapter = new RecycleViewAdapter(mContext,list);
+        adapter = new RecycleViewAdapter(mContext,isdustapp.getList());
         rcv.setLayoutManager(manager);
         rcv.setAdapter(adapter);
         kc.setText(kechengInfo);
@@ -80,13 +80,6 @@ public class Main extends Fragment {
         kechengInfo=kecheng.getKecheng();
         brodcast=OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
         db.close();
-        list.add(CardModule.getInstance());
-        list.add(jiaowu_ClassroomModule.getInstance());
-        list.add(jiaowu_MarkModule.getInstance());
-        list.add(jiaowu_ScheduleModule.getInstance());
-        list.add(KuaiTongModule.getInstance());
-        list.add(library_SearchModule.getInstance());
-
     }
 
     @Override

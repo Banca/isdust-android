@@ -3,12 +3,14 @@ package com.isdust.www.Module;
 import android.app.Activity;
 import android.content.Context;
 
+import java.io.Serializable;
+
 /**
  * Created by zor on 2016/9/27.
  * module的基类
  */
 
-public abstract class BaseModule {
+public abstract class BaseModule implements Serializable {
     protected int Image_id;
     protected int name;
     protected int desc;

@@ -31,11 +31,7 @@ import java.util.List;
 
 @SuppressLint("ValidFragment")
 public class SchoolServer extends Fragment {
-
-    private CardModule cardModule;
     private ExpandableListView rcv;
-    GridLayoutManager manager;
-    List<Catagory>list = new ArrayList<>();
     View v;
     MyAdapter listAdapter;
     protected MyApplication isdustapp;
@@ -43,7 +39,7 @@ public class SchoolServer extends Fragment {
 
     public SchoolServer(Activity activity){
         thisActivity = activity;
-        isdustapp=new MyApplication();
+        isdustapp= (MyApplication)thisActivity.getApplication();
     }
     @Nullable
     @Override
@@ -52,8 +48,7 @@ public class SchoolServer extends Fragment {
         TextView textView = (TextView)v.findViewById(R.id.title_bar_name);
         textView.setText("校园服务");
         rcv = (ExpandableListView) v.findViewById(R.id.list);
-        initSchoolServer();
-        listAdapter = new MyAdapter(thisActivity, list);
+        listAdapter = new MyAdapter(thisActivity, isdustapp.getCatagorys());
         rcv.setGroupIndicator(null);
         rcv.setDividerHeight(0);
         rcv.setAdapter(listAdapter);
@@ -66,28 +61,4 @@ public class SchoolServer extends Fragment {
             rcv.expandGroup(i);
         }
     }
-    private void initSchoolServer(){
-        Catagory card = new Catagory(R.string.schoolcard_catgory);
-        card.addItem(CardModule.getInstance());
-
-        Catagory jiaowu = new Catagory(R.string.Jiaowu_catgory);
-        jiaowu.addItem(jiaowu_MarkModule.getInstance());
-        jiaowu.addItem(jiaowu_ClassroomModule.getInstance());
-        jiaowu.addItem(jiaowu_ScheduleModule.getInstance());
-
-        Catagory library = new Catagory(R.string.library_catagory);
-        library.addItem(library_SearchModule.getInstance());
-        library.addItem(library_PersonalModule.getInstance());
-
-        Catagory net = new Catagory(R.string.net_catgory);
-        net.addItem(KuaiTongModule.getInstance());
-        net.addItem(WlanModule.getInstance());
-
-
-        list.add(card);
-        list.add(jiaowu);
-        list.add(library);
-        list.add(net);
-    }
-
 }
