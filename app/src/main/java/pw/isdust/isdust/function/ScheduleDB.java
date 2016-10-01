@@ -2,10 +2,12 @@ package pw.isdust.isdust.function;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
 import com.isdust.www.datatype.Kebiao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,8 +18,17 @@ public class ScheduleDB {
 
     SQLiteDatabase db;
     public ScheduleDB(){
-        db=SQLiteDatabase.openOrCreateDatabase("jiaowu_schedule_new.db",null);
-        create();
+        String DBPath = Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases//";
+
+//        String a=Environment.getDataDirectory().getName();
+
+        db=SQLiteDatabase.openOrCreateDatabase(DBPath+"jiaowu_schedule_new.db",null);
+        try{
+            create();
+        }catch (Exception e){
+
+        }
+
 
 
     }
@@ -59,6 +70,34 @@ public class ScheduleDB {
     public void add(Kebiao kebiao){
         db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?,?,?)", new Object[]{Integer.valueOf(kebiao.zhoushu), Integer.valueOf(kebiao.xingqi), Integer.valueOf(kebiao.jieci), kebiao.kecheng,kebiao.location,kebiao.teacher});
     }
+    public void add(HashMap<String,Object> schedule){
+            int [] mzhoushu=(int[]) schedule.get("zhoushu");
+            Kebiao temp_kebiao=new Kebiao();
+            temp_kebiao.location= (String) schedule.get("location");
+            temp_kebiao.kecheng= (String) schedule.get("class");
+            temp_kebiao.teacher= (String) schedule.get("teacher");
+            temp_kebiao.xingqi= (Integer) schedule.get("xingqi")+"";
+            temp_kebiao.jieci= (Integer) schedule.get("jieci")+"";
+            for(int j=0;j<mzhoushu.length;j++){
+                temp_kebiao.zhoushu= mzhoushu[j]+"";
+                add(temp_kebiao);
+            }
+
+    }
+    public void delete(HashMap<String,Object> schedule){
+            int [] mzhoushu=(int[]) schedule.get("zhoushu");
+            Kebiao temp_kebiao=new Kebiao();
+            temp_kebiao.location= (String) schedule.get("location");
+            temp_kebiao.kecheng= (String) schedule.get("class");
+            temp_kebiao.teacher= (String) schedule.get("teacher");
+            temp_kebiao.xingqi= (Integer) schedule.get("xingqi")+"";
+            temp_kebiao.jieci= (Integer) schedule.get("jieci")+"";
+            for(int j=0;j<mzhoushu.length;j++){
+                temp_kebiao.zhoushu= mzhoushu[j]+"";
+                delete(temp_kebiao,1);
+            }
+
+    }
     public Kebiao[] search_zhoushu(String zhoushu){
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
         Kebiao mkebiao_temp;
@@ -75,7 +114,11 @@ public class ScheduleDB {
         }
         Kebiao[] result=mList_kebiao.toArray(new Kebiao[1]);
         return result;
-
+    }
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        db.close();
     }
 
 }

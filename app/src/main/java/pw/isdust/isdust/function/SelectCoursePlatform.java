@@ -1,7 +1,6 @@
 package pw.isdust.isdust.function;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.isdust.www.datatype.Kebiao;
 import com.umeng.onlineconfig.OnlineConfigAgent;
@@ -9,6 +8,7 @@ import com.umeng.onlineconfig.OnlineConfigAgent;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -98,8 +98,8 @@ public class SelectCoursePlatform {
             url_xuanke="http://"+address_zhengfang+"/"+url_xuanke;
             url_chengji=Networklogin_CMCC.zhongjian(mtext_zhengfang,"学生个人课表</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('个人成绩查询');\">",0);
             url_chengji="http://"+address_zhengfang+"/"+url_chengji;
-            url_xuanke=Networklogin_CMCC.zhongjian(mtext_zhengfang,"专业推荐课表查询</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('学生个人课表');",0);
-            url_xuanke="http://"+address_zhengfang+"/"+url_xuanke;
+            url_kebiao=Networklogin_CMCC.zhongjian(mtext_zhengfang,"专业推荐课表查询</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('学生个人课表');",0);
+            url_kebiao="http://"+address_zhengfang+"/"+url_kebiao;
 
 
             return "登录成功";
@@ -195,10 +195,24 @@ public class SelectCoursePlatform {
         return mchengji;
 
     }
-    public Kebiao[] kebiao_chaxun_zhengfang() throws IOException {
+    public void kebiao_chaxun_zhengfang() throws IOException {
+        String text_web;
+        ScheduleDB mScheduleDB=new ScheduleDB();
+        text_web=mHttp.get_string(url_kebiao);
+        HashMap<String,Object>[] schedule= Schedule_zhengfang.getschedule(text_web);
+        HashMap<String,Object>[] change= Schedule_zhengfang.getchange(text_web);
+        //load schedule
+        for(int i=0;i<schedule.length;i++){
+            mScheduleDB.add(schedule[i]);
+        }
+        //load change
+        for(int i=0;i<change.length;i++){
+            HashMap<String,Object> node_new=(HashMap<String,Object>) change[i].get("new");
+            HashMap<String,Object> node_old=(HashMap<String,Object>) change[i].get("old");
+            mScheduleDB.delete(node_old);
+            mScheduleDB.add(node_new);
+        }
 
-        SQLiteDatabase.openOrCreateDatabase("",null);
-        return null;
 
     }
 
@@ -207,6 +221,8 @@ public class SelectCoursePlatform {
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
         text_web=text_web.replace(" rowspan=\"2\" ","");
+
+
         Pattern mpattern = Pattern.compile("<td  class=\"leftheader\">第[1,3,5,7,9]节</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>");
         Matcher mmatcher = mpattern.matcher(text_web);
         List<Kebiao> mkebiao =new ArrayList<Kebiao>();
@@ -224,7 +240,10 @@ public class SelectCoursePlatform {
                     mkebiao_linshi.jieci= (i+1)+"";
                     mkebiao_linshi.xingqi= (j+1)+"";
                     string_linshi=string_linshi.replace("<b class=\"newCourse\">","").replace("</b>","");
-                    mkebiao_linshi.kecheng=string_linshi;
+                    String[] string_linshi_split=string_linshi.split("<br>",-1);
+                    mkebiao_linshi.kecheng=string_linshi_split[0];
+                    mkebiao_linshi.teacher=string_linshi_split[2];
+                    mkebiao_linshi.location=string_linshi_split[3];
                     mkebiao.add(mkebiao_linshi);
                 }
 
@@ -243,7 +262,8 @@ public class SelectCoursePlatform {
             result1[i].xingqi=mkebiao.get(i).xingqi;
             result1[i].jieci=mkebiao.get(i).jieci;
             result1[i].kecheng=mkebiao.get(i).kecheng;
-
+            result1[i].teacher=mkebiao.get(i).teacher;
+            result1[i].location=mkebiao.get(i).location;
 
         }
 

@@ -176,7 +176,28 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         }
 
     };
-    Runnable mRunnable_download=new Runnable() {
+    Runnable mRunnable_download_zhengfang=new Runnable() {
+        @Override
+        public void run() {
+
+            Message mMessage=new Message();
+            mMessage.what=3;
+
+            try{
+                mXuankepingtai.kebiao_chaxun_zhengfang();
+            }catch (Exception e){
+                mMessage.what = 10;
+                mHandler.sendMessage(mMessage);;
+                return;
+            }
+            xianchengchi_ProgressDialog.setProgress(1);
+
+
+            mHandler.sendMessage(mMessage);
+            return;
+        }
+    };
+    Runnable mRunnable_download_xuanke=new Runnable() {
         @Override
         public void run() {
             int zhoushu=22;
@@ -220,7 +241,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 xianchengchi_ProgressDialog.setCancelable(false);
                 xianchengchi_ProgressDialog.show();
 
-                executorService.execute(mRunnable_download);
+                executorService.execute(mRunnable_download_zhengfang);
                 return;
             }
             if (msg.what==1){//登录失败
