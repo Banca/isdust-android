@@ -9,6 +9,8 @@ public class Kebiao{
     public String xingqi;
     public String jieci;
     public String kecheng;
+    public String location;
+    public String teacher;
 
 
 }

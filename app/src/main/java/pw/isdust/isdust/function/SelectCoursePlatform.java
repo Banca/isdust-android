@@ -1,6 +1,7 @@
 package pw.isdust.isdust.function;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.isdust.www.datatype.Kebiao;
 import com.umeng.onlineconfig.OnlineConfigAgent;
@@ -39,6 +40,7 @@ public class SelectCoursePlatform {
     String mtext_zhengfang;
     String url_chengji;
     String url_xuanke;
+    String url_kebiao="";
 
     String address_zhengfang;
     String method;
@@ -96,6 +98,8 @@ public class SelectCoursePlatform {
             url_xuanke="http://"+address_zhengfang+"/"+url_xuanke;
             url_chengji=Networklogin_CMCC.zhongjian(mtext_zhengfang,"学生个人课表</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('个人成绩查询');\">",0);
             url_chengji="http://"+address_zhengfang+"/"+url_chengji;
+            url_xuanke=Networklogin_CMCC.zhongjian(mtext_zhengfang,"专业推荐课表查询</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('学生个人课表');",0);
+            url_xuanke="http://"+address_zhengfang+"/"+url_xuanke;
 
 
             return "登录成功";
@@ -191,6 +195,14 @@ public class SelectCoursePlatform {
         return mchengji;
 
     }
+    public Kebiao[] kebiao_chaxun_zhengfang() throws IOException {
+
+        SQLiteDatabase.openOrCreateDatabase("",null);
+        return null;
+
+    }
+
+
     public Kebiao[] kebiao_chaxun(String zhou, String xn, String xq) throws IOException {
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
