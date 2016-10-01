@@ -144,7 +144,7 @@ public class TabActivity extends FragmentActivity {
     private void initMoudleData(){
         modules=(List<BaseModule>) ConfigHelper.readObject(this,"modules");
         if(modules==null){
-            modules=new ArrayList<BaseModule>();
+            modules=new SerializableList<BaseModule>();
         }
         if(modules.size()==0) {
             modules.add(CardModule.getInstance());
