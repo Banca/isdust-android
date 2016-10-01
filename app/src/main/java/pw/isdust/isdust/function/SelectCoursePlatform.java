@@ -1,7 +1,6 @@
 package pw.isdust.isdust.function;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.isdust.www.datatype.Kebiao;
 import com.umeng.onlineconfig.OnlineConfigAgent;
@@ -35,12 +34,12 @@ import pw.isdust.isdust.Http;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class SelectCoursePlatform {
-    SQLiteDatabase db;
     Http mHttp;
     Context mContext;
     String mtext_zhengfang;
     String url_chengji;
     String url_xuanke;
+
     String address_zhengfang;
     String method;
     public SelectCoursePlatform(Context context) throws Exception {
@@ -198,8 +197,6 @@ public class SelectCoursePlatform {
         text_web=text_web.replace(" rowspan=\"2\" ","");
         Pattern mpattern = Pattern.compile("<td  class=\"leftheader\">第[1,3,5,7,9]节</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>");
         Matcher mmatcher = mpattern.matcher(text_web);
-        String tiqu1 [] []=new String[5][7];
-        //Kebiao  =new Kebiao();
         List<Kebiao> mkebiao =new ArrayList<Kebiao>();
         String string_linshi;
         int i=0;
@@ -228,18 +225,12 @@ public class SelectCoursePlatform {
 
         int len=mkebiao.size();
         Kebiao [] result1=new Kebiao[len];
-//        String [][] result=new String[len][3];
         for (i=0;i<len;i++){
             result1[i]=new Kebiao();
             result1[i].zhoushu=zhou;
             result1[i].xingqi=mkebiao.get(i).xingqi;
             result1[i].jieci=mkebiao.get(i).jieci;
             result1[i].kecheng=mkebiao.get(i).kecheng;
-
-
-//            result[i][0]=mkebiao.get(i).xingqi;
-//            result[i][1]=mkebiao.get(i).jieci;
-//            result[i][2]=mkebiao.get(i).kecheng;
 
 
         }
