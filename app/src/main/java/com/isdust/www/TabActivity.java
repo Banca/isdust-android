@@ -60,7 +60,7 @@ public class TabActivity extends FragmentActivity {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-       // ConfigHelper.saveObject(this,"modules",modules);
+        ConfigHelper.saveObject(this,"modules",modules);
         initView();
         initMoudleData();
         initSchoolServer();
@@ -145,7 +145,7 @@ public class TabActivity extends FragmentActivity {
     }
     private void initMoudleData(){
         modules=(List<BaseModule>) ConfigHelper.readObject(this,"modules");
-        if(modules.size()<=0) {
+        if(modules!=null&&modules.size()<=0) {
             modules.add(CardModule.getInstance());
             modules.add(jiaowu_ClassroomModule.getInstance());
             modules.add(jiaowu_MarkModule.getInstance());
