@@ -26,6 +26,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.dataList = dataList;
         this.mContext=mContext;
     }
+    public void setDataList(List<BaseModule>modules){
+        this.dataList=modules;
+        notifyDataSetChanged();
+    }
 
 
     @Override

@@ -40,7 +40,7 @@ public class Main extends Fragment {
     private KeCheng kecheng;
     private TextView kc;
     private String kechengInfo;
-    private RecycleViewAdapter adapter;
+    public static RecycleViewAdapter adapter;
     private GridLayoutManager manager;
     private View v;
     private Activity mContext;
