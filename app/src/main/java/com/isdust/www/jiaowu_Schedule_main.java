@@ -7,15 +7,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -37,16 +34,14 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import pw.isdust.isdust.function.ScheduleDB;
 import pw.isdust.isdust.function.SchoolDate;
 import pw.isdust.isdust.function.SelectCoursePlatform;
 
@@ -70,13 +65,13 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
  */
 public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     int zhoushu;
+    public ScheduleDB mScheduleDB;
 
 
     SharedPreferences preferences_data;
     SharedPreferences.Editor preferences_editor;
     //实例化SharedPreferences对象
 
-    SQLiteDatabase db;
 
 
 
@@ -181,7 +176,28 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         }
 
     };
-    Runnable mRunnable_download=new Runnable() {
+    Runnable mRunnable_download_zhengfang=new Runnable() {
+        @Override
+        public void run() {
+
+            Message mMessage=new Message();
+            mMessage.what=3;
+
+            try{
+                mXuankepingtai.kebiao_chaxun_zhengfang();
+            }catch (Exception e){
+                mMessage.what = 10;
+                mHandler.sendMessage(mMessage);;
+                return;
+            }
+            xianchengchi_ProgressDialog.setProgress(1);
+
+
+            mHandler.sendMessage(mMessage);
+            return;
+        }
+    };
+    Runnable mRunnable_download_xuanke=new Runnable() {
         @Override
         public void run() {
             int zhoushu=22;
@@ -195,7 +211,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             for(int i=0;i<zhoushu;i++){
                 try {
 //                    db.execSQL("INSERT INTO person VALUES (NULL, ?, ?,?,?)", new Object[]{person.name, person.age});
-                    sql_import(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
+                    mScheduleDB.add(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
+                    //sql_import();
 //                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
                 } catch (Exception e) {
                     mMessage.what = 10;
@@ -205,11 +222,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 xianchengchi_percent=((double)(i+1)/(double)zhoushu)*100;
                 xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
             }
-//            xianchengchi_saving_json=xianchengchi_saving_json.replace("][",",");
-//            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
-//            xianchengchi_saving_json=xianchengchi_saving_json.replace(",,","");
-//            xianchengchi_saving_json=xianchengchi_saving_json.replace("[,","[");
-//            xianchengchi_saving_json=xianchengchi_saving_json.replace(",]","]");
+
             mHandler.sendMessage(mMessage);
             return;
         }
@@ -228,7 +241,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 xianchengchi_ProgressDialog.setCancelable(false);
                 xianchengchi_ProgressDialog.show();
 
-                executorService.execute(mRunnable_download);
+                executorService.execute(mRunnable_download_zhengfang);
                 return;
             }
             if (msg.what==1){//登录失败
@@ -277,13 +290,14 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         INIT(R.layout.activity_schedule,"课表查询");
         //setContentView(R.layout.activity_schedule);
         mContext=this;
+        mScheduleDB=new ScheduleDB();
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         //实例化SharedPreferences.Editor对象
         preferences_editor = preferences_data.edit();
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);
 
-        db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
+//        db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
 
 
 //        TextView title_name = (TextView) findViewById(R.id.title_bar_name);
@@ -291,7 +305,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         init_button();//初始化按钮⌛事件
         init_biaoge();//初始化表格
 
-        if(sql_getcount()==0){
+        if(mScheduleDB.count()==0){
             String user_save=preferences_data.getString("username", "");
             String password_save=preferences_data.getString("password", "");
             if (user_save.equals("") || password_save.equals("")){
@@ -331,31 +345,12 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
         xiaohuiquanbu();//销毁所有已经生成对课表
         int color=0;
-        List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
-
-        Kebiao mkebiao_temp;
-        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE `zhoushu`=?", new String[]{zhoushu});
 
 
-        while (mCursor.moveToNext()) {
-            mkebiao_temp=new Kebiao();
-            mkebiao_temp.zhoushu=mCursor.getInt(mCursor.getColumnIndex("zhoushu"))+"";
-            mkebiao_temp.xingqi=mCursor.getInt(mCursor.getColumnIndex("xingqi"))+"";
-            mkebiao_temp.jieci=mCursor.getInt(mCursor.getColumnIndex("jieci"))+"";
-            mkebiao_temp.kecheng=mCursor.getString(mCursor.getColumnIndex("kecheng"))+"";
-            mList_kebiao.add(mkebiao_temp);
-        }
-
-
-
-        int len=mList_kebiao.size();
-        //Kebiao c[]=mXuankepingtai.kebiao_chaxun(xiaoli + "", xuenian, xueqi);
+        Kebiao[] mkebiao=mScheduleDB.search_zhoushu(zhoushu);
         int xingqi,jieci;
-        for (int i=0;i<len;i++){
-            String temp[]=mList_kebiao.get(i).kecheng.split("<br>");
-            xingqi=Integer.parseInt(mList_kebiao.get(i).xingqi);
-            jieci=Integer.parseInt(mList_kebiao.get(i).jieci);
-            addcourse(xingqi,jieci,temp[0]+"\n@"+temp[3],color,mList_kebiao.get(i).kecheng);
+        for (int i=0;i<mkebiao.length;i++){
+            addcourse(mkebiao[i],color);
             if (color==6){
                 color=0;
             }
@@ -365,7 +360,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
     }
 
-    public void addcourse(int xingqi,int jieci, final String neirong,final int color,String raw){
+    public void addcourse(Kebiao mkebiao,final int color){
 
 
 
@@ -378,26 +373,23 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                 R.drawable.course_info_yellow,R.drawable.course_info_orange,R.drawable.course_info_purple};
         // 添加课程信息
         final TextView courseInfo = new TextView(this);
-        final String mraw=raw;
+        final Kebiao mraw=mkebiao;
         List<Object> temp=new ArrayList<Object>();
         temp.add(courseInfo);
-        temp.add(zhoushu);
-        temp.add(xingqi);
-        temp.add(jieci);
-
+        temp.add(mkebiao);
         //temp.add()
         mTextView.add(temp);
         //courseInfo.setVisibility(View.GONE);
-        courseInfo.setText(neirong);//"软件工程\n@302"
+        courseInfo.setText(mkebiao.kecheng+"\n@"+mkebiao.location);//"软件工程\n@302"
         //该textview的高度根据其节数的跨度来设置
         RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
                 aveWidth * 31 / 32,
                 (gridHeight - 5) * 2 );
         //textview的位置由课程开始节数和上课的时间（day of week）确定
-        rlp.topMargin = 5 + ((2*jieci-1) - 1) * gridHeight;
+        rlp.topMargin = 5 + ((2*Integer.parseInt(mkebiao.jieci)-1) - 1) * gridHeight;
         rlp.leftMargin = 1;
         // 偏移由这节课是星期几决定
-        rlp.addRule(RelativeLayout.RIGHT_OF, xingqi);
+        rlp.addRule(RelativeLayout.RIGHT_OF, Integer.parseInt(mkebiao.xingqi));
         //字体剧中
        // courseInfo.setTransitionName(xingqi+","+jieci+"");
         courseInfo.setGravity(Gravity.CENTER);
@@ -416,13 +408,13 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             public void onClick(View view) {
                 view = getLayoutInflater().inflate(R.layout.activity_schedule_pop, null);
                 TextView mTextView_detail=(TextView)view.findViewById(R.id.textView_schedule_detail);
-                String temp=mraw.replace("<br>", "\n");
+                final String temp=mraw.kecheng+"\n"+mraw.teacher+"\n@"+mraw.location;
                 mTextView_detail.setText(temp);
                 mTextView_detail.setGravity(Gravity.CENTER);
                 mTextView_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        setClipboard(mContext,neirong);
+                        setClipboard(mContext,temp);
                         Toast.makeText(mContext, "课程信息已复制到剪切板", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -439,7 +431,9 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                                     if (mVieww.equals(courseInfo)) {
 //                                        int a=(int)temp.get(1);
 //                                        int b=(int)temp.get(2);
-                                        sql_course_delete((int)temp.get(1),(int)temp.get(2),(int)temp.get(3));
+                                        Kebiao mkebiao=(Kebiao)temp.get(1);
+                                        mScheduleDB.delete(mkebiao,0);
+                                        //sql_course_delete((int)temp.get(1),(int)temp.get(2),(int)temp.get(3));
                                         bangding(zhoushu + "");
 
 
@@ -524,7 +518,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
                         mPopupWindow_zhoushu = new PopupWindow(mView_zhoushu, mTextView_zhoushu.getWidth(),
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                        ColorDrawable cd = new ColorDrawable(-0000);
+                        ColorDrawable cd = new ColorDrawable(0);
                         mPopupWindow_zhoushu.setBackgroundDrawable(cd);
                         mPopupWindow_zhoushu.setAnimationStyle(R.style.PopupAnimation);
                         mPopupWindow_zhoushu.update();
@@ -657,8 +651,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             @Override
             public void onClick(View view) {
                 mButton_update.setClickable(false);
-                sql_drop();
-                sql_create();
+                mScheduleDB.drop();
+                mScheduleDB.create();
                 String user_save=preferences_data.getString("username", "");
                 String password_save=preferences_data.getString("password", "");
                 if (user_save.equals("") || password_save.equals("")){
@@ -683,8 +677,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             @Override
             public void onClick(View view) {
                 preferences_editor.putString("password", "");
-                sql_drop();
-                sql_create();
+                mScheduleDB.drop();
+                mScheduleDB.create();
                 Intent intent = new Intent();
                 intent.setClass(mContext, jiaowu_Schedule_login.class);
                 startActivityForResult(intent, 1);
@@ -734,45 +728,14 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
 
         }
     }
-    public void sql_import(Kebiao [] kebiao){
-        int len=kebiao.length;
-        for (int i=0;i<len;i++){
-            db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(kebiao[i].zhoushu), Integer.valueOf(kebiao[i].xingqi),Integer.valueOf(kebiao[i].jieci),kebiao[i].kecheng});
-        }
-    }
-    public void sql_drop(){
-        db.execSQL("DROP TABLE IF EXISTS schedule");
-    }
-    public void sql_create(){
-        db.execSQL("CREATE TABLE schedule (_id INTEGER PRIMARY KEY AUTOINCREMENT, zhoushu SMALLINT, xingqi SMALLINT, jieci SMALLINT, kecheng VARCHAR)");  //写数据库
-    }
-    public int sql_getcount(){
-        Cursor mCursor;
-    try {
-        mCursor = db.rawQuery("select count(*) from schedule", new String[]{});
-        mCursor.moveToNext();
-    }catch (Exception e){
-        sql_create();
-
-}
-        mCursor = db.rawQuery("select count(*) from schedule", new String[]{});
-        mCursor.moveToNext();
-        return mCursor.getInt(0);
-    }
-    public void sql_course_add(String zhoushu,String xingqi,String jieci,String kecheng){
-        db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(zhoushu), Integer.valueOf(xingqi), Integer.valueOf(jieci), kecheng});
-
-    }
-
-    public void sql_course_delete(int zhoushu,int xingqi,int jieci){
-        try {
-            db.execSQL("DELETE FROM schedule WHERE zhoushu=? and xingqi=? and jieci=?", new Object[]{(zhoushu), (xingqi), (jieci)});
-        }catch (Exception e){
-            System.out.println(e);
-        }
 
 
-    }
+
+
+
+
+
+
     public String kecheng_generate(String subject,String time,String teacher,String location){
         return subject+"<br>"+time+"<br>"+teacher+"<br>"+location;
     }

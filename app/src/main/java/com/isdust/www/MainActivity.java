@@ -54,7 +54,7 @@ public class MainActivity extends BaseMainActivity_new {
 		rcv = (RecyclerView)findViewById(R.id.module);
 
         //开启数据库获取数据
-		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
+		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_MULTI_PROCESS, null);
         kecheng=new KeCheng(db,this);
         kechengInfo=kecheng.getKecheng();
         db.close();

@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 164
                 },
                 "from": {
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 217
                 },
                 "from": {
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 265
                 },
                 "from": {
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 318
                 },
                 "from": {
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -107,7 +107,7 @@
                     "endOffset": 609
                 },
                 "from": {
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -128,7 +128,11 @@
                     "endOffset": 769
                 },
                 "from": {
+<<<<<<< HEAD
                     "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+=======
+                    "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
+>>>>>>> c9eb19a6597a0730c250aacb94f08781272078b7
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,

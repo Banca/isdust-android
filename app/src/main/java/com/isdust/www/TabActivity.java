@@ -3,13 +3,11 @@ package com.isdust.www;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
@@ -145,7 +143,14 @@ public class TabActivity extends FragmentActivity {
     }
     private void initMoudleData(){
         modules=(List<BaseModule>) ConfigHelper.readObject(this,"modules");
+<<<<<<< HEAD
         if(modules!=null&&modules.size()<=0) {
+=======
+        if(modules==null){
+            modules=new SerializableList<BaseModule>();
+        }
+        if(modules.size()==0) {
+>>>>>>> c9eb19a6597a0730c250aacb94f08781272078b7
             modules.add(CardModule.getInstance());
             modules.add(jiaowu_ClassroomModule.getInstance());
             modules.add(jiaowu_MarkModule.getInstance());

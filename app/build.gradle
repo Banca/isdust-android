@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.0"
 
     defaultConfig {
-        applicationId "com.isdust.www"
+        applicationId "com.isdust.android"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 16 
@@ -23,7 +23,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.0'
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':slidingmenu_library')
+//    compile project(':slidingmenu_library')
         compile project(':datepicker')
 
     compile files('libs/java-json.jar')
