@@ -24,6 +24,7 @@ import com.isdust.www.Module.library_SearchModule;
 import com.isdust.www.RecycleView.CheckboxAdapter;
 import com.isdust.www.Utils.ConfigHelper;
 import com.isdust.www.Utils.SerializableList;
+import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.frame.Main;
 
 import java.lang.reflect.Array;
@@ -32,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class ModuleManage extends Activity {
+public class ModuleManage extends BaseSubPageActivity_new {
 
     private List<BaseModule> modules = new SerializableList<>();
     private ListView listView;
@@ -44,7 +45,7 @@ public class ModuleManage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_module);
+        INIT(R.layout.activity_manage_module,"模块管理");
         isdustapp = (MyApplication) getApplication();
         init();
         listView = (ListView) findViewById(R.id.listView_mymodule);

@@ -1,64 +1,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_btn_blue">
+    android:id="@+id/RelativeLayout_schedule"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    android:orientation="vertical">
 
+    <include
+        android:id="@+id/include2"
+        layout="@layout/subpage_title_bar" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include2"
+        android:layout_gravity="center"
+        android:background="@color/color_btn_white"
+        android:orientation="vertical">
 
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
+        <Button
+            android:id="@+id/FormGoNet_button_cmcc"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:background="#fff"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            android:id="@+id/RelativeLayout_schedule">
+            android:background="@drawable/selector_item_button"
+            android:drawableLeft="@drawable/item_cmcc"
+            android:drawableRight="@drawable/arrow"
+            android:gravity="center_vertical|left"
+            android:onClick="onFormGoNetClick"
+            android:text="  CMCC"
+            android:textSize="18sp" />
 
-            <include layout="@layout/layout_title_bar"
-                android:id="@+id/include2" />
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/color_btn_white"
-                android:orientation="vertical"
-                android:layout_below="@+id/include2">
-                <Button
-                    android:id="@+id/FormGoNet_button_cmcc"
-                    android:onClick="onFormGoNetClick"
-                    android:text="  CMCC"
-                    android:gravity="center_vertical|left"
-                    android:textSize="18sp"
-                    android:background="@drawable/selector_item_button"
-                    android:drawableLeft="@drawable/item_cmcc"
-                    android:drawableRight="@drawable/arrow"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3px"
+            android:background="@color/color_page_white" />
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="3px"
-                    android:background="@color/color_page_white" />
+        <Button
+            android:id="@+id/FormGoNet_button_chinaunicom"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/selector_item_button"
+            android:drawableLeft="@drawable/item_chinaunicom"
+            android:drawableRight="@drawable/arrow"
+            android:gravity="center_vertical|left"
+            android:onClick="onFormGoNetClick"
+            android:text="  ChinaUnicom"
+            android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/FormGoNet_button_chinaunicom"
-                    android:onClick="onFormGoNetClick"
-                    android:text="  ChinaUnicom"
-                    android:gravity="center_vertical|left"
-                    android:textSize="18sp"
-                    android:background="@drawable/selector_item_button"
-                    android:drawableLeft="@drawable/item_chinaunicom"
-                    android:drawableRight="@drawable/arrow"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3px"
+            android:background="@color/color_page_white" />
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="3px"
-                    android:background="@color/color_page_white" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

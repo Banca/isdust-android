@@ -7,15 +7,17 @@
 
     android:orientation="vertical"
     tools:context="com.isdust.www.ModuleManage">
-    <Button
-        android:layout_width="match_parent"
-        android:onClick="add"
-        android:text="确定"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/subpage_title_bar"/>
+
     <ListView
         android:id="@+id/listView_mymodule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    <Button
+        android:layout_width="match_parent"
+        android:onClick="add"
+        android:text="确定"
+        android:background="@color/color_btn_blue"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
