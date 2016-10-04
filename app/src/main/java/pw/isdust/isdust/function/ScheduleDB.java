@@ -112,13 +112,15 @@ public class ScheduleDB {
             mkebiao_temp.teacher=mCursor.getString(mCursor.getColumnIndex("teacher"))+"";
             mList_kebiao.add(mkebiao_temp);
         }
-        Kebiao[] result=mList_kebiao.toArray(new Kebiao[1]);
+        mCursor.close();
+        Kebiao[] result=mList_kebiao.toArray(new Kebiao[0]);
+
         return result;
     }
     public Kebiao[] search(String zhoushu,String xingqi){
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
         Kebiao mkebiao_temp;
-        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE `zhoushu`=? and xingqi =?", new String[]{zhoushu,xingqi});
+        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE zhoushu=? and xingqi=2", new String[]{(zhoushu)});
         while (mCursor.moveToNext()) {
             mkebiao_temp=new Kebiao();
             mkebiao_temp.zhoushu=mCursor.getInt(mCursor.getColumnIndex("zhoushu"))+"";
@@ -129,8 +131,47 @@ public class ScheduleDB {
             mkebiao_temp.teacher=mCursor.getString(mCursor.getColumnIndex("teacher"))+"";
             mList_kebiao.add(mkebiao_temp);
         }
-        Kebiao[] result=mList_kebiao.toArray(new Kebiao[1]);
+        mCursor.close();
+        Kebiao[] result=mList_kebiao.toArray(new Kebiao[0]);
+
         return result;
+    }
+    public String schedule_get_all(Kebiao[] mkebiao){
+        String result="";
+        for(int i=0;i<mkebiao.length;i++){
+            int jieci=Integer.parseInt(mkebiao[i].jieci);
+            result+=jieci+"-"+(2*jieci-1);
+            result+="     ";
+            result+=mkebiao[i].kecheng;
+            result+="         ";
+            result+=mkebiao[i].location;
+            result+="\n";
+        }
+
+        return result;
+
+    }
+    public String schedule_get_brief(){
+
+        if(count()==0){
+            return "请登录课表查询";
+        }
+        String[] weekDays = {"周一", "周二", "周三", "周四", "周五", "周六","周日"};
+        int xingqi= SchoolDate.gei_xingqi();
+        int zhoushu = SchoolDate.get_xiaoli();
+        String result="今天"+weekDays[xingqi-1]+",";
+        Kebiao [] kebiaos=search(zhoushu+"",xingqi+"");
+        if(kebiaos.length==0){
+            result+="没有课";
+            return result;
+        }
+        result+="有"+kebiaos.length+"节课\n";
+        result+=schedule_get_all(kebiaos);
+        return result;
+
+
+
+
     }
 
     @Override

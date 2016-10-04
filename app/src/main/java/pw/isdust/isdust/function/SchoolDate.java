@@ -1,12 +1,10 @@
 package pw.isdust.isdust.function;
 
-import android.content.Context;
-
-
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import pw.isdust.isdust.OnlineConfig;
 
 /**
@@ -28,15 +26,11 @@ import pw.isdust.isdust.OnlineConfig;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class SchoolDate {
-    public static int get_xiaoli(Context mContext) throws Exception {
+    public static int get_xiaoli() {
 
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ParsePosition mParsePosition = new ParsePosition(0);
         String schooldate= OnlineConfig.getConfigParams( "school_date");
-        if (schooldate==""){
-            Exception e=new Exception("OnlineConfigFail");
-            throw e;
-        }
         Date d1 = (Date) mSimpleDateFormat.parse(schooldate, mParsePosition);
 
         //用现在距离1970年的时间间隔new Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔

@@ -690,7 +690,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity_new {
         Date mDate = new Date();
         int hours = mDate.getHours();
         try {
-            zhoushu= SchoolDate.get_xiaoli(mContext);
+            zhoushu= SchoolDate.get_xiaoli();
         } catch (Exception e) {
             Message message=new Message();
             message.what=11;

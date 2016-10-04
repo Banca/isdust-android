@@ -1,8 +1,6 @@
 package com.isdust.www;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.isdust.www.Module.KeCheng;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 
@@ -28,11 +25,8 @@ public class MainActivity extends BaseMainActivity_new {
 	static boolean broadcast=false;
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
-	//private spinner mSpinner;
-//	private SQLiteDatabase db;
-//	private KeCheng kecheng;
-	private TextView kc;
-//    private String kechengInfo;
+
+	private TextView mTextView_kecheng;
 	private RecycleViewAdapter adapter;
 	private GridLayoutManager manager;
 	private RecyclerView rcv;
@@ -58,22 +52,14 @@ public class MainActivity extends BaseMainActivity_new {
 		rcv = (RecyclerView)findViewById(R.id.module);
 
 		//开启数据库获取数据
-		ScheduleDB mScheduleDB=new ScheduleDB();
-
-
-
-		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_MULTI_PROCESS, null);
-        kecheng=new KeCheng(db,this);
-        kechengInfo=kecheng.getKecheng();
-        db.close();
-
 		manager = new GridLayoutManager(this, 6);
        	rcv.setLayoutManager(manager);
 
 
+		String kecheng_brief=(new ScheduleDB()).schedule_get_brief();
 
-        kc = (TextView)findViewById(kecheng);
-        kc.setText(kechengInfo);
+		mTextView_kecheng = (TextView)findViewById(kecheng);
+		mTextView_kecheng.setText(kecheng_brief);
 
 		/*listview = (ListView) findViewById(R.id.kechenglist);
 		listview.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,getData()));*/

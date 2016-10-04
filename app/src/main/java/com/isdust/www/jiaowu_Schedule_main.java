@@ -328,8 +328,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
     }
     public void xianshidangqian(){
         try {
-            mTextView_zhoushu.setText(SchoolDate.get_xiaoli(mContext) + "");
-            bangding(SchoolDate.get_xiaoli(mContext) + "");
+            mTextView_zhoushu.setText(SchoolDate.get_xiaoli() + "");
+            bangding(SchoolDate.get_xiaoli() + "");
         } catch (Exception e) {
             Message message=new Message();
             message.what=11;
@@ -347,7 +347,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
         int color=0;
 
 
-        Kebiao[] mkebiao=mScheduleDB.search_zhoushu(zhoushu);
+        Kebiao[] mkebiao=mScheduleDB.search(zhoushu);
         int xingqi,jieci;
         for (int i=0;i<mkebiao.length;i++){
             addcourse(mkebiao[i],color);

@@ -3,8 +3,6 @@ package com.isdust.www.frame;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,13 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.isdust.www.Module.KeCheng;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
 import com.isdust.www.Spinner.spinner;
 
 import pw.isdust.isdust.OnlineConfig;
+import pw.isdust.isdust.function.ScheduleDB;
+
+import static com.isdust.www.R.id.kecheng;
 
 /**
  * Created by zor on 2016/9/29.
@@ -32,10 +32,9 @@ public class Main extends Fragment {
     private RecyclerView rcv;
     protected MyApplication isdustapp;
     private spinner mSpinner;
-    private SQLiteDatabase db;
-    private KeCheng kecheng;
-    private TextView kc;
-    private String kechengInfo;
+
+    private TextView mTextView_kecheng;
+    private String kecheng_brief;
     public static RecycleViewAdapter adapter;
     private GridLayoutManager manager;
     private View v;
@@ -56,14 +55,14 @@ public class Main extends Fragment {
         adapter = new RecycleViewAdapter(mContext,isdustapp.getList());
         rcv.setLayoutManager(manager);
         rcv.setAdapter(adapter);
-        kc.setText(kechengInfo);
+        mTextView_kecheng.setText(kecheng_brief);
         info.setText(brodcast);
         title.setText("首页");
         return v;
     }
     void initView(){
         info = (TextView)v.findViewById(R.id.notification);
-        kc = (TextView)v.findViewById(R.id.kecheng);
+        mTextView_kecheng = (TextView)v.findViewById(kecheng);
         title = (TextView)v.findViewById(R.id.title_bar_name);
         rcv = (RecyclerView)v.findViewById(R.id.module);
         mSpinner = new spinner(mContext,v);
@@ -71,11 +70,8 @@ public class Main extends Fragment {
     }
     void initData(){
         //开启数据库获取数据
-        db = mContext.openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
-        kecheng=new KeCheng(db,mContext);
-        kechengInfo=kecheng.getKecheng();
+        kecheng_brief=(new ScheduleDB()).schedule_get_brief();
         brodcast= OnlineConfig.getConfigParams( "system_broadcast");
-        db.close();
     }
 
     @Override
