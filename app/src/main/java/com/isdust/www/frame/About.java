@@ -6,25 +6,17 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.isdust.www.R;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.model.UserInfo;
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,38 +71,40 @@ public class About extends Fragment {
                 agent.startFeedbackActivity();
             }
         });
-        mButton_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
-                    @Override
-                    public void onUpdateReturned(int arg0, UpdateResponse arg1) {
-                        // TODO Auto-generated method stub
-                        switch (arg0) {
-                            case UpdateStatus.Yes: // has update
-                                UmengUpdateAgent.showUpdateDialog(thisActivity, arg1);
-                                break;
-                            case UpdateStatus.No: // has no update
-                                Toast.makeText(thisActivity, getString(R.string.umeng_isNewest), Toast.LENGTH_SHORT)
-                                        .show();
-                                break;
-                            case UpdateStatus.NoneWifi: // none wifi
-                                Toast.makeText(thisActivity, getString(R.string.umeng_notWifi), Toast.LENGTH_SHORT)
-                                        .show();
-                                break;
-                            case UpdateStatus.Timeout: // time out
-                                Toast.makeText(thisActivity, getString(R.string.umeng_timeout), Toast.LENGTH_SHORT)
-                                        .show();
-                                break;
-                        }
-                    }
-                });
-
-                UmengUpdateAgent.forceUpdate(thisActivity);
-            }
-        });
-
         return v;
     }
+//        mButton_update.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+//                    @Override
+//                    public void onUpdateReturned(int arg0, UpdateResponse arg1) {
+//                        // TODO Auto-generated method stub
+//                        switch (arg0) {
+//                            case UpdateStatus.Yes: // has update
+//                                UmengUpdateAgent.showUpdateDialog(thisActivity, arg1);
+//                                break;
+//                            case UpdateStatus.No: // has no update
+//                                Toast.makeText(thisActivity, getString(R.string.umeng_isNewest), Toast.LENGTH_SHORT)
+//                                        .show();
+//                                break;
+//                            case UpdateStatus.NoneWifi: // none wifi
+//                                Toast.makeText(thisActivity, getString(R.string.umeng_notWifi), Toast.LENGTH_SHORT)
+//                                        .show();
+//                                break;
+//                            case UpdateStatus.Timeout: // time out
+//                                Toast.makeText(thisActivity, getString(R.string.umeng_timeout), Toast.LENGTH_SHORT)
+//                                        .show();
+//                                break;
+//                        }
+//                    }
+//                });
+//
+//                UmengUpdateAgent.forceUpdate(thisActivity);
+//            }
+//        });
+//
+//        return v;
+//    }
 
 }

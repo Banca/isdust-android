@@ -2,10 +2,8 @@ package com.isdust.www;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.datepicker.DatePickerDailog;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.datatype.Kebiao;
+
+import pw.isdust.isdust.function.ScheduleDB;
 
 /**
  * Created by wzq on 16/1/15.
@@ -25,8 +26,10 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
     int zhoushu [];
     int zhoushu_type[];//0为未选，1为已选，0-2分别对应单周，双周，全选
     int xingqi=0,jieci=0;
-    SQLiteDatabase db;
+    //SQLiteDatabase db;
 //    Calendar dateandtime;
+    ScheduleDB mScheduleDB;
+
 
 
     @Override
@@ -34,7 +37,8 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_schedule_add_main, "创建课程");
-        db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
+        mScheduleDB=new ScheduleDB();
+        //db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
         zhoushu=new int[21];
         zhoushu_type=new int[3];
 
@@ -390,12 +394,19 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
 
 
                 String kecheng_time=Jiaowu_EmptyRoom.xingqizhuanhuan(xingqi)+Jiaowu_EmptyRoom.jiecizhuanhuan(jieci);
-                String kecheng_detail=kecheng_generate(content_kecheng,kecheng_time,content_teacher,content_location);
+                //String kecheng_detail=kecheng_generate(content_kecheng,kecheng_time,content_teacher,content_location);
                 int flag=0;
                 for(int i=1;i<=20;i++){
                     if(zhoushu[i]==1){
                         flag=1;
-                        sql_course_add(i+"",xingqi+"",jieci+"",kecheng_detail);
+                        Kebiao mkebiao=new Kebiao();
+                        mkebiao.teacher=content_teacher;
+                        mkebiao.location=content_location;
+                        mkebiao.kecheng=content_kecheng;
+                        mkebiao.xingqi=xingqi+"";
+                        mkebiao.jieci=jieci+"";
+                        mkebiao.zhoushu=i+"";
+                        mScheduleDB.add(mkebiao);
                     }
                 }
                 if (flag==0){
@@ -418,13 +429,13 @@ public class jiaowu_schedule_add extends BaseSubPageActivity_new {
         });
 
     }
-    public void sql_course_add(String zhoushu,String xingqi,String jieci,String kecheng){
-        db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(zhoushu), Integer.valueOf(xingqi), Integer.valueOf(jieci), kecheng});
-
-    }
-    public String kecheng_generate(String subject,String time,String teacher,String location){
-        return subject+"<br>"+time+"<br>"+teacher+"<br>"+location;
-    }
+//    public void sql_course_add(String zhoushu,String xingqi,String jieci,String kecheng){
+//        db.execSQL("INSERT INTO schedule VALUES (NULL, ?, ?,?,?)", new Object[]{Integer.valueOf(zhoushu), Integer.valueOf(xingqi), Integer.valueOf(jieci), kecheng});
+//
+//    }
+//    public String kecheng_generate(String subject,String time,String teacher,String location){
+//        return subject+"<br>"+time+"<br>"+teacher+"<br>"+location;
+//    }
     @Override
     public void onTitleBarClick(View v) {
         switch (v.getId()) {

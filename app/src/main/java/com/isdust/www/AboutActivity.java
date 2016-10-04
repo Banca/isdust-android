@@ -2,34 +2,20 @@ package com.isdust.www;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.frame.About;
-import com.isdust.www.frame.Main;
-import com.isdust.www.frame.SchoolServer;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.model.UserInfo;
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 
-;import java.util.HashMap;
+import java.util.HashMap;
 import java.util.Map;
+
+;
 
 /**
  * Created by Wang Ziqiang on 2015/10/17.
@@ -86,31 +72,31 @@ public class AboutActivity extends BaseMainActivity_new {
         mButton_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
-                    @Override
-                    public void onUpdateReturned(int arg0, UpdateResponse arg1) {
-                        // TODO Auto-generated method stub
-                        switch (arg0) {
-                            case UpdateStatus.Yes: // has update
-                                UmengUpdateAgent.showUpdateDialog(mContext, arg1);
-                                break;
-                            case UpdateStatus.No: // has no update
-                                Toast.makeText(mContext, getString(R.string.umeng_isNewest), Toast.LENGTH_SHORT)
-                                        .show();
-                                break;
-                            case UpdateStatus.NoneWifi: // none wifi
-                                Toast.makeText(mContext, getString(R.string.umeng_notWifi), Toast.LENGTH_SHORT)
-                                        .show();
-                                break;
-                            case UpdateStatus.Timeout: // time out
-                                Toast.makeText(mContext, getString(R.string.umeng_timeout), Toast.LENGTH_SHORT)
-                                        .show();
-                                break;
-                        }
-                    }
-                });
-
-                UmengUpdateAgent.forceUpdate(mContext);
+//                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+//                    @Override
+//                    public void onUpdateReturned(int arg0, UpdateResponse arg1) {
+//                        // TODO Auto-generated method stub
+//                        switch (arg0) {
+//                            case UpdateStatus.Yes: // has update
+//                                UmengUpdateAgent.showUpdateDialog(mContext, arg1);
+//                                break;
+//                            case UpdateStatus.No: // has no update
+//                                Toast.makeText(mContext, getString(R.string.umeng_isNewest), Toast.LENGTH_SHORT)
+//                                        .show();
+//                                break;
+//                            case UpdateStatus.NoneWifi: // none wifi
+//                                Toast.makeText(mContext, getString(R.string.umeng_notWifi), Toast.LENGTH_SHORT)
+//                                        .show();
+//                                break;
+//                            case UpdateStatus.Timeout: // time out
+//                                Toast.makeText(mContext, getString(R.string.umeng_timeout), Toast.LENGTH_SHORT)
+//                                        .show();
+//                                break;
+//                        }
+//                    }
+//                });
+//
+//                UmengUpdateAgent.forceUpdate(mContext);
             }
         });
     }

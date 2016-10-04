@@ -3,7 +3,6 @@ package com.isdust.www;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,11 +18,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +30,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.SelectCoursePlatform;
 
 /**
@@ -335,7 +333,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
 
 
         // 初始化xuenian数据项
-        String xuenian_raw = OnlineConfigAgent.getInstance().getConfigParams(mContext, "jiaowu_chengji_xuenian");
+        String xuenian_raw = OnlineConfig.getConfigParams( "jiaowu_chengji_xuenian");
         String [] xuenian;
         xuenian=xuenian_raw.split("\n");
         mList_xuenian = new ArrayList<Map<String, String>>();
@@ -348,7 +346,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity_new {
 
 
         // 初始化xueqi数据项
-        String xueqi_raw = OnlineConfigAgent.getInstance().getConfigParams(mContext, "jiaowu_chengji_xueqi");
+        String xueqi_raw = OnlineConfig.getConfigParams("jiaowu_chengji_xueqi");
         String [] xueqi;
         xueqi=xueqi_raw.split("\n");
         mList_xueqi = new ArrayList<Map<String, String>>();

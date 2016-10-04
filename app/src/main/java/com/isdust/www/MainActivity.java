@@ -10,12 +10,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.isdust.www.Module.KeCheng;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
 import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.Module.KeCheng;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.util.Timer;
+
+import pw.isdust.isdust.OnlineConfig;
+import pw.isdust.isdust.function.ScheduleDB;
+
+import static com.isdust.www.R.id.kecheng;
 
 
 public class MainActivity extends BaseMainActivity_new {
@@ -25,10 +29,10 @@ public class MainActivity extends BaseMainActivity_new {
 	private Timer timer_wel = null;
 	private boolean bool_wel = false;
 	//private spinner mSpinner;
-	private SQLiteDatabase db;
-	private KeCheng kecheng;
+//	private SQLiteDatabase db;
+//	private KeCheng kecheng;
 	private TextView kc;
-    private String kechengInfo;
+//    private String kechengInfo;
 	private RecycleViewAdapter adapter;
 	private GridLayoutManager manager;
 	private RecyclerView rcv;
@@ -53,7 +57,11 @@ public class MainActivity extends BaseMainActivity_new {
 		INIT(R.layout.act1, "首页",0);
 		rcv = (RecyclerView)findViewById(R.id.module);
 
-        //开启数据库获取数据
+		//开启数据库获取数据
+		ScheduleDB mScheduleDB=new ScheduleDB();
+
+
+
 		db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_MULTI_PROCESS, null);
         kecheng=new KeCheng(db,this);
         kechengInfo=kecheng.getKecheng();
@@ -64,7 +72,7 @@ public class MainActivity extends BaseMainActivity_new {
 
 
 
-        kc = (TextView)findViewById(R.id.kecheng);
+        kc = (TextView)findViewById(kecheng);
         kc.setText(kechengInfo);
 
 		/*listview = (ListView) findViewById(R.id.kechenglist);
@@ -73,50 +81,11 @@ public class MainActivity extends BaseMainActivity_new {
         //mSpinner = new spinner(this);
 		//mSpinner.init();
 
-		String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
+		String braoadcast= OnlineConfig.getConfigParams( "system_broadcast");
 		TextView info = (TextView)findViewById(R.id.notification);
 		info.setText(braoadcast);
 
-	/*
 
-		MobclickAgent.updateOnlineConfig(mContext);
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.update(this);
-
-		OnlineConfigAgent.getInstance().setDebugMode(true);
-		OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-		String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
-
-
-
-		if (ishadopended == true) {    //程序已经启动
-			INIT(R.layout.act1, "首页",0);
-			//String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
-			if (!install.equals("true")){
-				Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
-			}
-//			if (!braoadcast.equals("null")&&!braoadcast.equals("")){
-//				TextView a=new TextView(this);
-//				a.setText(braoadcast);
-//				a.setTextSize(20);
-//				new AlertDialog.Builder(mContext)
-//						.setTitle("公告")
-//						.setView(a)
-//						.setIcon(R.mipmap.isdust)
-//						.setPositiveButton("确定", null).show();
-//			}
-
-		}else {
-
-			//INIT(R.layout.welcome);
-			ishadopended = true;
-			timer_wel = new Timer();
-			timer_wel.schedule(task_wel, 2000, 2);		// start a 5s's timer after 2s
-
-		}
-
-
-*/
 
 		}
 /*	private List<String> getData(){
@@ -143,58 +112,7 @@ public class MainActivity extends BaseMainActivity_new {
 			return false;
 		}
 	}
-/*
 
-	final Handler handler_wel = new Handler(){
-		public void handleMessage(Message msg){
-			switch(msg.what){
-				case 1:
-					bool_wel = true;
-					break;
-				case 2:
-//                	   float alp = form_welcome.getAlpha();
-					//System.out.println(alp);
-//                	   if (alp < 0.015) {
-					timer_wel.cancel();
-					INIT(R.layout.act1, "首页",0);
-					String braoadcast= OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
-					String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
-					if (!install.equals("true")){
-						Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
-					}
-					if (!braoadcast.equals("null")&&!braoadcast.equals("")){
-						if (broadcast==false){
-						TextView a=new TextView(mContext);
-							broadcast=true;
-						a.setText(braoadcast);
-						a.setTextSize(20);
-						new AlertDialog.Builder(mContext)
-								.setTitle("公告")
-								.setView(a)
-								.setIcon(R.mipmap.isdust)
-								.setPositiveButton("确定", null).show();
-					}}
-						//销毁 timer_wel
-//                	   }
-//                	   else {
-//                		   form_welcome.setAlpha((float) (alp - 0.01));	//修改欢迎页面的透明度
-//                	   }
-					break;
-			}
-			super.handleMessage(msg);
-		}
-	};
-
-	TimerTask task_wel = new TimerTask(){
-		public void run(){
-			Message message = new Message();
-			if (bool_wel)
-				message.what = 1 ;
-			else
-				message.what = 2 ;		// Change Transparency's command
-			handler_wel.sendMessage(message);
-		}
-	};*/
 	public void addqq(View v){
 		joinQQGroup("EpMF_C2Na71cIhD2-BB80Vzy20xpLJ9o");
 	}

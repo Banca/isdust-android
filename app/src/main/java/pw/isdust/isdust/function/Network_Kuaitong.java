@@ -2,7 +2,6 @@ package pw.isdust.isdust.function;
 
 import android.content.Context;
 
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -12,6 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import pw.isdust.isdust.Http;
+import pw.isdust.isdust.OnlineConfig;
+
 
 /**
  * Created by Wang Ziqiang on 15/10/21.
@@ -47,8 +48,8 @@ public class Network_Kuaitong {
         int status=mNetworkjudge.judgetype();
 
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-        String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
-        String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+        String address = OnlineConfig.getConfigParams( "proxy1_address");
+        String port = OnlineConfig.getConfigParams( "proxy1_port");
         if (address==""){
             Exception e=new Exception("OnlineConfigFail");
             throw e;}
@@ -57,8 +58,8 @@ public class Network_Kuaitong {
             mHttp_waiwang.setProxy(address, Integer.valueOf(port));
 //            mHttp_waiwang.setProxy("proxy1.isdust.com", 1999);
         }
-        String proxy_kuaitong_wechat = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy_kuaitong_wechat");
-        String proxy_kuaitong_epay= OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy_kuaitong_epay");
+        String proxy_kuaitong_wechat = OnlineConfig.getConfigParams("proxy_kuaitong_wechat");
+        String proxy_kuaitong_epay= OnlineConfig.getConfigParams("proxy_kuaitong_epay");
         if (proxy_kuaitong_wechat.equals("true")){
 
             mHttp_direct.setProxy(address, Integer.valueOf(port));

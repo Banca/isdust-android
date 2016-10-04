@@ -2,12 +2,12 @@ package pw.isdust.isdust.function;
 
 import android.content.Context;
 
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import pw.isdust.isdust.OnlineConfig;
 
 /**
  * Created by Wang Ziqiang on 15/10/11.
@@ -29,9 +29,10 @@ import java.util.Date;
  */
 public class SchoolDate {
     public static int get_xiaoli(Context mContext) throws Exception {
+
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ParsePosition mParsePosition = new ParsePosition(0);
-        String schooldate= OnlineConfigAgent.getInstance().getConfigParams(mContext, "school_date");
+        String schooldate= OnlineConfig.getConfigParams( "school_date");
         if (schooldate==""){
             Exception e=new Exception("OnlineConfigFail");
             throw e;

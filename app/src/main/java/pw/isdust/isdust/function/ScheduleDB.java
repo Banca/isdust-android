@@ -98,7 +98,7 @@ public class ScheduleDB {
             }
 
     }
-    public Kebiao[] search_zhoushu(String zhoushu){
+    public Kebiao[] search(String zhoushu){
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
         Kebiao mkebiao_temp;
         Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE `zhoushu`=?", new String[]{zhoushu});
@@ -115,6 +115,24 @@ public class ScheduleDB {
         Kebiao[] result=mList_kebiao.toArray(new Kebiao[1]);
         return result;
     }
+    public Kebiao[] search(String zhoushu,String xingqi){
+        List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
+        Kebiao mkebiao_temp;
+        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE `zhoushu`=? and xingqi =?", new String[]{zhoushu,xingqi});
+        while (mCursor.moveToNext()) {
+            mkebiao_temp=new Kebiao();
+            mkebiao_temp.zhoushu=mCursor.getInt(mCursor.getColumnIndex("zhoushu"))+"";
+            mkebiao_temp.xingqi=mCursor.getInt(mCursor.getColumnIndex("xingqi"))+"";
+            mkebiao_temp.jieci=mCursor.getInt(mCursor.getColumnIndex("jieci"))+"";
+            mkebiao_temp.kecheng=mCursor.getString(mCursor.getColumnIndex("class"))+"";
+            mkebiao_temp.location=mCursor.getString(mCursor.getColumnIndex("location"))+"";
+            mkebiao_temp.teacher=mCursor.getString(mCursor.getColumnIndex("teacher"))+"";
+            mList_kebiao.add(mkebiao_temp);
+        }
+        Kebiao[] result=mList_kebiao.toArray(new Kebiao[1]);
+        return result;
+    }
+
     @Override
     protected void finalize() throws Throwable {
         super.finalize();

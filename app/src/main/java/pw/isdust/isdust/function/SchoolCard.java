@@ -7,7 +7,6 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.isdust.www.datatype.PurchaseHistory;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -21,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import pw.isdust.isdust.OnlineConfig;
+
 
 import pw.isdust.isdust.Http;
 
@@ -90,8 +91,9 @@ public class SchoolCard {
 //        }
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
-            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+
+            String address = OnlineConfig.getConfigParams( "proxy1_address");
+            String port = OnlineConfig.getConfigParams( "proxy1_port");
             if (address==""){
                 Exception e=new Exception("OnlineConfigFail");
                 throw e;}

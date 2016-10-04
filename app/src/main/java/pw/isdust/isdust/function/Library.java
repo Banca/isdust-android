@@ -3,7 +3,6 @@ package pw.isdust.isdust.function;
 import android.content.Context;
 
 import com.isdust.www.datatype.Book;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,6 +25,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import pw.isdust.isdust.Http;
+import pw.isdust.isdust.OnlineConfig;
 
 /**
  * Created by Wang Ziqiang on 15/10/19.
@@ -62,8 +62,8 @@ public class Library {
 //        }
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
-            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            String address = OnlineConfig.getConfigParams( "proxy1_address");
+            String port = OnlineConfig.getConfigParams( "proxy1_port");
             if (address==""){
                 Exception e=new Exception("OnlineConfigFail");
                 throw e;

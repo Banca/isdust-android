@@ -3,7 +3,6 @@ package pw.isdust.isdust.function;
 import android.content.Context;
 
 import com.isdust.www.datatype.Kebiao;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -15,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import pw.isdust.isdust.Http;
+import pw.isdust.isdust.OnlineConfig;
 
 /**
  * Created by Wang Ziqiang on 15/10/10.
@@ -50,16 +50,16 @@ public class SelectCoursePlatform {
         mHttp.newcookie();
         String address_config [];
         Networkjudge mNetworkjudge=new Networkjudge(context);
-        address_config=OnlineConfigAgent.getInstance().getConfigParams(mContext, "address_zhengfang").split("\n");
-        method=OnlineConfigAgent.getInstance().getConfigParams(mContext, "jiaowu_chengji_method");
+        address_config=OnlineConfig.getConfigParams( "address_zhengfang").split("\n");
+        method=OnlineConfig.getConfigParams( "jiaowu_chengji_method");
         Random random = new Random();
         int s = random.nextInt(address_config.length)%(address_config.length+1);
         address_zhengfang=address_config[s];
 //        Toast.makeText(context,address_zhengfang,Toast.LENGTH_SHORT).show();
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            String address = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_address");
-            String port = OnlineConfigAgent.getInstance().getConfigParams(mContext, "proxy1_port");
+            String address = OnlineConfig.getConfigParams( "proxy1_address");
+            String port = OnlineConfig.getConfigParams( "proxy1_port");
             if (address==""){
                 Exception e=new Exception("OnlineConfigFail");
                 throw e;}

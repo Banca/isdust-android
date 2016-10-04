@@ -31,7 +31,6 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.isdust.www.datatype.Kebiao;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +40,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.ScheduleDB;
 import pw.isdust.isdust.function.SchoolDate;
 import pw.isdust.isdust.function.SelectCoursePlatform;
@@ -205,8 +205,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity_new {
             Message mMessage=new Message();
             mMessage.what=3;
 //            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-            String xuenian= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xuenian");
-            String xueqi= OnlineConfigAgent.getInstance().getConfigParams(mContext, "schedule_xueqi");
+            String xuenian= OnlineConfig.getConfigParams("schedule_xuenian");
+            String xueqi= OnlineConfig.getConfigParams("schedule_xueqi");
 //            xuenian="2015-2016";xueqi="1";//debug
             for(int i=0;i<zhoushu;i++){
                 try {

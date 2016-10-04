@@ -14,17 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.isdust.www.Module.*;
+import com.isdust.www.Module.KeCheng;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
 import com.isdust.www.Spinner.spinner;
-import com.isdust.www.Module.KeCheng;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
+import pw.isdust.isdust.OnlineConfig;
 
 /**
  * Created by zor on 2016/9/29.
@@ -78,7 +74,7 @@ public class Main extends Fragment {
         db = mContext.openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
         kecheng=new KeCheng(db,mContext);
         kechengInfo=kecheng.getKecheng();
-        brodcast=OnlineConfigAgent.getInstance().getConfigParams(mContext, "system_broadcast");
+        brodcast= OnlineConfig.getConfigParams( "system_broadcast");
         db.close();
     }
 

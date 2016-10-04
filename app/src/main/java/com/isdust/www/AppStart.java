@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.onlineconfig.OnlineConfigAgent;
-import com.umeng.update.UmengUpdateAgent;
+
+import pw.isdust.isdust.OnlineConfig;
+
 
 
 public class AppStart extends BaseMainActivity_new {
@@ -24,12 +24,13 @@ public class AppStart extends BaseMainActivity_new {
 
         //umeng设置
         mContext=this;
-        MobclickAgent.updateOnlineConfig(mContext);
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
-        UmengUpdateAgent.update(this);
-
-        OnlineConfigAgent.getInstance().setDebugMode(true);
-        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+        OnlineConfig.updateandload(this);
+//        MobclickAgent.updateOnlineConfig(mContext);
+//        UmengUpdateAgent.setUpdateOnlyWifi(false);
+//        UmengUpdateAgent.update(this);
+//
+//        OnlineConfigAgent.getInstance().setDebugMode(true);
+//        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
 
         // SystemTool.gc(this); //针对性能好的手机使用，加快应用相应速度
 
@@ -66,10 +67,10 @@ public class AppStart extends BaseMainActivity_new {
     }
     private void checkNet(){
 
-        String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
-        if (!install.equals("true")){
-            Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
-        }
+//        String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
+//        if (!install.equals("true")){
+//            Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
+//        }
 
     }
 

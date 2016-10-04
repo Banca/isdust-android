@@ -8,8 +8,8 @@ import android.widget.EditText;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity_new;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
+import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.Networklogin_CMCC;
 import pw.isdust.isdust.function.RSACryptUtil;
 
@@ -28,7 +28,7 @@ public class Jiaowu_tice_search extends BaseSubPageActivity_new {
         mEditText_xuehao=(EditText)findViewById(R.id.edittext_tice_xuehao);
         MobclickAgent.onEvent(this, "jiaowu_tice");
         mButton_search=(Button)findViewById(R.id.Jiaowu_tice_search);
-        publickey= OnlineConfigAgent.getInstance().getConfigParams(mContext, "tice_publickey");
+        publickey= OnlineConfig.getConfigParams( "tice_publickey");
         publickey=publickey.replace("\r", "");
         publickey=publickey.replace("\n","");
         System.out.println(publickey);

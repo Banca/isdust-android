@@ -5,7 +5,6 @@ import android.provider.Settings;
 import android.util.Base64;
 
 import com.isdust.www.datatype.ScheduleInformation;
-import com.umeng.onlineconfig.OnlineConfigAgent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +18,7 @@ import java.security.spec.X509EncodedKeySpec;
 import javax.crypto.Cipher;
 
 import pw.isdust.isdust.Http;
+import pw.isdust.isdust.OnlineConfig;
 
 /**
  * Created by Wang Ziqiang on 15/10/15.
@@ -51,7 +51,7 @@ public class EmptyClassroom {
         mHttp=new Http();
         mContext=context;
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-        publickey=OnlineConfigAgent.getInstance().getConfigParams(mContext, "EmptyClassroom_publickey");
+        publickey=OnlineConfig.getConfigParams( "EmptyClassroom_publickey");
         if (publickey==""){
             Exception e=new Exception("OnlineConfigFail");
             throw e;
