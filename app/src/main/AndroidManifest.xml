@@ -144,11 +144,7 @@
             android:name=".Jiaowu_tice_view"
             android:screenOrientation="portrait" />
 
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" />
-
-        <activity android:name="com.umeng.update.UpdateDialogActivity" />
+        <service android:enabled="true" android:name="pw.isdust.isdust.update.DownloadService" />
 
         <meta-data
             android:name="UMENG_APPKEY"

@@ -58,8 +58,8 @@ public class SelectCoursePlatform {
 //        Toast.makeText(context,address_zhengfang,Toast.LENGTH_SHORT).show();
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            String address = OnlineConfig.getConfigParams( "proxy1_address");
-            String port = OnlineConfig.getConfigParams( "proxy1_port");
+            String address = OnlineConfig.getConfigParams( "proxy_address");
+            String port = OnlineConfig.getConfigParams( "proxy_port");
             if (address==""){
                 Exception e=new Exception("OnlineConfigFail");
                 throw e;}

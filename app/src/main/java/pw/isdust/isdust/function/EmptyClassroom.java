@@ -51,11 +51,8 @@ public class EmptyClassroom {
         mHttp=new Http();
         mContext=context;
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-        publickey=OnlineConfig.getConfigParams( "EmptyClassroom_publickey");
-        if (publickey==""){
-            Exception e=new Exception("OnlineConfigFail");
-            throw e;
-        }
+        publickey=OnlineConfig.getConfigParams( "publickey_emptyclassroom");
+
         publickey=publickey.replace("\r", "");
         publickey=publickey.replace("\n","");
         System.out.println(publickey);

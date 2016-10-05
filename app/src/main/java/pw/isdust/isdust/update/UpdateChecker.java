@@ -1,4 +1,4 @@
-package com.loveplusplus.update;
+package pw.isdust.isdust.update;
 
 import android.content.Context;
 import android.util.Log;

@@ -28,7 +28,7 @@ public class Jiaowu_tice_search extends BaseSubPageActivity_new {
         mEditText_xuehao=(EditText)findViewById(R.id.edittext_tice_xuehao);
         MobclickAgent.onEvent(this, "jiaowu_tice");
         mButton_search=(Button)findViewById(R.id.Jiaowu_tice_search);
-        publickey= OnlineConfig.getConfigParams( "tice_publickey");
+        publickey= OnlineConfig.getConfigParams( "publickey_sporttest");
         publickey=publickey.replace("\r", "");
         publickey=publickey.replace("\n","");
         System.out.println(publickey);

@@ -48,8 +48,8 @@ public class Network_Kuaitong {
         int status=mNetworkjudge.judgetype();
 
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-        String address = OnlineConfig.getConfigParams( "proxy1_address");
-        String port = OnlineConfig.getConfigParams( "proxy1_port");
+        String address = OnlineConfig.getConfigParams( "proxy_address");
+        String port = OnlineConfig.getConfigParams( "proxy_port");
         if (address==""){
             Exception e=new Exception("OnlineConfigFail");
             throw e;}

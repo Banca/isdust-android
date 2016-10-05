@@ -13,7 +13,6 @@ import com.isdust.www.baseactivity.BaseMainActivity_new;
 
 import java.util.Timer;
 
-import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.ScheduleDB;
 
 import static com.isdust.www.R.id.kecheng;
@@ -67,9 +66,9 @@ public class MainActivity extends BaseMainActivity_new {
         //mSpinner = new spinner(this);
 		//mSpinner.init();
 
-		String braoadcast= OnlineConfig.getConfigParams( "system_broadcast");
+		//String braoadcast= OnlineConfig.getConfigParams( "system_broadcast");
 		TextView info = (TextView)findViewById(R.id.notification);
-		info.setText(braoadcast);
+		//info.setText(braoadcast);
 
 
 

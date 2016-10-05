@@ -1,4 +1,4 @@
-package com.loveplusplus.update;
+package pw.isdust.isdust.update;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import pw.isdust.isdust.OnlineConfig;
+
 
 /**
  * @author feicien (ithcheng@gmail.com)
@@ -26,7 +28,7 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
     private Context mContext;
     private int mType;
     private boolean mShowProgressDialog;
-    private static final String url = Constants.UPDATE_URL;
+//    private static final String url = Constants.UPDATE_URL;
 
     CheckUpdateTask(Context context, int type, boolean showProgressDialog) {
 
@@ -105,7 +107,6 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
                 .setTicker(context.getString(R.string.android_auto_update_notify_ticker))
                 .setContentTitle(context.getString(R.string.android_auto_update_notify_content))
                 .setContentText(content)
-                .setSmallIcon(smallIcon)
                 .setContentIntent(pendingIntent).build();
 
         notify.flags = android.app.Notification.FLAG_AUTO_CANCEL;
@@ -115,6 +116,7 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... args) {
-        return HttpUtils.get(url);
+        String result=OnlineConfig.getConfigParams( "update");
+        return result;
     }
 }

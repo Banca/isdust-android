@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.isdust.www.MainActivity;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
@@ -19,6 +20,7 @@ import com.isdust.www.Spinner.spinner;
 
 import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.ScheduleDB;
+import pw.isdust.isdust.update.UpdateChecker;
 
 import static com.isdust.www.R.id.kecheng;
 
@@ -58,6 +60,8 @@ public class Main extends Fragment {
         mTextView_kecheng.setText(kecheng_brief);
         info.setText(brodcast);
         title.setText("首页");
+
+
         return v;
     }
     void initView(){
