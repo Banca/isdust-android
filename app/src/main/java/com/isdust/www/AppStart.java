@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
 import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.loveplusplus.update.UpdateChecker;
 import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.OnlineConfig;
@@ -25,6 +26,7 @@ public class AppStart extends BaseMainActivity_new {
         //umeng设置
         mContext=this;
         OnlineConfig.updateandload(this);
+        UpdateChecker.checkForDialog(AppStart.this);
 //        MobclickAgent.updateOnlineConfig(mContext);
 //        UmengUpdateAgent.setUpdateOnlyWifi(false);
 //        UmengUpdateAgent.update(this);

@@ -23,8 +23,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.0'
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-//    compile project(':slidingmenu_library')
-        compile project(':datepicker')
+    compile project(':datepicker')
+    compile project(':autoupdate')
 
     compile files('libs/java-json.jar')
     compile files('libs/okhttp-2.5.0.jar')

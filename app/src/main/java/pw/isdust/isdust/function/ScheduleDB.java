@@ -19,18 +19,12 @@ public class ScheduleDB {
     SQLiteDatabase db;
     public ScheduleDB(){
         String DBPath = Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases//";
-
-//        String a=Environment.getDataDirectory().getName();
-
         db=SQLiteDatabase.openOrCreateDatabase(DBPath+"jiaowu_schedule_new.db",null);
         try{
             create();
         }catch (Exception e){
 
         }
-
-
-
     }
     public void create(){
         db.execSQL("CREATE TABLE schedule (_id INTEGER PRIMARY KEY AUTOINCREMENT, zhoushu SMALLINT, xingqi SMALLINT, jieci SMALLINT, class VARCHAR,location VARCHAR,teacher VARCHAR)");  //写数据库

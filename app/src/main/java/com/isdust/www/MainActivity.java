@@ -51,10 +51,10 @@ public class MainActivity extends BaseMainActivity_new {
 		INIT(R.layout.act1, "首页",0);
 		rcv = (RecyclerView)findViewById(R.id.module);
 
-		//开启数据库获取数据
 		manager = new GridLayoutManager(this, 6);
        	rcv.setLayoutManager(manager);
 
+		//开启数据库获取数据
 
 		String kecheng_brief=(new ScheduleDB()).schedule_get_brief();
 
