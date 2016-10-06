@@ -128,11 +128,7 @@
                     "endOffset": 769
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-=======
                     "file": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/values/values.xml",
->>>>>>> c9eb19a6597a0730c250aacb94f08781272078b7
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,

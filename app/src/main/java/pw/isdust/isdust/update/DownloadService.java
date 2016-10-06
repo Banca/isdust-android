@@ -10,6 +10,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
+import com.isdust.www.R;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

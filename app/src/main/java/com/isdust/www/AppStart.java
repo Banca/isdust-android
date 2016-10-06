@@ -1,5 +1,6 @@
 package com.isdust.www;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,9 @@ public class AppStart extends BaseMainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        //String DBPath = Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases//";
+        openOrCreateDatabase("jiaowu_schedule_new.db", Context.MODE_MULTI_PROCESS, null);//创建课程表临时解决方案
+        //openOrCreateDatabase(DBPath+"jiaowu_schedule_new.db",MODE_PRIVATE,null);
         //umeng设置
         mContext=this;
         OnlineConfig.updateandload(this);

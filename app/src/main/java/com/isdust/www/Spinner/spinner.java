@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.isdust.www.AdvertisementActivity;
 import com.isdust.www.R;
@@ -74,15 +73,11 @@ public class spinner{
                 Advertisement item=aditem;
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(mContext,item.url,Toast.LENGTH_LONG).show();
                     Intent intent=new Intent();
-
                     intent.setClass(mContext,AdvertisementActivity.class);
-                    //intent.putExtra("adinfo", (Serializable)item);
                     intent.putExtra("url",item.url);
                     intent.putExtra("title",item.title);
                     mContext.startActivity(intent);
-
                 }
             });
 

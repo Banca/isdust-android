@@ -12,6 +12,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.isdust.www.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
