@@ -111,7 +111,7 @@ public class Schedule_zhengfang {
                 result_temp.add(result_child);
             }
         }
-        result=result_temp.toArray(new HashMap[1]);
+        result=result_temp.toArray(new HashMap[0]);
         return result;
 
 
@@ -136,7 +136,7 @@ public class Schedule_zhengfang {
             result_temp.add(result_child);
 
         }
-        result=result_temp.toArray(new HashMap[1]);
+        result=result_temp.toArray(new HashMap[0]);
         for(int i=0;i<result.length;i++){
             HashMap<String,Object> temp;
 

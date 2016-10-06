@@ -186,6 +186,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
             try{
                 mXuankepingtai.kebiao_chaxun_zhengfang();
             }catch (Exception e){
+                e.printStackTrace();
                 mMessage.what = 10;
                 mHandler.sendMessage(mMessage);;
                 return;
