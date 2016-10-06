@@ -20,6 +20,8 @@ import com.umeng.fb.model.UserInfo;
 import java.util.HashMap;
 import java.util.Map;
 
+import pw.isdust.isdust.update.UpdateChecker;
+
 
 /**
  *
@@ -71,9 +73,16 @@ public class About extends Fragment {
                 agent.startFeedbackActivity();
             }
         });
+        mButton_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UpdateChecker.checkForDialog(thisActivity);
+            }
+        });
         return v;
+
     }
-//        mButton_update.setOnClickListener(new View.OnClickListener() {
+
 //            @Override
 //            public void onClick(View view) {
 //                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {

@@ -114,7 +114,7 @@ public class ScheduleDB {
     public Kebiao[] search(String zhoushu,String xingqi){
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
         Kebiao mkebiao_temp;
-        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE zhoushu=? and xingqi=2", new String[]{(zhoushu)});
+        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE zhoushu=? and xingqi=?", new String[]{(zhoushu),(xingqi)});
         while (mCursor.moveToNext()) {
             mkebiao_temp=new Kebiao();
             mkebiao_temp.zhoushu=mCursor.getInt(mCursor.getColumnIndex("zhoushu"))+"";

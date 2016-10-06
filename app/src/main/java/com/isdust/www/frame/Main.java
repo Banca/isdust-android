@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.isdust.www.MainActivity;
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
 import com.isdust.www.RecycleView.RecycleViewAdapter;
@@ -20,7 +19,6 @@ import com.isdust.www.Spinner.spinner;
 
 import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.ScheduleDB;
-import pw.isdust.isdust.update.UpdateChecker;
 
 import static com.isdust.www.R.id.kecheng;
 
@@ -54,6 +52,7 @@ public class Main extends Fragment {
         initView();
         initData();
         manager = new GridLayoutManager(mContext, 6);
+
         adapter = new RecycleViewAdapter(mContext,isdustapp.getList());
         rcv.setLayoutManager(manager);
         rcv.setAdapter(adapter);

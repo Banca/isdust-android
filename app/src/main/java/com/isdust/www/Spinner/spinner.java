@@ -7,17 +7,21 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import com.isdust.www.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import pw.isdust.isdust.function.Advertisement;
+
 public class spinner{
 
     private ViewPager mViewPaper;
+    Advertisement mAdvertisement[];
     private View v;
     private List<ImageView> images;
     private List<View> dots;
@@ -25,14 +29,14 @@ public class spinner{
     private Activity thisActivity;
     //记录上一次点的位置
     private int oldPosition = 0;
-    //存放图片的id
-    private int[] imageIds = new int[]{
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2
-    };
+//    //存放图片的id
+//    private int[] imageIds = new int[]{
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2
+//    };
 //    //存放图片的标题
 //    private String[]  titles = new String[]{
 //            "巩俐不低俗，我就不能低俗",
@@ -52,26 +56,27 @@ public class spinner{
     }
 
     public void init() {
+        mAdvertisement=Advertisement.loadall(thisActivity);
 
         mViewPaper = (ViewPager) v.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
-        for(int i = 0; i < imageIds.length; i++){
+        dots = new ArrayList<View>();
+        for(int i = 0; i < mAdvertisement.length; i++){
             ImageView imageView = new ImageView(thisActivity);
-            imageView.setBackgroundResource(imageIds[i]);
+            imageView.setImageBitmap(mAdvertisement[i].image);
             images.add(imageView);
+            dots.add(v.findViewById(R.id.dot_1));
         }
         //显示的小点
-        dots = new ArrayList<View>();
-        dots.add(v.findViewById(R.id.dot_0));
-        dots.add(v.findViewById(R.id.dot_1));
-        dots.add(v.findViewById(R.id.dot_2));
-        dots.add(v.findViewById(R.id.dot_3));
-        dots.add(v.findViewById(R.id.dot_4));
 
-//        title = (TextView) v.findViewById(R.id.title);
-//        title.setText(titles[0]);
+//        dots.add(v.findViewById(R.id.dot_0));
+//        dots.add(v.findViewById(R.id.dot_1));
+//        dots.add(v.findViewById(R.id.dot_2));
+//        dots.add(v.findViewById(R.id.dot_3));
+//        dots.add(v.findViewById(R.id.dot_4));
+
 
         adapter = new ViewPagerAdapter();
         mViewPaper.setAdapter(adapter);
@@ -98,6 +103,7 @@ public class spinner{
             public void onPageScrollStateChanged(int arg0) {
 
             }
+
         });
     }
 
@@ -148,7 +154,7 @@ public class spinner{
 
         @Override
         public void run() {
-            currentItem = (currentItem + 1) % imageIds.length;
+            currentItem = (currentItem + 1) % mAdvertisement.length;
             mHandler.sendEmptyMessage(0);
         }
     }
@@ -169,6 +175,7 @@ public class spinner{
             scheduledExecutorService = null;
         }
     }
+
 
 }
 
