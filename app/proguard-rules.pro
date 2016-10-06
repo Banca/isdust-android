@@ -15,3 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontwarn java.nio.file.Files
+-dontwarn java.nio.file.Path
+-dontwarn java.nio.file.OpenOption
+-dontwarn com.umeng.message.PushAgent
+-dontwarn com.umeng.message.UmengMessageHandler
+-dontwarn com.umeng.message.entity.UMessage
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement

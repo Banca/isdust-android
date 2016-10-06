@@ -2,7 +2,6 @@ package com.isdust.www;
 
 import android.app.Application;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.isdust.www.Module.BaseModule;
 import com.isdust.www.Module.Catagory;
@@ -89,21 +88,13 @@ public class MyApplication extends Application {
     }  //使usercard这种非序列化对象 全局可调
 
     public void card_init() {
-        try {
+
             usercard = new SchoolCard(mContext);
-        } catch (Exception e) {
-            Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT);
-            return;
-        }
     }
 
     public void kuaitong_init() {
-        try {
+
             kuaitong = new Network_Kuaitong(mContext);
-        } catch (Exception e) {
-            Toast.makeText(mContext, "在线参数获取失败，请保证网络正常的情况下重启app", Toast.LENGTH_SHORT);
-            return;
-        }
     }
 
     public List<BaseModule> getList() {

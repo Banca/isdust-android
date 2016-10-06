@@ -2,7 +2,6 @@ package com.isdust.www;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,7 +39,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.ScheduleDB;
 import pw.isdust.isdust.function.SchoolDate;
 import pw.isdust.isdust.function.SelectCoursePlatform;
@@ -50,18 +48,7 @@ import pw.isdust.isdust.function.SelectCoursePlatform;
  * isdust
  * Copyright (C) <2015>  <Wang Ziqiang,Leng Hanchao,Qing Wenkai,Huyang>
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class jiaowu_Schedule_main extends BaseSubPageActivity {
     int zhoushu;
@@ -128,8 +115,6 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
     String xianchengchi_password;
     String xianchengchi_login_status;
     double xianchengchi_percent;
-    //String xianchengchi_saving_json;
-    ProgressDialog xianchengchi_ProgressDialog;
     private ExecutorService executorService = Executors.newCachedThreadPool();
     //Kebiao [] mKebiao_all;
 
@@ -191,56 +176,24 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
                 mHandler.sendMessage(mMessage);;
                 return;
             }
-            xianchengchi_ProgressDialog.setProgress(1);
+            //xianchengchi_ProgressDialog.setProgress(1);
 
 
             mHandler.sendMessage(mMessage);
             return;
         }
     };
-    Runnable mRunnable_download_xuanke=new Runnable() {
-        @Override
-        public void run() {
-            int zhoushu=22;
-            //xianchengchi_saving_json="";
-            Message mMessage=new Message();
-            mMessage.what=3;
-//            OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-            String xuenian= OnlineConfig.getConfigParams("schedule_xuenian");
-            String xueqi= OnlineConfig.getConfigParams("schedule_xueqi");
-//            xuenian="2015-2016";xueqi="1";//debug
-            for(int i=0;i<zhoushu;i++){
-                try {
-//                    db.execSQL("INSERT INTO person VALUES (NULL, ?, ?,?,?)", new Object[]{person.name, person.age});
-                    mScheduleDB.add(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
-                    //sql_import();
-//                    xianchengchi_saving_json=xianchengchi_saving_json+mXuankepingtai.scheduletojson(mXuankepingtai.kebiao_chaxun((i + 1) + "", xuenian, xueqi));
-                } catch (Exception e) {
-                    mMessage.what = 10;
-                    mHandler.sendMessage(mMessage);;
-                    return;
-                }
-                xianchengchi_percent=((double)(i+1)/(double)zhoushu)*100;
-                xianchengchi_ProgressDialog.setProgress((int)xianchengchi_percent);
-            }
 
-            mHandler.sendMessage(mMessage);
-            return;
-        }
-    };
 
     final android.os.Handler mHandler=new Handler(){
         @Override
         public void  handleMessage(Message msg){
             super.handleMessage(msg);
             if (msg.what==0){//登录成功
-                customRuningDialog.dismiss();    //打开等待框
+//                customRuningDialog.dismiss();    //打开等待框
+                customRuningDialog.show();    //打开等待框
+                customRuningDialog.setMessage("正在登录");
 
-                xianchengchi_ProgressDialog = new ProgressDialog(mContext);
-                xianchengchi_ProgressDialog.setMessage("正在下载课程表到本地");
-                xianchengchi_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                xianchengchi_ProgressDialog.setCancelable(false);
-                xianchengchi_ProgressDialog.show();
 
                 executorService.execute(mRunnable_download_zhengfang);
                 return;
@@ -266,7 +219,8 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
                 return;
             }
             if (msg.what==3){//下载完成
-                xianchengchi_ProgressDialog.dismiss();
+                customRuningDialog.dismiss();
+//                xianchengchi_ProgressDialog.dismiss();
                 initParam();
                 xianshidangqian();
                 mButton_update.setClickable(true);
@@ -298,11 +252,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);
 
-//        db = openOrCreateDatabase("jiaowu_schedule.db", Context.MODE_PRIVATE, null);
 
-
-//        TextView title_name = (TextView) findViewById(R.id.title_bar_name);
-//        title_name.setText("课表查询");
         init_button();//初始化按钮⌛事件
         init_biaoge();//初始化表格
 
@@ -730,16 +680,6 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
         }
     }
 
-
-
-
-
-
-
-
-    public String kecheng_generate(String subject,String time,String teacher,String location){
-        return subject+"<br>"+time+"<br>"+teacher+"<br>"+location;
-    }
     private void setClipboard(Context context,String text) {
         if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);

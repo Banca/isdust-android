@@ -74,7 +74,7 @@ public class SchoolCard {
     }
 
 
-    public SchoolCard(Context context) throws Exception {
+    public SchoolCard(Context context)   {
         mHttp=new Http();
         mHttp.newcookie();
 
@@ -94,9 +94,7 @@ public class SchoolCard {
 
             String address = OnlineConfig.getConfigParams( "proxy_address");
             String port = OnlineConfig.getConfigParams( "proxy_port");
-            if (address==""){
-                Exception e=new Exception("OnlineConfigFail");
-                throw e;}
+
             mHttp.setProxy(address, Integer.valueOf(port));
         }
 
