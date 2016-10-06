@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.OnlineConfig;
@@ -16,7 +16,7 @@ import pw.isdust.isdust.function.RSACryptUtil;
 /**
  * Created by wzq on 16/1/18.
  */
-public class Jiaowu_tice_search extends BaseSubPageActivity_new {
+public class Jiaowu_tice_search extends BaseSubPageActivity {
     Button mButton_search;
     EditText mEditText_name;
     EditText mEditText_xuehao;
@@ -28,7 +28,7 @@ public class Jiaowu_tice_search extends BaseSubPageActivity_new {
         mEditText_xuehao=(EditText)findViewById(R.id.edittext_tice_xuehao);
         MobclickAgent.onEvent(this, "jiaowu_tice");
         mButton_search=(Button)findViewById(R.id.Jiaowu_tice_search);
-        publickey= OnlineConfig.getConfigParams( "tice_publickey");
+        publickey= OnlineConfig.getConfigParams( "publickey_sporttest");
         publickey=publickey.replace("\r", "");
         publickey=publickey.replace("\n","");
         System.out.println(publickey);

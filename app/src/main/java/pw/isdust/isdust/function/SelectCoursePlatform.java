@@ -58,8 +58,8 @@ public class SelectCoursePlatform {
 //        Toast.makeText(context,address_zhengfang,Toast.LENGTH_SHORT).show();
         int status=mNetworkjudge.judgetype();
         if(status==3||status==4){
-            String address = OnlineConfig.getConfigParams( "proxy1_address");
-            String port = OnlineConfig.getConfigParams( "proxy1_port");
+            String address = OnlineConfig.getConfigParams( "proxy_address");
+            String port = OnlineConfig.getConfigParams( "proxy_port");
             if (address==""){
                 Exception e=new Exception("OnlineConfigFail");
                 throw e;}
@@ -144,10 +144,6 @@ public class SelectCoursePlatform {
             zhengfang_tiaozhuan_xuankepingtai();
             String text=mHttp.get_string("http://192.168.109.142/Home/About");
             text=text.replace("class=\"selected\"","");
-//            String __VIEWSTATE= Networklogin_CMCC.zhongjian(text, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
-//            __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
-//            String submit="__VIEWSTATE="+__VIEWSTATE+"&ddlXN="+xuenian+"&ddlXQ="+xueqi+"&btn_xq=%D1%A7%C6%DA%B3%C9%BC%A8" ;
-//            text=mHttp.post_string_noturlencode(url_chengji, submit);
             return chengji_chaxun_fenxi_xuanke(text);}
         return null;
 

@@ -7,14 +7,14 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.baseactivity.BaseMainActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.OnlineConfig;
 
 
 
-public class AppStart extends BaseMainActivity_new {
+public class AppStart extends BaseMainActivity {
 
     static boolean broadcast=false;
     @Override

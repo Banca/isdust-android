@@ -1,38 +1,45 @@
 package com.isdust.www.Spinner;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.isdust.www.AdvertisementActivity;
 import com.isdust.www.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import pw.isdust.isdust.function.Advertisement;
+
 public class spinner{
 
     private ViewPager mViewPaper;
+    Advertisement mAdvertisement[];
     private View v;
     private List<ImageView> images;
     private List<View> dots;
     private int currentItem;
-    private Activity thisActivity;
+    private Context mContext;
     //记录上一次点的位置
     private int oldPosition = 0;
-    //存放图片的id
-    private int[] imageIds = new int[]{
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2,
-            R.drawable.guancang_head2
-    };
+//    //存放图片的id
+//    private int[] imageIds = new int[]{
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2,
+//            R.drawable.guancang_head2
+//    };
 //    //存放图片的标题
 //    private String[]  titles = new String[]{
 //            "巩俐不低俗，我就不能低俗",
@@ -46,32 +53,51 @@ public class spinner{
     private ScheduledExecutorService scheduledExecutorService;
 
 
-    public spinner(Activity activity, View v){
-        thisActivity=activity;
+    public spinner(Context Context, View v){
+        mContext =Context;
         this.v=v;
     }
 
     public void init() {
+        mAdvertisement=Advertisement.loadall(mContext);
 
         mViewPaper = (ViewPager) v.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
-        for(int i = 0; i < imageIds.length; i++){
-            ImageView imageView = new ImageView(thisActivity);
-            imageView.setBackgroundResource(imageIds[i]);
+        dots = new ArrayList<View>();
+        for(int i = 0; i < mAdvertisement.length; i++){
+            ImageView imageView = new ImageView(mContext);
+            imageView.setImageBitmap(mAdvertisement[i].image);
+            final Advertisement aditem=mAdvertisement[i];
+            imageView.setOnClickListener(new View.OnClickListener() {
+                Advertisement item=aditem;
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(mContext,item.url,Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent();
+
+                    intent.setClass(mContext,AdvertisementActivity.class);
+                    //intent.putExtra("adinfo", (Serializable)item);
+                    intent.putExtra("url",item.url);
+                    intent.putExtra("title",item.title);
+                    mContext.startActivity(intent);
+
+                }
+            });
+
+
             images.add(imageView);
+            dots.add(v.findViewById(R.id.dot_1));
         }
         //显示的小点
-        dots = new ArrayList<View>();
-        dots.add(v.findViewById(R.id.dot_0));
-        dots.add(v.findViewById(R.id.dot_1));
-        dots.add(v.findViewById(R.id.dot_2));
-        dots.add(v.findViewById(R.id.dot_3));
-        dots.add(v.findViewById(R.id.dot_4));
 
-//        title = (TextView) v.findViewById(R.id.title);
-//        title.setText(titles[0]);
+//        dots.add(v.findViewById(R.id.dot_0));
+//        dots.add(v.findViewById(R.id.dot_1));
+//        dots.add(v.findViewById(R.id.dot_2));
+//        dots.add(v.findViewById(R.id.dot_3));
+//        dots.add(v.findViewById(R.id.dot_4));
+
 
         adapter = new ViewPagerAdapter();
         mViewPaper.setAdapter(adapter);
@@ -98,6 +124,7 @@ public class spinner{
             public void onPageScrollStateChanged(int arg0) {
 
             }
+
         });
     }
 
@@ -148,7 +175,7 @@ public class spinner{
 
         @Override
         public void run() {
-            currentItem = (currentItem + 1) % imageIds.length;
+            currentItem = (currentItem + 1) % mAdvertisement.length;
             mHandler.sendEmptyMessage(0);
         }
     }
@@ -169,6 +196,7 @@ public class spinner{
             scheduledExecutorService = null;
         }
     }
+
 
 }
 

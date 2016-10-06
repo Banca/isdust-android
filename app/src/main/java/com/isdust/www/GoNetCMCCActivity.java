@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -39,7 +39,7 @@ import pw.isdust.isdust.function.Networkjudge;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class GoNetCMCCActivity extends BaseSubPageActivity_new {
+public class GoNetCMCCActivity extends BaseSubPageActivity {
     final int type_chengshiredian =1,type_cmcc=3;
     ImageButton mImageButton_state;
     IsdustDialog customRuningDialog;  //自定义运行中提示框

@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.isdust.www.R;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -26,7 +25,7 @@ import com.umeng.analytics.MobclickAgent;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class KuaiTongInfoActivity extends BaseSubPageActivity_new {
+public class KuaiTongInfoActivity extends BaseSubPageActivity {
 
     private String data[];
 

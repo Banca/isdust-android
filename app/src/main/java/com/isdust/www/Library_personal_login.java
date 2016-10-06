@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
  * Created by Wang Ziqiang on 15/11/4.
@@ -29,7 +29,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class Library_personal_login extends BaseSubPageActivity_new {
+public class Library_personal_login extends BaseSubPageActivity {
     SharedPreferences.Editor preferences_editor;
     SharedPreferences preferences_data;
     CheckBox mCheckBox_savepwd;

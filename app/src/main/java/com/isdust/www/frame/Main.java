@@ -52,12 +52,15 @@ public class Main extends Fragment {
         initView();
         initData();
         manager = new GridLayoutManager(mContext, 6);
+
         adapter = new RecycleViewAdapter(mContext,isdustapp.getList());
         rcv.setLayoutManager(manager);
         rcv.setAdapter(adapter);
         mTextView_kecheng.setText(kecheng_brief);
         info.setText(brodcast);
         title.setText("首页");
+
+
         return v;
     }
     void initView(){

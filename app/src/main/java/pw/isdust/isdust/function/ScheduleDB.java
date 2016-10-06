@@ -19,18 +19,12 @@ public class ScheduleDB {
     SQLiteDatabase db;
     public ScheduleDB(){
         String DBPath = Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases//";
-
-//        String a=Environment.getDataDirectory().getName();
-
         db=SQLiteDatabase.openOrCreateDatabase(DBPath+"jiaowu_schedule_new.db",null);
         try{
             create();
         }catch (Exception e){
 
         }
-
-
-
     }
     public void create(){
         db.execSQL("CREATE TABLE schedule (_id INTEGER PRIMARY KEY AUTOINCREMENT, zhoushu SMALLINT, xingqi SMALLINT, jieci SMALLINT, class VARCHAR,location VARCHAR,teacher VARCHAR)");  //写数据库
@@ -120,7 +114,7 @@ public class ScheduleDB {
     public Kebiao[] search(String zhoushu,String xingqi){
         List<Kebiao> mList_kebiao=new ArrayList<Kebiao>();
         Kebiao mkebiao_temp;
-        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE zhoushu=? and xingqi=2", new String[]{(zhoushu)});
+        Cursor mCursor = db.rawQuery("SELECT * FROM schedule WHERE zhoushu=? and xingqi=?", new String[]{(zhoushu),(xingqi)});
         while (mCursor.moveToNext()) {
             mkebiao_temp=new Kebiao();
             mkebiao_temp.zhoushu=mCursor.getInt(mCursor.getColumnIndex("zhoushu"))+"";

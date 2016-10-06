@@ -34,6 +34,8 @@ import com.isdust.www.frame.SchoolServer;
 import java.util.ArrayList;
 import java.util.List;
 
+import pw.isdust.isdust.update.UpdateChecker;
+
 public class TabActivity extends FragmentActivity {
 
     private RadioGroup navGroup;
@@ -61,6 +63,7 @@ public class TabActivity extends FragmentActivity {
         initView();
         initMoudleData();
         initSchoolServer();
+        UpdateChecker.checkForDialog(this);
     }
 
     private void initView() {

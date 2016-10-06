@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.baseactivity.BaseMainActivity;
 
 /**
  * Created by Leng Hanchao on 2015/10/17.
@@ -24,7 +24,7 @@ import com.isdust.www.baseactivity.BaseMainActivity_new;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class Jiaowu_index extends BaseMainActivity_new {
+public class Jiaowu_index extends BaseMainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

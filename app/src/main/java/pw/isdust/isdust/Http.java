@@ -94,9 +94,9 @@ public class Http {
     public  Bitmap get_image(String url) throws IOException {
         Request request = new Request.Builder().url(url).build();
         Response response_1;
-            response_1=mHTTP.newCall(request).execute();
-            InputStream a = response_1.body().byteStream();
-            return BitmapFactory.decodeStream(a);
+        response_1=mHTTP.newCall(request).execute();
+        InputStream a = response_1.body().byteStream();
+        return BitmapFactory.decodeStream(a);
 
 
     }

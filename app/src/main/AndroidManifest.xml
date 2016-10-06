@@ -51,9 +51,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNotTranslucent" />
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".CardListView"
             android:screenOrientation="portrait" />
         <activity
@@ -81,10 +78,7 @@
             android:name=".CardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NewsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".AboutActivity"
+            android:name=".AdvertisementActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NetworkPublicLoginActivity"
@@ -144,11 +138,7 @@
             android:name=".Jiaowu_tice_view"
             android:screenOrientation="portrait" />
 
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" />
-
-        <activity android:name="com.umeng.update.UpdateDialogActivity" />
+        <service android:enabled="true" android:name="pw.isdust.isdust.update.DownloadService" />
 
         <meta-data
             android:name="UMENG_APPKEY"

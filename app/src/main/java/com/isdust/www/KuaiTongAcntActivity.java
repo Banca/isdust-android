@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.isdust.www.R;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
  * 快通账号管理页面
@@ -32,7 +31,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class KuaiTongAcntActivity extends BaseSubPageActivity_new {
+public class KuaiTongAcntActivity extends BaseSubPageActivity {
     private EditText textuser,textpwd;
     private Button btn_ok;
     private CheckBox check_savepwd;
