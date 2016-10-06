@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
  * cmcc账号管理页面
@@ -31,7 +31,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class NetworkPublicLoginActivity extends BaseSubPageActivity_new {//城市热点登录
+public class NetworkPublicLoginActivity extends BaseSubPageActivity {//城市热点登录
     final int type_cmcc=1,type_chinaunicom=2,type_default=0;
     int selftype;
     public final static int RESULT_CODE=1;

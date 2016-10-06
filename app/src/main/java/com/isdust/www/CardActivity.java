@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -38,7 +38,7 @@ import java.util.concurrent.Executors;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class CardActivity extends BaseSubPageActivity_new {
+public class CardActivity extends BaseSubPageActivity {
     private String xiancheng_username,xiancheng_password,xiancheng_login_status;
     private ExecutorService mExecutorService = Executors.newCachedThreadPool();
     final int request_xiaoyuanka=2,request_changgepassword=3;

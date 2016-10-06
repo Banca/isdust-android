@@ -1,14 +1,13 @@
 package com.isdust.www;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
-
-import pw.isdust.isdust.OnlineConfig;
 
 /**
  * Created by Wang Ziqiang on 2015/10/17.
@@ -28,14 +27,17 @@ import pw.isdust.isdust.OnlineConfig;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class NewsActivity extends BaseMainActivity_new {
+public class AdvertisementActivity extends BaseSubPageActivity {
     WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        INIT(R.layout.helper_news, "校园资讯", 6);
-        MobclickAgent.onEvent(this, "News");
+        Intent intent=this.getIntent();
+        String title= intent.getStringExtra("title");
+        String url= intent.getStringExtra("url");
+        INIT(R.layout.helper_news, title);
+        MobclickAgent.onEvent(this, "Advertisement");
 
         mWebView=(WebView)findViewById(R.id.webView_news);
         WebSettings mwebSettings = mWebView.getSettings();
@@ -46,7 +48,7 @@ public class NewsActivity extends BaseMainActivity_new {
         mwebSettings.setBuiltInZoomControls(true);
         //加载需要显示的网页
 //        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
-        String news_website_address= OnlineConfig.getConfigParams( "news_website_address");
+        String news_website_address=url;
         //news_website_address="http://isdust.com/tice/chaxun.php?name=%E5%88%98%E4%B8%BD%E5%A8%87&xuehao=201201031216";
         mWebView.loadUrl(news_website_address);
         //设置Web视图

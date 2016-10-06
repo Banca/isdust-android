@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -37,7 +37,7 @@ import pw.isdust.isdust.function.Networklogin_CMCC;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class NetworkCMCCLoginActivity extends BaseSubPageActivity_new {
+public class NetworkCMCCLoginActivity extends BaseSubPageActivity {
     EditText mEditText_CMCC_user,mEditText_CMCC_password;
     Button mButton_ok,mButton_dymaticpassword;
     CheckBox mCheckBox_savepassword;

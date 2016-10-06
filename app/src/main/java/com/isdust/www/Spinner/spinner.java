@@ -1,13 +1,16 @@
 package com.isdust.www.Spinner;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.isdust.www.AdvertisementActivity;
 import com.isdust.www.R;
 
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ public class spinner{
     private List<ImageView> images;
     private List<View> dots;
     private int currentItem;
-    private Activity thisActivity;
+    private Context mContext;
     //记录上一次点的位置
     private int oldPosition = 0;
 //    //存放图片的id
@@ -50,13 +53,13 @@ public class spinner{
     private ScheduledExecutorService scheduledExecutorService;
 
 
-    public spinner(Activity activity, View v){
-        thisActivity=activity;
+    public spinner(Context Context, View v){
+        mContext =Context;
         this.v=v;
     }
 
     public void init() {
-        mAdvertisement=Advertisement.loadall(thisActivity);
+        mAdvertisement=Advertisement.loadall(mContext);
 
         mViewPaper = (ViewPager) v.findViewById(R.id.vp);
 
@@ -64,8 +67,26 @@ public class spinner{
         images = new ArrayList<ImageView>();
         dots = new ArrayList<View>();
         for(int i = 0; i < mAdvertisement.length; i++){
-            ImageView imageView = new ImageView(thisActivity);
+            ImageView imageView = new ImageView(mContext);
             imageView.setImageBitmap(mAdvertisement[i].image);
+            final Advertisement aditem=mAdvertisement[i];
+            imageView.setOnClickListener(new View.OnClickListener() {
+                Advertisement item=aditem;
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(mContext,item.url,Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent();
+
+                    intent.setClass(mContext,AdvertisementActivity.class);
+                    //intent.putExtra("adinfo", (Serializable)item);
+                    intent.putExtra("url",item.url);
+                    intent.putExtra("title",item.title);
+                    mContext.startActivity(intent);
+
+                }
+            });
+
+
             images.add(imageView);
             dots.add(v.findViewById(R.id.dot_1));
         }

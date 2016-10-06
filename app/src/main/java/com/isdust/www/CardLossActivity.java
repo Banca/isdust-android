@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.isdust.www.R;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -29,7 +28,7 @@ import com.umeng.analytics.MobclickAgent;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class CardLossActivity extends BaseSubPageActivity_new {
+public class CardLossActivity extends BaseSubPageActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

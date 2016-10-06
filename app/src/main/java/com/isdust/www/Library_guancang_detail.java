@@ -6,7 +6,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import pw.isdust.isdust.function.Library;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class Library_guancang_detail extends BaseSubPageActivity_new {
+public class Library_guancang_detail extends BaseSubPageActivity {
     Library mLibrary;
     List<String[]> mguancang;
     SimpleAdapter madapter;

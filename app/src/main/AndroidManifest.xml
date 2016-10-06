@@ -78,7 +78,7 @@
             android:name=".CardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NewsActivity"
+            android:name=".AdvertisementActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NetworkPublicLoginActivity"

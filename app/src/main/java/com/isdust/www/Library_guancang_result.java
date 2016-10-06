@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.Book;
 import com.umeng.analytics.MobclickAgent;
 
@@ -36,7 +36,7 @@ import java.util.Map;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class Library_guancang_result extends BaseSubPageActivity_new {
+public class Library_guancang_result extends BaseSubPageActivity {
 
     ListView mListView;
     Context mContext;

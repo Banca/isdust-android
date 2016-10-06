@@ -1,18 +1,13 @@
 package com.isdust.www;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.isdust.www.Module.BaseModule;
 import com.isdust.www.Module.CardModule;
-import com.isdust.www.Module.Catagory;
 import com.isdust.www.Module.KuaiTongModule;
 import com.isdust.www.Module.ManageModule;
 import com.isdust.www.Module.WlanModule;
@@ -24,16 +19,13 @@ import com.isdust.www.Module.library_SearchModule;
 import com.isdust.www.RecycleView.CheckboxAdapter;
 import com.isdust.www.Utils.ConfigHelper;
 import com.isdust.www.Utils.SerializableList;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.frame.Main;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
-public class ModuleManage extends BaseSubPageActivity_new {
+public class ModuleManage extends BaseSubPageActivity {
 
     private List<BaseModule> modules = new SerializableList<>();
     private ListView listView;

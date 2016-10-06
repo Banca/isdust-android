@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 import pw.isdust.isdust.*;
 import pw.isdust.isdust.OnlineConfig;
@@ -23,7 +24,9 @@ import pw.isdust.isdust.OnlineConfig;
  * Created by wzq on 10/6/16.
  */
 
-public class Advertisement {
+public class Advertisement implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public String md5;
     public String url;
     public Bitmap image;

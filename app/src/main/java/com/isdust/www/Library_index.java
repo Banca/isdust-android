@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
  * Created by Wang Ziqiang on 15/12/2.
@@ -26,7 +25,7 @@ import com.isdust.www.baseactivity.BaseSubPageActivity_new;
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class
-        Library_index extends BaseSubPageActivity_new {
+        Library_index extends BaseSubPageActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

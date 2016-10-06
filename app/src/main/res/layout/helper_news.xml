@@ -11,12 +11,12 @@
             android:background="@color/color_page_white"
             android:orientation="vertical" >
 
-            <include layout="@layout/layout_title_bar" android:id="@+id/include6"/>
-
+            <include layout="@layout/subpage_title_bar"
+                     android:id="@+id/include" />
             <WebView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/webView_news" android:layout_below="@+id/include6"
+                android:id="@+id/webView_news" android:layout_below="@+id/include"
                 android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
         </RelativeLayout>
 

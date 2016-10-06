@@ -16,7 +16,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 /**
  * Created by wzq on 15/11/9.
  */
-public class BaseSubPageActivity_new extends SwipeBackActivity {
+public class BaseSubPageActivity extends SwipeBackActivity {
     protected MyApplication isdustapp;	//通过app调全局变量
     protected Context mContext;
 

@@ -63,25 +63,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dip"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    android:id="@+id/dots">
 
-                    <View
-                        android:id="@+id/dot_0"
-                        style="@style/spiner_indicator"
-                        android:background="@drawable/k"
-                        />
+                    <!--<View-->
+                        <!--android:id="@+id/dot_0"-->
+                        <!--style="@style/spiner_indicator"-->
+                        <!--android:background="@drawable/k"-->
+                        <!--/>-->
                     <View
                         android:id="@+id/dot_1"
                         style="@style/spiner_indicator" />
-                    <View
-                        android:id="@+id/dot_2"
-                        style="@style/spiner_indicator" />
-                    <View
-                        android:id="@+id/dot_3"
-                        style="@style/spiner_indicator" />
-                    <View
-                        android:id="@+id/dot_4"
-                        style="@style/spiner_indicator" />
+                    <!--<View-->
+                        <!--android:id="@+id/dot_2"-->
+                        <!--style="@style/spiner_indicator" />-->
+                    <!--<View-->
+                        <!--android:id="@+id/dot_3"-->
+                        <!--style="@style/spiner_indicator" />-->
+                    <!--<View-->
+                        <!--android:id="@+id/dot_4"-->
+                        <!--style="@style/spiner_indicator" />-->
                 </LinearLayout>
             </LinearLayout>
             <android.support.v4.view.ViewPager

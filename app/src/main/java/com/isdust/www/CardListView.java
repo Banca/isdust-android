@@ -7,9 +7,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.isdust.www.MyApplication;
-import com.isdust.www.R;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.PurchaseHistory;
 import com.isdust.www.view.IsdustDialog;
 import com.isdust.www.view.PullToRefreshView;
@@ -43,7 +41,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-public class CardListView extends BaseSubPageActivity_new {
+public class CardListView extends BaseSubPageActivity {
 	ListView mListView;
 	IsdustDialog customRuningDialog;
 

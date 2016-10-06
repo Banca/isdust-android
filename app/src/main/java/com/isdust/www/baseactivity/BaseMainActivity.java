@@ -17,7 +17,7 @@ import com.umeng.analytics.MobclickAgent;
 /**
  * Created by wzq on 15/11/9.
  */
-public class BaseMainActivity_new extends Activity {
+public class BaseMainActivity extends Activity {
     protected MyApplication isdustapp;	//通过app调全局变量
     protected Context mContext;
     private long exitTime = 0;

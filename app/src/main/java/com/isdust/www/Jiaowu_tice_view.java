@@ -6,12 +6,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 /**
  * Created by wzq on 16/1/18.
  */
-public class Jiaowu_tice_view extends BaseSubPageActivity_new {
+public class Jiaowu_tice_view extends BaseSubPageActivity {
     WebView mWebView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

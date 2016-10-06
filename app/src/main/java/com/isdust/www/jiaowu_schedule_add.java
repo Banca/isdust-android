@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.datepicker.DatePickerDailog;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.Kebiao;
 
 import pw.isdust.isdust.function.ScheduleDB;
@@ -22,7 +22,7 @@ import pw.isdust.isdust.function.ScheduleDB;
  * Created by wzq on 16/1/15.
  */
 
-public class jiaowu_schedule_add extends BaseSubPageActivity_new {
+public class jiaowu_schedule_add extends BaseSubPageActivity {
     int zhoushu [];
     int zhoushu_type[];//0为未选，1为已选，0-2分别对应单周，双周，全选
     int xingqi=0,jieci=0;

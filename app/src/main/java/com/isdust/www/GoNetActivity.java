@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.isdust.www.baseactivity.BaseMainActivity_new;
-import com.isdust.www.baseactivity.BaseSubPageActivity_new;
+import com.isdust.www.baseactivity.BaseSubPageActivity;
 
 import pw.isdust.isdust.function.Networkjudge;
 
@@ -29,7 +28,7 @@ import pw.isdust.isdust.function.Networkjudge;
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class GoNetActivity extends BaseSubPageActivity_new {
+public class GoNetActivity extends BaseSubPageActivity {
     Networkjudge mNetworkjudge;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
