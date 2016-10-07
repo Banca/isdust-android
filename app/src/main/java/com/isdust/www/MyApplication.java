@@ -60,9 +60,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         FeedbackAPI.initAnnoy(this, "23471189");
-
-
-
         mContext = this;
         mExecutorService.execute(xiancheng_init);
 

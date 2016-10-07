@@ -12,7 +12,7 @@ import com.isdust.www.baseactivity.BaseMainActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.OnlineConfig;
-
+import pw.isdust.isdust.function.Advertisement;
 
 
 public class AppStart extends BaseMainActivity {
@@ -23,7 +23,6 @@ public class AppStart extends BaseMainActivity {
         openOrCreateDatabase("jiaowu_schedule_new.db", Context.MODE_MULTI_PROCESS, null);//创建课程表临时解决方案
         //umeng设置
         mContext=this;
-        OnlineConfig.updateandload(this);
 
 
         // SystemTool.gc(this); //针对性能好的手机使用，加快应用相应速度
@@ -32,11 +31,13 @@ public class AppStart extends BaseMainActivity {
         setContentView(view);
         // 渐变展示启动屏
         AlphaAnimation aa = new AlphaAnimation(0.5f, 1.0f);
-        aa.setDuration(800);
+        aa.setDuration(300);
         view.startAnimation(aa);
         aa.setAnimationListener(new AnimationListener() {
             @Override
             public void onAnimationEnd(Animation arg0) {
+                OnlineConfig.updateandload(mContext);
+                Advertisement.ad_all_generate(mContext);
                 redirectTo();
             }
 
@@ -45,6 +46,7 @@ public class AppStart extends BaseMainActivity {
 
             @Override
             public void onAnimationStart(Animation animation) {
+
             }
         });
     }
