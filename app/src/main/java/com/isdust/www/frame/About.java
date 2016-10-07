@@ -4,7 +4,6 @@ package com.isdust.www.frame;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.isdust.www.R;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.fb.FeedbackAgent;
-import com.umeng.fb.model.UserInfo;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import pw.isdust.isdust.update.UpdateChecker;
+
+//import com.isdust.www.R;
+
+//import static u.aly.au.R;
 
 
 /**
@@ -58,25 +56,17 @@ public class About extends Fragment {
         mButton_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FeedbackAgent agent = new FeedbackAgent(thisActivity);
-                UserInfo info = agent.getUserInfo();
-                if (info == null)
-                    info = new UserInfo();
-                Map<String, String> contact = info.getContact();
-                if (contact == null)
-                    contact = new HashMap<>();
-                SharedPreferences sp = thisActivity.getSharedPreferences("data", 0);
-                String num = sp.getString("num", "");
-                contact.put("num", num);
-                info.setContact(contact);
-                agent.setUserInfo(info);
-                agent.startFeedbackActivity();
+                //如果发生错误，请查看logcat日志
+                FeedbackAPI.openFeedbackActivity(thisActivity);
+//如果希望使用Fragment方式打开请调用一下API
+                FeedbackAPI.getFeedbackFragment();
+                //FeedbackAPI.initAnnoy(Context context, String appKey)
             }
         });
         mButton_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UpdateChecker.checkForDialog(thisActivity);
+                UpdateChecker.checkForDialog(thisActivity,true);
             }
         });
         return v;

@@ -16,24 +16,15 @@ import pw.isdust.isdust.OnlineConfig;
 
 
 public class AppStart extends BaseMainActivity {
-
-    static boolean broadcast=false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //String DBPath = Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases//";
         openOrCreateDatabase("jiaowu_schedule_new.db", Context.MODE_MULTI_PROCESS, null);//创建课程表临时解决方案
-        //openOrCreateDatabase(DBPath+"jiaowu_schedule_new.db",MODE_PRIVATE,null);
         //umeng设置
         mContext=this;
         OnlineConfig.updateandload(this);
-//        MobclickAgent.updateOnlineConfig(mContext);
-//        UmengUpdateAgent.setUpdateOnlyWifi(false);
-//        UmengUpdateAgent.update(this);
-//
-//        OnlineConfigAgent.getInstance().setDebugMode(true);
-//        OnlineConfigAgent.getInstance().updateOnlineConfig(mContext);
+
 
         // SystemTool.gc(this); //针对性能好的手机使用，加快应用相应速度
 
@@ -54,7 +45,6 @@ public class AppStart extends BaseMainActivity {
 
             @Override
             public void onAnimationStart(Animation animation) {
-                checkNet();
             }
         });
     }
@@ -68,14 +58,7 @@ public class AppStart extends BaseMainActivity {
         super.onPause();
         MobclickAgent.onPause(this);
     }
-    private void checkNet(){
 
-//        String install = OnlineConfigAgent.getInstance().getConfigParams(mContext, "install");
-//        if (!install.equals("true")){
-//            Toast.makeText(mContext,"第一次运行该程序，请保证手机能访问网络，然后重启该应用",Toast.LENGTH_LONG).show();
-//        }
-
-    }
 
     /**
      * 跳转到...

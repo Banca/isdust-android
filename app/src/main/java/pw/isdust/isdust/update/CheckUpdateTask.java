@@ -30,10 +30,11 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
     private Context mContext;
     private int mType;
     private boolean mShowProgressDialog;
+    boolean hint;
 //    private static final String url = Constants.UPDATE_URL;
 
-    CheckUpdateTask(Context context, int type, boolean showProgressDialog) {
-
+    CheckUpdateTask(Context context, int type, boolean showProgressDialog,boolean showhint) {
+        hint=showhint;
         this.mContext = context;
         this.mType = type;
         this.mShowProgressDialog = showProgressDialog;
@@ -79,7 +80,10 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
                     showDialog(mContext, updateMessage, apkUrl);
                 }
             } else if (mShowProgressDialog) {
+                if(hint==true){
+
                 Toast.makeText(mContext, mContext.getString(R.string.android_auto_update_toast_no_new_update), Toast.LENGTH_SHORT).show();
+                }
             }
 
         } catch (JSONException e) {

@@ -3,6 +3,7 @@ package com.isdust.www;
 import android.app.Application;
 import android.content.Context;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.isdust.www.Module.BaseModule;
 import com.isdust.www.Module.Catagory;
 import com.isdust.www.Utils.SerializableList;
@@ -58,6 +59,8 @@ public class MyApplication extends Application {
 
     public void onCreate() {
         super.onCreate();
+        FeedbackAPI.initAnnoy(this, "23471189");
+
 
 
         mContext = this;

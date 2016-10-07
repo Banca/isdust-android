@@ -63,7 +63,7 @@ public class TabActivity extends FragmentActivity {
         initView();
         initMoudleData();
         initSchoolServer();
-        UpdateChecker.checkForDialog(this);
+        UpdateChecker.checkForDialog(this,false);
     }
 
     private void initView() {
