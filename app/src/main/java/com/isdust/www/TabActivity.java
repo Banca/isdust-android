@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,14 +46,19 @@ public class TabActivity extends FragmentActivity {
     private List<Catagory> catagories = new ArrayList<>();
     protected MyApplication isdustapp;
 
+    int widthPixels;
+
 
     String tabs[] = {"Tab1", "Tab2", "Tab3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        widthPixels = displayMetrics.widthPixels;
         setContentView(R.layout.activity_tab);
-        isdustapp= (MyApplication) getApplication();
+        isdustapp = (MyApplication) getApplication();
         //透明状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
@@ -72,16 +79,18 @@ public class TabActivity extends FragmentActivity {
         RadioButton rbAdd = (RadioButton) findViewById(R.id.fram2);
         RadioButton rbMine = (RadioButton) findViewById(R.id.fram3);
         //定义底部标签图片大小
+        int dpi = (int) (widthPixels*0.05f);
+        Log.i("dpi", String.valueOf(dpi));
         Drawable drawableWeiHui = getResources().getDrawable(R.drawable.bottom_main);
-        drawableWeiHui.setBounds(0, 0, 60, 60);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawableWeiHui.setBounds(0, 0, dpi, dpi);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         rbWeiHui.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
 
         Drawable drawableAdd = getResources().getDrawable(R.drawable.bottom_service);
-        drawableAdd.setBounds(0, 0, 60, 60);
-        rbAdd.setCompoundDrawables(null,drawableAdd, null, null);
+        drawableAdd.setBounds(0, 0, dpi, dpi);
+        rbAdd.setCompoundDrawables(null, drawableAdd, null, null);
 
         Drawable drawableRight = getResources().getDrawable(R.drawable.bottom_about);
-        drawableRight.setBounds(0, 0, 60, 60);
+        drawableRight.setBounds(0, 0, dpi, dpi);
         rbMine.setCompoundDrawables(null, drawableRight, null, null);
 
         navGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -143,12 +152,13 @@ public class TabActivity extends FragmentActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    private void initMoudleData(){
-        modules=(List<BaseModule>) ConfigHelper.readObject(this,"modules");
-        if(modules==null){
-            modules=new SerializableList<BaseModule>();
+
+    private void initMoudleData() {
+        modules = (List<BaseModule>) ConfigHelper.readObject(this, "modules");
+        if (modules == null) {
+            modules = new SerializableList<BaseModule>();
         }
-        if(modules.size()==0) {
+        if (modules.size() == 0) {
             modules.add(CardModule.getInstance());
             modules.add(jiaowu_ClassroomModule.getInstance());
             modules.add(jiaowu_MarkModule.getInstance());
@@ -158,7 +168,8 @@ public class TabActivity extends FragmentActivity {
         }
         isdustapp.setList(modules);
     }
-    private void initSchoolServer(){
+
+    private void initSchoolServer() {
         Catagory card = new Catagory(R.string.schoolcard_catgory);
         card.addItem(CardModule.getInstance());
 

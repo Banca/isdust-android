@@ -6,6 +6,7 @@ import android.os.Environment;
 
 import com.isdust.www.datatype.Kebiao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +19,13 @@ public class ScheduleDB {
 
     SQLiteDatabase db;
     public ScheduleDB(){
-        String DBPath = Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases//";
-        db=SQLiteDatabase.openOrCreateDatabase(DBPath+"jiaowu_schedule_new.db",null);
+        File DBPath = new File(Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases");
+        if(!DBPath.exists())DBPath.mkdirs();
+        db=SQLiteDatabase.openOrCreateDatabase(DBPath+"//jiaowu_schedule_new.db",null);
         try{
             create();
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
     public void create(){
