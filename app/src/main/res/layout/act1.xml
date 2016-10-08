@@ -101,7 +101,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"/>
         </LinearLayout>
-    <LinearLayout
+        <LinearLayout
+            android:background="#FFFFFF"
+            android:layout_marginTop="5dip"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:background="@drawable/menu_schedule"
+                android:layout_marginTop="10dip"
+                android:layout_marginLeft="10dip"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                />
+            <LinearLayout
+                android:layout_marginLeft="5dip"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="5dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="课程表"
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/kecheng"
+                    android:layout_marginRight="15dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="今天周五，一节课"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
         android:layout_weight="5"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -146,44 +185,6 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:background="#FFFFFF"
-            android:layout_marginTop="5dip"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:background="@drawable/menu_schedule"
-                android:layout_marginTop="10dip"
-                android:layout_marginLeft="10dip"
-                android:layout_width="40dip"
-                android:layout_height="40dip"
-                />
-            <LinearLayout
-                android:layout_marginLeft="5dip"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_marginTop="5dip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="课程表"
-                    android:textStyle="bold"
-                    android:textSize="15sp"/>
-                <TextView
-                    android:id="@+id/kecheng"
-                    android:layout_marginRight="15dip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="今天周五，一节课"
-                    android:textSize="11sp"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
     </LinearLayout>
     </LinearLayout>
 
