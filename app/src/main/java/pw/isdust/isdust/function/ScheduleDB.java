@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ *
  * Created by wzq on 10/1/16.
  */
 
@@ -20,7 +21,8 @@ public class ScheduleDB {
     SQLiteDatabase db;
     public ScheduleDB(){
         File DBPath = new File(Environment.getDataDirectory().getName()+"//data//com.isdust.android//databases");
-        if(!DBPath.exists())DBPath.mkdirs();
+        if(!DBPath.exists())
+            DBPath.mkdirs();
         db=SQLiteDatabase.openOrCreateDatabase(DBPath+"//jiaowu_schedule_new.db",null);
         try{
             create();

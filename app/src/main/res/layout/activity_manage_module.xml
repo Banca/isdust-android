@@ -7,17 +7,73 @@
 
     android:orientation="vertical"
     tools:context="com.isdust.www.ModuleManage">
-    <include layout="@layout/subpage_title_bar"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dip"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+        android:background="@color/color_btn_blue"
+        android:gravity="center_vertical" >
+        <ImageView
+            android:onClick="onTitleBarClick"
+            android:id="@+id/title_bar_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3.0dip"
+            android:layout_marginRight="3.0dip"
+            android:layout_marginTop="3.0dip"
+            android:gravity="center"
+            android:src="@drawable/titleback"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+
+            android:background="@drawable/ic_top_divider" />
+        <!--    android:layout_toRightOf="@id/title_bar_menu_btn"-->
+        <TextView
+            android:id="@+id/title_bar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingLeft="75.0dip"
+            android:paddingRight="75.0dip"
+            android:singleLine="true"
+            android:text="Title"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="确定"
+            android:background="@color/color_btn_blue"
+            android:onClick="add"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:layout_marginRight="27dp"
+            android:layout_marginEnd="27dp"
+            android:id="@+id/textView35"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/listView_mymodule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <Button
-        android:layout_width="match_parent"
-        android:onClick="add"
-        android:text="确定"
-        android:background="@color/color_btn_blue"
-        android:layout_height="wrap_content" />
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:onClick="add"-->
+        <!--android:text="确定"-->
+        <!--android:background="@color/color_btn_blue"-->
+        <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>

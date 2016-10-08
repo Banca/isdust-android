@@ -20,7 +20,7 @@ public class AppStart extends BaseMainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        openOrCreateDatabase("jiaowu_schedule_new.db", Context.MODE_MULTI_PROCESS, null);//创建课程表临时解决方案
+        //openOrCreateDatabase("jiaowu_schedule_new.db", Context.MODE_MULTI_PROCESS, null);//创建课程表临时解决方案
         //umeng设置
         mContext=this;
 
