@@ -70,7 +70,7 @@ public class TabActivity extends FragmentActivity {
         initView();
         initMoudleData();
         initSchoolServer();
-        UpdateChecker.checkForDialog(this);
+        UpdateChecker.checkForDialog(this,false);
     }
 
     private void initView() {
@@ -184,9 +184,9 @@ public class TabActivity extends FragmentActivity {
         Catagory net = new Catagory(R.string.net_catgory);
         net.addItem(KuaiTongModule.getInstance());
         net.addItem(WlanModule.getInstance());
-        catagories.add(card);
         catagories.add(jiaowu);
         catagories.add(net);
+        catagories.add(card);
         catagories.add(library);
         isdustapp.setCatagorys(catagories);
     }

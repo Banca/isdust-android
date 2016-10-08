@@ -4,12 +4,7 @@
         "source": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/drawable-mdpi-v4/wheel_val.xml"
     },
     {
-<<<<<<< HEAD
-        "merged": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\wheel_bg.xml",
-        "source": "D:\\git\\isdust_bak\\isdust_android\\datepicker\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\wheel_bg.xml"
-=======
         "merged": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/wheel_bg.xml",
         "source": "/Users/wzq/Desktop/isdust/datepicker/build/intermediates/bundles/debug/res/drawable-mdpi-v4/wheel_bg.xml"
->>>>>>> c9eb19a6597a0730c250aacb94f08781272078b7
     }
 ]

@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Html;
 
+import com.isdust.www.R;
+
 class UpdateDialog {
 
 

@@ -2,12 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.isdust.www"
     android:versionCode="3"
-    android:versionName="1.01">
+    android:versionName="2.0">
 
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="22" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
@@ -142,10 +141,10 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5632aefc67e58eef5d001100" />
+            android:value="57f6068967e58ee25c004746" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="isdust_public_1.3" />
+            android:value="isdust_public_2.0" />
 
         <activity android:name=".ModuleManage"></activity>
     </application>

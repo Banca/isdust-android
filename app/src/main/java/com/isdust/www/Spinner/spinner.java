@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.isdust.www.AdvertisementActivity;
 import com.isdust.www.R;
@@ -24,7 +23,7 @@ import pw.isdust.isdust.function.Advertisement;
 public class spinner{
 
     private ViewPager mViewPaper;
-    Advertisement mAdvertisement[];
+//    Advertisement mAdvertisement[];
     private View v;
     private List<ImageView> images;
     private List<View> dots;
@@ -59,30 +58,26 @@ public class spinner{
     }
 
     public void init() {
-        mAdvertisement=Advertisement.loadall(mContext);
+//        mAdvertisement=Advertisement.loadall(mContext);
 
         mViewPaper = (ViewPager) v.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
         dots = new ArrayList<View>();
-        for(int i = 0; i < mAdvertisement.length; i++){
+        for(int i = 0; i < Advertisement.allad.length; i++){
             ImageView imageView = new ImageView(mContext);
-            imageView.setImageBitmap(mAdvertisement[i].image);
-            final Advertisement aditem=mAdvertisement[i];
+            imageView.setImageBitmap(Advertisement.allad[i].image);
+            final Advertisement aditem=Advertisement.allad[i];
             imageView.setOnClickListener(new View.OnClickListener() {
                 Advertisement item=aditem;
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(mContext,item.url,Toast.LENGTH_LONG).show();
                     Intent intent=new Intent();
-
                     intent.setClass(mContext,AdvertisementActivity.class);
-                    //intent.putExtra("adinfo", (Serializable)item);
                     intent.putExtra("url",item.url);
                     intent.putExtra("title",item.title);
                     mContext.startActivity(intent);
-
                 }
             });
 
@@ -175,7 +170,7 @@ public class spinner{
 
         @Override
         public void run() {
-            currentItem = (currentItem + 1) % mAdvertisement.length;
+            currentItem = (currentItem + 1) % Advertisement.allad.length;
             mHandler.sendEmptyMessage(0);
         }
     }

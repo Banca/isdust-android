@@ -16,16 +16,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 
-import pw.isdust.isdust.*;
+import pw.isdust.isdust.Http;
 import pw.isdust.isdust.OnlineConfig;
 /**
  * Created by wzq on 10/6/16.
  */
 
-public class Advertisement implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Advertisement {
+    public static Advertisement[] allad;
 
     public String md5;
     public String url;
@@ -42,14 +41,19 @@ public class Advertisement implements Serializable {
 
                 image_temp=mhttp.get_image(image_url);
             } catch (Exception e) {
-                image=BitmapFactory.decodeResource(mContext.getResources(),
-                        R.drawable.ad1);
+                synchronized (image){
+                    image=BitmapFactory.decodeResource(mContext.getResources(),
+                            R.drawable.ad1);
+                }
+
 
                 e.printStackTrace();
                 return;
             }
             if (image_temp!=null){
-                image=image_temp;
+                synchronized (image){
+                    image=image_temp;
+                }
                 saveimage(md5+".jpg",image);
             }
 
@@ -70,6 +74,8 @@ public class Advertisement implements Serializable {
             md5=mJSONObject.getString("md5");
             url=mJSONObject.getString("url");
             title=mJSONObject.getString("title");
+            image=BitmapFactory.decodeResource(mContext.getResources(),
+                    R.drawable.ad1);
             image_url=mJSONObject.getString("image");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -78,6 +84,9 @@ public class Advertisement implements Serializable {
     private void loadordownload(){
         Bitmap image_temp=loadimage(md5+".jpg");
         if(image_temp==null){
+//            synchronized (image){
+//                image=
+//            }
             downloadimage.run();
         }else{
             image=image_temp;
@@ -141,9 +150,8 @@ public class Advertisement implements Serializable {
            return null;
        }
         return result;
-
-
-
-
+    }
+    public static void ad_all_generate(Context context){
+        allad=loadall(context);
     }
 }
