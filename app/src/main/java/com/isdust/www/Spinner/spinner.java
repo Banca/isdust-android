@@ -23,31 +23,12 @@ import pw.isdust.isdust.function.Advertisement;
 public class spinner{
 
     private ViewPager mViewPaper;
-//    Advertisement mAdvertisement[];
     private View v;
     private List<ImageView> images;
     private List<View> dots;
     private int currentItem;
     private Context mContext;
-    //记录上一次点的位置
     private int oldPosition = 0;
-//    //存放图片的id
-//    private int[] imageIds = new int[]{
-//            R.drawable.guancang_head2,
-//            R.drawable.guancang_head2,
-//            R.drawable.guancang_head2,
-//            R.drawable.guancang_head2,
-//            R.drawable.guancang_head2
-//    };
-//    //存放图片的标题
-//    private String[]  titles = new String[]{
-//            "巩俐不低俗，我就不能低俗",
-//            "扑树又回来啦！再唱经典老歌引万人大合唱",
-//            "揭秘北京电影如何升级",
-//            "乐视网TV版大派送",
-//            "热血屌丝的反杀"
-//    };
-//    private TextView title;
     private ViewPagerAdapter adapter;
     private ScheduledExecutorService scheduledExecutorService;
 
@@ -58,13 +39,13 @@ public class spinner{
     }
 
     public void init() {
-//        mAdvertisement=Advertisement.loadall(mContext);
 
         mViewPaper = (ViewPager) v.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
         dots = new ArrayList<View>();
+        if(Advertisement.allad!=null)
         for(int i = 0; i < Advertisement.allad.length; i++){
             ImageView imageView = new ImageView(mContext);
             imageView.setImageBitmap(Advertisement.allad[i].image);

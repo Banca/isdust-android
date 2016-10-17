@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <color name="color_0">#dedede</color>
-    <color name="color_1">#7cc576</color>
-    <color name="color_2">#2a4253</color>
-    <color name="color_3">#f26d7e</color>
-    <color name="color_4">#a286c0</color>
+
     <color name="color_page_white">#E6E6E6</color>
     <color name="color_page_black">#333333</color>
     <color name="color_page_gray">#666666</color>
@@ -14,14 +9,9 @@
     <color name="color_btn_text">#ffffff</color>
     <color name="color_btn_blue">#32A8EB</color>
     <color name="color_btn_gray">#D6D6D6</color>
-    <color name="color_form_black">#333333</color>
-    <color name="color_form_white">#ffffff</color>
     <color name="color_list_white">#ffffff</color>
-    <color name="color_list_cutline">#dddddd</color>
 
 
-    <color name="black_overlay">#66000000</color>
-    <color name="translucent_background">#60000000</color>
     <color name="result_view">#b0000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="possible_result_points">#c0ffff00</color>

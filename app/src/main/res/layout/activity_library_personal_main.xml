@@ -42,7 +42,6 @@
                 android:background="@color/color_page_black"
                 android:orientation="horizontal"
                 android:weightSum="2"
-                android:id="@+id/linearLayout2"
                 android:layout_alignParentTop="true"
                 android:layout_above="@+id/linearLayout5">
             <ImageView

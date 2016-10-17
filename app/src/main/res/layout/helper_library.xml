@@ -9,8 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#fff"
-        android:orientation="vertical"
-        android:id="@+id/RelativeLayout_schedule">
+        android:orientation="vertical">
 
         <include layout="@layout/subpage_title_bar"
                  android:id="@+id/include2" />

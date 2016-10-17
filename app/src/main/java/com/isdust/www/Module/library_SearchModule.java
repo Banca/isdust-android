@@ -14,12 +14,12 @@ import com.isdust.www.R;
 public class library_SearchModule extends BaseModule {
 
 
-    public library_SearchModule(int image_id, int name, int desc, int catagory) {
+    private library_SearchModule(int image_id, int name, int desc, int catagory) {
         super(image_id, name, desc, catagory);
     }
 
     private static class Holder {
-        private static final library_SearchModule INSTANCE = new library_SearchModule(R.drawable.menu_library,R.string.library_search_name,R.string.library_search_info,R.string.library_catagory);
+        private static final library_SearchModule INSTANCE = new library_SearchModule(R.drawable.icon_library,R.string.library_search_name,R.string.library_search_info,R.string.library_catagory);
     }
 
     public static final library_SearchModule getInstance() {

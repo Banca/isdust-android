@@ -42,6 +42,10 @@
     <string name="schedule_name">课程表</string>
     <string name="schedule_info">提供课程表查看，课程表下载，还能自定义课表</string>
 
+    <string name="tice_name">体制健康成绩查询</string>
+    <string name="tice_info">体制健康成绩查询</string>
+
+
     <string name="mark_name">成绩查询</string>
     <string name="mark_info">提供所有考试成绩查询，GPA查询</string>
 
@@ -70,9 +74,6 @@
 
     <string name="scan_text">将条码放入框内, 即可自动扫描</string>
 
-    <string name="umeng_isNewest">您使用的已经是最新版本。</string>
-    <string name="umeng_notWifi">没有连接wifi。</string>
-    <string name="umeng_timeout">请求超时。</string>
     <string name="android_auto_update_dialog_title">发现新版本</string>
 
     <string name="android_auto_update_notify_ticker">发现新版本,点击进行升级</string>

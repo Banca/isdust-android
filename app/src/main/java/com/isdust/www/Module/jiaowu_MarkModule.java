@@ -19,7 +19,7 @@ public class jiaowu_MarkModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final jiaowu_MarkModule INSTANCE = new jiaowu_MarkModule(R.drawable.menu_mark,R.string.mark_name,R.string.mark_info,R.string.Jiaowu_catgory);
+        private static final jiaowu_MarkModule INSTANCE = new jiaowu_MarkModule(R.drawable.icon_mark,R.string.mark_name,R.string.mark_info,R.string.Jiaowu_catgory);
     }
 
     public static final jiaowu_MarkModule getInstance() {

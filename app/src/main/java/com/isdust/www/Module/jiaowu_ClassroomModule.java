@@ -19,7 +19,7 @@ public class jiaowu_ClassroomModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final jiaowu_ClassroomModule INSTANCE = new jiaowu_ClassroomModule(R.drawable.menu_classroom,R.string.classroom_name,R.string.classroom_info,R.string.Jiaowu_catgory);
+        private static final jiaowu_ClassroomModule INSTANCE = new jiaowu_ClassroomModule(R.drawable.icon_classroom,R.string.classroom_name,R.string.classroom_info,R.string.Jiaowu_catgory);
     }
 
     public static final jiaowu_ClassroomModule getInstance() {

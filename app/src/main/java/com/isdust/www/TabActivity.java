@@ -1,8 +1,10 @@
 package com.isdust.www;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import com.isdust.www.Module.CardModule;
 import com.isdust.www.Module.Catagory;
 import com.isdust.www.Module.KuaiTongModule;
 import com.isdust.www.Module.ManageModule;
+import com.isdust.www.Module.TiceModule;
 import com.isdust.www.Module.WlanModule;
 import com.isdust.www.Module.jiaowu_ClassroomModule;
 import com.isdust.www.Module.jiaowu_MarkModule;
@@ -33,6 +36,8 @@ import com.isdust.www.frame.About;
 import com.isdust.www.frame.Main;
 import com.isdust.www.frame.SchoolServer;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +55,8 @@ public class TabActivity extends FragmentActivity {
 
 
     String tabs[] = {"Tab1", "Tab2", "Tab3"};
+    private Fragment[] mFragments = new Fragment[3];
+    private Class[] classes = {Main.class,SchoolServer.class,About.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +80,53 @@ public class TabActivity extends FragmentActivity {
         UpdateChecker.checkForDialog(this,false);
     }
 
+//    private void initView() {
+//        navGroup = (RadioGroup) findViewById(R.id.frames);
+//        RadioButton rbWeiHui = (RadioButton) findViewById(R.id.fram1);
+//        RadioButton rbAdd = (RadioButton) findViewById(R.id.fram2);
+//        RadioButton rbMine = (RadioButton) findViewById(R.id.fram3);
+//        //定义底部标签图片大小
+//        int dpi = (int) (widthPixels*0.05f);
+//        Log.i("dpi", String.valueOf(dpi));
+//        Drawable drawableWeiHui = getResources().getDrawable(R.drawable.bottom_main);
+//        drawableWeiHui.setBounds(0, 0, dpi, dpi);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        rbWeiHui.setCompoundDrawables(null, drawableWeiHui, null, null);//只放上面
+//
+//        Drawable drawableAdd = getResources().getDrawable(R.drawable.bottom_service);
+//        drawableAdd.setBounds(0, 0, dpi, dpi);
+//        rbAdd.setCompoundDrawables(null, drawableAdd, null, null);
+//
+//        Drawable drawableRight = getResources().getDrawable(R.drawable.bottom_about);
+//        drawableRight.setBounds(0, 0, dpi, dpi);
+//        rbMine.setCompoundDrawables(null, drawableRight, null, null);
+//
+//        navGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.fram1:
+//                        switchFragmentSupport(R.id.content, tabs[0]);
+//                        break;
+//                    case R.id.fram2:
+//                        switchFragmentSupport(R.id.content, tabs[1]);
+//                        break;
+//                    case R.id.fram3:
+//                        switchFragmentSupport(R.id.content, tabs[2]);
+//                        break;
+//                }
+//            }
+//        });
+//        RadioButton btn = (RadioButton) navGroup.getChildAt(0);
+//        btn.toggle();
+//    }
+
     private void initView() {
         navGroup = (RadioGroup) findViewById(R.id.frames);
         RadioButton rbWeiHui = (RadioButton) findViewById(R.id.fram1);
         RadioButton rbAdd = (RadioButton) findViewById(R.id.fram2);
         RadioButton rbMine = (RadioButton) findViewById(R.id.fram3);
         //定义底部标签图片大小
-        int dpi = (int) (widthPixels*0.05f);
+        int dpi = (int) (widthPixels * 0.05f);
         Log.i("dpi", String.valueOf(dpi));
         Drawable drawableWeiHui = getResources().getDrawable(R.drawable.bottom_main);
         drawableWeiHui.setBounds(0, 0, dpi, dpi);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
@@ -96,45 +143,69 @@ public class TabActivity extends FragmentActivity {
         navGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.fram1:
-                        switchFragmentSupport(R.id.content, tabs[0]);
+                for (int i = 0; i < navGroup.getChildCount(); i++) {
+                    if (navGroup.getChildAt(i).getId() == checkedId) {
+                        setTabSelection(i);
                         break;
-                    case R.id.fram2:
-                        switchFragmentSupport(R.id.content, tabs[1]);
-                        break;
-                    case R.id.fram3:
-                        switchFragmentSupport(R.id.content, tabs[2]);
-                        break;
+                    }
                 }
             }
         });
         RadioButton btn = (RadioButton) navGroup.getChildAt(0);
         btn.toggle();
     }
+    private void setTabSelection(int index) {
+        // 开启一个Fragment事务
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        for(int i=0;i<mFragments.length;i++){
+            if(mFragments[i]==null){
+                try {
+                    //Constructor con =classes[i].getConstructor(Activity.class);
+                    //= classType.getConstructor(Context.class);
 
-    private void switchFragmentSupport(int containId, String tag) {
-        //获取FramegrameManager管理器
-        FragmentManager manager = getFragmentManager();
-        //根据标签查找是否已存在对应的frame对象
-        Fragment destFrament = manager.findFragmentByTag(tag);
-        //如果不存在则初始化
-        if (destFrament == null) {
-            if (tag.equals(tabs[0])) {
-                destFrament = new Main(TabActivity.this);
-            }
-            if (tag.equals(tabs[1])) {
-                destFrament = new SchoolServer(TabActivity.this);
-            }
-            if (tag.equals(tabs[2])) {
-                destFrament = new About(TabActivity.this);
+                    mFragments[i]= (Fragment) classes[i].newInstance();
+                   // Object obj = con.newInstance("lxf", 23);
+                    transaction.add(R.id.content, mFragments[i]);
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        //获取FramegramentTransaction事务对象
-        FragmentTransaction ft = manager.beginTransaction();
-        ft.replace(containId, destFrament, tag);
-        ft.commit();
+
+        // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+        for (Fragment tmp : mFragments) {
+            if (tmp != null)
+                transaction.hide(tmp);
+        }
+        transaction.show(mFragments[index]);
+        transaction.commit();
     }
+
+
+//    private void switchFragmentSupport(int containId, String tag) {
+//        //获取FramegrameManager管理器
+//        FragmentManager manager = getFragmentManager();
+//        //根据标签查找是否已存在对应的frame对象
+//        Fragment destFrament = manager.findFragmentByTag(tag);
+//        //如果不存在则初始化
+//        if (destFrament == null) {
+//            if (tag.equals(tabs[0])) {
+//                destFrament = new Main(TabActivity.this);
+//            }
+//            if (tag.equals(tabs[1])) {
+//                destFrament = new SchoolServer(TabActivity.this);
+//            }
+//            if (tag.equals(tabs[2])) {
+//                destFrament = new About(TabActivity.this);
+//            }
+//        }
+//        //获取FramegramentTransaction事务对象
+//        FragmentTransaction ft = manager.beginTransaction();
+//        ft.replace(containId, destFrament, tag);
+//        ft.commit();
+//    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -177,6 +248,7 @@ public class TabActivity extends FragmentActivity {
         jiaowu.addItem(jiaowu_MarkModule.getInstance());
         jiaowu.addItem(jiaowu_ClassroomModule.getInstance());
         jiaowu.addItem(jiaowu_ScheduleModule.getInstance());
+        jiaowu.addItem(TiceModule.getInstance());
 
         Catagory library = new Catagory(R.string.library_catagory);
         library.addItem(library_SearchModule.getInstance());

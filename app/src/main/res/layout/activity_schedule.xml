@@ -162,7 +162,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="周次："
-                android:id="@+id/textView16"
                 android:layout_marginTop="60dp"
                 android:layout_marginLeft="20dp"/>
 

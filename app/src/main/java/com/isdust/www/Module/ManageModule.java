@@ -19,7 +19,7 @@ public class ManageModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final ManageModule INSTANCE = new ManageModule(R.drawable.card,R.string.manage_module,R.string.schoolcard_info,R.string.schoolcard_catgory);
+        private static final ManageModule INSTANCE = new ManageModule(R.drawable.icon_module,R.string.manage_module,R.string.schoolcard_info,R.string.schoolcard_catgory);
     }
 
     public static final ManageModule getInstance() {

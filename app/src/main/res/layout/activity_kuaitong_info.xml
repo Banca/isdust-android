@@ -14,9 +14,7 @@
         <include layout="@layout/subpage_title_bar"
                  android:id="@+id/include" />
 
-        <ScrollView
-            android:id="@+id/widget54"
-            android:background="@color/color_page_white"
+        <ScrollView android:background="@color/color_page_white"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             xmlns:android="http://schemas.android.com/apk/res/android"

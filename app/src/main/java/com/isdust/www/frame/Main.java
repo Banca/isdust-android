@@ -23,6 +23,7 @@ import pw.isdust.isdust.function.ScheduleDB;
 import static com.isdust.www.R.id.kecheng;
 
 /**
+ *
  * Created by zor on 2016/9/29.
  */
 
@@ -35,16 +36,25 @@ public class Main extends Fragment {
 
     private TextView mTextView_kecheng;
     private String kecheng_brief;
+    @SuppressLint("StaticFieldLeak")
     public static RecycleViewAdapter adapter;
     private GridLayoutManager manager;
     private View v;
     private Activity mContext;
     private String brodcast;
     private TextView title;
-    public Main(Activity activity){
-        this.mContext=activity;
+    public Main(){
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.mContext=getActivity();
         isdustapp= (MyApplication) mContext.getApplication();
     }
+
+    @SuppressLint("InflateParams")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

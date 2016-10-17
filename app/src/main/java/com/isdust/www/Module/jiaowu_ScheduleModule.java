@@ -19,7 +19,7 @@ public class jiaowu_ScheduleModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final jiaowu_ScheduleModule INSTANCE = new jiaowu_ScheduleModule(R.drawable.menu_schedule,R.string.schedule_name,R.string.schedule_info,R.string.Jiaowu_catgory);
+        private static final jiaowu_ScheduleModule INSTANCE = new jiaowu_ScheduleModule(R.drawable.icon_schedule,R.string.schedule_name,R.string.schedule_info,R.string.Jiaowu_catgory);
     }
 
     public static final jiaowu_ScheduleModule getInstance() {

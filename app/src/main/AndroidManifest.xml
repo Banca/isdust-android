@@ -33,7 +33,7 @@
         android:icon="@mipmap/isdust"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name="com.umeng.fb.ConversationActivity" />
+        <!--<activity android:name="com.umeng.fb.ConversationActivity" />-->
         <activity
             android:name=".AppStart"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"

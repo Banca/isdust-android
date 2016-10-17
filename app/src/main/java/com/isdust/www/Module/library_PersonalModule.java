@@ -19,7 +19,7 @@ public class library_PersonalModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final library_PersonalModule INSTANCE = new library_PersonalModule(R.drawable.menu_person,R.string.library_personal_name,R.string.library_personal_info,R.string.Jiaowu_catgory);
+        private static final library_PersonalModule INSTANCE = new library_PersonalModule(R.drawable.icon_person,R.string.library_personal_name,R.string.library_personal_info,R.string.Jiaowu_catgory);
     }
 
     public static final library_PersonalModule getInstance() {

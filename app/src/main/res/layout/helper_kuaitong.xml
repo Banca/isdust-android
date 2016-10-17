@@ -12,9 +12,7 @@
             android:gravity="center">
             <include layout="@layout/subpage_title_bar" />
 
-            <ScrollView
-                android:id="@+id/widget54"
-                android:background="@color/color_view_white"
+            <ScrollView android:background="@color/color_view_white"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,7 +31,6 @@
                             android:layout_height="147dp"
                             android:orientation="horizontal"
                             android:weightSum="2"
-                            android:id="@+id/linearLayout2"
                             android:layout_alignParentTop="true"
                             android:layout_above="@+id/linearLayout3">
                             <ImageView

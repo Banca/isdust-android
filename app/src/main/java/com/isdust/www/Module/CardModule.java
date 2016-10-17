@@ -19,7 +19,7 @@ public class CardModule extends BaseModule {
     }
 
     private static class Holder {
-        private static final CardModule INSTANCE = new CardModule(R.drawable.card,R.string.schoolcard_name,R.string.schoolcard_info,R.string.schoolcard_catgory);
+        private static final CardModule INSTANCE = new CardModule(R.drawable.icon_card,R.string.schoolcard_name,R.string.schoolcard_info,R.string.schoolcard_catgory);
     }
 
     public static final CardModule getInstance() {
