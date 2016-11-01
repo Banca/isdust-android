@@ -23,9 +23,6 @@ public class SchoolServer extends Fragment {
     protected MyApplication isdustapp;
     private Activity thisActivity;
 
-    public SchoolServer(){
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

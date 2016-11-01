@@ -43,9 +43,6 @@ public class Main extends Fragment {
     private Activity mContext;
     private String brodcast;
     private TextView title;
-    public Main(){
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

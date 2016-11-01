@@ -24,8 +24,6 @@ import pw.isdust.isdust.update.UpdateChecker;
 @SuppressLint("ValidFragment")
 public class About extends Fragment {
     private Context mContext;
-    public About(){}
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
