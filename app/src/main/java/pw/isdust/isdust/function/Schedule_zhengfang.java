@@ -131,8 +131,8 @@ public class Schedule_zhengfang {
         for(int i=0;i<data.length;i++){
             HashMap<String,Object> result_child=new HashMap<String,Object>();
             result_child.put("date",time_convert(data[i][5]));
-            result_child.put("old",process_raw_change_cell(data[i][2],data[i][3]));
-            result_child.put("new",process_raw_change_cell(data[i][2],data[i][4]));
+            if(!data[i][3].equals("&nbsp;"))result_child.put("old",process_raw_change_cell(data[i][2],data[i][3]));
+            if(!data[i][4].equals("&nbsp;"))result_child.put("new",process_raw_change_cell(data[i][2],data[i][4]));
             result_temp.add(result_child);
 
         }

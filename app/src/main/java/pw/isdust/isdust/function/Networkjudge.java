@@ -38,7 +38,13 @@ public class Networkjudge {
     }
     public int judgetype(){
         ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo.State mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+        NetworkInfo.State mobile;
+        try{
+            mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();}
+        catch (Exception e){
+
+            return 4;
+        }
         String ssid=getCurrentSsid(mContext);
 
         if (ssid==null&&mobile.toString().equals("DISCONNECTED")){

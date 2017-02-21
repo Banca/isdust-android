@@ -84,6 +84,11 @@ public class SelectCoursePlatform {
         mtext_zhengfang=mHttp.get_string(url_xuanke);
     }
     public String login_zhengfang(String user, String pwd) throws IOException {
+        Re re_schedule_url=Re.compile("<a href=\"(xskbcx.aspx[\\s\\S]*?)\" target=\'zhuti\' onclick=\"GetMc\\(\'学生个人课表\'\\);\">");
+        Re re_schedule_score=Re.compile("<a href=\"(xscjcx.aspx[\\s\\S]*?)\" target=\'zhuti\' onclick=\"GetMc\\(\'个人成绩查询\'\\);\">");
+        Re re_schedule_xuanke=Re.compile("<a href=\"(wcdefault.aspx[\\s\\S]*?)\" target=\'zhuti\' onclick=\"GetMc\\(\'激活选课平台帐户\'\\);\">");
+
+
         String text_web;
         text_web= mHttp.get_string("http://"+address_zhengfang+"/default_ysdx.aspx", "gb2312");
         String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
@@ -94,12 +99,9 @@ public class SelectCoursePlatform {
             String url_login_zhengfang=Networklogin_CMCC.zhongjian(mtext_zhengfang,"<script>window.open('","','_parent');</script>",0);
             url_login_zhengfang="http://"+address_zhengfang+"/"+url_login_zhengfang;
             mtext_zhengfang=mHttp.get_string(url_login_zhengfang, "gb2312");
-            url_xuanke=Networklogin_CMCC.zhongjian(mtext_zhengfang, "信息员意见反馈</a></li><li><a href=\"", "\" target='zhuti' onclick=\"GetMc('激活选课平台帐户');", 0);
-            url_xuanke="http://"+address_zhengfang+"/"+url_xuanke;
-            url_chengji=Networklogin_CMCC.zhongjian(mtext_zhengfang,"学生个人课表</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('个人成绩查询');\">",0);
-            url_chengji="http://"+address_zhengfang+"/"+url_chengji;
-            url_kebiao=Networklogin_CMCC.zhongjian(mtext_zhengfang,"专业推荐课表查询</a></li><li><a href=\"","\" target='zhuti' onclick=\"GetMc('学生个人课表');",0);
-            url_kebiao="http://"+address_zhengfang+"/"+url_kebiao;
+            url_xuanke="http://"+address_zhengfang+"/"+re_schedule_xuanke.findall(mtext_zhengfang)[0][1];
+            url_chengji="http://"+address_zhengfang+"/"+re_schedule_score.findall(mtext_zhengfang)[0][1];
+            url_kebiao="http://"+address_zhengfang+"/"+re_schedule_url.findall(mtext_zhengfang)[0][1];
 
 
             return "登录成功";
@@ -205,10 +207,14 @@ public class SelectCoursePlatform {
         }
         //load change
         for(int i=0;i<change.length;i++){
-            HashMap<String,Object> node_new=(HashMap<String,Object>) change[i].get("new");
-            HashMap<String,Object> node_old=(HashMap<String,Object>) change[i].get("old");
-            mScheduleDB.delete(node_old);
-            mScheduleDB.add(node_new);
+            if(change[i].containsKey("old")){
+                HashMap<String,Object> node_old=(HashMap<String,Object>) change[i].get("old");
+                mScheduleDB.delete(node_old);
+            }
+            if(change[i].containsKey("new")){
+                HashMap<String,Object> node_new=(HashMap<String,Object>) change[i].get("new");
+                mScheduleDB.add(node_new);
+            }
         }
 
 
