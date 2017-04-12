@@ -225,8 +225,6 @@ public class SelectCoursePlatform {
         String text_web;
         text_web= mHttp.get_string("http://192.168.109.142/?zhou="+zhou+"&xn="+xn+"&xq="+xq);
         text_web=text_web.replace(" rowspan=\"2\" ","");
-
-
         Pattern mpattern = Pattern.compile("<td  class=\"leftheader\">第[1,3,5,7,9]节</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>[\\S\\s]*?<td >([\\S\\s]*?)</td>");
         Matcher mmatcher = mpattern.matcher(text_web);
         List<Kebiao> mkebiao =new ArrayList<Kebiao>();
@@ -235,9 +233,6 @@ public class SelectCoursePlatform {
         while (mmatcher.find()){
             mmatcher.start();
             for (int j=0;j<7;j++){
-
-
-
                 string_linshi=mmatcher.group(j+1);
                 if (string_linshi.equals("&nbsp;")==false){
                     Kebiao mkebiao_linshi=new Kebiao();
@@ -250,14 +245,11 @@ public class SelectCoursePlatform {
                     mkebiao_linshi.location=string_linshi_split[3];
                     mkebiao.add(mkebiao_linshi);
                 }
-
-
             }
             mmatcher.end();
             i++;
 
         }
-
         int len=mkebiao.size();
         Kebiao [] result1=new Kebiao[len];
         for (i=0;i<len;i++){
@@ -270,8 +262,6 @@ public class SelectCoursePlatform {
             result1[i].location=mkebiao.get(i).location;
 
         }
-
-
         return result1;//星期，节次，课程
     }
 

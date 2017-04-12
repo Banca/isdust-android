@@ -26,26 +26,17 @@ public class Re {
             int size=matcher.groupCount();
             for (int i=0;i<size+1;i++){
                 result_child.add(matcher.group(i));
-
-
             }
             array_temp.add(result_child);
         }
-
         result=new String[array_temp.size()][];
         for(int i=0;i<array_temp.size();i++){
-
             String temp[]=new String[array_temp.get(i).size()];
             for(int j=0;j<array_temp.get(i).size();j++){
                 temp[j]=array_temp.get(i).get(j);
-
-
             }
             result[i]=temp;
-
         }
-
-
         return result;
     }
     public String sub(String data1,String data2){

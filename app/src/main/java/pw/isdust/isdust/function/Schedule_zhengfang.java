@@ -1,5 +1,6 @@
 package pw.isdust.isdust.function;
 
+import java.io.Console;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -81,13 +82,18 @@ public class Schedule_zhengfang {
         result.put("class",temp_split[0]);
         Re re_zhouci = Re.compile("(\\{[\\s\\S]*?\\})");
         String [][]temp=re_zhouci.findall(temp_split[1]);
-        result.put("teacher",temp_split[2]);
-        result.put("location",temp_split[3]);
-        result.put("zhoushu",process_zhouci(temp[0][0]));
+        if(temp_split.length==4){
+            result.put("teacher",temp_split[2]);
+            result.put("location",temp_split[3]);
+            result.put("zhoushu",process_zhouci(temp[0][0]));
+        }
+        else if(temp_split.length==3){
+            result.put("teacher","");
+            result.put("location",temp_split[2]);
+            result.put("zhoushu",process_zhouci(temp[0][0]));
 
+        }
         return result;
-
-
     }
     public static HashMap<String,Object>[] process_raw_schedule(String [] []raw){
         HashMap<String,Object>[] result;
@@ -96,6 +102,7 @@ public class Schedule_zhengfang {
             for(int j=0;j<raw[i].length;j++){
                 if(raw[i][j].equals("&nbsp;"))continue;
                 if (raw[i][j].contains("<br><br>")==true){
+                    raw[i][j]=raw[i][j].replace("<br><br><br>","<br><br>");
                     String []temp_split=raw[i][j].split("<br><br>");
                     for(int k=0;k<temp_split.length;k++){
                         HashMap<String,Object> result_child=process_raw_cell(temp_split[k]);
@@ -109,6 +116,9 @@ public class Schedule_zhengfang {
                 result_child.put("jieci",i+1);
                 result_child.put("xingqi",j+1);
                 result_temp.add(result_child);
+                if(result_temp.size()==20){
+                    System.out.print(1);
+                }
             }
         }
         result=result_temp.toArray(new HashMap[0]);
