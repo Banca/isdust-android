@@ -84,6 +84,8 @@ public class SelectCoursePlatform {
         mtext_zhengfang=mHttp.get_string(url_xuanke);
     }
     public String login_zhengfang(String user, String pwd) throws IOException {
+        //mHttp.setTimeout(600);
+
         Re re_schedule_url=Re.compile("<a href=\"(xskbcx.aspx[\\s\\S]*?)\" target=\'zhuti\' onclick=\"GetMc\\(\'学生个人课表\'\\);\">");
         Re re_schedule_score=Re.compile("<a href=\"(xscjcx.aspx[\\s\\S]*?)\" target=\'zhuti\' onclick=\"GetMc\\(\'个人成绩查询\'\\);\">");
         Re re_schedule_xuanke=Re.compile("<a href=\"(wcdefault.aspx[\\s\\S]*?)\" target=\'zhuti\' onclick=\"GetMc\\(\'激活选课平台帐户\'\\);\">");
@@ -203,7 +205,12 @@ public class SelectCoursePlatform {
         HashMap<String,Object>[] change= Schedule_zhengfang.getchange(text_web);
         //load schedule
         for(int i=0;i<schedule.length;i++){
-            mScheduleDB.add(schedule[i]);
+            try {
+                mScheduleDB.add(schedule[i]);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         //load change
         for(int i=0;i<change.length;i++){
