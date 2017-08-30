@@ -93,6 +93,12 @@ public class EmptyClassroom {
         }
         submit=submit.replace("==","");
         //?method=4&building=&zhoushu=&xingqi=&jieci=
+        try{
+            String text=mHttp.post_string("http://kzxs.isdust.com/chaxun_new.php","data="+submit+"&verification="+Networklogin_CMCC.md5(submit+"dsfwedsdv"+time)+"&time="+time);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         String text=mHttp.post_string("http://kzxs.isdust.com/chaxun_new.php","data="+submit+"&verification="+Networklogin_CMCC.md5(submit+"dsfwedsdv"+time)+"&time="+time);
 
 //        String text=mHttp.get_string("http://kzxs.isdust.com/chaxun.php?method=4&building="+building+"&zhoushu="+ schooldate +"&xingqi="+week+"&jieci="+jieci);

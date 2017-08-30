@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Leng Hanchao on 2015/10/16.
@@ -34,7 +33,7 @@ public class CardLossActivity extends BaseSubPageActivity {
         super.onCreate(savedInstanceState);
         mContext=this;
         INIT(R.layout.activity_cardloss, "校园卡挂失");
-        MobclickAgent.onEvent(this, "schoolcard_guashi");
+        //MobclickAgent.onEvent(this, "schoolcard_guashi");
 
 
     }

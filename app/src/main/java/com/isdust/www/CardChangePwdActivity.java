@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -85,7 +84,7 @@ public class CardChangePwdActivity extends BaseSubPageActivity {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_cardchangepwd, "密码修改");
         mContext=this;
-        MobclickAgent.onEvent(this, "schoolcard_changePwd");
+        //MobclickAgent.onEvent(this, "schoolcard_changePwd");
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);

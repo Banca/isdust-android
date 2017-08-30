@@ -22,7 +22,9 @@
 -dontwarn com.umeng.message.UmengMessageHandler
 -dontwarn com.umeng.message.entity.UMessage
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+ -dontwarn com.tencent.bugly.**
 
+-keep public class com.tencent.bugly.**{*;}
 -keepattributes Signature
 -keep class sun.misc.Unsafe { *; }
 -keep class com.taobao.** {*;}

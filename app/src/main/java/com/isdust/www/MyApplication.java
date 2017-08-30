@@ -8,6 +8,7 @@ import com.isdust.www.Module.BaseModule;
 import com.isdust.www.Module.Catagory;
 import com.isdust.www.Utils.SerializableList;
 import com.isdust.www.datatype.Book;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,8 @@ public class MyApplication extends Application {
 
     public void onCreate() {
         super.onCreate();
-        FeedbackAPI.initAnnoy(this, "23471189");
+        CrashReport.initCrashReport(getApplicationContext());
+        //CrashReport.testJavaCrash();
         mContext = this;
         mExecutorService.execute(xiancheng_init);
 

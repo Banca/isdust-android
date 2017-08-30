@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Leng Hanchao on 2015/10/31.
@@ -32,7 +31,7 @@ public class KuaiTongInfoActivity extends BaseSubPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_kuaitong_info, "账户信息");
-        MobclickAgent.onEvent(this, "network_kuaitong_info");
+        //MobclickAgent.onEvent(this, "network_kuaitong_info");
 
         Intent intent = getIntent() ;
 

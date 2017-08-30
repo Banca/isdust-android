@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -380,12 +379,12 @@ public class KuaiTongActivity extends BaseSubPageActivity {
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MobclickAgent.onEvent(this, "network_kuaitong");
+        //MobclickAgent.onEvent(this, "network_kuaitong");
         mContext=this;
         super.onCreate(savedInstanceState);
         INIT(R.layout.helper_kuaitong, "快通有线");
         isdustapp.kuaitong_init();
-        MobclickAgent.onEvent(this, "network_kuaitong_main");
+        //MobclickAgent.onEvent(this, "network_kuaitong_main");
 
         //实例化SharedPreferences对象
         preferences_data_kuaitong = mContext.getSharedPreferences("KuaiTongData", Activity.MODE_PRIVATE);

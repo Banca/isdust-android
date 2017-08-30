@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -260,7 +259,7 @@ public class Jiaowu_chengjichaxun_main extends BaseSubPageActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_schedule);
         INIT(R.layout.activity_jiaowu_chengjichaxun, "成绩查询");
-        MobclickAgent.onEvent(this, "jiaowu_chengjichaxun");
+        //MobclickAgent.onEvent(this, "jiaowu_chengjichaxun");
 
         preferences_data = mContext.getSharedPreferences("ScheduleData", Activity.MODE_PRIVATE);
         preferences_editor = preferences_data.edit();

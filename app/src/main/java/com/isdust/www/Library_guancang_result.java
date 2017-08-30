@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.Book;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +47,7 @@ public class Library_guancang_result extends BaseSubPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_guancang_result, "查询结果");
-        MobclickAgent.onEvent(this, "Library_guancang");
+        //MobclickAgent.onEvent(this, "Library_guancang");
 
         mListView=(ListView)findViewById(R.id.listview_library_result);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

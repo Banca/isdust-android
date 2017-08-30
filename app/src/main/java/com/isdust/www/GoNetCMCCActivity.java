@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -333,7 +332,7 @@ public class GoNetCMCCActivity extends BaseSubPageActivity {
         customRuningDialog = new IsdustDialog(mContext,
                 IsdustDialog.RUNING_DIALOG, R.style.DialogTheme);   //初始化加载对话框
         isconnect();//没连接CMCC自动退出
-        MobclickAgent.onEvent(this, "network_CMCC");
+        //MobclickAgent.onEvent(this, "network_CMCC");
 
         mSharedPreferences_cmcc=getSharedPreferences("NetworkLogin", Activity.MODE_PRIVATE);
 

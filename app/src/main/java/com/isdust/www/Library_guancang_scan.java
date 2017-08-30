@@ -17,7 +17,6 @@ import com.mining.app.zxing.camera.CameraManager;
 import com.mining.app.zxing.decoding.CaptureActivityHandler;
 import com.mining.app.zxing.decoding.InactivityTimer;
 import com.mining.app.zxing.view.ViewfinderView;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -61,7 +60,7 @@ public class Library_guancang_scan extends Activity implements SurfaceHolder.Cal
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        MobclickAgent.onEvent(this, "Library_tiaoxingma");
+        //MobclickAgent.onEvent(this, "Library_tiaoxingma");
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);

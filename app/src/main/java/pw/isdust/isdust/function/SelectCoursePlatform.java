@@ -195,11 +195,16 @@ public class SelectCoursePlatform {
         return mchengji;
 
     }
-    public void kebiao_chaxun_zhengfang() throws IOException {
+    public void kebiao_chaxun_zhengfang(String year,String semester) throws IOException {
         String text_web;
         ScheduleDB mScheduleDB=new ScheduleDB();
         mHttp.setTimeout(600);
         text_web=mHttp.get_string(url_kebiao);
+        String __VIEWSTATE= Networklogin_CMCC.zhongjian(text_web, "<input type=\"hidden\" name=\"__VIEWSTATE\" value=\"", "\" />", 0);
+        __VIEWSTATE=URLEncoder.encode(__VIEWSTATE);
+        String submit = "__VIEWSTATE=" + __VIEWSTATE+"&__EVENTTARGET=xqd&xnd="+year+"&xqd="+semester;
+
+        text_web=mHttp.post_string_noturlencode(url_kebiao, submit);
 
         HashMap<String,Object>[] schedule= Schedule_zhengfang.getschedule(text_web);
         HashMap<String,Object>[] change= Schedule_zhengfang.getchange(text_web);

@@ -29,7 +29,6 @@ import android.widget.Toast;
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.Kebiao;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +38,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.ScheduleDB;
 import pw.isdust.isdust.function.SchoolDate;
 import pw.isdust.isdust.function.SelectCoursePlatform;
@@ -169,7 +169,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
             mMessage.what=3;
 
             try{
-                mXuankepingtai.kebiao_chaxun_zhengfang();
+                mXuankepingtai.kebiao_chaxun_zhengfang(OnlineConfig.getConfigParams("schedule_xuenian"),OnlineConfig.getConfigParams("schedule_xueqi"));
             }catch (Exception e){
                 e.printStackTrace();
                 mMessage.what = 10;
@@ -239,7 +239,7 @@ public class jiaowu_Schedule_main extends BaseSubPageActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        MobclickAgent.onEvent(this, "jiaowu_schedule");
+        //MobclickAgent.onEvent(this, "jiaowu_schedule");
 
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_schedule,"课表查询");

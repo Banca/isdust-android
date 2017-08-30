@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -237,7 +236,7 @@ public class Library_personal_main extends BaseSubPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_library_personal_main, "图书馆个人中心");
-        MobclickAgent.onEvent(this, "library_personal");
+        //MobclickAgent.onEvent(this, "library_personal");
 
         mTextView_usercard=(TextView)findViewById(R.id.text_library_usercard);
          mTextView_username=(TextView)findViewById(R.id.text_library_username);

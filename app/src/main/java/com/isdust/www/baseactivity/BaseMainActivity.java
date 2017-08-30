@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.isdust.www.MyApplication;
 import com.isdust.www.R;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by wzq on 15/11/9.
@@ -60,7 +59,7 @@ public class BaseMainActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+        //MobclickAgent.onResume(this);
     }
     public void onTitleBarClick(View v) {
         switch (v.getId()) {

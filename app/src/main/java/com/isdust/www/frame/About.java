@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.isdust.www.R;
-import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.update.UpdateChecker;
 
@@ -35,7 +34,7 @@ public class About extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        MobclickAgent.onEvent(mContext, "About");
+        //MobclickAgent.onEvent(mContext, "About");
         View v = inflater.inflate(R.layout.helper_about, null);
 
 

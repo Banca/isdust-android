@@ -7,7 +7,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Wang Ziqiang on 2015/10/17.
@@ -25,7 +24,7 @@ public class AdvertisementActivity extends BaseSubPageActivity {
         String title= intent.getStringExtra("title");
         String url= intent.getStringExtra("url");
         INIT(R.layout.helper_news, title);
-        MobclickAgent.onEvent(this, "Advertisement");
+        ////MobclickAgent.onEvent(this, "Advertisement");
 
         mWebView=(WebView)findViewById(R.id.webView_news);
         WebSettings mwebSettings = mWebView.getSettings();

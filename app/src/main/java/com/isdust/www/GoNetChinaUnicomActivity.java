@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -187,7 +186,7 @@ public class GoNetChinaUnicomActivity  extends BaseSubPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         INIT(R.layout.gonet_chinaunicom, "ChinaUnicom");  //初始化祖基类
-        MobclickAgent.onEvent(this, "network_ChinaUnicom");
+        //MobclickAgent.onEvent(this, "network_ChinaUnicom");
 
         mNetworkjudge=new Networkjudge(mContext);
         mImageButton_state = (ImageButton) findViewById(R.id.btn_state); //连接状态按钮

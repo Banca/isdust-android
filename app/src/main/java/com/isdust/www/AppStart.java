@@ -9,7 +9,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
 import com.isdust.www.baseactivity.BaseMainActivity;
-import com.umeng.analytics.MobclickAgent;
 
 import pw.isdust.isdust.OnlineConfig;
 import pw.isdust.isdust.function.Advertisement;
@@ -58,7 +57,7 @@ public class AppStart extends BaseMainActivity {
     }
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+        //MobclickAgent.onPause(this);
     }
 
 

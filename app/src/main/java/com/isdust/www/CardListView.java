@@ -11,7 +11,6 @@ import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.PurchaseHistory;
 import com.isdust.www.view.IsdustDialog;
 import com.isdust.www.view.PullToRefreshView;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -141,7 +140,7 @@ public class CardListView extends BaseSubPageActivity {
 		xiancheng_bollean = false;
 
 
-		MobclickAgent.onEvent(this, "schoolcard_xiaofeirecord");
+		//MobclickAgent.onEvent(this, "schoolcard_xiaofeirecord");
 
 
 

@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.isdust.www.baseactivity.BaseSubPageActivity;
 import com.isdust.www.datatype.ScheduleInformation;
 import com.isdust.www.view.IsdustDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -194,7 +193,7 @@ public class Jiaowu_EmptyRoom extends BaseSubPageActivity {
     };
 
     protected void onCreate(Bundle savedInstanceState) {
-        MobclickAgent.onEvent(this, "jiaowu_Emptyroom");
+        //MobclickAgent.onEvent(this, "jiaowu_Emptyroom");
 
         super.onCreate(savedInstanceState);
         INIT(R.layout.activity_emptyroom_listview,"空自习室查询");
