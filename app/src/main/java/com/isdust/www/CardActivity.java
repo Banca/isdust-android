@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -93,8 +94,9 @@ public class CardActivity extends BaseSubPageActivity {
         @Override
         public void run() {
             try {
-                xiancheng_login_status = isdustapp.getUsercard().login(xiancheng_username,xiancheng_password);
+                xiancheng_login_status = isdustapp.getUsercard().login(xiancheng_username,xiancheng_password,xiancheng_yzm);
             } catch (Exception e) {
+                Log.e("CARDERROR",e.getMessage());
                 e.printStackTrace();
                 Message message = new Message();
                 message.what = 10;
@@ -117,6 +119,7 @@ public class CardActivity extends BaseSubPageActivity {
             }
         }
     };
+    private String xiancheng_yzm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,6 +248,7 @@ public class CardActivity extends BaseSubPageActivity {
                         Bundle bundle=data.getExtras();
                         xiancheng_username = bundle.getString("username");
                         xiancheng_password = bundle.getString("password");
+                        xiancheng_yzm = bundle.getString("yzm");
                         customRuningDialog.show();
                         customRuningDialog.setMessage("正在登录中");
 //                        dialog = ProgressDialog.show(

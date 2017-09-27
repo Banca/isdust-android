@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import pw.isdust.isdust.Http;
 import pw.isdust.isdust.function.Network_Kuaitong;
 import pw.isdust.isdust.function.Networklogin_CMCC;
 import pw.isdust.isdust.function.Networklogin_ChinaUnicom;
@@ -48,6 +49,7 @@ public class MyApplication extends Application {
     private Context mContext;
     private Networklogin_CMCC mNetworklogin_CMCC;
     private Networklogin_ChinaUnicom mNetworklogin_ChinaUnicom;
+    private Http mhttp;
     ExecutorService mExecutorService = Executors.newCachedThreadPool();
     Runnable xiancheng_init = new Runnable() {
         @Override
@@ -58,12 +60,20 @@ public class MyApplication extends Application {
         }
     };
 
+    public Http getMhttp() {
+        return mhttp;
+    }
+
     public void onCreate() {
         super.onCreate();
         CrashReport.initCrashReport(getApplicationContext());
         //CrashReport.testJavaCrash();
         mContext = this;
         mExecutorService.execute(xiancheng_init);
+        mhttp=new Http();
+
+        mhttp.setTimeout(600);
+        mhttp.newcookie();
 
     }
 
@@ -91,7 +101,7 @@ public class MyApplication extends Application {
 
     public void card_init() {
 
-            usercard = new SchoolCard(mContext);
+            usercard = new SchoolCard(mContext,mhttp);
     }
 
     public void kuaitong_init() {

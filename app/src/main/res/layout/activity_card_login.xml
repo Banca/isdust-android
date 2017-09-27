@@ -23,15 +23,14 @@
 
         <RelativeLayout
             android:id="@+id/relativeLayout_first"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/include"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="2.15">
+            android:layout_marginTop="20dp">
 
             <EditText
                 android:id="@+id/edittext_schoolcard_user"
@@ -64,6 +63,37 @@
                 android:inputType="numberPassword"
                 android:numeric="integer"
                 android:singleLine="true" />
+            <EditText
+                android:id="@+id/edittext_schoolcard_yzm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/edittext_schoolcard_pwd"
+                android:layout_marginTop="7px"
+                android:background="@color/color_btn_white"
+                android:drawableLeft="@drawable/pwd"
+                android:ems="10"
+                android:hint="验证码"
+                android:inputType="numberPassword"
+                android:numeric="integer"
+                android:singleLine="true" />
+
+            <ImageView
+                android:id="@+id/imageview_yzm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/edittext_schoolcard_yzm"
+                android:layout_alignBottom="@id/edittext_schoolcard_yzm"
+                android:cropToPadding="true"
+                android:layout_margin="7px"
+
+                android:src="@drawable/code"
+                android:layout_alignParentRight="true"
+                android:scaleType="fitXY"
+                android:layout_toRightOf="@+id/edittext_schoolcard_yzm"
+                android:layout_toEndOf="@+id/edittext_schoolcard_yzm" />
 
             <Button
                 android:id="@+id/btn_schoolcard_ok"
@@ -74,7 +104,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/edittext_schoolcard_pwd"
+                android:layout_below="@+id/edittext_schoolcard_yzm"
                 android:layout_marginLeft="165dp"
                 android:layout_marginStart="165dp"
                 android:layout_marginTop="7px"
